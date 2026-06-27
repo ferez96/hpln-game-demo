@@ -9,7 +9,7 @@ export default function Home() {
     <main className="w-screen h-screen">
       <Canvas
         shadows
-        camera={{ position: [6, 28, 22] }}
+        camera={{ position: [6, 20, 22], fov: 45 }}
       >
         <Grid args={[14, 14]} position={[6, 0, 6]} />
 
