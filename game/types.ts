@@ -1,10 +1,11 @@
-export type Terrain = "grass" | "plains" | "forest" | "mountain" | "city" | "capital";
+export type Terrain = "plains" | "forest" | "mountain" | "city" | "capital";
 export type Owner = "wei" | "shu" | "wu";
 
 export interface TileData {
   x: number;
   y: number;
   terrain: Terrain;
+  relativePos?: [number,number];
   owner?: Owner;
   label?: string;
 }
@@ -89,27 +90,15 @@ export interface CityState {
   label: string;
   owner: Owner | null;
   isCapital: boolean;
-  population: number;
-  defense: number;      // 0–100
-  buildings: Building[];
 }
 
 // ── Game State ────────────────────────────────────────────────────────────────
 
-export type TurnPhase = "move" | "combat" | "economy" | "diplomacy";
+export type TurnPhase = "communicate" | "plan" | "move" | "act";
 
 export interface GameState {
   turn: number;
-  currentFaction: Owner;
   phase: TurnPhase;
 
-  factions: Record<Owner, FactionState>;
-  cities: Record<string, CityState>;   // key = city label
   tiles: TileData[];
-
-  diplomacy: {
-    wei_shu: DiplomacyStatus;
-    wei_wu: DiplomacyStatus;
-    shu_wu: DiplomacyStatus;
-  };
 }

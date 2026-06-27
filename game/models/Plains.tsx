@@ -1,6 +1,7 @@
 "use client";
 
 import { useGLTF } from "@react-three/drei";
+import { useMemo } from "react";
 
 interface Props {
   position: [number, number, number];
@@ -19,14 +20,31 @@ export function Plains({ position, tileX, tileY }: Props) {
   const { scene: leafs } = useGLTF("/models/grass_leafs.glb");
   const { scene: leafsL } = useGLTF("/models/grass_leafsLarge.glb");
 
-  const scenes = [grass, grassL, leafs, leafsL];
+  const scenes = useMemo(() => [grass, grassL, leafs, leafsL], [grass, grassL, leafs, leafsL]);
 
-  const tufts: { sx: number; sz: number; rot: number; scl: number; idx: number }[] = [
-    { sx: -0.28, sz: -0.22, rot: h(tileX, tileY, 0) * Math.PI * 2, scl: 0.45 + h(tileX, tileY, 1) * 0.2, idx: Math.floor(h(tileX, tileY, 2) * 4) },
-    { sx:  0.25, sz:  0.20, rot: h(tileX, tileY, 3) * Math.PI * 2, scl: 0.40 + h(tileX, tileY, 4) * 0.2, idx: Math.floor(h(tileX, tileY, 5) * 4) },
-    { sx: -0.10, sz:  0.28, rot: h(tileX, tileY, 6) * Math.PI * 2, scl: 0.35 + h(tileX, tileY, 7) * 0.2, idx: Math.floor(h(tileX, tileY, 8) * 4) },
-  ];
-
+  const tufts = useMemo(() => [
+    {
+      sx: -0.28 + h(tileX, tileY, 10) * 0.18,
+      sz: -0.22 + h(tileX, tileY, 11) * 0.18,
+      rot: h(tileX, tileY, 12) * Math.PI * 2,
+      scl: 0.18 + h(tileX, tileY, 13) * 0.08, // 0.18 - 0.26
+      idx: Math.floor(h(tileX, tileY, 14) * 4),
+    },
+    {
+      sx: 0.25 + h(tileX, tileY, 20) * 0.18,
+      sz: 0.20 + h(tileX, tileY, 21) * 0.18,
+      rot: h(tileX, tileY, 22) * Math.PI * 2,
+      scl: 0.17 + h(tileX, tileY, 23) * 0.08, // 0.17 - 0.25
+      idx: Math.floor(h(tileX, tileY, 24) * 4),
+    },
+    {
+      sx: -0.10 + h(tileX, tileY, 30) * 0.18,
+      sz: 0.28 + h(tileX, tileY, 31) * 0.18,
+      rot: h(tileX, tileY, 32) * Math.PI * 2,
+      scl: 0.16 + h(tileX, tileY, 33) * 0.08, // 0.16 - 0.24
+      idx: Math.floor(h(tileX, tileY, 34) * 4),
+    },
+  ], [tileX, tileY]);
   return (
     <group position={position}>
       {tufts.map((t, i) => (
