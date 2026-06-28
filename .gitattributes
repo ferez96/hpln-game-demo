@@ -1,0 +1,9 @@
+*.pdf filter=lfs diff=git-lfs merge=git-lfs -text
+*.psd filter=lfs diff=git-lfs merge=git-lfs -text
+*.png filter=lfs diff=git-lfs merge=git-lfs -text
+*.jpg filter=lfs diff=git-lfs merge=git-lfs -text
+*.jpeg filter=lfs diff=git-lfs merge=git-lfs -text
+*.mp4 filter=lfs diff=git-lfs merge=git-lfs -text
+*.mov filter=lfs diff=git-lfs merge=git-lfs -text
+*.wav filter=lfs diff=git-lfs merge=git-lfs -text
+*.zip filter=lfs diff=git-lfs merge=git-lfs -text
