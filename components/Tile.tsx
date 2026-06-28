@@ -2,26 +2,22 @@
 
 import { useState } from "react";
 import { Html } from "@react-three/drei";
-import { TileData, Commander, ArmyStack, stackSize } from "@/game/types";
+import { TileData } from "@/game/types";
+import { Plains } from "@/game/models/Plains";
+import { Edges } from "@react-three/drei";
 import { Forest } from "@/game/models/Forest";
 import { Mountain } from "@/game/models/Mountain";
-import { Plains } from "@/game/models/Plains";
-import { Capital } from "@/game/models/Capital";
-import { Edges } from "@react-three/drei";
-
 
 interface Props {
   tile: TileData;
   selected: string | null;
   onSelect: (id: string) => void;
-  commanders?: Commander[];
-  stacks?: ArmyStack[];
 }
 
 const OWNER_STYLE = {
   neutral: {
-    bg: "#E0E0E0",
-    border: "#FFFFFF",
+    bg: "#F5F5F5",
+    border: "#CCCCCC",
   },
   wei: {
     bg: "#90CAF9",
@@ -38,25 +34,19 @@ const OWNER_STYLE = {
 };
 
 function tileColor(tile: TileData, isSelected: boolean, isHovered: boolean) {
-  if (isSelected) return "#FFCC00";
   if (isHovered) return "#FFF176";
-  // if (tile.terrain === "capital") return "#78909C";
-  // if (tile.terrain === "city") return "#B0BEC5";
-  // if (tile.terrain === "plains") return "#C5E1A5";
-  // if (tile.terrain === "forest") return "#2E7D32";
-  // if (tile.terrain === "mountain") return "#6D4C41";
   if (tile.owner) return OWNER_STYLE[tile.owner].bg;
   return OWNER_STYLE["neutral"].bg;
 }
 
 function borderColor(tile: TileData, isSelected: boolean, isHovered: boolean) {
-  if (isSelected) return "#FFCC00";
+  if (isSelected) return "#000";
   if (isHovered) return "#FFF176";
   if (tile.owner) return OWNER_STYLE[tile.owner].border;
   return OWNER_STYLE["neutral"].border;
 }
 
-export function Tile({ tile, selected, onSelect, commanders = [], stacks = [] }: Props) {
+export function Tile({ tile, selected, onSelect }: Props) {
   const [hovered, setHovered] = useState(false);
   const id = `${tile.x}-${tile.y}`;
   const isSelected = selected === id;
@@ -64,7 +54,7 @@ export function Tile({ tile, selected, onSelect, commanders = [], stacks = [] }:
   const border = borderColor(tile, isSelected, hovered);
 
   return (
-    <group position={[tile.x, 0, tile.y]}>
+    <group position={[tile.x + 0.5, 0, tile.y + 0.5]}>
       <mesh
         castShadow
         receiveShadow
@@ -76,13 +66,9 @@ export function Tile({ tile, selected, onSelect, commanders = [], stacks = [] }:
         <boxGeometry args={[0.97, 0.1, 0.97]} />
         <meshStandardMaterial color={color} />
 
-        <Edges
-          color={border}
-          lineWidth={2}
-          threshold={15}
-        />
+        <Edges color={border} lineWidth={2} threshold={15} />
       </mesh>
-      
+
       {isSelected && (
         <Html position={[0, 1.5, 0]} center distanceFactor={12}>
           <pre
@@ -99,47 +85,22 @@ export function Tile({ tile, selected, onSelect, commanders = [], stacks = [] }:
             {JSON.stringify(
               {
                 tile,
-                commanders,
-                stacks,
               },
               null,
-              2
+              2,
             )}
           </pre>
         </Html>
       )}
 
+      {tile.terrain === "plains" && (
+        <Plains position={[0, 0.1, 0]} tileX={tile.x} tileY={tile.y} />
+      )}
       {tile.terrain === "forest" && (
         <Forest position={[0, 0.1, 0]} tileX={tile.x} tileY={tile.y} />
       )}
       {tile.terrain === "mountain" && (
         <Mountain position={[0, 0.1, 0]} tileX={tile.x} tileY={tile.y} />
-      )}
-      {tile.terrain === "plains" && (
-        <Plains position={[0, 0.1, 0]} tileX={tile.x} tileY={tile.y} />
-      )}
-      {tile.terrain === "capital" && (
-        <Capital
-          position={[0, 0.1, 0]}
-          tileX={tile.x}
-          tileY={tile.y}
-          relativePos={tile.relativePos}
-        />
-      )}
-
-
-      {/* City / capital label */}
-      {tile.label && commanders.length === 0 && (
-        <Html position={[0, 0.6, 0]} center>
-          <div style={{
-            color: "white", fontSize: "9px", fontWeight: "bold",
-            textAlign: "center", whiteSpace: "nowrap",
-            textShadow: "0 0 3px black, 0 0 3px black",
-            pointerEvents: "none", userSelect: "none",
-          }}>
-            {tile.label}
-          </div>
-        </Html>
       )}
     </group>
   );

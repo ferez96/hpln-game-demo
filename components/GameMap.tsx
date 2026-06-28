@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { GameState, Commander, ArmyStack } from "@/game/types";
+import { GameState } from "@/game/types";
 import { initialGameState } from "@/game/state";
 import { Tile } from "./Tile";
-
+import { Capital } from "@/game/models/Capital";
+import { City } from "@/game/models/City";
 
 export function GameMap() {
   const [gs] = useState<GameState>(initialGameState);
@@ -14,7 +15,6 @@ export function GameMap() {
     <>
       {gs.tiles.map((tile) => {
         const key = `${tile.x}-${tile.y}`;
-        
         return (
           <Tile
             key={key}
@@ -24,6 +24,18 @@ export function GameMap() {
           />
         );
       })}
+      {Object.values(gs.cities)
+        .filter((city) => city.isCapital)
+        .map((city) => {
+          const [x, y] = city.tiles[0];
+          return <Capital key={city.label} position={[x + 1.5, 0, y + 1.5]} />;
+        })}
+      {Object.values(gs.cities)
+        .filter((city) => !city.isCapital)
+        .map((city) => {
+          const [x, y] = city.tiles[0];
+          return <City key={city.label} position={[x + 0.5, 0, y + 0.5]} />;
+        })}
     </>
   );
 }
