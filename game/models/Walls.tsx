@@ -1,4 +1,12 @@
 import { Box } from "@react-three/drei";
+import { Wall } from "./Wall";
+
+type VisibleWalls = {
+  top?: boolean;
+  bottom?: boolean;
+  left?: boolean;
+  right?: boolean;
+};
 
 type Props = {
   width: number;
@@ -8,107 +16,66 @@ type Props = {
   visibleWalls?: VisibleWalls;
 };
 
-type VisibleWalls = {
-  top: boolean;
-  bottom: boolean;
-  left: boolean;
-  right: boolean;
-};
+const WALL_COLOR = "#BDB6A8";
 
 export function Walls({
   width,
   height,
   wallHeight = 1,
   thickness = 0.15,
-  visibleWalls = { top: true, bottom: true, left: true, right: true },
+  visibleWalls = {
+    top: true,
+    bottom: true,
+    left: true,
+    right: true,
+  },
 }: Props) {
   return (
     <group>
-      {/* Top */}
       {visibleWalls.top &&
-        Array.from({ length: width }).map((_, x) => (
-          <WallX
+        [...Array(width)].map((_, x) => (
+          <Wall
             key={`top-${x}`}
+
+            axis="x"
             position={[x, wallHeight / 2, -0.5]}
-            thickness={thickness}
             wallHeight={wallHeight}
+            thickness={thickness}
           />
         ))}
 
-      {/* Bottom */}
       {visibleWalls.bottom &&
-        Array.from({ length: width }).map((_, x) => (
-          <WallX
+        [...Array(width)].map((_, x) => (
+          <Wall
             key={`bottom-${x}`}
+            axis="x"
             position={[x, wallHeight / 2, height - 0.5]}
-            thickness={thickness}
             wallHeight={wallHeight}
+            thickness={thickness}
           />
         ))}
 
-      {/* Left */}
       {visibleWalls.left &&
-        Array.from({ length: height }).map((_, y) => (
-          <WallZ
-            key={`left-${y}`}
-            position={[-0.5, wallHeight / 2, y]}
-            thickness={thickness}
+        [...Array(height)].map((_, z) => (
+          <Wall
+            key={`left-${z}`}
+            axis="z"
+            position={[-0.5, wallHeight / 2, z]}
             wallHeight={wallHeight}
+            thickness={thickness}
           />
         ))}
 
-      {/* Right */}
       {visibleWalls.right &&
-        Array.from({ length: height }).map((_, y) => (
-          <WallZ
-            key={`right-${y}`}
-            position={[width - 0.5, wallHeight / 2, y]}
-            thickness={thickness}
+        [...Array(height)].map((_, z) => (
+          <Wall
+            key={`right-${z}`}
+            axis="z"
+            position={[width - 0.5, wallHeight / 2, z]}
             wallHeight={wallHeight}
+            thickness={thickness}
           />
         ))}
     </group>
-  );
-}
-
-function WallX({
-  position,
-  wallHeight,
-  thickness,
-}: {
-  position: [number, number, number];
-  wallHeight: number;
-  thickness: number;
-}) {
-  return (
-    <Box
-      args={[1, wallHeight, thickness]}
-      position={position}
-      castShadow
-      receiveShadow
-    >
-      <meshStandardMaterial color="#BDB6A8" />
-    </Box>
-  );
-}
-
-function WallZ({
-  position,
-  wallHeight,
-  thickness,
-}: {
-  position: [number, number, number];
-  wallHeight: number;
-  thickness: number;
-}) {
-  return (
-    <Box
-      args={[thickness, wallHeight, 1]}
-      position={position}
-      castShadow
-      receiveShadow
-    >
-      <meshStandardMaterial color="#BDB6A8" />
-    </Box>
   );
 }
