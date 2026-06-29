@@ -7,6 +7,7 @@ import { Plains } from "@/game/models/Plains";
 import { Edges } from "@react-three/drei";
 import { Forest } from "@/game/models/Forest";
 import { Mountain } from "@/game/models/Mountain";
+import { River } from "@/game/models/River";
 
 interface Props {
   tile: TileData;
@@ -35,6 +36,7 @@ const OWNER_STYLE = {
 
 function tileColor(tile: TileData, isSelected: boolean, isHovered: boolean) {
   if (isHovered) return "#FFF176";
+  if (isSelected) return "#FFFFFF";
   if (tile.owner) return OWNER_STYLE[tile.owner].bg;
   return OWNER_STYLE["neutral"].bg;
 }
@@ -48,7 +50,7 @@ function borderColor(tile: TileData, isSelected: boolean, isHovered: boolean) {
 
 export function Tile({ tile, selected, onSelect }: Props) {
   const [hovered, setHovered] = useState(false);
-  const id = `${tile.x}-${tile.y}`;
+  const id = tile.id;
   const isSelected = selected === id;
   const color = tileColor(tile, isSelected, hovered);
   const border = borderColor(tile, isSelected, hovered);
@@ -71,25 +73,24 @@ export function Tile({ tile, selected, onSelect }: Props) {
 
       {isSelected && (
         <Html position={[0, 1.5, 0]} center distanceFactor={12}>
-          <pre
+          <div
             style={{
-              background: "#222",
-              color: "#0f0",
-              padding: 10,
+              background: "rgba(17, 24, 39, 0.94)",
+              color: "#fff",
+              padding: "8px 10px",
               borderRadius: 6,
               maxWidth: 320,
-              fontSize: 11,
+              fontSize: 12,
               pointerEvents: "none",
+              whiteSpace: "nowrap",
             }}
           >
-            {JSON.stringify(
-              {
-                tile,
-              },
-              null,
-              2,
-            )}
-          </pre>
+            <strong>{tile.id}</strong> {tile.label ? `- ${tile.label}` : ""}
+            <br />
+            {tile.terrain}
+            {tile.owner ? ` / ${tile.owner}` : " / neutral"}
+            {tile.supplyOwner ? ` / supplied` : ""}
+          </div>
         </Html>
       )}
 
@@ -102,6 +103,10 @@ export function Tile({ tile, selected, onSelect }: Props) {
       {tile.terrain === "mountain" && (
         <Mountain position={[0, 0.1, 0]} tileX={tile.x} tileY={tile.y} />
       )}
+      {tile.terrain === "river" && (
+        <River position={[0, 0.1, 0]} tileX={tile.x} tileY={tile.y}  />
+      )}
+
     </group>
   );
 }

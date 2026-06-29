@@ -1,178 +1,440 @@
-import { GameState, CityState } from "./types";
-import { Owner } from "./types";
-import { TileData } from "./types";
+import { fromTileId, tileIdsInRect, toTileId } from "./coordinates";
+import { MAP_COLS, MAP_ROWS } from "./mapConfig";
+import {
+  ArmyState,
+  BuildingLevels,
+  CastleState,
+  CityState,
+  GameState,
+  GeneralState,
+  Owner,
+  PlayerState,
+  Resources,
+  Terrain,
+  TileData,
+  TileId,
+  Units,
+} from "./types";
 
-export const MAP_COLS = 14;
-export const MAP_ROWS = 14;
+export { MAP_COLS, MAP_ROWS };
 
-const tiles: TileData[] = [];
+const STARTING_RESOURCES: Resources = {
+  gold: 20,
+  grain: 50000,
+  population: 120000,
+  morale: 10,
+  prestige: 5,
+  imperialToken: 1,
+};
 
-// Generate tiles for the entire map
-function randomTerrain(): TileData["terrain"] {
-  const r = Math.random();
-  if (r < 0.05) return "forest";
-  if (r < 0.1) return "mountain";
-  return "plains";
-}
-for (let col = 0; col < MAP_COLS; col++) {
-  for (let row = 0; row < MAP_ROWS; row++) {
-    const terrain = randomTerrain();
-    const tile: TileData = { x: col, y: row, terrain };
-    tiles.push(tile);
-  }
-}
+const STARTING_BUILDINGS: BuildingLevels = {
+  mine: 1,
+  farm: 1,
+  populationHouse: 1,
+  barracks: 1,
+  archery: 1,
+  stable: 1,
+  forgeWeapon: 1,
+  forgeArmor: 1,
+  shipyard: 1,
+  siegeWorkshop: 1,
+};
 
-// ── Cities ────────────────────────────────────────────────────────────────────
+const EMPTY_UNITS: Units = {
+  infantry: 0,
+  archers: 0,
+  cavalry: 0,
+};
 
-const cities: Record<string, CityState> = {
-  "Lạc Dương": {
+const TERRAIN_ROWS: string[] = [
+  "pppfffpppppmmm",
+  "pccfffpppppmmm",
+  "pccpppppprrppp",
+  "pppmmmppprrppp",
+  "pppmmmccprrppp",
+  "ppppppccpprrcc",
+  "ppppccpppprrcc",
+  "CCCpccpccpprrp",
+  "CCCppppccpprrp",
+  "CCCfffpppprrpp",
+  "pppfffpppCCCpp",
+  "ppppccpppCCCpp",
+  "ppppccpppCCCpp",
+  "mmmppppppppppp",
+];
+
+const TERRAIN_LOOKUP: Record<string, Terrain> = {
+  p: "plains",
+  f: "forest",
+  m: "mountain",
+  r: "river",
+  c: "city",
+  C: "capital",
+};
+
+type CityDraft = {
+  id: string;
+  label: string;
+  owner: Owner | null;
+  isCapital: boolean;
+  tiles: TileId[];
+};
+
+const cityDrafts: CityDraft[] = [
+  {
+    id: "LUOYANG",
     label: "Lạc Dương",
     owner: "wei",
     isCapital: true,
-    tiles: [
-      // A8:C10
-      [0, 7],
-      [1, 7],
-      [2, 7],
-      [0, 8],
-      [1, 8],
-      [2, 8],
-      [0, 9],
-      [1, 9],
-      [2, 9],
-    ],
+    tiles: tileIdsInRect(0, 7, 3, 3),
   },
-  "Thành Đô": {
+  {
+    id: "CHENGDU",
     label: "Thành Đô",
     owner: "shu",
     isCapital: true,
-    tiles: [
-      // H1:J3
-      [7, 0],
-      [8, 0],
-      [9, 0],
-      [7, 1],
-      [8, 1],
-      [9, 1],
-      [7, 2],
-      [8, 2],
-      [9, 2],
-    ],
+    tiles: tileIdsInRect(7, 0, 3, 3),
   },
-  "Kiến Nghiệp": {
+  {
+    id: "JIANYE",
     label: "Kiến Nghiệp",
     owner: "wu",
     isCapital: true,
-    tiles: [
-      // J11:L13
-      [9, 10],
-      [10, 10],
-      [11, 10],
-      [9, 11],
-      [10, 11],
-      [11, 11],
-      [9, 12],
-      [10, 12],
-      [11, 12],
-    ],
+    tiles: tileIdsInRect(9, 10, 3, 3),
   },
-  "Lương Châu": {
+  {
+    id: "LIANGZHOU",
     label: "Lương Châu",
     owner: null,
     isCapital: false,
-    tiles: [
-      // B2:C3 (col 1-2, row 1-2)
-      [1, 1],
-      [2, 1],
-      [1, 2],
-      [2, 2],
-    ],
+    tiles: tileIdsInRect(1, 1, 2, 2),
   },
-  "Duyện Châu": {
-    label: "Duyện Châu",
-    owner: null,
-    isCapital: false,
-    tiles: [
-      // E7:F8 (col 4-5, row 6-7)
-      [4, 6],
-      [5, 6],
-      [4, 7],
-      [5, 7],
-    ],
-  },
-  "Từ Châu": {
-    label: "Từ Châu",
-    owner: null,
-    isCapital: false,
-    tiles: [
-      // E12:F13 (col 4-5, row 11-12)
-      [4, 11],
-      [5, 11],
-      [4, 12],
-      [5, 12],
-    ],
-  },
-  "Ung Châu": {
-    label: "Ung Châu",
-    owner: null,
-    isCapital: false,
-    tiles: [
-      // G5:H6 (col 6-7, row 4-5)
-      [6, 4],
-      [7, 4],
-      [6, 5],
-      [7, 5],
-    ],
-  },
-  "Dự Châu": {
+  {
+    id: "YUZHOU",
     label: "Dự Châu",
     owner: null,
     isCapital: false,
-    tiles: [
-      // H8:I9 (col 7-8, row 7-8)
-      [7, 7],
-      [8, 7],
-      [7, 8],
-      [8, 8],
-    ],
+    tiles: tileIdsInRect(7, 7, 2, 2),
   },
-  "Kinh Châu": {
+  {
+    id: "YONGZHOU",
+    label: "Ung Châu",
+    owner: null,
+    isCapital: false,
+    tiles: tileIdsInRect(6, 4, 2, 2),
+  },
+  {
+    id: "YANZHOU",
+    label: "Duyện Châu",
+    owner: null,
+    isCapital: false,
+    tiles: tileIdsInRect(4, 6, 2, 2),
+  },
+  {
+    id: "XUZHOU",
+    label: "Từ Châu",
+    owner: null,
+    isCapital: false,
+    tiles: tileIdsInRect(4, 11, 2, 2),
+  },
+  {
+    id: "JINGZHOU",
     label: "Kinh Châu",
     owner: null,
     isCapital: false,
-    tiles: [
-      // L6:M7 (col 11-12, row 5-6)
-      [11, 5],
-      [12, 5],
-      [11, 6],
-      [12, 6],
-    ],
+    tiles: tileIdsInRect(11, 5, 2, 2),
+  },
+];
+
+function makeTiles(): TileData[] {
+  const cityByTile = new Map<TileId, CityDraft>();
+  for (const city of cityDrafts) {
+    for (const tileId of city.tiles) {
+      cityByTile.set(tileId, city);
+    }
+  }
+
+  const tiles: TileData[] = [];
+  for (let y = 0; y < MAP_ROWS; y++) {
+    for (let x = 0; x < MAP_COLS; x++) {
+      const id = toTileId({ x, y });
+      const city = cityByTile.get(id);
+      const terrain = city
+        ? city.isCapital
+          ? "capital"
+          : "city"
+        : TERRAIN_LOOKUP[TERRAIN_ROWS[y][x]];
+
+      tiles.push({
+        id,
+        x,
+        y,
+        terrain,
+        owner: city?.owner ?? undefined,
+        label: city?.label,
+        cityId: city?.id,
+        effects: [],
+        supplyOwner: city?.owner ?? undefined,
+      });
+    }
+  }
+  return tiles;
+}
+
+function makeCities(): Record<string, CityState> {
+  return Object.fromEntries(
+    cityDrafts.map((city) => [
+      city.id,
+      {
+        id: city.id,
+        label: city.label,
+        owner: city.owner,
+        isCapital: city.isCapital,
+        tiles: city.tiles,
+        grainReserve: city.isCapital ? 20000 : 5000,
+        localMilitia: city.owner
+          ? { infantry: 3000, archers: 1000, cavalry: 1000 }
+          : { infantry: 4000, archers: 1000, cavalry: 0 },
+        defense: city.isCapital ? 4 : 2,
+        damaged: false,
+      },
+    ]),
+  );
+}
+
+function makeCastles(): Record<string, CastleState> {
+  return {
+    "WEI-1": {
+      id: "WEI-1",
+      label: "Ngụy Trại",
+      owner: "wei",
+      tiles: ["A8", "B8", "C8"],
+      grainReserve: 30000,
+      defense: 5,
+      damaged: false,
+    },
+    "SHU-1": {
+      id: "SHU-1",
+      label: "Thục Trại",
+      owner: "shu",
+      tiles: ["H1", "I1", "J1"],
+      grainReserve: 30000,
+      defense: 5,
+      damaged: false,
+    },
+    "WU-1": {
+      id: "WU-1",
+      label: "Ngô Trại",
+      owner: "wu",
+      tiles: ["J11", "K11", "L11"],
+      grainReserve: 30000,
+      defense: 5,
+      damaged: false,
+    },
+  };
+}
+
+function makePlayers(): Record<string, PlayerState> {
+  const roles = ["LORD", "STRATEGIST", "GENERAL", "GENERAL", "GENERAL", "GENERAL", "GENERAL", "GENERAL"] as const;
+  const kingdoms: Owner[] = ["wei", "shu", "wu"];
+  const players: Record<string, PlayerState> = {};
+
+  kingdoms.forEach((kingdom, kingdomIndex) => {
+    roles.forEach((role, roleIndex) => {
+      const n = kingdomIndex * roles.length + roleIndex + 1;
+      const id = `player${String(n).padStart(2, "0")}`;
+      players[id] = {
+        id,
+        name: `Player ${n}`,
+        kingdom,
+        role,
+        alive: true,
+        connected: true,
+        banished: false,
+      };
+    });
+  });
+
+  return players;
+}
+
+function makeGeneral(
+  id: string,
+  player: string,
+  kingdom: Owner,
+  location: TileId,
+): GeneralState {
+  return {
+    id,
+    player,
+    kingdom,
+    rank: "GENERAL",
+    location,
+    kills: 0,
+    woundedTurns: 0,
+    cooldowns: {
+      greatGeneral: 0,
+      heal: 0,
+    },
+    inventory: {
+      arrows: 1000,
+      fireArrows: 0,
+      ships: [],
+    },
+    loyal: true,
+  };
+}
+
+function makeGenerals(): Record<string, GeneralState> {
+  const generals: Record<string, GeneralState> = {};
+  const starts: Record<Owner, TileId> = {
+    wei: "B8",
+    shu: "I2",
+    wu: "K11",
+  };
+
+  (["wei", "shu", "wu"] as Owner[]).forEach((kingdom, kingdomIndex) => {
+    for (let i = 3; i <= 8; i++) {
+      const playerNumber = kingdomIndex * 8 + i;
+      const player = `player${String(playerNumber).padStart(2, "0")}`;
+      const id = `general${String(playerNumber).padStart(2, "0")}`;
+      generals[id] = makeGeneral(id, player, kingdom, starts[kingdom]);
+    }
+  });
+
+  return generals;
+}
+
+function makeArmy(
+  id: string,
+  kingdom: Owner,
+  generalId: string,
+  tileId: TileId,
+  units: Units,
+): ArmyState {
+  return {
+    id,
+    kingdom,
+    generalId,
+    tileId,
+    units,
+    morale: 10,
+    formation: "NORMAL",
+    status: "IDLE",
+    buffs: [],
+    debuffs: [],
+    supplied: true,
+  };
+}
+
+function makeArmies(): Record<string, ArmyState> {
+  return {
+    "army-wei-1": makeArmy("army-wei-1", "wei", "general03", "B8", {
+      infantry: 3000,
+      archers: 1000,
+      cavalry: 1000,
+    }),
+    "army-shu-1": makeArmy("army-shu-1", "shu", "general11", "I2", {
+      infantry: 3000,
+      archers: 1000,
+      cavalry: 1000,
+    }),
+    "army-wu-1": makeArmy("army-wu-1", "wu", "general19", "K11", {
+      infantry: 3000,
+      archers: 1000,
+      cavalry: 1000,
+    }),
+  };
+}
+
+function makeKingdoms(): GameState["kingdoms"] {
+  return {
+    wei: {
+      id: "wei",
+      name: "Ngụy",
+      leader: "player01",
+      strategist: "player02",
+      resources: { ...STARTING_RESOURCES },
+      buildings: { ...STARTING_BUILDINGS },
+      territory: ["A8", "B8", "C8", "A9", "B9", "C9", "A10", "B10", "C10"],
+      castles: ["WEI-1"],
+      cities: ["LUOYANG"],
+      score: 0,
+      eliminated: false,
+    },
+    shu: {
+      id: "shu",
+      name: "Thục",
+      leader: "player09",
+      strategist: "player10",
+      resources: { ...STARTING_RESOURCES },
+      buildings: { ...STARTING_BUILDINGS },
+      territory: ["H1", "I1", "J1", "H2", "I2", "J2", "H3", "I3", "J3"],
+      castles: ["SHU-1"],
+      cities: ["CHENGDU"],
+      score: 0,
+      eliminated: false,
+    },
+    wu: {
+      id: "wu",
+      name: "Ngô",
+      leader: "player17",
+      strategist: "player18",
+      resources: { ...STARTING_RESOURCES },
+      buildings: { ...STARTING_BUILDINGS },
+      territory: ["J11", "K11", "L11", "J12", "K12", "L12", "J13", "K13", "L13"],
+      castles: ["WU-1"],
+      cities: ["JIANYE"],
+      score: 0,
+      eliminated: false,
+    },
+  };
+}
+
+export function tileCenter(tileId: TileId): [number, number, number] {
+  const { x, y } = fromTileId(tileId);
+  return [x + 0.5, 0, y + 0.5];
+}
+
+export const initialGameState: GameState = {
+  version: 2,
+  game: {
+    id: "demo-three-kingdoms-001",
+    status: "RUNNING",
+    year: 1,
+    season: "SPRING",
+    turn: 1,
+    phase: "GO",
+    seed: 123456789,
+  },
+  map: {
+    size: {
+      rows: MAP_ROWS,
+      cols: MAP_COLS,
+    },
+  },
+  tiles: makeTiles(),
+  cities: makeCities(),
+  castles: makeCastles(),
+  kingdoms: makeKingdoms(),
+  players: makePlayers(),
+  generals: makeGenerals(),
+  armies: makeArmies(),
+  commands: [],
+  battles: [],
+  events: [
+    {
+      id: "event-001",
+      turn: 1,
+      phase: "GO",
+      type: "RESOURCE",
+      message: "Tam Quốc bắt đầu: Ngụy, Thục, Ngô chuẩn bị lượt GO đầu tiên.",
+    },
+  ],
+  victory: {
+    winner: null,
+    reason: null,
   },
 };
 
-// Build a map from position to tile for efficient lookup (avoid N+1)
-const tileMap = new Map<string, TileData>();
-for (const tile of tiles) {
-  tileMap.set(`${tile.x},${tile.y}`, tile);
-}
-
-for (const city of Object.values(cities)) {
-  for (const [x, y] of city.tiles) {
-    const key = `${x},${y}`;
-    const tile = tileMap.get(key);
-    if (tile) {
-      tile.label = city.label;
-      tile.terrain = city.isCapital ? "capital" : "city";
-      tile.owner = city.owner ?? undefined;
-    }
-  }
-}
-
-// ── Initial state ─────────────────────────────────────────────────────────────
-
-export const initialGameState: GameState = {
-  turn: 1,
-  phase: "move",
-  tiles,
-  cities,
-};
+export const emptyUnits = EMPTY_UNITS;
