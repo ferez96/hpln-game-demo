@@ -1,6 +1,7 @@
-import { Text } from "@react-three/drei";
+import { MAP_COLS, MAP_ROWS } from "@/game/state";
+import { Grid, Text } from "@react-three/drei";
 
-export function GridLabels({ rows, cols }: { rows: number; cols: number }) {
+function GridLabels({ rows, cols }: { rows: number; cols: number }) {
   return (
     <group>
       {/* Column numbers */}
@@ -35,5 +36,19 @@ export function GridLabels({ rows, cols }: { rows: number; cols: number }) {
         </Text>
       ))}
     </group>
+  );
+}
+
+export default function GameGrid() {
+  return (
+    <>
+      <Grid
+        args={[MAP_COLS, MAP_ROWS]}
+        cellSize={1}
+        sectionSize={1}
+        position={[7, 0, 7]}
+      />
+      <GridLabels rows={MAP_ROWS} cols={MAP_COLS} />
+    </>
   );
 }
