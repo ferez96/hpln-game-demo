@@ -81,8 +81,6 @@ export function GameMap({
   onSelectTile,
   onSelectArmy,
 }: Props) {
-  const armyOffsets = new Map<string, number>();
-
   return (
     <>
       {state.tiles.map((tile) => {
@@ -107,13 +105,26 @@ export function GameMap({
         .map((city) => {
           return <City key={city.label} position={tileCenter(city.tiles[0])} />;
         })}
-      {Object.values(state.armies)
-        .filter((army) => army.status !== "DEFEATED")
-        .map((army) => {
+      {(() => {
+        const active = Object.values(state.armies).filter(
+          (a) => a.status !== "DEFEATED",
+        );
+        // group by tile to compute centered offsets
+        const byTile = new Map<string, typeof active>();
+        for (const army of active) {
+          const list = byTile.get(army.tileId) ?? [];
+          list.push(army);
+          byTile.set(army.tileId, list);
+        }
+        return active.map((army) => {
+          const group = byTile.get(army.tileId)!;
+          const idx = group.indexOf(army);
+          const total = group.length;
+          const spacing = 0.3;
+          const offset = (idx - (total - 1) / 2) * spacing;
           const base = tileCenter(army.tileId);
-          const count = armyOffsets.get(army.tileId) ?? 0;
-          armyOffsets.set(army.tileId, count + 1);
-          const offset = (count - 0.5) * 0.28;
+          const general = state.generals[army.generalId];
+          const label = general?.name ?? army.id;
           return (
             <group
               key={army.id}
@@ -121,13 +132,14 @@ export function GameMap({
             >
               <ArmyMarker
                 owner={army.kingdom}
-                label={army.id.replace("army-", "")}
+                label={label}
                 active={activeArmyId === army.id}
                 onClick={() => onSelectArmy(army.id)}
               />
             </group>
           );
-        })}
+        });
+      })()}
     </>
   );
 }

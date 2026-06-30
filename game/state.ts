@@ -165,16 +165,17 @@ function makeTiles(): TileData[] {
           : "city"
         : TERRAIN_LOOKUP[TERRAIN_ROWS[y][x]];
 
+      const owner = city?.owner ?? undefined;
       tiles.push({
         id,
         x,
         y,
         terrain,
-        owner: city?.owner ?? undefined,
+        owner,
         label: city?.label,
         cityId: city?.id,
         effects: [],
-        supplyOwner: city?.owner ?? undefined,
+        supplyOwner: owner,
       });
     }
   }
@@ -267,47 +268,55 @@ function makePlayers(): Record<string, PlayerState> {
   return players;
 }
 
+const GENERAL_NAMES: Record<string, string> = {
+  // Wei
+  general03: "Tào Nhân",  general04: "Hứa Chử",   general05: "Trương Liêu",
+  general06: "Trương Cáp", general07: "Từ Hoảng",   general08: "Nhạc Tiến",
+  // Shu
+  general11: "Quan Vũ",   general12: "Trương Phi", general13: "Triệu Vân",
+  general14: "Mã Siêu",   general15: "Hoàng Trung", general16: "Ngụy Diên",
+  // Wu
+  general19: "Chu Du",    general20: "Lã Mông",    general21: "Lục Tốn",
+  general22: "Cam Ninh",  general23: "Thái Sử Từ", general24: "Trình Phổ",
+};
+
+const CAPITAL_CENTER: Record<Owner, TileId> = {
+  wei: "B9",
+  shu: "I2",
+  wu:  "K12",
+};
+
 function makeGeneral(
   id: string,
   player: string,
   kingdom: Owner,
   location: TileId,
+  name?: string,
 ): GeneralState {
   return {
     id,
+    name,
     player,
     kingdom,
     rank: "GENERAL",
     location,
     kills: 0,
     woundedTurns: 0,
-    cooldowns: {
-      greatGeneral: 0,
-      heal: 0,
-    },
-    inventory: {
-      arrows: 1000,
-      fireArrows: 0,
-      ships: [],
-    },
+    cooldowns: { greatGeneral: 0, heal: 0 },
+    inventory: { arrows: 1000, fireArrows: 0, ships: [] },
     loyal: true,
   };
 }
 
 function makeGenerals(): Record<string, GeneralState> {
   const generals: Record<string, GeneralState> = {};
-  const starts: Record<Owner, TileId> = {
-    wei: "B8",
-    shu: "I2",
-    wu: "K11",
-  };
 
   (["wei", "shu", "wu"] as Owner[]).forEach((kingdom, kingdomIndex) => {
     for (let i = 3; i <= 8; i++) {
       const playerNumber = kingdomIndex * 8 + i;
       const player = `player${String(playerNumber).padStart(2, "0")}`;
       const id = `general${String(playerNumber).padStart(2, "0")}`;
-      generals[id] = makeGeneral(id, player, kingdom, starts[kingdom]);
+      generals[id] = makeGeneral(id, player, kingdom, CAPITAL_CENTER[kingdom], GENERAL_NAMES[id]);
     }
   });
 
@@ -338,21 +347,15 @@ function makeArmy(
 
 function makeArmies(): Record<string, ArmyState> {
   return {
-    "army-wei-1": makeArmy("army-wei-1", "wei", "general03", "B8", {
-      infantry: 3000,
-      archers: 1000,
-      cavalry: 1000,
-    }),
-    "army-shu-1": makeArmy("army-shu-1", "shu", "general11", "I2", {
-      infantry: 3000,
-      archers: 1000,
-      cavalry: 1000,
-    }),
-    "army-wu-1": makeArmy("army-wu-1", "wu", "general19", "K11", {
-      infantry: 3000,
-      archers: 1000,
-      cavalry: 1000,
-    }),
+    "army-wei-1": makeArmy("army-wei-1", "wei", "general03", "B9",  { infantry: 3000, archers: 1000, cavalry: 1000 }),
+    "army-wei-2": makeArmy("army-wei-2", "wei", "general04", "B9",  { infantry: 3000, archers: 500,  cavalry: 500  }),
+    "army-wei-3": makeArmy("army-wei-3", "wei", "general05", "B9",  { infantry: 2000, archers: 1000, cavalry: 500  }),
+    "army-shu-1": makeArmy("army-shu-1", "shu", "general11", "I2",  { infantry: 3000, archers: 1000, cavalry: 1000 }),
+    "army-shu-2": makeArmy("army-shu-2", "shu", "general12", "I2",  { infantry: 3000, archers: 500,  cavalry: 500  }),
+    "army-shu-3": makeArmy("army-shu-3", "shu", "general13", "I2",  { infantry: 2000, archers: 1000, cavalry: 500  }),
+    "army-wu-1":  makeArmy("army-wu-1",  "wu",  "general19", "K12", { infantry: 3000, archers: 1000, cavalry: 1000 }),
+    "army-wu-2":  makeArmy("army-wu-2",  "wu",  "general20", "K12", { infantry: 3000, archers: 500,  cavalry: 500  }),
+    "army-wu-3":  makeArmy("army-wu-3",  "wu",  "general21", "K12", { infantry: 2000, archers: 1000, cavalry: 500  }),
   };
 }
 
@@ -391,17 +394,7 @@ function makeKingdoms(): GameState["kingdoms"] {
       strategist: "player18",
       resources: { ...STARTING_RESOURCES },
       buildings: { ...STARTING_BUILDINGS },
-      territory: [
-        "J11",
-        "K11",
-        "L11",
-        "J12",
-        "K12",
-        "L12",
-        "J13",
-        "K13",
-        "L13",
-      ],
+      territory: ["J11", "K11", "L11", "J12", "K12", "L12", "J13", "K13", "L13"],
       castles: ["WU-1"],
       cities: ["JIANYE"],
       score: 0,

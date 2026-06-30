@@ -3,6 +3,7 @@ import {
   BUILDINGS,
   COMBAT,
   RECRUITMENT,
+  SCORING,
   SUPPLY,
   TERRAIN_RULES,
 } from "./rulebook";
@@ -96,6 +97,19 @@ export function controlledTiles(state: GameState, owner: Owner): TileId[] {
     .map((tile) => tile.id);
 }
 
+// ─── Scoring ────────────────────────────────────────────────────────────────
+
+export function calculateScore(state: GameState, owner: Owner): number {
+  let score = 0;
+  for (const tile of state.tiles) {
+    if (tile.owner !== owner) continue;
+    if (tile.terrain === "capital") score += SCORING.capitalPerTile;
+    else if (tile.terrain === "city") score += SCORING.cityPerTile;
+    else if (tile.terrain === "plains") score += SCORING.plainsTile;
+  }
+  return score;
+}
+
 // ─── Supply ─────────────────────────────────────────────────────────────────
 
 export function isSupplyPassable(tile: TileData, owner: Owner): boolean {
@@ -187,6 +201,10 @@ export function collectTurnIncome(state: GameState): GameState {
     kingdom.resources.grain += farmIncome;
     kingdom.resources.population += peopleIncome;
     kingdom.resources.prestige += 1;
+
+    if (next.game.season === "SPRING" || next.game.season === "AUTUMN") {
+      kingdom.score += calculateScore(next, kingdom.id);
+    }
   }
 
   addEvent(
@@ -250,6 +268,11 @@ export function moveArmy(
   const army = next.armies[armyId];
   const target = tileById(next, to);
   if (!army || !target || army.status === "DEFEATED") return state;
+
+  if (next.game.season === "WINTER") {
+    addEvent(next, "MOVE", "Mùa Đông: cấm di chuyển quân.");
+    return next;
+  }
 
   if (manhattanDistance(army.tileId, to) !== 1) {
     addEvent(
@@ -358,35 +381,39 @@ function applyBattleLosses(
   defender: ArmyState,
   result: "ATTACKER_WIN" | "DEFENDER_WIN" | "DRAW",
   defenderIsDefending: boolean,
+  isSummer: boolean,
 ): { attackerLosses: Units; defenderLosses: Units } {
+  const mult = isSummer ? COMBAT.summerMultiplier : 1;
+
+  function scale(units: Units, ratio: number): Units {
+    return scaleUnits(units, ratio * mult);
+  }
+
   if (result === "ATTACKER_WIN") {
     const defLossRatio = defenderIsDefending
-      ? COMBAT.vsDefender.attackerWins.defenderTroopLoss // 0.25
-      : COMBAT.noDefense.loserTroopLoss; // 0.50
-    const defLosses = scaleUnits(defender.units, defLossRatio);
-    const atkLosses = scaleUnits(
-      defLosses,
-      COMBAT.vsDefender.attackerWins.attackerLossRatio,
-    );
+      ? COMBAT.vsDefender.attackerWins.defenderTroopLoss
+      : COMBAT.noDefense.loserTroopLoss;
+    const defLosses = scale(defender.units, defLossRatio);
+    const atkLosses = scaleUnits(defLosses, COMBAT.vsDefender.attackerWins.attackerLossRatio);
     return { attackerLosses: atkLosses, defenderLosses: defLosses };
   }
 
   if (result === "DEFENDER_WIN") {
     const atkLossRatio = defenderIsDefending
-      ? COMBAT.vsDefender.defenderWins.attackerTroopLoss // 0.50
-      : COMBAT.noDefense.loserTroopLoss; // 0.50
-    const atkLosses = scaleUnits(attacker.units, atkLossRatio);
+      ? COMBAT.vsDefender.defenderWins.attackerTroopLoss
+      : COMBAT.noDefense.loserTroopLoss;
+    const atkLosses = scale(attacker.units, atkLossRatio);
     const defLossRatio = defenderIsDefending
-      ? COMBAT.vsDefender.defenderWins.defenderLossRatio // 0.20
-      : COMBAT.noDefense.winnerLossRatio; // 0.50
+      ? COMBAT.vsDefender.defenderWins.defenderLossRatio
+      : COMBAT.noDefense.winnerLossRatio;
     const defLosses = scaleUnits(atkLosses, defLossRatio);
     return { attackerLosses: atkLosses, defenderLosses: defLosses };
   }
 
-  // DRAW: nhỏ và đối xứng
+  // DRAW
   return {
-    attackerLosses: scaleUnits(attacker.units, 0.1),
-    defenderLosses: scaleUnits(defender.units, 0.1),
+    attackerLosses: scale(attacker.units, 0.1),
+    defenderLosses: scale(defender.units, 0.1),
   };
 }
 
@@ -411,6 +438,11 @@ export function resolveBattle(
     return next;
   }
 
+  if (next.game.season === "WINTER") {
+    addEvent(next, "BATTLE", "Mùa Đông: cấm giao chiến.");
+    return next;
+  }
+
   const defenderIsDefending = defender.formation === "DEFENSIVE";
   const atkPower = computeAttack(attacker, tile);
   const defPower = defenderIsDefending
@@ -429,6 +461,7 @@ export function resolveBattle(
     defender,
     result,
     defenderIsDefending,
+    next.game.season === "SUMMER",
   );
 
   attacker.units = subtractUnits(attacker.units, attackerLosses);
@@ -484,7 +517,7 @@ export function resolveBattle(
     "BATTLE",
     `${attacker.id} giao chiến ${defender.id} tại ${tile.id}: ${result}.`,
   );
-  return next;
+  return checkVictory(next);
 }
 
 // ─── Tile effects ───────────────────────────────────────────────────────────
@@ -555,7 +588,7 @@ export function advancePhase(state: GameState): GameState {
     "TURN_END",
     `Bắt đầu GO ${next.game.turn}, mùa ${next.game.season}.`,
   );
-  return collectTurnIncome(updateSupply(next));
+  return checkVictory(collectTurnIncome(updateSupply(next)));
 }
 
 // ─── Formation ──────────────────────────────────────────────────────────────

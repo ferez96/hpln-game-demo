@@ -163,6 +163,7 @@ export interface Inventory {
 
 export interface GeneralState {
   id: GeneralId;
+  name?: string;
   player: PlayerId;
   kingdom: Owner;
   rank: GeneralRank;
