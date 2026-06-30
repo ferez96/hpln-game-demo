@@ -1,0 +1,1965 @@
+{
+  "version": 1,
+  "game": {
+    "id": "demo-three-kingdoms-001",
+    "status": "running",
+    "year": 1,
+    "season": "Spring",
+    "turn": 1,
+    "phase": "GO",
+    "seed": 123456789
+  },
+  "kingdoms": {
+    "wei": {
+      "leader": "player01",
+      "strategist": "player02",
+      "resources": {
+        "gold": 20,
+        "grain": 50000,
+        "population": 120000,
+        "morale": 10,
+        "prestige": 5,
+        "imperialToken": 1
+      },
+      "buildings": {
+        "mine": 1,
+        "farm": 1,
+        "populationHouse": 1,
+        "barracks": 1,
+        "archery": 1,
+        "stable": 1,
+        "forgeWeapon": 1,
+        "forgeArmor": 1
+      },
+      "territory": ["B2", "B3", "C2"],
+      "castles": ["WEI-1"],
+      "cities": ["XUCHANG"]
+    },
+    "shu": {
+      "leader": "player09",
+      "strategist": "player10",
+      "resources": {
+        "gold": 20,
+        "grain": 50000,
+        "population": 120000,
+        "morale": 10,
+        "prestige": 5,
+        "imperialToken": 1
+      },
+      "buildings": {
+        "mine": 1,
+        "farm": 1,
+        "populationHouse": 1,
+        "barracks": 1,
+        "archery": 1,
+        "stable": 1,
+        "forgeWeapon": 1,
+        "forgeArmor": 1
+      },
+      "territory": ["J2", "J3", "K2"],
+      "castles": ["SHU-1"],
+      "cities": ["CHENGDU"]
+    },
+    "wu": {
+      "leader": "player17",
+      "strategist": "player18",
+      "resources": {
+        "gold": 20,
+        "grain": 50000,
+        "population": 120000,
+        "morale": 10,
+        "prestige": 5,
+        "imperialToken": 1
+      },
+      "buildings": {
+        "mine": 1,
+        "farm": 1,
+        "populationHouse": 1,
+        "barracks": 1,
+        "archery": 1,
+        "stable": 1,
+        "forgeWeapon": 1,
+        "forgeArmor": 1
+      },
+      "territory": ["F7", "F8", "G8"],
+      "castles": ["WU-1"],
+      "cities": ["JIANYE"]
+    }
+  },
+  "players": {
+    "player01": {
+      "id": "player01",
+      "name": "Player 1",
+      "kingdom": "wei",
+      "role": "LORD",
+      "alive": true,
+      "connected": true
+    },
+    "player02": {
+      "id": "player02",
+      "name": "Player 2",
+      "kingdom": "wei",
+      "role": "STRATEGIST",
+      "alive": true,
+      "connected": true
+    },
+    "player03": {
+      "id": "player03",
+      "name": "Player 3",
+      "kingdom": "wei",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player04": {
+      "id": "player04",
+      "name": "Player 4",
+      "kingdom": "wei",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player05": {
+      "id": "player05",
+      "name": "Player 5",
+      "kingdom": "wei",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player06": {
+      "id": "player06",
+      "name": "Player 6",
+      "kingdom": "wei",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player07": {
+      "id": "player07",
+      "name": "Player 7",
+      "kingdom": "wei",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player08": {
+      "id": "player08",
+      "name": "Player 8",
+      "kingdom": "wei",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player09": {
+      "id": "player09",
+      "name": "Player 9",
+      "kingdom": "shu",
+      "role": "LORD",
+      "alive": true,
+      "connected": true
+    },
+    "player10": {
+      "id": "player10",
+      "name": "Player 10",
+      "kingdom": "shu",
+      "role": "STRATEGIST",
+      "alive": true,
+      "connected": true
+    },
+    "player11": {
+      "id": "player11",
+      "name": "Player 11",
+      "kingdom": "shu",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player12": {
+      "id": "player12",
+      "name": "Player 12",
+      "kingdom": "shu",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player13": {
+      "id": "player13",
+      "name": "Player 13",
+      "kingdom": "shu",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player14": {
+      "id": "player14",
+      "name": "Player 14",
+      "kingdom": "shu",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player15": {
+      "id": "player15",
+      "name": "Player 15",
+      "kingdom": "shu",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player16": {
+      "id": "player16",
+      "name": "Player 16",
+      "kingdom": "shu",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player17": {
+      "id": "player17",
+      "name": "Player 17",
+      "kingdom": "wu",
+      "role": "LORD",
+      "alive": true,
+      "connected": true
+    },
+    "player18": {
+      "id": "player18",
+      "name": "Player 18",
+      "kingdom": "wu",
+      "role": "STRATEGIST",
+      "alive": true,
+      "connected": true
+    },
+    "player19": {
+      "id": "player19",
+      "name": "Player 19",
+      "kingdom": "wu",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player20": {
+      "id": "player20",
+      "name": "Player 20",
+      "kingdom": "wu",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player21": {
+      "id": "player21",
+      "name": "Player 21",
+      "kingdom": "wu",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player22": {
+      "id": "player22",
+      "name": "Player 22",
+      "kingdom": "wu",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player23": {
+      "id": "player23",
+      "name": "Player 23",
+      "kingdom": "wu",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    },
+    "player24": {
+      "id": "player24",
+      "name": "Player 24",
+      "kingdom": "wu",
+      "role": "GENERAL",
+      "alive": true,
+      "connected": true
+    }
+  },
+  "generals": {
+    "general03": {
+      "id": "general03",
+      "player": "player03",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general04": {
+      "id": "general04",
+      "player": "player04",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general05": {
+      "id": "general05",
+      "player": "player05",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general06": {
+      "id": "general06",
+      "player": "player06",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general07": {
+      "id": "general07",
+      "player": "player07",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general08": {
+      "id": "general08",
+      "player": "player08",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general11": {
+      "id": "general11",
+      "player": "player11",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general12": {
+      "id": "general12",
+      "player": "player12",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general13": {
+      "id": "general13",
+      "player": "player13",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general14": {
+      "id": "general14",
+      "player": "player14",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general15": {
+      "id": "general15",
+      "player": "player15",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general16": {
+      "id": "general16",
+      "player": "player16",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general19": {
+      "id": "general19",
+      "player": "player19",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general20": {
+      "id": "general20",
+      "player": "player20",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general21": {
+      "id": "general21",
+      "player": "player21",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general22": {
+      "id": "general22",
+      "player": "player22",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general23": {
+      "id": "general23",
+      "player": "player23",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    },
+    "general24": {
+      "id": "general24",
+      "player": "player24",
+      "rank": "GENERAL",
+      "location": "A1",
+      "kills": 0,
+      "cooldowns": {
+        "greatGeneral": 0
+      },
+      "inventory": {
+        "arrows": 0,
+        "fireArrows": 0,
+        "ships": [],
+        "siege": null
+      }
+    }
+  },
+  "armies": {
+    "army03": {
+      "id": "army03",
+      "general": "general03",
+      "owner": "wei",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army04": {
+      "id": "army04",
+      "general": "general04",
+      "owner": "wei",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army05": {
+      "id": "army05",
+      "general": "general05",
+      "owner": "wei",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army06": {
+      "id": "army06",
+      "general": "general06",
+      "owner": "wei",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army07": {
+      "id": "army07",
+      "general": "general07",
+      "owner": "wei",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army08": {
+      "id": "army08",
+      "general": "general08",
+      "owner": "wei",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army11": {
+      "id": "army11",
+      "general": "general11",
+      "owner": "shu",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army12": {
+      "id": "army12",
+      "general": "general12",
+      "owner": "shu",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army13": {
+      "id": "army13",
+      "general": "general13",
+      "owner": "shu",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army14": {
+      "id": "army14",
+      "general": "general14",
+      "owner": "shu",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army15": {
+      "id": "army15",
+      "general": "general15",
+      "owner": "shu",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army16": {
+      "id": "army16",
+      "general": "general16",
+      "owner": "shu",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army19": {
+      "id": "army19",
+      "general": "general19",
+      "owner": "wu",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army20": {
+      "id": "army20",
+      "general": "general20",
+      "owner": "wu",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army21": {
+      "id": "army21",
+      "general": "general21",
+      "owner": "wu",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army22": {
+      "id": "army22",
+      "general": "general22",
+      "owner": "wu",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army23": {
+      "id": "army23",
+      "general": "general23",
+      "owner": "wu",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    },
+    "army24": {
+      "id": "army24",
+      "general": "general24",
+      "owner": "wu",
+      "location": "A1",
+      "units": {
+        "infantry": 1000,
+        "archer": 0,
+        "cavalry": 0
+      },
+      "food": 1000,
+      "attackModifier": 0,
+      "defenseModifier": 0,
+      "formation": "NORMAL",
+      "status": "IDLE"
+    }
+  },
+  "map": {
+    "size": {
+      "rows": 12,
+      "cols": 9
+    },
+    "tiles": {
+      "A1": {
+        "coord": "A1",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "A2": {
+        "coord": "A2",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "A3": {
+        "coord": "A3",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "A4": {
+        "coord": "A4",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "A5": {
+        "coord": "A5",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "A6": {
+        "coord": "A6",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "A7": {
+        "coord": "A7",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "A8": {
+        "coord": "A8",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "A9": {
+        "coord": "A9",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "B1": {
+        "coord": "B1",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "B2": {
+        "coord": "B2",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "B3": {
+        "coord": "B3",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "B4": {
+        "coord": "B4",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "B5": {
+        "coord": "B5",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "B6": {
+        "coord": "B6",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "B7": {
+        "coord": "B7",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "B8": {
+        "coord": "B8",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "B9": {
+        "coord": "B9",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "C1": {
+        "coord": "C1",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "C2": {
+        "coord": "C2",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "C3": {
+        "coord": "C3",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "C4": {
+        "coord": "C4",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "C5": {
+        "coord": "C5",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "C6": {
+        "coord": "C6",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "C7": {
+        "coord": "C7",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "C8": {
+        "coord": "C8",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "C9": {
+        "coord": "C9",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "D1": {
+        "coord": "D1",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "D2": {
+        "coord": "D2",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "D3": {
+        "coord": "D3",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "D4": {
+        "coord": "D4",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "D5": {
+        "coord": "D5",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "D6": {
+        "coord": "D6",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "D7": {
+        "coord": "D7",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "D8": {
+        "coord": "D8",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "D9": {
+        "coord": "D9",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "E1": {
+        "coord": "E1",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "E2": {
+        "coord": "E2",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "E3": {
+        "coord": "E3",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "E4": {
+        "coord": "E4",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "E5": {
+        "coord": "E5",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "E6": {
+        "coord": "E6",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "E7": {
+        "coord": "E7",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "E8": {
+        "coord": "E8",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "E9": {
+        "coord": "E9",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "F1": {
+        "coord": "F1",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "F2": {
+        "coord": "F2",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "F3": {
+        "coord": "F3",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "F4": {
+        "coord": "F4",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "F5": {
+        "coord": "F5",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "F6": {
+        "coord": "F6",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "F7": {
+        "coord": "F7",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "F8": {
+        "coord": "F8",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "F9": {
+        "coord": "F9",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "G1": {
+        "coord": "G1",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "G2": {
+        "coord": "G2",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "G3": {
+        "coord": "G3",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "G4": {
+        "coord": "G4",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "G5": {
+        "coord": "G5",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "G6": {
+        "coord": "G6",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "G7": {
+        "coord": "G7",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "G8": {
+        "coord": "G8",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "G9": {
+        "coord": "G9",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "H1": {
+        "coord": "H1",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "H2": {
+        "coord": "H2",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "H3": {
+        "coord": "H3",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "H4": {
+        "coord": "H4",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "H5": {
+        "coord": "H5",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "H6": {
+        "coord": "H6",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "H7": {
+        "coord": "H7",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "H8": {
+        "coord": "H8",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "H9": {
+        "coord": "H9",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "I1": {
+        "coord": "I1",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "I2": {
+        "coord": "I2",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "I3": {
+        "coord": "I3",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "I4": {
+        "coord": "I4",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "I5": {
+        "coord": "I5",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "I6": {
+        "coord": "I6",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "I7": {
+        "coord": "I7",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "I8": {
+        "coord": "I8",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "I9": {
+        "coord": "I9",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "J1": {
+        "coord": "J1",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "J2": {
+        "coord": "J2",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "J3": {
+        "coord": "J3",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "J4": {
+        "coord": "J4",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "J5": {
+        "coord": "J5",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "J6": {
+        "coord": "J6",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "J7": {
+        "coord": "J7",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "J8": {
+        "coord": "J8",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "J9": {
+        "coord": "J9",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "K1": {
+        "coord": "K1",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "K2": {
+        "coord": "K2",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "K3": {
+        "coord": "K3",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "K4": {
+        "coord": "K4",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "K5": {
+        "coord": "K5",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "K6": {
+        "coord": "K6",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "K7": {
+        "coord": "K7",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "K8": {
+        "coord": "K8",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "K9": {
+        "coord": "K9",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "L1": {
+        "coord": "L1",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "L2": {
+        "coord": "L2",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "L3": {
+        "coord": "L3",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "L4": {
+        "coord": "L4",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "L5": {
+        "coord": "L5",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "L6": {
+        "coord": "L6",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "L7": {
+        "coord": "L7",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "L8": {
+        "coord": "L8",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      },
+      "L9": {
+        "coord": "L9",
+        "terrain": "PLAIN",
+        "owner": null,
+        "controller": null,
+        "defense": 0,
+        "food": 0,
+        "effects": [],
+        "armies": []
+      }
+    }
+  },
+  "battleQueue": [],
+  "movementQueue": [],
+  "commandQueue": [],
+  "fogOfWar": {
+    "wei": [],
+    "shu": [],
+    "wu": []
+  },
+  "events": [],
+  "logs": [],
+  "rng": {
+    "seed": 123456789,
+    "state": 123456789
+  }
+}

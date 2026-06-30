@@ -29,11 +29,41 @@ export function Forest({ position, tileX, tileY }: Props) {
   const scenes = [t0, t1, t2, t3, t4];
 
   const trees = [
-    { sx:  0.00, sz:  0.00, scl: 0.44, rot: h(tileX, tileY, 0) * Math.PI * 2, idx: Math.floor(h(tileX, tileY, 1) * 5) },
-    { sx: -0.26, sz:  0.18, scl: 0.36, rot: h(tileX, tileY, 2) * Math.PI * 2, idx: Math.floor(h(tileX, tileY, 3) * 5) },
-    { sx:  0.24, sz: -0.20, scl: 0.34, rot: h(tileX, tileY, 4) * Math.PI * 2, idx: Math.floor(h(tileX, tileY, 5) * 5) },
-    { sx:  0.26, sz:  0.22, scl: 0.30, rot: h(tileX, tileY, 6) * Math.PI * 2, idx: Math.floor(h(tileX, tileY, 7) * 5) },
-    { sx: -0.22, sz: -0.24, scl: 0.28, rot: h(tileX, tileY, 8) * Math.PI * 2, idx: Math.floor(h(tileX, tileY, 9) * 5) },
+    {
+      sx: 0.0,
+      sz: 0.0,
+      scl: 0.44,
+      rot: h(tileX, tileY, 0) * Math.PI * 2,
+      idx: Math.floor(h(tileX, tileY, 1) * 5),
+    },
+    {
+      sx: -0.26,
+      sz: 0.18,
+      scl: 0.36,
+      rot: h(tileX, tileY, 2) * Math.PI * 2,
+      idx: Math.floor(h(tileX, tileY, 3) * 5),
+    },
+    {
+      sx: 0.24,
+      sz: -0.2,
+      scl: 0.34,
+      rot: h(tileX, tileY, 4) * Math.PI * 2,
+      idx: Math.floor(h(tileX, tileY, 5) * 5),
+    },
+    {
+      sx: 0.26,
+      sz: 0.22,
+      scl: 0.3,
+      rot: h(tileX, tileY, 6) * Math.PI * 2,
+      idx: Math.floor(h(tileX, tileY, 7) * 5),
+    },
+    {
+      sx: -0.22,
+      sz: -0.24,
+      scl: 0.28,
+      rot: h(tileX, tileY, 8) * Math.PI * 2,
+      idx: Math.floor(h(tileX, tileY, 9) * 5),
+    },
   ];
 
   return (
