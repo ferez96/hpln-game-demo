@@ -235,7 +235,16 @@ function makeCastles(): Record<string, CastleState> {
 }
 
 function makePlayers(): Record<string, PlayerState> {
-  const roles = ["LORD", "STRATEGIST", "GENERAL", "GENERAL", "GENERAL", "GENERAL", "GENERAL", "GENERAL"] as const;
+  const roles = [
+    "LORD",
+    "STRATEGIST",
+    "GENERAL",
+    "GENERAL",
+    "GENERAL",
+    "GENERAL",
+    "GENERAL",
+    "GENERAL",
+  ] as const;
   const kingdoms: Owner[] = ["wei", "shu", "wu"];
   const players: Record<string, PlayerState> = {};
 
@@ -382,7 +391,17 @@ function makeKingdoms(): GameState["kingdoms"] {
       strategist: "player18",
       resources: { ...STARTING_RESOURCES },
       buildings: { ...STARTING_BUILDINGS },
-      territory: ["J11", "K11", "L11", "J12", "K12", "L12", "J13", "K13", "L13"],
+      territory: [
+        "J11",
+        "K11",
+        "L11",
+        "J12",
+        "K12",
+        "L12",
+        "J13",
+        "K13",
+        "L13",
+      ],
       castles: ["WU-1"],
       cities: ["JIANYE"],
       score: 0,

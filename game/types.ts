@@ -76,20 +76,10 @@ export interface PlayerState {
 /* ---------- Map ---------- */
 
 export type Terrain =
-  | "plains"
-  | "forest"
-  | "mountain"
-  | "river"
-  | "city"
-  | "capital";
+  "plains" | "forest" | "mountain" | "river" | "city" | "capital";
 
 export type TileType =
-  | "PLAIN"
-  | "CASTLE"
-  | "CITY"
-  | "FOREST"
-  | "MOUNTAIN"
-  | "RIVER";
+  "PLAIN" | "CASTLE" | "CITY" | "FOREST" | "MOUNTAIN" | "RIVER";
 
 export type TileEffect = "fire" | "flood" | "fog" | "trap";
 
@@ -145,10 +135,13 @@ export interface CastleState {
 export type UnitType = "infantry" | "archers" | "cavalry";
 export type ShipType = "fishing" | "supply" | "training";
 export type SiegeType = "ram";
-export type Buff = "GREAT_GENERAL" | "MORALE" | "WEAPON" | "ARMOR" | "FORMATION";
+export type Buff =
+  "GREAT_GENERAL" | "MORALE" | "WEAPON" | "ARMOR" | "FORMATION";
 export type Debuff = "STARVING" | "BURNING" | "FLOODED";
-export type ArmyStatus = "IDLE" | "MOVING" | "BATTLE" | "RECOVERING" | "DEFEATED";
-export type Formation = "NORMAL" | "OFFENSIVE" | "DEFENSIVE" | "ARROW" | "CRANE";
+export type ArmyStatus =
+  "IDLE" | "MOVING" | "BATTLE" | "RECOVERING" | "DEFEATED";
+export type Formation =
+  "NORMAL" | "OFFENSIVE" | "DEFENSIVE" | "ARROW" | "CRANE";
 
 export interface Units {
   infantry: number;

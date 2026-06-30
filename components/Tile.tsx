@@ -104,9 +104,8 @@ export function Tile({ tile, selected, onSelect }: Props) {
         <Mountain position={[0, 0.1, 0]} tileX={tile.x} tileY={tile.y} />
       )}
       {tile.terrain === "river" && (
-        <River position={[0, 0.1, 0]} tileX={tile.x} tileY={tile.y}  />
+        <River position={[0, 0.1, 0]} tileX={tile.x} tileY={tile.y} />
       )}
-
     </group>
   );
 }

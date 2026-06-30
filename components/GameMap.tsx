@@ -33,13 +33,20 @@ function ArmyMarker({
   onClick: () => void;
 }) {
   return (
-    <group position={[0, 0.35, 0]} onClick={(event) => {
-      event.stopPropagation();
-      onClick();
-    }}>
+    <group
+      position={[0, 0.35, 0]}
+      onClick={(event) => {
+        event.stopPropagation();
+        onClick();
+      }}
+    >
       <mesh castShadow>
         <cylinderGeometry args={[0.16, 0.22, 0.28, 6]} />
-        <meshStandardMaterial color={ARMY_COLORS[owner]} emissive={active ? "#ffffff" : "#000000"} emissiveIntensity={active ? 0.25 : 0} />
+        <meshStandardMaterial
+          color={ARMY_COLORS[owner]}
+          emissive={active ? "#ffffff" : "#000000"}
+          emissiveIntensity={active ? 0.25 : 0}
+        />
       </mesh>
       <mesh position={[0, 0.25, 0]} castShadow>
         <coneGeometry args={[0.18, 0.32, 6]} />
@@ -91,7 +98,9 @@ export function GameMap({
       {Object.values(state.cities)
         .filter((city) => city.isCapital)
         .map((city) => {
-          return <Capital key={city.label} position={tileCenter(city.tiles[4])} />;
+          return (
+            <Capital key={city.label} position={tileCenter(city.tiles[4])} />
+          );
         })}
       {Object.values(state.cities)
         .filter((city) => !city.isCapital)
@@ -106,7 +115,10 @@ export function GameMap({
           armyOffsets.set(army.tileId, count + 1);
           const offset = (count - 0.5) * 0.28;
           return (
-            <group key={army.id} position={[base[0] + offset, 0, base[2] + offset]}>
+            <group
+              key={army.id}
+              position={[base[0] + offset, 0, base[2] + offset]}
+            >
               <ArmyMarker
                 owner={army.kingdom}
                 label={army.id.replace("army-", "")}

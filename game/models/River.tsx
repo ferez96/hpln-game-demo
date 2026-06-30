@@ -1,19 +1,14 @@
 import { Box, Cylinder, Plane } from "@react-three/drei";
 
 type Props = {
-    tileX: number;
-    tileY: number;
-    position?: [number, number, number];
-  };
-  
-export function River({
-tileX,
-tileY,
-position = [0, 0.1, 0],
-}: Props) {
-return (
-    <group position={position}>
+  tileX: number;
+  tileY: number;
+  position?: [number, number, number];
+};
 
+export function River({ tileX, tileY, position = [0, 0.1, 0] }: Props) {
+  return (
+    <group position={position}>
       {/* Water */}
       <Plane
         args={[0.72, 0.72]}
@@ -44,9 +39,9 @@ return (
 
       {/* Reeds */}
       {[
-        [-0.32, -0.30],
+        [-0.32, -0.3],
         [-0.28, -0.26],
-        [0.30, 0.28],
+        [0.3, 0.28],
         [0.34, 0.24],
       ].map(([x, z], i) => (
         <mesh key={i} position={[x, 0.11, z]}>
@@ -55,5 +50,5 @@ return (
         </mesh>
       ))}
     </group>
-);
+  );
 }

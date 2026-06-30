@@ -12,30 +12,56 @@ import {
   armiesAt,
   moveArmy,
   resolveBattle,
+  setFormation,
   updateSupply,
 } from "@/game/rules";
+import {
+  clearSave,
+  hasSave,
+  loadSavedGame,
+  saveGame,
+} from "@/game/persistence";
+import { Formation } from "@/game/types";
 import { useState } from "react";
 
 export default function Home() {
-  const [gameState, setGameState] = useState(initialGameState);
+  const [gameState, setGameState] = useState(
+    () => loadSavedGame() ?? initialGameState,
+  );
   const [selectedTile, setSelectedTile] = useState<string | null>("B8");
   const [activeArmyId, setActiveArmyId] = useState<string | null>("army-wei-1");
+  const [savedExists, setSavedExists] = useState(() => hasSave());
 
   function moveActiveArmy() {
     if (!activeArmyId || !selectedTile) return;
-    setGameState((state) => moveArmy(state, activeArmyId, selectedTile));
+    setGameState((s) => moveArmy(s, activeArmyId, selectedTile));
   }
 
   function resolveSelectedBattle() {
     if (!selectedTile) return;
-    setGameState((state) => {
-      const armies = armiesAt(state, selectedTile);
-      const activeArmy = activeArmyId ? state.armies[activeArmyId] : undefined;
-      const attacker = activeArmy && activeArmy.tileId === selectedTile ? activeArmy : armies[0];
-      const defender = armies.find((army) => army.kingdom !== attacker?.kingdom);
-      if (!attacker || !defender) return state;
-      return resolveBattle(state, attacker.id, defender.id);
+    setGameState((s) => {
+      const armies = armiesAt(s, selectedTile);
+      const active = activeArmyId ? s.armies[activeArmyId] : undefined;
+      const attacker =
+        active && active.tileId === selectedTile ? active : armies[0];
+      const defender = armies.find((a) => a.kingdom !== attacker?.kingdom);
+      if (!attacker || !defender) return s;
+      return resolveBattle(s, attacker.id, defender.id);
     });
+  }
+
+  function handleSave() {
+    saveGame(gameState);
+    setSavedExists(true);
+  }
+
+  function handleLoad() {
+    const saved = loadSavedGame();
+    if (saved) setGameState(saved);
+  }
+
+  function handleSetFormation(armyId: string, formation: Formation) {
+    setGameState((s) => setFormation(s, armyId, formation));
   }
 
   return (
@@ -44,20 +70,28 @@ export default function Home() {
         state={gameState}
         selectedTile={selectedTile}
         activeArmyId={activeArmyId}
+        hasSave={savedExists}
         onSelectArmy={setActiveArmyId}
         onMove={moveActiveArmy}
         onBattle={resolveSelectedBattle}
-        onFire={() => selectedTile && setGameState((state) => applyTileEffect(state, selectedTile, "fire"))}
-        onFlood={() => selectedTile && setGameState((state) => applyTileEffect(state, selectedTile, "flood"))}
+        onFire={() =>
+          selectedTile &&
+          setGameState((s) => applyTileEffect(s, selectedTile, "fire"))
+        }
+        onFlood={() =>
+          selectedTile &&
+          setGameState((s) => applyTileEffect(s, selectedTile, "flood"))
+        }
         onSupply={() => setGameState(updateSupply)}
         onNextPhase={() => setGameState(advancePhase)}
+        onSave={handleSave}
+        onLoad={handleLoad}
+        onSetFormation={handleSetFormation}
       />
       <Canvas shadows camera={{ position: [6, 10, 30], fov: 45 }}>
         <GameGrid />
-
         <ambientLight intensity={2} />
         <directionalLight castShadow position={[20, 30, 20]} />
-
         <GameMap
           state={gameState}
           selectedTile={selectedTile}
@@ -65,7 +99,6 @@ export default function Home() {
           onSelectTile={setSelectedTile}
           onSelectArmy={setActiveArmyId}
         />
-
         <OrbitControls
           target={[6, 0, 6]}
           enableRotate={true}
