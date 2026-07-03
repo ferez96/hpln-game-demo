@@ -1,6 +1,6 @@
 import { Philosopher, Noto_Serif, Be_Vietnam_Pro, DM_Mono } from "next/font/google";
 
-// Direction B — Hoàng Kim Imperial type system (docs/Typography Spec.dc.html)
+// Direction B — Hoàng Kim Imperial type system (design/Typography Spec.dc.html)
 export const philosopher = Philosopher({
   weight: ["400", "700"],
   style: ["normal", "italic"],

@@ -1,8 +1,8 @@
 import { Owner } from "./types";
 
 /**
- * Direction B — Hoàng Kim Imperial palette, per docs/Tam Quoc Style Guide.dc.html
- * and docs/Typography Spec.dc.html. Single source of truth for faction colors
+ * Direction B — Hoàng Kim Imperial palette, per design/Tam Quoc Style Guide.dc.html
+ * and design/Typography Spec.dc.html. Single source of truth for faction colors
  * shared between DOM (Tailwind/CSS vars) and WebGL (three.js material colors,
  * which cannot read CSS custom properties).
  */

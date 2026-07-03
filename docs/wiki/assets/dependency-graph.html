@@ -1,0 +1,346 @@
+<title>Sơ Đồ Phụ Thuộc — Tam Quốc Tranh Hùng</title>
+<style>
+  .viz-root {
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --gridline: #e1e0d9;
+    --border: rgba(11,11,11,0.10);
+    --good: #0ca30c;
+    --critical: #d03b3b;
+    --accent: #2a78d6;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text-primary);
+    background: var(--page);
+  }
+  @media (prefers-color-scheme: dark) {
+    .viz-root {
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #898781;
+      --gridline: #2c2c2a;
+      --border: rgba(255,255,255,0.10);
+      --good: #0ca30c;
+      --critical: #e66767;
+      --accent: #3987e5;
+    }
+  }
+  .viz-root { max-width: 1100px; margin: 0 auto; padding: 24px 16px 64px; }
+  .viz-header h1 { font-size: 1.35rem; margin: 0 0 6px; }
+  .viz-header p { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.5; margin: 0 0 4px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; margin: 18px 0 10px; padding: 10px 14px; background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; font-size: 0.82rem; color: var(--text-secondary); }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch { width: 22px; height: 3px; border-radius: 2px; display: inline-block; }
+  .legend-node { width: 16px; height: 16px; border-radius: 4px; display: inline-block; background: var(--surface-1); border: 1.5px solid var(--text-muted); }
+  .legend-node.optional { border-style: dashed; }
+  .scroll-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-1); margin: 8px 0 28px; }
+  svg { display: block; }
+  .node-box { fill: var(--surface-1); stroke: var(--text-muted); stroke-width: 1.4; cursor: pointer; }
+  .node-box.optional { stroke-dasharray: 4 3; }
+  .node-box.hot { stroke: var(--accent); stroke-width: 2.4; }
+  .node-label { fill: var(--text-primary); font-size: 11px; pointer-events: none; }
+  .node-badge { fill: var(--text-muted); font-size: 9px; pointer-events: none; }
+  .node-badge-bg { fill: var(--gridline); }
+  .tier-label { fill: var(--text-muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .edge { fill: none; stroke-width: 1.6; opacity: 0.55; }
+  .edge.good { stroke: var(--good); }
+  .edge.critical { stroke: var(--critical); opacity: 0.85; }
+  .edge.dim { opacity: 0.08; }
+  .edge.hot { opacity: 1; stroke-width: 2.6; }
+  marker path { fill: context-stroke; }
+  .tooltip { position: fixed; max-width: 260px; background: var(--text-primary); color: var(--surface-1); font-size: 0.78rem; line-height: 1.45; padding: 10px 12px; border-radius: 8px; pointer-events: none; opacity: 0; transform: translateY(4px); transition: opacity 0.12s ease; z-index: 10; }
+  .tooltip.show { opacity: 0.97; }
+  .tooltip b { font-weight: 600; }
+  .tooltip .sec { color: var(--text-muted); }
+  .tooltip .k { display:block; margin-top:6px; color: var(--text-muted); font-size: 0.72rem; }
+  section.panel { margin-top: 32px; }
+  section.panel h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  ol.order-list { padding-left: 2.4em; font-size: 0.88rem; line-height: 1.9; }
+  ol.order-list li { margin-bottom: 2px; }
+  ol.order-list .cur { color: var(--text-muted); font-size: 0.8em; }
+  ol.order-list .moved { color: var(--critical); font-weight: 600; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 8px; }
+  table.data-table caption { text-align: left; color: var(--text-secondary); font-size: 0.82rem; margin-bottom: 8px; }
+  table.data-table th, table.data-table td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--gridline); vertical-align: top; }
+  table.data-table th { color: var(--text-muted); font-weight: 600; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.03em; }
+  table.data-table td.status-ok { color: var(--good); font-weight: 600; }
+  table.data-table td.status-bad { color: var(--critical); font-weight: 600; }
+  .table-wrap { overflow-x: auto; }
+</style>
+
+<div class="viz-root">
+  <div class="viz-header">
+    <h1>Sơ Đồ Phụ Thuộc Khái Niệm — Tam Quốc Tranh Hùng</h1>
+    <p>Mỗi ô là 1 khái niệm/hệ thống trong game. Mũi tên nghĩa là "cần hiểu khái niệm nguồn trước". Xếp theo hàng từ trên xuống = thứ tự nên học (đơn giản → nâng cao). Cạnh <b style="color:#0ca30c">xanh</b> = đúng thứ tự trong tài liệu hiện tại; cạnh <b style="color:#d03b3b">đỏ</b> = tài liệu hiện tại nhắc tới trước khi khái niệm nguồn được định nghĩa (lệch thứ tự).</p>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-node"></span> Cơ chế bắt buộc</div>
+    <div class="legend-item"><span class="legend-node optional"></span> Cơ chế tùy chọn</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#0ca30c"></span> Đúng thứ tự trong tài liệu hiện tại</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#d03b3b"></span> Lệch thứ tự (tham chiếu ngược)</div>
+  </div>
+
+  <div class="scroll-wrap">
+    <svg id="graph" width="1000" height="1500" viewBox="0 0 1000 1500"></svg>
+  </div>
+
+  <section class="panel">
+    <h2>Thứ tự đọc đề xuất (topological order)</h2>
+    <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:-4px;">Số trong ngoặc = mục hiện tại trong bản Rulebook Chuẩn Hóa. Đỏ = khái niệm đang bị đặt lệch nhiều so với vị trí đúng.</p>
+    <ol class="order-list" id="order-list"></ol>
+  </section>
+
+  <section class="panel">
+    <h2>Bảng dữ liệu đầy đủ</h2>
+    <div class="table-wrap">
+      <table class="data-table" id="data-table">
+        <caption>Toàn bộ khái niệm, bậc phụ thuộc, mục hiện tại, và các khái niệm cần biết trước.</caption>
+        <thead><tr><th>Bậc</th><th>Khái niệm</th><th>Mục hiện tại</th><th>Cần biết trước</th><th>Trạng thái</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="tooltip" id="tooltip"></div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var nodes = [
+    { id: "goal", label: "Mục Tiêu & Phe", section: "§1", pos: 1, tier: 0 },
+    { id: "calendar", label: "Nhịp Thời Gian (Turn/Go/Atc/Mùa)", section: "§1", pos: 1, tier: 0 },
+    { id: "roles", label: "Chức Vụ", section: "§2", pos: 2, tier: 1, prereq: ["goal"] },
+    { id: "map", label: "Địa Hình (6 loại ô)", section: "§4", pos: 4, tier: 1, prereq: ["goal"] },
+    { id: "spy", label: "Gián Điệp Cài Cắm", section: "§3.1", pos: 3, tier: 1, prereq: ["goal"], optional: true },
+    { id: "economy", label: "Kinh Tế (Mỏ/Nhà Dân/Ruộng/Lương)", section: "§5", pos: 5, tier: 2, prereq: ["roles", "map"] },
+    { id: "battlefield", label: "Sa Trường (định nghĩa)", section: "§3.4", pos: 3, tier: 2, prereq: ["map"] },
+    { id: "prestige_gen", label: "Dân Tâm & Uy Danh — sinh ra", section: "§2 / §17", pos: 17, tier: 2, prereq: ["roles"] },
+    { id: "expel", label: "Trục Xuất & Trảm Đầu", section: "§3.3", pos: 3, tier: 2, prereq: ["roles"] },
+    { id: "coup", label: "Đảo Chính", section: "§3.2", pos: 3, tier: 2, prereq: ["roles", "goal"], optional: true },
+    { id: "army", label: "Quân Đội Cơ Bản", section: "§6", pos: 6, tier: 3, prereq: ["economy", "roles"] },
+    { id: "prestige_spend_basic", label: "Uy Danh → thăng Đại Tướng Quân", section: "§2.2", pos: 2, tier: 3, prereq: ["prestige_gen", "roles"] },
+    { id: "mystics", label: "Hoa Đà / Tả Từ / Thủy Kính (Bát Quái, Bát Kỳ)", section: "§17", pos: 17, tier: 3, prereq: ["prestige_gen", "roles"] },
+    { id: "movement", label: "Di Chuyển & Nối Lương", section: "§7", pos: 7, tier: 4, prereq: ["map", "army", "economy"] },
+    { id: "stealth_skills", label: "Kỹ Năng Tác Chiến", section: "§11", pos: 11, tier: 4, prereq: ["army", "map", "roles"] },
+    { id: "forge", label: "Lò Rèn & Cơ Giới", section: "§14", pos: 14, tier: 4, prereq: ["economy", "army"] },
+    { id: "combat", label: "Binh Pháp — Công Thức Chiến Đấu", section: "§8", pos: 8, tier: 5, prereq: ["army", "movement"] },
+    { id: "betrayal", label: "Phản Bội", section: "§3.4", pos: 3, tier: 5, prereq: ["roles", "battlefield", "army", "movement"] },
+    { id: "navy", label: "Thuyền & Thủy Chiến", section: "§13", pos: 13, tier: 5, prereq: ["map", "army", "movement"] },
+    { id: "seasons", label: "Thời Tiết — hiệu ứng mùa", section: "§9", pos: 9, tier: 6, prereq: ["economy", "combat", "movement"] },
+    { id: "spells", label: "Phù Chú", section: "§10", pos: 10, tier: 6, prereq: ["army", "combat", "map", "roles"] },
+    { id: "elite_unlock", label: "Tinh Binh (mốc giết địch)", section: "§15", pos: 15, tier: 6, prereq: ["combat", "economy", "prestige_spend_basic"] },
+    { id: "formations", label: "Trận Pháp", section: "§12", pos: 12, tier: 7, prereq: ["roles", "army", "prestige_spend_basic", "mystics", "combat"] },
+    { id: "war_god", label: "Chiến Tướng", section: "§16", pos: 16, tier: 7, prereq: ["roles", "mystics", "prestige_spend_basic", "economy"] },
+    { id: "appendix", label: "Luật Bổ Sung / Ví Dụ", section: "§18", pos: 18, tier: 8, prereq: ["movement", "spells", "formations", "navy"] }
+  ];
+
+  var byId = {};
+  nodes.forEach(function (n) { byId[n.id] = n; });
+
+  var edges = [];
+  nodes.forEach(function (n) {
+    (n.prereq || []).forEach(function (p) {
+      var ok = byId[p].pos <= n.pos;
+      edges.push({ from: p, to: n.id, ok: ok });
+    });
+  });
+
+  // ---- layout: tiers top to bottom, nodes spread horizontally within a tier ----
+  var tierGroups = {};
+  nodes.forEach(function (n) {
+    (tierGroups[n.tier] = tierGroups[n.tier] || []).push(n);
+  });
+  var tierCount = Math.max.apply(null, nodes.map(function (n) { return n.tier; })) + 1;
+  var rowH = 160, boxW = 168, boxH = 56, topPad = 46;
+  var maxCols = Math.max.apply(null, Object.keys(tierGroups).map(function (t) { return tierGroups[t].length; }));
+  var colGap = 24;
+  var svgW = Math.max(1000, maxCols * (boxW + colGap) + 40);
+  var svgH = topPad + tierCount * rowH + 40;
+
+  Object.keys(tierGroups).forEach(function (t) {
+    var group = tierGroups[t];
+    var n = group.length;
+    var rowWidth = n * boxW + (n - 1) * colGap;
+    var startX = (svgW - rowWidth) / 2;
+    group.forEach(function (node, i) {
+      node.x = startX + i * (boxW + colGap);
+      node.y = topPad + Number(t) * rowH;
+    });
+  });
+
+  var svg = document.getElementById("graph");
+  svg.setAttribute("width", svgW);
+  svg.setAttribute("height", svgH);
+  svg.setAttribute("viewBox", "0 0 " + svgW + " " + svgH);
+
+  var svgns = "http://www.w3.org/2000/svg";
+  function el(tag, attrs) {
+    var e = document.createElementNS(svgns, tag);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    return e;
+  }
+
+  // tier labels
+  var tierNames = ["Bậc 0 — Gốc", "Bậc 1", "Bậc 2", "Bậc 3", "Bậc 4", "Bậc 5", "Bậc 6", "Bậc 7 — Nâng cao", "Bậc 8 — Tổng hợp"];
+  for (var t = 0; t < tierCount; t++) {
+    var lab = el("text", { x: 16, y: topPad + t * rowH - 14, class: "tier-label" });
+    lab.textContent = tierNames[t] || ("Bậc " + t);
+    svg.appendChild(lab);
+    var line = el("line", { x1: 0, y1: topPad + t * rowH - 6, x2: svgW, y2: topPad + t * rowH - 6, stroke: "var(--gridline)", "stroke-width": 1 });
+    svg.appendChild(line);
+  }
+
+  // marker defs
+  var defs = el("defs", {});
+  ["good", "critical"].forEach(function (kind) {
+    var marker = el("marker", { id: "arrow-" + kind, viewBox: "0 0 10 10", refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, orient: "auto-start-reverse" });
+    var path = el("path", { d: "M0,0 L10,5 L0,10 z" });
+    marker.appendChild(path);
+    defs.appendChild(marker);
+  });
+  svg.appendChild(defs);
+
+  var edgeEls = [];
+  edges.forEach(function (e) {
+    var a = byId[e.from], b = byId[e.to];
+    var x1 = a.x + boxW / 2, y1 = a.y + boxH;
+    var x2 = b.x + boxW / 2, y2 = b.y;
+    var midY = (y1 + y2) / 2;
+    var d = "M" + x1 + "," + y1 + " C" + x1 + "," + midY + " " + x2 + "," + midY + " " + x2 + "," + y2;
+    var path = el("path", {
+      d: d, class: "edge " + (e.ok ? "good" : "critical"),
+      "marker-end": "url(#arrow-" + (e.ok ? "good" : "critical") + ")"
+    });
+    svg.appendChild(path);
+    edgeEls.push({ el: path, from: e.from, to: e.to });
+  });
+
+  var tooltip = document.getElementById("tooltip");
+  function dependentsOf(id) {
+    return nodes.filter(function (n) { return (n.prereq || []).indexOf(id) !== -1; }).map(function (n) { return n.label; });
+  }
+  function showTooltip(node, x, y) {
+    var prereqLabels = (node.prereq || []).map(function (p) { return byId[p].label; });
+    var deps = dependentsOf(node.id);
+    var html = "<b>" + node.label + "</b> <span class=\"sec\">(" + node.section + ")</span>";
+    if (prereqLabels.length) html += "<span class=\"k\">Cần biết trước: " + prereqLabels.join(", ") + "</span>";
+    if (deps.length) html += "<span class=\"k\">Được dùng bởi: " + deps.join(", ") + "</span>";
+    tooltip.innerHTML = html;
+    tooltip.style.left = Math.min(x + 12, window.innerWidth - 280) + "px";
+    tooltip.style.top = Math.max(y - 10, 10) + "px";
+    tooltip.classList.add("show");
+  }
+  function hideTooltip() { tooltip.classList.remove("show"); }
+
+  function setHot(nodeId, on) {
+    edgeEls.forEach(function (e) {
+      var related = e.from === nodeId || e.to === nodeId;
+      e.el.classList.toggle("hot", on && related);
+      e.el.classList.toggle("dim", on && !related);
+    });
+  }
+
+  nodes.forEach(function (node) {
+    var g = el("g", { tabindex: "0", role: "button", "aria-label": node.label + " (" + node.section + ")" });
+    var rect = el("rect", {
+      x: node.x, y: node.y, width: boxW, height: boxH, rx: 9,
+      class: "node-box" + (node.optional ? " optional" : "")
+    });
+    g.appendChild(rect);
+
+    // badge (section number)
+    var badgeW = 12 + node.section.length * 5.6;
+    var badgeBg = el("rect", { x: node.x + boxW - badgeW - 6, y: node.y - 9, width: badgeW, height: 16, rx: 8, class: "node-badge-bg" });
+    var badgeTxt = el("text", { x: node.x + boxW - badgeW / 2 - 6, y: node.y + 2.5, class: "node-badge", "text-anchor": "middle" });
+    badgeTxt.textContent = node.section;
+    g.appendChild(badgeBg);
+    g.appendChild(badgeTxt);
+
+    // wrapped label (simple manual wrap ~ 22 chars/line, max 3 lines)
+    var words = node.label.split(" ");
+    var lines = [];
+    var cur = "";
+    words.forEach(function (w) {
+      var trial = cur ? cur + " " + w : w;
+      if (trial.length > 22 && cur) { lines.push(cur); cur = w; } else { cur = trial; }
+    });
+    if (cur) lines.push(cur);
+    lines = lines.slice(0, 3);
+    var lineH = 13;
+    var startTy = node.y + boxH / 2 - ((lines.length - 1) * lineH) / 2 + 4;
+    lines.forEach(function (line, i) {
+      var t = el("text", { x: node.x + boxW / 2, y: startTy + i * lineH, class: "node-label", "text-anchor": "middle" });
+      t.textContent = line;
+      g.appendChild(t);
+    });
+
+    g.addEventListener("pointerenter", function (ev) {
+      rect.classList.add("hot");
+      setHot(node.id, true);
+      showTooltip(node, ev.clientX, ev.clientY);
+    });
+    g.addEventListener("pointermove", function (ev) { showTooltip(node, ev.clientX, ev.clientY); });
+    g.addEventListener("pointerleave", function () {
+      rect.classList.remove("hot");
+      setHot(node.id, false);
+      hideTooltip();
+    });
+    g.addEventListener("focus", function () {
+      var box = rect.getBoundingClientRect();
+      rect.classList.add("hot");
+      setHot(node.id, true);
+      showTooltip(node, box.right, box.top);
+    });
+    g.addEventListener("blur", function () {
+      rect.classList.remove("hot");
+      setHot(node.id, false);
+      hideTooltip();
+    });
+
+    svg.appendChild(g);
+  });
+
+  // ---- proposed reading order list ----
+  var orderList = document.getElementById("order-list");
+  var sorted = nodes.slice().sort(function (a, b) { return a.tier - b.tier || a.x - b.x; });
+  sorted.forEach(function (n) {
+    var li = document.createElement("li");
+    var big = Math.abs(n.tier * 2 - n.pos) >= 6; // heuristic: moved far from its current position
+    var nameSpan = document.createElement(big ? "b" : "span");
+    if (big) nameSpan.className = "moved";
+    nameSpan.textContent = n.label + (n.optional ? " (tùy chọn)" : "");
+    var curSpan = document.createElement("span");
+    curSpan.className = "cur";
+    curSpan.textContent = "  — hiện tại: " + n.section;
+    li.appendChild(nameSpan);
+    li.appendChild(curSpan);
+    orderList.appendChild(li);
+  });
+
+  // ---- data table ----
+  var tbody = document.querySelector("#data-table tbody");
+  sorted.forEach(function (n) {
+    var tr = document.createElement("tr");
+    function td(text, cls) {
+      var c = document.createElement("td");
+      c.textContent = text;
+      if (cls) c.className = cls;
+      tr.appendChild(c);
+    }
+    td(String(n.tier));
+    td(n.label + (n.optional ? " (tùy chọn)" : ""));
+    td(n.section);
+    td((n.prereq || []).map(function (p) { return byId[p].label; }).join(", ") || "—");
+    var hasBad = (n.prereq || []).some(function (p) { return byId[p].pos > n.pos; });
+    td(hasBad ? "Lệch thứ tự" : "OK", hasBad ? "status-bad" : "status-ok");
+    tbody.appendChild(tr);
+  });
+})();
+</script>

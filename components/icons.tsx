@@ -1,6 +1,6 @@
 /**
  * Direction B — Hoàng Kim Imperial icon set, transcribed from
- * docs/Icon Sheet.dc.html (32×32 viewBox, scale-free). Only icons with an
+ * design/Icon Sheet.dc.html (32×32 viewBox, scale-free). Only icons with an
  * actual call site in the UI are implemented; IconPrestigeStar and
  * IconFloodAttack extend the set in the same circle-badge idiom where the
  * doc has no matching icon (prestige stat, water attack).

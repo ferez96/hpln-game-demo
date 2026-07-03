@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tam Quốc Tranh Hùng — Rulebook Wiki</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="description" content="Wiki luật chơi Tam Quốc Tranh Hùng, tổ chức theo domain, kèm lộ trình học đề xuất">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    :root { --theme-color: #a83c3c; }
+    .markdown-section { max-width: 900px; }
+    .markdown-section table { display: table; width: 100%; }
+    .markdown-section table th, .markdown-section table td { padding: 6px 10px; }
+    details { border: 1px solid #a83c3c33; border-radius: 6px; padding: 0.4em 1em; margin: 1em 0; background: rgba(168,60,60,0.04); }
+    details[open] { padding-bottom: 1em; }
+    details summary { cursor: pointer; font-weight: 600; color: #a83c3c; }
+    .sidebar-nav > ul > li > p { font-weight: 700; opacity: 0.7; margin: 1em 0 0.2em; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #1b1b1b; }
+      details { background: rgba(255,255,255,0.04); border-color: #ffffff22; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'Tam Quốc Tranh Hùng',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      auto2top: true,
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: 'Tìm luật / khái niệm...',
+        noData: 'Không tìm thấy.',
+        depth: 3
+      },
+      markdown: {
+        smartypants: false
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+</body>
+</html>
