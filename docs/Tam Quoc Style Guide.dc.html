@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="design_doc_mode" content="canvas">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body { background: #1a1510; margin: 0; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  </style>
+</helmet>
+
+<!-- ─── HEADER PANEL ─────────────────────────────────────── -->
+<div style="position:absolute;left:0;top:0;width:2600px;padding:56px 72px 36px;box-sizing:border-box;" data-drags-parent="1">
+  <div style="font-family:'Ma Shan Zheng',serif;font-size:42px;color:#e8c97a;letter-spacing:4px;margin-bottom:8px;">
+    三國策 · 2.5D Art Direction
+  </div>
+  <div style="font-family:'Noto Sans SC',sans-serif;font-size:15px;color:#9e8c6a;letter-spacing:2px;">
+    TAM QUỐC CHIẾN LƯỢC — Style Guide v1 · 3 Art Direction Options
+  </div>
+  <div style="margin-top:16px;width:100%;height:2px;background:linear-gradient(90deg,#e8c97a 0%,#9e6a2a 40%,transparent 100%);"></div>
+</div>
+
+<!-- ─── PERSPECTIVE RECOMMENDATION ───────────────────────── -->
+<div style="position:absolute;left:72px;top:160px;width:2456px;" data-drags-parent="1">
+  <div style="background:#241e14;border:1px solid #3d3020;border-radius:4px;padding:28px 36px;display:flex;gap:48px;align-items:flex-start;">
+    <div style="flex:0 0 auto;">
+      <div style="font-family:'Noto Serif SC',serif;font-size:13px;color:#e8c97a;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">⭐ KHUYẾN NGHỊ GÓC NHÌN</div>
+      <div style="font-family:'Noto Serif SC',serif;font-size:22px;color:#f0e4c0;margin-bottom:6px;">Isometric 45° (Top-down Isometric)</div>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:13px;color:#9e8c6a;max-width:420px;line-height:1.7;">Phù hợp nhất cho turn-based strategy: tiles hình thoi dễ click, buildings có chiều cao, units nhìn rõ trên ô, kế thừa trực tiếp từ reference của bạn.</div>
+    </div>
+    <!-- Isometric tile demo -->
+    <div style="flex:0 0 auto;display:flex;gap:32px;align-items:center;">
+      <div style="text-align:center;">
+        <svg width="200" height="130" viewBox="0 0 200 130">
+          <!-- Isometric grid demo -->
+          <g transform="translate(100,20)">
+            <!-- Row 1 -->
+            <polygon points="0,-20 34,-3 0,14 -34,-3" fill="#4a7c45" stroke="#2d5229" stroke-width="1.5"/>
+            <polygon points="34,-3 68,14 34,31 0,14" fill="#5a9454" stroke="#2d5229" stroke-width="1.5"/>
+            <polygon points="-34,-3 0,14 -34,31 -68,14" fill="#4a7c45" stroke="#2d5229" stroke-width="1.5"/>
+            <!-- Row 2 -->
+            <polygon points="0,14 34,31 0,48 -34,31" fill="#5a9454" stroke="#2d5229" stroke-width="1.5"/>
+            <polygon points="34,31 68,48 34,65 0,48" fill="#6aaa62" stroke="#2d5229" stroke-width="1.5"/>
+            <polygon points="-34,31 0,48 -34,65 -68,48" fill="#4a7c45" stroke="#2d5229" stroke-width="1.5"/>
+            <!-- Row 3 -->
+            <polygon points="0,48 34,65 0,82 -34,65" fill="#4a7c45" stroke="#2d5229" stroke-width="1.5"/>
+            <polygon points="-34,65 0,82 -34,99 -68,82" fill="#5a9454" stroke="#2d5229" stroke-width="1.5"/>
+            <polygon points="34,65 68,82 34,99 0,82" fill="#5a9454" stroke="#2d5229" stroke-width="1.5"/>
+            <!-- Building on center tile -->
+            <polygon points="0,14 34,31 0,48 -34,31" fill="#c8a870" stroke="#8a6030" stroke-width="1.5"/>
+            <!-- Building walls -->
+            <polygon points="-34,31 0,48 0,28 -34,11" fill="#b08050" stroke="#8a6030" stroke-width="1"/>
+            <polygon points="0,48 34,31 34,11 0,28" fill="#d4b080" stroke="#8a6030" stroke-width="1"/>
+            <!-- Roof -->
+            <polygon points="-24,16 0,4 24,16 0,28" fill="#c0392b" stroke="#8a2020" stroke-width="1.5"/>
+            <!-- Roof ridge -->
+            <line x1="-24" y1="16" x2="24" y2="16" stroke="#8a2020" stroke-width="1"/>
+          </g>
+        </svg>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:11px;color:#6a5e48;margin-top:4px;">Isometric tile + building</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#9e8c6a;">✓ Tiles hình thoi — dễ click chính xác</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#9e8c6a;">✓ Buildings có chiều cao rõ ràng</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#9e8c6a;">✓ Units nhìn được mặt (3/4 front-left)</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#9e8c6a;">✓ Kế thừa trực tiếp từ reference game</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#9e8c6a;">✓ Phổ biến: Warcraft III, Clash of Clans</div>
+      </div>
+    </div>
+    <!-- Tile spec -->
+    <div style="flex:0 0 auto;background:#1a1510;border:1px solid #2d2518;border-radius:3px;padding:16px 20px;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:11px;color:#e8c97a;margin-bottom:10px;letter-spacing:1px;">TILE SPEC GỢI Ý</div>
+      <div style="font-family:monospace;font-size:12px;color:#c8b890;line-height:2;">
+        Tile base: 128 × 64 px<br>
+        Canvas tile: 64 × 32 px (×2)<br>
+        Unit sprite: 96 × 128 px<br>
+        Building: 192 × 256 px<br>
+        Terrain deco: 64–128 px<br>
+        Format: PNG-24 + alpha
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- DIRECTION A: THỦY MẶC                                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div style="position:absolute;left:72px;top:380px;width:760px;animation:fadeIn 0.5s ease both;" data-drags-parent="1">
+  <!-- Header -->
+  <div style="background:linear-gradient(135deg,#1e1a14 0%,#2a2218 100%);border:1px solid #3d3020;border-top:3px solid #8ba8a0;border-radius:4px 4px 0 0;padding:24px 28px 20px;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:6px;">
+      <span style="font-family:'Ma Shan Zheng',serif;font-size:36px;color:#b8d4cc;letter-spacing:2px;">水墨</span>
+      <span style="font-family:'Noto Serif SC',serif;font-size:20px;color:#c8d8d4;">Thủy Mặc</span>
+    </div>
+    <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#7a9a94;letter-spacing:1px;">INK WASH · Tranh thủy mặc cổ điển</div>
+    <div style="margin-top:12px;font-family:'Noto Sans SC',sans-serif;font-size:13px;color:#9aada8;line-height:1.7;max-width:600px;">
+      Phong cách tranh mực Trung Hoa. Nền giấy xuyến chỉ, nét vẽ bút lông thô, màu sắc tiết chế — chỉ dùng mực đen + 1–2 điểm nhấn son đỏ và ngọc lam. Tạo cảm giác cổ xưa, nghệ thuật, trầm mặc.
+    </div>
+  </div>
+
+  <!-- Palette -->
+  <div style="background:#1e1a14;border-left:1px solid #3d3020;border-right:1px solid #3d3020;padding:20px 28px;">
+    <div style="font-family:'Noto Sans SC',sans-serif;font-size:11px;color:#7a9a94;letter-spacing:2px;margin-bottom:12px;">BẢNG MÀU</div>
+    <div style="display:flex;gap:8px;align-items:flex-end;">
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#1a1814;border-radius:3px;border:1px solid #333;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#1A1814</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#666;">Mực đậm</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#3d3830;border-radius:3px;border:1px solid #333;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#3D3830</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#666;">Mực nhạt</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#8a9e98;border-radius:3px;border:1px solid #333;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#8A9E98</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#666;">Lam nhạt</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#f0ead8;border-radius:3px;border:1px solid #333;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#F0EAD8</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#666;">Giấy xuyến</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#c0392b;border-radius:3px;border:1px solid #333;border:2px solid #e05040;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#C0392B</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#c0392b;">★ Son đỏ</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#2d7a6a;border-radius:3px;border:1px solid #333;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#2D7A6A</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#666;">Ngọc lam</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#c8a840;border-radius:3px;border:1px solid #333;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#C8A840</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#666;">Vàng nhạt</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Asset mockups -->
+  <div style="background:#1e1a14;border-left:1px solid #3d3020;border-right:1px solid #3d3020;padding:20px 28px;display:flex;gap:24px;align-items:flex-start;">
+    <!-- Tile -->
+    <div style="text-align:center;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#7a9a94;letter-spacing:1px;margin-bottom:10px;">TERRAIN TILE</div>
+      <svg width="128" height="80" viewBox="0 0 128 80">
+        <!-- Ink wash grass tile isometric -->
+        <polygon points="64,8 110,32 64,56 18,32" fill="#e8e0cc" stroke="#3d3830" stroke-width="2"/>
+        <!-- Texture brush strokes -->
+        <line x1="40" y1="28" x2="55" y2="22" stroke="#8a9e98" stroke-width="1" opacity="0.5"/>
+        <line x1="70" y1="18" x2="85" y2="24" stroke="#8a9e98" stroke-width="1.5" opacity="0.4"/>
+        <line x1="50" y1="38" x2="70" y2="44" stroke="#3d3830" stroke-width="1" opacity="0.3"/>
+        <line x1="75" y1="35" x2="90" y2="30" stroke="#3d3830" stroke-width="0.8" opacity="0.3"/>
+        <!-- Brush ink dots -->
+        <circle cx="55" cy="30" r="2" fill="#3d3830" opacity="0.4"/>
+        <circle cx="78" cy="25" r="1.5" fill="#3d3830" opacity="0.35"/>
+        <circle cx="65" cy="42" r="1" fill="#3d3830" opacity="0.3"/>
+      </svg>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#5a6a68;margin-top:4px;">Nền đồng bằng<br>giấy xuyến + bút lông</div>
+    </div>
+    <!-- Unit -->
+    <div style="text-align:center;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#7a9a94;letter-spacing:1px;margin-bottom:10px;">UNIT (TƯỚNG)</div>
+      <div style="width:64px;height:80px;background:linear-gradient(180deg,#e8e0cc 0%,#d8d0b8 100%);border-radius:3px;border:1.5px solid #3d3830;display:flex;align-items:center;justify-content:center;margin:0 auto;position:relative;">
+        <div style="font-family:monospace;font-size:9px;color:#8a9e98;text-align:center;line-height:1.4;padding:4px;">unit<br>sprite<br>96×128</div>
+        <!-- Ink border decoration -->
+        <div style="position:absolute;top:4px;left:4px;right:4px;bottom:4px;border:1px solid #3d3830;opacity:0.3;border-radius:2px;"></div>
+      </div>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#5a6a68;margin-top:4px;">Bút lông đen<br>điểm son đỏ</div>
+    </div>
+    <!-- Building -->
+    <div style="text-align:center;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#7a9a94;letter-spacing:1px;margin-bottom:10px;">CÔNG TRÌNH</div>
+      <svg width="100" height="80" viewBox="0 0 100 80">
+        <!-- Isometric building ink style -->
+        <polygon points="50,5 80,20 80,55 50,70 20,55 20,20" fill="none" stroke="#3d3830" stroke-width="2"/>
+        <polygon points="50,5 80,20 50,35 20,20" fill="#f0ead8" stroke="#1a1814" stroke-width="1.5"/>
+        <polygon points="20,20 50,35 50,70 20,55" fill="#d8d0b8" stroke="#3d3830" stroke-width="1.5"/>
+        <polygon points="80,20 50,35 50,70 80,55" fill="#e8e0cc" stroke="#3d3830" stroke-width="1.5"/>
+        <!-- Roof curve lines ink style -->
+        <path d="M20,20 Q50,2 80,20" fill="none" stroke="#c0392b" stroke-width="2"/>
+        <line x1="50" y1="5" x2="50" y2="35" stroke="#1a1814" stroke-width="1" opacity="0.5"/>
+        <!-- Brush marks -->
+        <line x1="30" y1="38" x2="30" y2="52" stroke="#3d3830" stroke-width="1.5" opacity="0.4"/>
+        <line x1="40" y1="42" x2="40" y2="56" stroke="#3d3830" stroke-width="1" opacity="0.3"/>
+      </svg>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#5a6a68;margin-top:4px;">Nét cọ thô<br>mái cong son đỏ</div>
+    </div>
+    <!-- Tree -->
+    <div style="text-align:center;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#7a9a94;letter-spacing:1px;margin-bottom:10px;">TERRAIN DECO</div>
+      <svg width="64" height="80" viewBox="0 0 64 80">
+        <!-- Pine tree ink style -->
+        <line x1="32" y1="75" x2="32" y2="30" stroke="#1a1814" stroke-width="2.5"/>
+        <!-- Branches -->
+        <path d="M32,60 Q20,50 15,52" stroke="#1a1814" stroke-width="1.5" fill="none"/>
+        <path d="M32,60 Q44,50 49,52" stroke="#1a1814" stroke-width="1.5" fill="none"/>
+        <path d="M32,48 Q18,38 12,40" stroke="#1a1814" stroke-width="1.5" fill="none"/>
+        <path d="M32,48 Q46,38 52,40" stroke="#1a1814" stroke-width="1.5" fill="none"/>
+        <path d="M32,36 Q22,28 18,30" stroke="#1a1814" stroke-width="1.2" fill="none"/>
+        <path d="M32,36 Q42,28 46,30" stroke="#1a1814" stroke-width="1.2" fill="none"/>
+        <!-- Pine needle clusters ink wash -->
+        <ellipse cx="20" cy="42" rx="8" ry="5" fill="#2d7a6a" opacity="0.7" transform="rotate(-15,20,42)"/>
+        <ellipse cx="44" cy="42" rx="8" ry="5" fill="#3d8a7a" opacity="0.6" transform="rotate(15,44,42)"/>
+        <ellipse cx="16" cy="54" rx="7" ry="4" fill="#2d7a6a" opacity="0.65"/>
+        <ellipse cx="48" cy="54" rx="7" ry="4" fill="#2d7a6a" opacity="0.65"/>
+        <ellipse cx="32" cy="25" rx="6" ry="8" fill="#2d7a6a" opacity="0.8"/>
+      </svg>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#5a6a68;margin-top:4px;">Tùng bách<br>mực + ngọc lam</div>
+    </div>
+  </div>
+
+  <!-- Typography + Mood -->
+  <div style="background:#1e1a14;border:1px solid #3d3020;border-radius:0 0 4px 4px;padding:20px 28px;display:flex;gap:32px;">
+    <div style="flex:1;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:11px;color:#7a9a94;letter-spacing:2px;margin-bottom:10px;">TYPOGRAPHY</div>
+      <div style="font-family:'Ma Shan Zheng',serif;font-size:28px;color:#3d3830;margin-bottom:4px;">三國志</div>
+      <div style="font-family:'Noto Serif SC',serif;font-size:16px;color:#5a6a68;">Ma Shan Zheng — tên tướng, địa danh</div>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#7a9a94;margin-top:6px;">Noto Sans SC — UI text, số liệu</div>
+    </div>
+    <div style="flex:1;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:11px;color:#7a9a94;letter-spacing:2px;margin-bottom:10px;">MOOD</div>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#8a9e98;line-height:1.8;">
+        Nghiêm trang · Cổ điển · Nghệ thuật<br>
+        Khó thi công nhất — cần artist giỏi<br>
+        <span style="color:#c0392b;">★ Độ nổi bật cao nhất trên thị trường</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- DIRECTION B: HOÀNG KIM IMPERIAL                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div style="position:absolute;left:876px;top:380px;width:760px;animation:fadeIn 0.5s 0.15s ease both;" data-drags-parent="1">
+  <!-- Header -->
+  <div style="background:linear-gradient(135deg,#1e1608 0%,#2a1e08 100%);border:1px solid #5a3e10;border-top:3px solid #d4a830;border-radius:4px 4px 0 0;padding:24px 28px 20px;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:6px;">
+      <span style="font-family:'Ma Shan Zheng',serif;font-size:36px;color:#e8c040;letter-spacing:2px;">皇金</span>
+      <span style="font-family:'Noto Serif SC',serif;font-size:20px;color:#e0c870;">Hoàng Kim Imperial</span>
+    </div>
+    <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#a08040;letter-spacing:1px;">IMPERIAL GOLD · Cung đình, sơn mài, lộng lẫy</div>
+    <div style="margin-top:12px;font-family:'Noto Sans SC',sans-serif;font-size:13px;color:#b09050;line-height:1.7;max-width:600px;">
+      Lấy cảm hứng tranh sơn mài và kiến trúc cung đình Trung Hoa. Đỏ chu sa, vàng kim, ngọc bích — sắc nét, giàu chi tiết, mang hơi thở quyền lực của Tam Quốc.
+    </div>
+  </div>
+
+  <!-- Palette -->
+  <div style="background:#1e1608;border-left:1px solid #5a3e10;border-right:1px solid #5a3e10;padding:20px 28px;">
+    <div style="font-family:'Noto Sans SC',sans-serif;font-size:11px;color:#a08040;letter-spacing:2px;margin-bottom:12px;">BẢNG MÀU</div>
+    <div style="display:flex;gap:8px;align-items:flex-end;">
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#8b1a1a;border-radius:3px;border:2px solid #c02020;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#8B1A1A</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#c02020;">★ Chu sa</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#d4a020;border-radius:3px;border:2px solid #f0c040;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#D4A020</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#d4a020;">★ Hoàng kim</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#1a5c3a;border-radius:3px;border:2px solid #2a8050;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#1A5C3A</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#2a8050;">★ Ngọc bích</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#1e2a4a;border-radius:3px;border:1px solid #333;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#1E2A4A</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#666;">Lam thẫm</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#c87840;border-radius:3px;border:1px solid #333;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#C87840</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#666;">Đồng cũ</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#2a1e08;border-radius:3px;border:1px solid #333;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#2A1E08</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#666;">Nâu đen</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#f0e8c0;border-radius:3px;border:1px solid #333;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#F0E8C0</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#666;">Ngà voi</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Asset mockups -->
+  <div style="background:#1e1608;border-left:1px solid #5a3e10;border-right:1px solid #5a3e10;padding:20px 28px;display:flex;gap:24px;align-items:flex-start;">
+    <!-- Tile -->
+    <div style="text-align:center;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#a08040;letter-spacing:1px;margin-bottom:10px;">TERRAIN TILE</div>
+      <svg width="128" height="80" viewBox="0 0 128 80">
+        <defs>
+          <linearGradient id="goldTile" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3a6030"/>
+            <stop offset="100%" stop-color="#254020"/>
+          </linearGradient>
+        </defs>
+        <polygon points="64,8 110,32 64,56 18,32" fill="url(#goldTile)" stroke="#d4a020" stroke-width="1.5"/>
+        <!-- Gold border ornament -->
+        <polygon points="64,12 104,32 64,52 24,32" fill="none" stroke="#d4a020" stroke-width="0.5" opacity="0.5"/>
+        <!-- Grass detail -->
+        <line x1="48" y1="28" x2="52" y2="22" stroke="#4a8040" stroke-width="1.5"/>
+        <line x1="60" y1="24" x2="64" y2="18" stroke="#4a8040" stroke-width="1.5"/>
+        <line x1="72" y1="22" x2="76" y2="28" stroke="#3a7030" stroke-width="1.5"/>
+        <line x1="80" y1="30" x2="84" y2="24" stroke="#4a8040" stroke-width="1"/>
+      </svg>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#6a5030;margin-top:4px;">Viền vàng kim<br>cỏ ngọc bích</div>
+    </div>
+    <!-- Unit -->
+    <div style="text-align:center;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#a08040;letter-spacing:1px;margin-bottom:10px;">UNIT (TƯỚNG)</div>
+      <div style="width:64px;height:80px;background:linear-gradient(180deg,#2a1e08 0%,#1a1205 100%);border-radius:3px;border:1.5px solid #d4a020;display:flex;align-items:center;justify-content:center;margin:0 auto;position:relative;">
+        <div style="font-family:monospace;font-size:9px;color:#a08040;text-align:center;line-height:1.4;padding:4px;">unit<br>sprite<br>96×128</div>
+        <div style="position:absolute;top:2px;left:2px;right:2px;bottom:2px;border:1px solid #d4a020;opacity:0.3;border-radius:2px;"></div>
+        <div style="position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:6px;height:3px;background:#d4a020;border-radius:1px;"></div>
+      </div>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#6a5030;margin-top:4px;">Chu sa + vàng kim<br>giáp trụ lộng lẫy</div>
+    </div>
+    <!-- Building -->
+    <div style="text-align:center;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#a08040;letter-spacing:1px;margin-bottom:10px;">CÔNG TRÌNH</div>
+      <svg width="100" height="80" viewBox="0 0 100 80">
+        <defs>
+          <linearGradient id="roofGold" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#8b1a1a"/>
+            <stop offset="100%" stop-color="#c02020"/>
+          </linearGradient>
+          <linearGradient id="wallLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#1a1205"/>
+            <stop offset="100%" stop-color="#2a1e08"/>
+          </linearGradient>
+        </defs>
+        <!-- Base -->
+        <polygon points="50,38 80,53 50,68 20,53" fill="#2a1e08" stroke="#d4a020" stroke-width="1.5"/>
+        <!-- Walls -->
+        <polygon points="20,18 50,3 50,38 20,53" fill="url(#wallLeft)" stroke="#d4a020" stroke-width="1.5"/>
+        <polygon points="80,18 50,3 50,38 80,53" fill="#3a2e18" stroke="#d4a020" stroke-width="1.5"/>
+        <!-- Roof layers - imperial -->
+        <polygon points="15,22 50,8 85,22 50,36" fill="url(#roofGold)" stroke="#d4a020" stroke-width="1.5"/>
+        <polygon points="20,14 50,0 80,14 50,28" fill="#c02020" stroke="#d4a020" stroke-width="2"/>
+        <!-- Gold ridge ornament -->
+        <line x1="20" y1="14" x2="80" y2="14" stroke="#d4a020" stroke-width="1.5"/>
+        <circle cx="50" cy="0" r="3" fill="#d4a020"/>
+        <circle cx="20" cy="14" r="2" fill="#d4a020"/>
+        <circle cx="80" cy="14" r="2" fill="#d4a020"/>
+      </svg>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#6a5030;margin-top:4px;">Mái cung đình đỏ<br>viền vàng kim</div>
+    </div>
+    <!-- Tree -->
+    <div style="text-align:center;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#a08040;letter-spacing:1px;margin-bottom:10px;">TERRAIN DECO</div>
+      <svg width="64" height="80" viewBox="0 0 64 80">
+        <!-- Bonsai-style tree imperial -->
+        <rect x="28" y="62" width="8" height="14" fill="#5a3010" rx="1"/>
+        <ellipse cx="32" cy="55" rx="18" ry="12" fill="#1a5c3a"/>
+        <ellipse cx="20" cy="50" rx="12" ry="8" fill="#1a5c3a"/>
+        <ellipse cx="44" cy="50" rx="12" ry="8" fill="#1a5c3a"/>
+        <ellipse cx="32" cy="42" rx="14" ry="10" fill="#2a7040"/>
+        <!-- Gold berries -->
+        <circle cx="28" cy="48" r="2" fill="#d4a020"/>
+        <circle cx="38" cy="44" r="1.5" fill="#d4a020"/>
+        <circle cx="22" cy="52" r="1.5" fill="#d4a020"/>
+        <circle cx="44" cy="50" r="2" fill="#d4a020"/>
+      </svg>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#6a5030;margin-top:4px;">Cây bonsai cung đình<br>quả vàng kim</div>
+    </div>
+  </div>
+
+  <!-- Typography + Mood -->
+  <div style="background:#1e1608;border:1px solid #5a3e10;border-radius:0 0 4px 4px;padding:20px 28px;display:flex;gap:32px;">
+    <div style="flex:1;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:11px;color:#a08040;letter-spacing:2px;margin-bottom:10px;">TYPOGRAPHY</div>
+      <div style="font-family:'Ma Shan Zheng',serif;font-size:28px;color:#d4a020;margin-bottom:4px;text-shadow:0 0 20px rgba(212,160,32,0.4);">三國志</div>
+      <div style="font-family:'Noto Serif SC',serif;font-size:16px;color:#a08040;">Ma Shan Zheng — tên tướng, địa danh</div>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#6a5030;margin-top:6px;">Noto Serif SC — UI text, mô tả</div>
+    </div>
+    <div style="flex:1;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:11px;color:#a08040;letter-spacing:2px;margin-bottom:10px;">MOOD</div>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#a08050;line-height:1.8;">
+        Quyền lực · Sang trọng · Dữ dội<br>
+        Phù hợp nhất với Tam Quốc fan<br>
+        <span style="color:#d4a020;">★ Dễ thi công, màu rõ ràng cho devs</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- DIRECTION C: CHIBI SỬ THI                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div style="position:absolute;left:1680px;top:380px;width:760px;animation:fadeIn 0.5s 0.3s ease both;" data-drags-parent="1">
+  <!-- Header -->
+  <div style="background:linear-gradient(135deg,#0e1a28 0%,#162030 100%);border:1px solid #2a4060;border-top:3px solid #4a90e0;border-radius:4px 4px 0 0;padding:24px 28px 20px;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:6px;">
+      <span style="font-family:'Ma Shan Zheng',serif;font-size:36px;color:#70b0f0;letter-spacing:2px;">史詩</span>
+      <span style="font-family:'Noto Serif SC',serif;font-size:20px;color:#90c8f0;">Chibi Sử Thi</span>
+    </div>
+    <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#4a80b0;letter-spacing:1px;">CHIBI EPIC · Dễ thương + hùng tráng, giống reference</div>
+    <div style="margin-top:12px;font-family:'Noto Sans SC',sans-serif;font-size:13px;color:#6a9abA;line-height:1.7;max-width:600px;">
+      Kế thừa trực tiếp phong cách reference bạn gửi — units chibi đáng yêu trên nền tile màu tươi. Nâng cấp: outline rõ hơn, bóng sắc nét, màu sắc hài hòa theo phe phái. Dễ outsource nhất.
+    </div>
+  </div>
+
+  <!-- Palette -->
+  <div style="background:#0e1a28;border-left:1px solid #2a4060;border-right:1px solid #2a4060;padding:20px 28px;">
+    <div style="font-family:'Noto Sans SC',sans-serif;font-size:11px;color:#4a80b0;letter-spacing:2px;margin-bottom:12px;">BẢNG MÀU</div>
+    <div style="display:flex;gap:8px;align-items:flex-end;">
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#2e7d32;border-radius:3px;border:2px solid #4caf50;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#2E7D32</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#4caf50;">★ Đồng cỏ</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#5b9bd5;border-radius:3px;border:2px solid #7bb8f0;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#5B9BD5</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#7bb8f0;">★ Phe Ngụy</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#c0392b;border-radius:3px;border:2px solid #e74c3c;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#C0392B</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#e74c3c;">★ Phe Thục</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#d4880a;border-radius:3px;border:2px solid #f0a820;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#D4880A</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#f0a820;">★ Phe Ngô</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#5d4037;border-radius:3px;border:1px solid #333;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#5D4037</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#666;">Outline</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#f5f0e0;border-radius:3px;border:1px solid #333;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#F5F0E0</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#666;">UI nền</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:52px;height:52px;background:#546e7a;border-radius:3px;border:1px solid #333;"></div>
+        <div style="font-family:monospace;font-size:9px;color:#666;margin-top:4px;">#546E7A</div>
+        <div style="font-family:'Noto Sans SC',sans-serif;font-size:9px;color:#666;">Núi đá</div>
+      </div>
+    </div>
+    <!-- Faction color guide -->
+    <div style="margin-top:16px;display:flex;gap:12px;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:11px;color:#4a80b0;align-self:center;">Màu phe:</div>
+      <div style="display:flex;gap:8px;">
+        <div style="background:#5b9bd5;color:#fff;font-family:'Noto Sans SC',sans-serif;font-size:11px;padding:4px 12px;border-radius:12px;">魏 Ngụy</div>
+        <div style="background:#c0392b;color:#fff;font-family:'Noto Sans SC',sans-serif;font-size:11px;padding:4px 12px;border-radius:12px;">蜀 Thục</div>
+        <div style="background:#d4880a;color:#fff;font-family:'Noto Sans SC',sans-serif;font-size:11px;padding:4px 12px;border-radius:12px;">吳 Ngô</div>
+        <div style="background:#546e7a;color:#fff;font-family:'Noto Sans SC',sans-serif;font-size:11px;padding:4px 12px;border-radius:12px;">獨 Độc lập</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Asset mockups -->
+  <div style="background:#0e1a28;border-left:1px solid #2a4060;border-right:1px solid #2a4060;padding:20px 28px;display:flex;gap:24px;align-items:flex-start;">
+    <!-- Tile -->
+    <div style="text-align:center;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#4a80b0;letter-spacing:1px;margin-bottom:10px;">TERRAIN TILE</div>
+      <svg width="128" height="80" viewBox="0 0 128 80">
+        <defs>
+          <linearGradient id="grassChibi" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stop-color="#4caf50"/>
+            <stop offset="100%" stop-color="#2e7d32"/>
+          </linearGradient>
+        </defs>
+        <polygon points="64,8 110,32 64,56 18,32" fill="url(#grassChibi)" stroke="#1b5e20" stroke-width="2.5"/>
+        <!-- Chibi grass highlights -->
+        <line x1="46" y1="26" x2="48" y2="20" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="58" y1="20" x2="60" y2="14" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="70" y1="18" x2="72" y2="24" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="82" y1="26" x2="84" y2="20" stroke="#66bb6a" stroke-width="2" stroke-linecap="round"/>
+        <!-- Bright highlight top -->
+        <polygon points="64,8 90,21 64,19 38,21" fill="#66bb6a" opacity="0.4"/>
+      </svg>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#3a6090;margin-top:4px;">Cỏ xanh tươi<br>outline đậm + highlight</div>
+    </div>
+    <!-- Unit chibi -->
+    <div style="text-align:center;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#4a80b0;letter-spacing:1px;margin-bottom:10px;">UNIT CHIBI</div>
+      <svg width="64" height="80" viewBox="0 0 64 80">
+        <!-- Chibi soldier placeholder sketch -->
+        <!-- Body -->
+        <rect x="20" y="38" width="24" height="22" rx="4" fill="#c0392b" stroke="#5d4037" stroke-width="2"/>
+        <!-- Head - chibi large -->
+        <circle cx="32" cy="28" r="14" fill="#f5d5a0" stroke="#5d4037" stroke-width="2"/>
+        <!-- Helmet -->
+        <path d="M18,26 Q32,8 46,26" fill="#8b1a1a" stroke="#5d4037" stroke-width="2"/>
+        <!-- Eyes - chibi big -->
+        <circle cx="27" cy="29" r="3.5" fill="white" stroke="#5d4037" stroke-width="1"/>
+        <circle cx="37" cy="29" r="3.5" fill="white" stroke="#5d4037" stroke-width="1"/>
+        <circle cx="28" cy="30" r="2" fill="#2c3e50"/>
+        <circle cx="38" cy="30" r="2" fill="#2c3e50"/>
+        <!-- Spear arm -->
+        <line x1="48" y1="20" x2="48" y2="65" stroke="#8b5e2a" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="48,16 52,24 44,24" fill="#c0c0c0" stroke="#5d4037" stroke-width="1"/>
+        <!-- Legs -->
+        <rect x="22" y="58" width="8" height="14" rx="3" fill="#8b1a1a" stroke="#5d4037" stroke-width="1.5"/>
+        <rect x="34" y="58" width="8" height="14" rx="3" fill="#8b1a1a" stroke="#5d4037" stroke-width="1.5"/>
+        <!-- Feet -->
+        <ellipse cx="26" cy="72" rx="5" ry="3" fill="#2c2010" stroke="#5d4037" stroke-width="1"/>
+        <ellipse cx="38" cy="72" rx="5" ry="3" fill="#2c2010" stroke="#5d4037" stroke-width="1"/>
+      </svg>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#3a6090;margin-top:4px;">Chibi mặt to<br>màu phe rõ ràng</div>
+    </div>
+    <!-- Building -->
+    <div style="text-align:center;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#4a80b0;letter-spacing:1px;margin-bottom:10px;">CÔNG TRÌNH</div>
+      <svg width="100" height="80" viewBox="0 0 100 80">
+        <defs>
+          <linearGradient id="wallChibi" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#bcaaa4"/>
+            <stop offset="100%" stop-color="#d7ccc8"/>
+          </linearGradient>
+        </defs>
+        <!-- Iso building chibi style -->
+        <polygon points="50,38 80,53 50,68 20,53" fill="#a1887f" stroke="#5d4037" stroke-width="2.5"/>
+        <polygon points="20,18 50,3 50,38 20,53" fill="#bcaaa4" stroke="#5d4037" stroke-width="2.5"/>
+        <polygon points="80,18 50,3 50,38 80,53" fill="url(#wallChibi)" stroke="#5d4037" stroke-width="2.5"/>
+        <!-- Roof chibi vibrant -->
+        <polygon points="15,22 50,4 85,22 50,40" fill="#e53935" stroke="#5d4037" stroke-width="2.5"/>
+        <polygon points="22,17 50,1 78,17 50,33" fill="#ef5350" stroke="#5d4037" stroke-width="2"/>
+        <!-- Roof highlight -->
+        <polygon points="38,12 50,6 62,12 50,18" fill="#ff7043" opacity="0.6"/>
+        <!-- Gold tip -->
+        <circle cx="50" cy="1" r="4" fill="#ffd54f" stroke="#5d4037" stroke-width="1.5"/>
+      </svg>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#3a6090;margin-top:4px;">Mái đỏ bold<br>outline dày chibi</div>
+    </div>
+    <!-- Mountain -->
+    <div style="text-align:center;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#4a80b0;letter-spacing:1px;margin-bottom:10px;">TERRAIN DECO</div>
+      <svg width="64" height="80" viewBox="0 0 64 80">
+        <!-- Chibi mountain -->
+        <polygon points="32,10 58,65 6,65" fill="#78909c" stroke="#5d4037" stroke-width="2.5"/>
+        <polygon points="32,10 48,40 16,40" fill="#90a4ae" stroke="#5d4037" stroke-width="1.5"/>
+        <!-- Snow cap -->
+        <polygon points="32,10 42,32 22,32" fill="white" stroke="#5d4037" stroke-width="1.5"/>
+        <!-- Highlight -->
+        <polygon points="32,10 36,22 28,22" fill="white" opacity="0.7"/>
+        <!-- Base -->
+        <ellipse cx="32" cy="65" rx="26" ry="6" fill="#546e7a" stroke="#5d4037" stroke-width="1.5"/>
+      </svg>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:10px;color:#3a6090;margin-top:4px;">Núi chibi có tuyết<br>màu sắc tươi</div>
+    </div>
+  </div>
+
+  <!-- Typography + Mood -->
+  <div style="background:#0e1a28;border:1px solid #2a4060;border-radius:0 0 4px 4px;padding:20px 28px;display:flex;gap:32px;">
+    <div style="flex:1;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:11px;color:#4a80b0;letter-spacing:2px;margin-bottom:10px;">TYPOGRAPHY</div>
+      <div style="font-family:'Ma Shan Zheng',serif;font-size:28px;color:#70b0f0;margin-bottom:4px;">三國志</div>
+      <div style="font-family:'Noto Serif SC',serif;font-size:16px;color:#4a80b0;">Ma Shan Zheng — tên tướng</div>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#2a5080;margin-top:6px;">Noto Sans SC Bold — số liệu, UI</div>
+    </div>
+    <div style="flex:1;">
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:11px;color:#4a80b0;letter-spacing:2px;margin-bottom:10px;">MOOD</div>
+      <div style="font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#6a9aba;line-height:1.8;">
+        Thân thiện · Dễ đọc · Sống động<br>
+        Gần nhất với reference của bạn<br>
+        <span style="color:#4a90e0;">★ Dễ outsource nhất, chi phí thấp nhất</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── COMPARISON TABLE ──────────────────────────────────── -->
+<div style="position:absolute;left:72px;top:960px;width:2456px;" data-drags-parent="1">
+  <div style="background:#1e1a14;border:1px solid #3d3020;border-radius:4px;overflow:hidden;">
+    <div style="background:#241e14;padding:16px 28px;border-bottom:1px solid #3d3020;">
+      <div style="font-family:'Noto Serif SC',serif;font-size:16px;color:#e8c97a;letter-spacing:2px;">SO SÁNH 3 PHƯƠNG ÁN</div>
+    </div>
+    <div style="display:grid;grid-template-columns:200px 1fr 1fr 1fr;font-family:'Noto Sans SC',sans-serif;font-size:13px;">
+      <!-- Header -->
+      <div style="padding:14px 20px;color:#6a5e48;border-bottom:1px solid #2d2518;"></div>
+      <div style="padding:14px 20px;color:#8ba8a0;font-weight:700;border-bottom:1px solid #2d2518;border-left:1px solid #2d2518;">A · Thủy Mặc</div>
+      <div style="padding:14px 20px;color:#d4a020;font-weight:700;border-bottom:1px solid #2d2518;border-left:1px solid #2d2518;">B · Hoàng Kim ⭐</div>
+      <div style="padding:14px 20px;color:#5b9bd5;font-weight:700;border-bottom:1px solid #2d2518;border-left:1px solid #2d2518;">C · Chibi Sử Thi</div>
+      <!-- Rows -->
+      <div style="padding:12px 20px;color:#6a5e48;border-bottom:1px solid #2d2518;">Độ khó thi công</div>
+      <div style="padding:12px 20px;color:#9e8c6a;border-bottom:1px solid #2d2518;border-left:1px solid #2d2518;">🔴 Cao — cần artist chuyên</div>
+      <div style="padding:12px 20px;color:#9e8c6a;border-bottom:1px solid #2d2518;border-left:1px solid #2d2518;">🟡 Trung bình</div>
+      <div style="padding:12px 20px;color:#9e8c6a;border-bottom:1px solid #2d2518;border-left:1px solid #2d2518;">🟢 Thấp — dễ outsource</div>
+      <div style="padding:12px 20px;color:#6a5e48;border-bottom:1px solid #2d2518;">Đọc tile ingame</div>
+      <div style="padding:12px 20px;color:#9e8c6a;border-bottom:1px solid #2d2518;border-left:1px solid #2d2518;">🟡 Cần tinh tế</div>
+      <div style="padding:12px 20px;color:#9e8c6a;border-bottom:1px solid #2d2518;border-left:1px solid #2d2518;">🟢 Rõ ràng</div>
+      <div style="padding:12px 20px;color:#9e8c6a;border-bottom:1px solid #2d2518;border-left:1px solid #2d2518;">🟢 Rất rõ</div>
+      <div style="padding:12px 20px;color:#6a5e48;border-bottom:1px solid #2d2518;">Phân biệt phe</div>
+      <div style="padding:12px 20px;color:#9e8c6a;border-bottom:1px solid #2d2518;border-left:1px solid #2d2518;">🟡 Dùng banner/cờ</div>
+      <div style="padding:12px 20px;color:#9e8c6a;border-bottom:1px solid #2d2518;border-left:1px solid #2d2518;">🟢 Màu giáp rõ</div>
+      <div style="padding:12px 20px;color:#9e8c6a;border-bottom:1px solid #2d2518;border-left:1px solid #2d2518;">🟢 Màu tile nền</div>
+      <div style="padding:12px 20px;color:#6a5e48;">Độ nổi bật thị trường</div>
+      <div style="padding:12px 20px;color:#8ba8a0;border-left:1px solid #2d2518;">🟢 Rất cao — khác biệt</div>
+      <div style="padding:12px 20px;color:#d4a020;border-left:1px solid #2d2518;">🟢 Cao — đúng mood Tam Quốc</div>
+      <div style="padding:12px 20px;color:#5b9bd5;border-left:1px solid #2d2518;">🟡 Trung bình — nhiều game tương tự</div>
+    </div>
+  </div>
+  <div style="margin-top:12px;font-family:'Noto Sans SC',sans-serif;font-size:12px;color:#5a4e38;text-align:center;">
+    ⭐ Khuyến nghị: <span style="color:#d4a020;">Direction B — Hoàng Kim Imperial</span> — đúng mood Tam Quốc, màu rõ cho strategy, cân bằng giữa nghệ thuật và thi công
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>

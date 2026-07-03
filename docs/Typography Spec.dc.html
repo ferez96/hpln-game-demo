@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="design_doc_mode" content="canvas">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,700;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    body { margin:0; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  </style>
+</helmet>
+
+<div style="position:absolute;left:0;top:0;width:2100px;min-height:1200px;background:{{ bg }};transition:background 0.4s;">
+
+<!-- ── HEADER ────────────────────────────────────── -->
+<div style="padding:44px 64px 22px;">
+  <div style="font-family:'Philosopher',serif;font-size:38px;font-weight:700;color:{{ gold }};letter-spacing:3px;transition:color 0.4s;">Đặc Tả Chữ — Typography Spec</div>
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:{{ sub }};letter-spacing:2px;margin-top:5px;">DIRECTION B · TIẾNG VIỆT · Dành cho Dev &amp; Artist · Google Fonts (Vietnam subset)</div>
+  <div style="width:100%;height:1px;background:linear-gradient(90deg,{{ gold }},transparent);margin-top:12px;"></div>
+</div>
+
+<!-- ── GOOGLE FONTS IMPORT SNIPPET ───────────────── -->
+<div style="position:absolute;left:64px;top:138px;width:1972px;">
+  <div style="background:{{ cardBg }};border:1px solid {{ border }};border-left:3px solid {{ gold }};border-radius:4px;padding:16px 22px;">
+    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ gold }};letter-spacing:2px;margin-bottom:10px;">GOOGLE FONTS IMPORT — copy vào &lt;head&gt; của dự án</div>
+    <div style="font-family:'DM Mono',monospace;font-size:12px;color:#a0c880;line-height:1.9;background:#0a0c08;padding:12px 16px;border-radius:3px;overflow:auto;">
+      &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;<br>
+      &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;<br>
+      &lt;link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400&amp;family=Noto+Serif:ital,wght@0,400;0,700&amp;family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,700&amp;family=DM+Mono:wght@0,400;0,500&amp;subset=vietnamese&amp;display=swap" rel="stylesheet"&gt;
+    </div>
+    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ sub }};margin-top:8px;">⚠ Thêm <span style="font-family:'DM Mono',monospace;color:#a0c880;">&amp;subset=vietnamese</span> để load đúng bộ dấu Việt. Tất cả 4 font đều hỗ trợ đầy đủ dấu thanh + dấu mũ tiếng Việt.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SECTION 1: FONT FAMILIES                              -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div style="position:absolute;left:64px;top:270px;width:1972px;">
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ gold }};letter-spacing:3px;margin-bottom:12px;">FONT FAMILIES — 4 VAI TRÒ</div>
+  <div style="display:flex;gap:14px;">
+
+    <!-- PHILOSOPHER - Display -->
+    <div style="flex:1;background:{{ cardBg }};border:1px solid {{ border }};border-top:3px solid {{ gold }};border-radius:4px;padding:20px 22px;">
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ sub }};letter-spacing:2px;margin-bottom:6px;">DISPLAY / TIÊU ĐỀ LỚN</div>
+      <div style="font-family:'Philosopher',serif;font-size:32px;font-weight:700;color:{{ gold }};line-height:1.3;margin-bottom:8px;">Philosopher</div>
+      <div style="font-family:'Philosopher',serif;font-size:22px;font-weight:700;color:{{ primary }};margin-bottom:4px;">Tam Quốc Chiến Lược</div>
+      <div style="font-family:'Philosopher',serif;font-size:16px;color:{{ primary }};margin-bottom:12px;">Đường Về Bình Định Dương</div>
+      <div style="height:1px;background:{{ border }};margin-bottom:12px;"></div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ sub }};line-height:1.8;">
+        ✓ Hỗ trợ đầy đủ dấu Việt<br>
+        ✓ Đậm, uy nghi — đúng mood Tam Quốc<br>
+        ✓ Có italic cho quote/lời thoại<br>
+        Dùng cho: Title screen, Tên màn chơi,<br>
+        Heading lớn trong UI, Game Over
+      </div>
+      <div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:10px;color:#6a8840;">font-family: 'Philosopher', serif;<br>font-weight: 700;</div>
+    </div>
+
+    <!-- NOTO SERIF - Heading -->
+    <div style="flex:1;background:{{ cardBg }};border:1px solid {{ border }};border-top:3px solid #c8b070;border-radius:4px;padding:20px 22px;">
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ sub }};letter-spacing:2px;margin-bottom:6px;">HEADING / TÊN TƯỚNG · ĐỊA DANH</div>
+      <div style="font-family:'Noto Serif',serif;font-size:32px;font-weight:700;color:#c8b070;line-height:1.3;margin-bottom:8px;">Noto Serif</div>
+      <div style="font-family:'Noto Serif',serif;font-size:22px;font-weight:700;color:#5b9bd5;margin-bottom:4px;">Tào Tháo · Lưu Bị</div>
+      <div style="font-family:'Noto Serif',serif;font-size:16px;color:{{ primary }};margin-bottom:12px;">Kinh Châu — Từ Châu — Ích Châu</div>
+      <div style="height:1px;background:{{ border }};margin-bottom:12px;"></div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ sub }};line-height:1.8;">
+        ✓ Cân bằng — không quá trang trọng<br>
+        ✓ Đọc rõ ở size nhỏ (14px+)<br>
+        ✓ Tốt cho tên riêng nhiều dấu<br>
+        Dùng cho: Tên tướng trong panel,<br>
+        Địa danh tooltip, Sub-heading UI
+      </div>
+      <div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:10px;color:#6a8840;">font-family: 'Noto Serif', serif;<br>font-weight: 400 | 700;</div>
+    </div>
+
+    <!-- BE VIETNAM PRO - UI Body -->
+    <div style="flex:1;background:{{ cardBg }};border:1px solid {{ border }};border-top:3px solid #5b9bd5;border-radius:4px;padding:20px 22px;">
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ sub }};letter-spacing:2px;margin-bottom:6px;">UI BODY / MỌI TEXT GIAO DIỆN</div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:32px;font-weight:700;color:#5b9bd5;line-height:1.3;margin-bottom:8px;">Be Vietnam Pro</div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:14px;font-weight:500;color:{{ primary }};margin-bottom:4px;">Tướng ở cạnh núi được +10% Thủ</div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;color:{{ sub }};margin-bottom:12px;">Châu Thành vô chủ, Lính địa phương: 6.000</div>
+      <div style="height:1px;background:{{ border }};margin-bottom:12px;"></div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ sub }};line-height:1.8;">
+        ✓ Thiết kế riêng cho tiếng Việt<br>
+        ✓ Cực rõ ở 10–12px (dấu nhỏ vẫn đọc được)<br>
+        ✓ 3 weights đủ dùng: 400 / 500 / 700<br>
+        Dùng cho: Tooltip, panel info, button,<br>
+        log chiến đấu, caption, label, cảnh báo
+      </div>
+      <div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:10px;color:#6a8840;">font-family: 'Be Vietnam Pro', sans-serif;<br>font-weight: 400 | 500 | 700;</div>
+    </div>
+
+    <!-- DM MONO - Numbers -->
+    <div style="flex:1;background:{{ cardBg }};border:1px solid {{ border }};border-top:3px solid #80c0a0;border-radius:4px;padding:20px 22px;">
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ sub }};letter-spacing:2px;margin-bottom:6px;">MONO / SỐ LIỆU · STATS · CODE</div>
+      <div style="font-family:'DM Mono',monospace;font-size:28px;font-weight:500;color:#80c0a0;line-height:1.3;margin-bottom:8px;">DM Mono</div>
+      <div style="font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:{{ gold }};margin-bottom:4px;">6,200 / 8,000</div>
+      <div style="font-family:'DM Mono',monospace;font-size:14px;color:{{ primary }};margin-bottom:4px;">ATK 3,500 · DEF 2,800</div>
+      <div style="font-family:'DM Mono',monospace;font-size:12px;color:{{ sub }};margin-bottom:12px;">Turn 15 · +127 TN · −340 Lương</div>
+      <div style="height:1px;background:{{ border }};margin-bottom:12px;"></div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ sub }};line-height:1.8;">
+        ✓ Tabular figures — số thẳng hàng<br>
+        ✓ Phân biệt rõ 0/O, 1/l/I<br>
+        ✓ Monospace giúp số không nhảy<br>
+        Dùng cho: HP bar, ATK/DEF stats,<br>
+        resource counter, timer, log timestamp
+      </div>
+      <div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:10px;color:#6a8840;">font-family: 'DM Mono', monospace;<br>font-weight: 400 | 500;</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SECTION 2: SIZE SCALE                                 -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div style="position:absolute;left:64px;top:620px;width:960px;">
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ gold }};letter-spacing:3px;margin-bottom:12px;">THANG CỠ CHỮ — Size Scale</div>
+  <div style="background:{{ cardBg }};border:1px solid {{ border }};border-radius:4px;overflow:hidden;">
+    <sc-for list="{{ sizes }}" as="s" hint-placeholder-count="13">
+      <div style="padding:10px 20px;border-bottom:1px solid {{ border }};display:flex;align-items:baseline;gap:20px;">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:{{ sub }};min-width:60px;">{{ s.px }}px</div>
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:#5a6850;min-width:48px;">{{ s.token }}</div>
+        <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ s.px }}px;color:{{ primary }};line-height:1.4;flex:1;">{{ s.sample }}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SECTION 3: COLOR TOKENS                               -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div style="position:absolute;left:1060px;top:620px;width:976px;">
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ gold }};letter-spacing:3px;margin-bottom:12px;">MÃ MÀU CHỮ — Color Tokens</div>
+  <div style="background:{{ cardBg }};border:1px solid {{ border }};border-radius:4px;overflow:hidden;">
+    <sc-for list="{{ colorTokens }}" as="c" hint-placeholder-count="9">
+      <div style="padding:12px 20px;border-bottom:1px solid {{ border }};display:flex;align-items:center;gap:16px;">
+        <div style="width:36px;height:36px;background:{{ c.hex }};border-radius:3px;border:1px solid rgba(255,255,255,0.1);flex-shrink:0;"></div>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;color:#6a8040;min-width:90px;">{{ c.hex }}</div>
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:#5a7030;min-width:110px;">{{ c.token }}</div>
+        <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:14px;color:{{ c.hex }};font-weight:500;flex:1;">{{ c.sample }}</div>
+        <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ sub }};text-align:right;">{{ c.use }}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SECTION 4: USAGE TABLE                                -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div style="position:absolute;left:64px;top:{{ usageTop }}px;width:1972px;">
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ gold }};letter-spacing:3px;margin-bottom:12px;">BẢNG SỬ DỤNG — Usage Rules cho Dev</div>
+  <div style="background:{{ cardBg }};border:1px solid {{ border }};border-radius:4px;overflow:hidden;">
+    <!-- Header -->
+    <div style="display:grid;grid-template-columns:200px 160px 60px 70px 120px 130px 1fr;background:{{ cardHdr }};border-bottom:1px solid {{ border }};padding:8px 20px;font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ sub }};letter-spacing:1px;font-weight:700;gap:0;">
+      <div>PHẦN TỬ UI</div><div>FONT</div><div>SIZE</div><div>WEIGHT</div><div>LINE-HEIGHT</div><div>MÀU TOKEN</div><div>VÍ DỤ THỰC TẾ</div>
+    </div>
+    <sc-for list="{{ usageRows }}" as="r" hint-placeholder-count="10">
+      <div style="display:grid;grid-template-columns:200px 160px 60px 70px 120px 130px 1fr;padding:10px 20px;border-bottom:1px solid {{ border }};align-items:center;gap:0;">
+        <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ primary }};font-weight:500;">{{ r.element }}</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:#6a8040;">{{ r.font }}</div>
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:{{ gold }};">{{ r.size }}</div>
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:#6a8040;">{{ r.weight }}</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:#6a8040;">{{ r.lh }}</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:{{ r.tokenColor }};">{{ r.colorToken }}</div>
+        <div style="font-size:{{ r.size }}px;font-family:{{ r.fontFamily }};color:{{ r.tokenColor }};font-weight:{{ r.weight }};line-height:{{ r.lh }};">{{ r.example }}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SECTION 5: VIỆT-SPECIFIC NOTES                        -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div style="position:absolute;left:64px;top:{{ notesTop }}px;width:1972px;">
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ gold }};letter-spacing:3px;margin-bottom:12px;">LƯU Ý TIẾNG VIỆT — Vietnamese-Specific Rules</div>
+  <div style="display:flex;gap:14px;">
+
+    <!-- Line height demo -->
+    <div style="flex:1;background:{{ cardBg }};border:1px solid {{ border }};border-radius:4px;padding:18px 22px;">
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ gold }};margin-bottom:12px;letter-spacing:1px;">LINE-HEIGHT — Dấu Việt cần khoảng thêm</div>
+      <div style="display:flex;gap:16px;align-items:flex-start;">
+        <div style="flex:1;">
+          <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#c05030;margin-bottom:6px;">❌ line-height: 1.3 (thiếu)</div>
+          <div style="background:#1a0808;border:1px solid #3a1010;padding:10px 12px;border-radius:3px;font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:{{ primary }};line-height:1.3;">
+            Tướng đã đến Kinh Châu,<br>
+            Đường về Bình Định bị cắt.<br>
+            Lương thực còn ở Từ Châu ở.
+          </div>
+          <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#804030;margin-top:6px;">→ Dấu mũ bị chắn, khó đọc</div>
+        </div>
+        <div style="flex:1;">
+          <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#40a060;margin-bottom:6px;">✓ line-height: 1.75 (đúng)</div>
+          <div style="background:#081a10;border:1px solid #103a18;padding:10px 12px;border-radius:3px;font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:{{ primary }};line-height:1.75;">
+            Tướng đã đến Kinh Châu,<br>
+            Đường về Bình Định bị cắt.<br>
+            Lương thực còn ở Từ Châu ở.
+          </div>
+          <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#40a060;margin-top:6px;">→ Thông thoáng, dấu rõ ràng</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Min size demo -->
+    <div style="flex:1;background:{{ cardBg }};border:1px solid {{ border }};border-radius:4px;padding:18px 22px;">
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ gold }};margin-bottom:12px;letter-spacing:1px;">CỠ CHỮ TỐI THIỂU — Dấu phải đọc được</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:baseline;gap:12px;padding:7px 10px;background:#1a0808;border:1px solid #3a1010;border-radius:3px;">
+          <span style="font-family:'DM Mono',monospace;font-size:10px;color:#804030;min-width:30px;">8px</span>
+          <span style="font-family:'Be Vietnam Pro',sans-serif;font-size:8px;color:#c05030;">Kinh Châu · Bình Định · Từ Châu</span>
+          <span style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#804030;margin-left:auto;">❌ Quá nhỏ</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:12px;padding:7px 10px;background:#141a08;border:1px solid #2a3a10;border-radius:3px;">
+          <span style="font-family:'DM Mono',monospace;font-size:10px;color:#8a8840;min-width:30px;">10px</span>
+          <span style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#c0c060;">Kinh Châu · Bình Định · Từ Châu</span>
+          <span style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#8a8840;margin-left:auto;">⚠ Tối thiểu</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:12px;padding:7px 10px;background:#081a10;border:1px solid #103a18;border-radius:3px;">
+          <span style="font-family:'DM Mono',monospace;font-size:10px;color:#40a060;min-width:30px;">11px</span>
+          <span style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ primary }};">Kinh Châu · Bình Định · Từ Châu</span>
+          <span style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#40a060;margin-left:auto;">✓ Khuyến nghị</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:12px;padding:7px 10px;background:#081a10;border:1px solid #103a18;border-radius:3px;">
+          <span style="font-family:'DM Mono',monospace;font-size:10px;color:#40a060;min-width:30px;">13px</span>
+          <span style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:{{ primary }};">Kinh Châu · Bình Định · Từ Châu</span>
+          <span style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#40a060;margin-left:auto;">✓ Tốt nhất</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Italic warning + test string -->
+    <div style="flex:1;background:{{ cardBg }};border:1px solid {{ border }};border-radius:4px;padding:18px 22px;">
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ gold }};margin-bottom:12px;letter-spacing:1px;">ITALIC &amp; TEST STRING</div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#c05030;margin-bottom:8px;">⚠ Hạn chế dùng italic với dấu phức tạp:</div>
+      <div style="background:#1a1010;border:1px solid #3a1010;padding:10px 12px;border-radius:3px;margin-bottom:12px;">
+        <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:{{ primary }};font-style:italic;margin-bottom:4px;">ẫ ẩ ẫ ổ ữ ẳ ặ ướ ường — khó đọc</div>
+        <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:#804030;">italic + dấu tổ hợp → va chạm ký tự</div>
+      </div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ gold }};margin-bottom:8px;">TEST STRING — dùng để kiểm tra font:</div>
+      <div style="background:{{ cardHdr }};border:1px solid {{ border }};padding:12px;border-radius:3px;">
+        <div style="font-family:'Philosopher',serif;font-size:16px;font-weight:700;color:{{ gold }};margin-bottom:6px;">Tề Thượng Hoàng Đế</div>
+        <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;color:{{ primary }};margin-bottom:4px;">Đường Về Bình Định Dương — Lương cắt, Ngô quân đến Kinh Châu.</div>
+        <div style="font-family:'Noto Serif',serif;font-size:13px;color:#5b9bd5;margin-bottom:4px;">Tào Tháo · Lưu Bị · Tôn Quyền — Ích Châu · Từ Châu</div>
+        <div style="font-family:'DM Mono',monospace;font-size:13px;color:#80c0a0;">ATK 3,500 · DEF 2,800 · HP 6,200/8,000</div>
+      </div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ sub }};margin-top:8px;line-height:1.7;">
+        → Dùng string trên để kiểm tra font mới<br>
+        → Bao gồm đủ 6 dấu thanh + dấu mũ Việt
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SECTION 6: LIVE PREVIEW theo fontMood                 -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div style="position:absolute;left:64px;top:{{ previewTop }}px;width:1972px;">
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ gold }};letter-spacing:3px;margin-bottom:12px;">XEM TRƯỚC TRONG GAME — Live UI Preview</div>
+  <div style="background:{{ previewBg }};border:1px solid {{ border }};border-radius:4px;padding:24px 28px;display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start;">
+
+    <!-- Game title mock -->
+    <div style="text-align:center;min-width:300px;">
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:{{ sub }};letter-spacing:2px;margin-bottom:8px;">TITLE SCREEN</div>
+      <div style="font-family:'Philosopher',serif;font-size:40px;font-weight:700;color:#e8c040;line-height:1.2;text-shadow:0 0 30px rgba(232,192,64,0.4);">Tam Quốc</div>
+      <div style="font-family:'Philosopher',serif;font-size:22px;font-weight:400;color:#c0a840;margin-top:4px;">Chiến Lược Đại Chiến</div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;color:#6a5828;margin-top:8px;letter-spacing:2px;">NHẤN ĐỂ BẮT ĐẦU</div>
+    </div>
+
+    <div style="width:1px;background:{{ border }};align-self:stretch;"></div>
+
+    <!-- Unit panel mock -->
+    <div style="min-width:220px;">
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:{{ sub }};letter-spacing:2px;margin-bottom:8px;">UNIT INFO PANEL</div>
+      <div style="background:#1e1608;border:1px solid #5b9bd5;border-radius:3px;padding:12px 14px;">
+        <div style="font-family:'Noto Serif',serif;font-size:22px;font-weight:700;color:#5b9bd5;margin-bottom:2px;">Tào Tháo</div>
+        <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#6a7888;margin-bottom:10px;">Bước Tướng · Ngụy 魏</div>
+        <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#6a5828;margin-bottom:3px;">SINH LỰC</div>
+        <div style="background:#0e0c06;height:8px;border-radius:2px;overflow:hidden;margin-bottom:3px;">
+          <div style="width:78%;height:100%;background:linear-gradient(90deg,#2d8020,#60b040);border-radius:2px;"></div>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:12px;color:#60b040;text-align:right;margin-bottom:8px;">6,200 / 8,000</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+          <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:#8a7040;">⚔ Công: <span style="font-family:'DM Mono',monospace;color:#e8c040;">3,500</span></div>
+          <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:#8a7040;">🛡 Thủ: <span style="font-family:'DM Mono',monospace;color:#e8c040;">2,800</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="width:1px;background:{{ border }};align-self:stretch;"></div>
+
+    <!-- Top bar resource mock -->
+    <div style="min-width:280px;">
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:{{ sub }};letter-spacing:2px;margin-bottom:8px;">TOP BAR RESOURCE</div>
+      <div style="background:#1a1208;border:1px solid #5b9bd5;border-radius:3px;padding:10px 14px;display:flex;gap:16px;align-items:center;">
+        <div style="font-family:'Noto Serif',serif;font-size:16px;font-weight:700;color:#5b9bd5;">魏</div>
+        <div>
+          <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:#4a6878;letter-spacing:1px;">TÀI NGUYÊN</div>
+          <div style="font-family:'DM Mono',monospace;font-size:18px;font-weight:500;color:#e8c040;line-height:1;">847</div>
+        </div>
+        <div>
+          <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:#4a6878;letter-spacing:1px;">LƯƠNG</div>
+          <div style="font-family:'DM Mono',monospace;font-size:18px;font-weight:500;color:#e8c040;line-height:1;">2,340</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="width:1px;background:{{ border }};align-self:stretch;"></div>
+
+    <!-- Tooltip mock -->
+    <div style="min-width:240px;">
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:{{ sub }};letter-spacing:2px;margin-bottom:8px;">TOOLTIP · CẢNH BÁO</div>
+      <div style="background:#241a08;border:1px solid #5a3e10;border-radius:3px;padding:10px 12px;margin-bottom:8px;">
+        <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;font-weight:700;color:#e8c040;margin-bottom:4px;">Ô Rừng</div>
+        <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:#a09060;line-height:1.75;">Ẩn quân khỏi bản đồ địch. Không bị trinh sát. Chỉ ở được 1 lượt.</div>
+      </div>
+      <div style="background:#1a0808;border:1px solid #c0392b;border-radius:3px;padding:8px 12px;">
+        <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:700;color:#e05030;">⚠ Lương sắp hết! Còn 2 lượt.</div>
+      </div>
+    </div>
+
+    <div style="width:1px;background:{{ border }};align-self:stretch;"></div>
+
+    <!-- Button mock -->
+    <div style="min-width:180px;">
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:{{ sub }};letter-spacing:2px;margin-bottom:8px;">BUTTON STATES</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="background:#8b1a1a;border:1.5px solid #d4a020;border-radius:3px;padding:10px 16px;text-align:center;">
+          <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;font-weight:700;color:#e8c040;letter-spacing:1px;">KẾT THÚC LƯỢT</div>
+        </div>
+        <div style="background:#1a2a3a;border:1.5px solid #5b9bd5;border-radius:3px;padding:8px 16px;text-align:center;">
+          <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;font-weight:700;color:#5b9bd5;letter-spacing:1px;">TẤN CÔNG</div>
+        </div>
+        <div style="background:#1a1610;border:1.5px solid #3a2810;border-radius:3px;padding:8px 16px;text-align:center;opacity:0.5;">
+          <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;font-weight:700;color:#5a4828;letter-spacing:1px;">KHÔNG KHẢ DỤNG</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 2100, &quot;height&quot;: 1200},
+  &quot;fontMood&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;options&quot;: [&quot;Imperial&quot;, &quot;Daytime&quot;, &quot;Debug&quot;],
+    &quot;default&quot;: &quot;Imperial&quot;,
+    &quot;section&quot;: &quot;Nền trang&quot;
+  },
+  &quot;sampleLang&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;options&quot;: [&quot;Việt&quot;, &quot;Mixed Việt+Hán&quot;],
+    &quot;default&quot;: &quot;Việt&quot;,
+    &quot;section&quot;: &quot;Văn bản mẫu&quot;
+  },
+  &quot;showGrid&quot;: {
+    &quot;editor&quot;: &quot;boolean&quot;,
+    &quot;default&quot;: false,
+    &quot;section&quot;: &quot;Công cụ&quot;
+  }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const mood = this.props.fontMood ?? 'Imperial';
+    const lang = this.props.sampleLang ?? 'Việt';
+    const grid = this.props.showGrid ?? false;
+
+    const themes = {
+      Imperial: { bg:'#12100c', cardBg:'#1e1608', cardHdr:'#241a08', border:'#5a3e10', gold:'#e8c040', primary:'#f0e8c0', sub:'#7a6030', previewBg:'#0e0c08' },
+      Daytime:  { bg:'#e8dec0', cardBg:'#f5edd4', cardHdr:'#ede0b8', border:'#c8a860', gold:'#3a2010', primary:'#2a1808', sub:'#6a4820', previewBg:'#ddd4b0' },
+      Debug:    { bg:'#0a0a12', cardBg:'#0e0e1a', cardHdr:'#141420', border:'#2a2a4a', gold:'#80c0ff', primary:'#c0d8ff', sub:'#4a6080', previewBg:'#080810' },
+    };
+    const t = themes[mood] || themes.Imperial;
+
+    const vietSample = 'Tào Tháo — Lưu Bị — Tôn Quyền';
+    const mixedSample = '曹操 Tào Tháo — 劉備 Lưu Bị — 孫權 Tôn Quyền';
+    const sample = lang === 'Mixed Việt+Hán' ? mixedSample : vietSample;
+
+    const sizes = [
+      { px:10, token:'--text-xs',   sample:'Nhãn lượt · PHASE · uppercase label' },
+      { px:11, token:'--text-sm',   sample:'Tooltip · Caption · Địa danh trên map' },
+      { px:12, token:'--text-base', sample:'Phiếu chiến đấu · Log · Body text thông thường' },
+      { px:13, token:'--text-md',   sample:'Nút bấm · Button · Info trong panel đơn vị' },
+      { px:14, token:'--text-lg',   sample:'Sub-heading · Tên địa danh quan trọng' },
+      { px:16, token:'--text-xl',   sample:'Heading nhỏ · Section title · ' + sample },
+      { px:18, token:'--text-2xl',  sample:'Resource counter phụ · Phase label lớn' },
+      { px:20, token:'--text-3xl',  sample:'Tài nguyên counter chính: 2,340 Lương' },
+      { px:24, token:'--text-4xl',  sample:'Tên Tướng trong panel: ' + (lang === 'Mixed Việt+Hán' ? '曹操' : 'Tào Tháo') },
+      { px:28, token:'--text-5xl',  sample:'Heading màn chơi · Game phase lớn' },
+      { px:32, token:'--text-6xl',  sample:'Victory · Defeat · Alert lớn' },
+      { px:40, token:'--text-7xl',  sample:'Title phụ · Subtitle lớn' },
+      { px:48, token:'--text-8xl',  sample:'Tam Quốc — Title chính' },
+    ];
+
+    const colorTokens = [
+      { hex:'#E8C040', token:'--text-gold',      sample:'Tiêu đề · Tên chính · UI accent',         use:'Title · Heading · Gold accent' },
+      { hex:'#F0E8C0', token:'--text-primary',   sample:'Nội dung chính · Panel · Log text',       use:'Body · Info · Description' },
+      { hex:'#A09060', token:'--text-secondary',  sample:'Phụ đề · Caption · Ghi chú nhỏ',        use:'Sub-label · Caption · Hint' },
+      { hex:'#5A4828', token:'--text-disabled',   sample:'Không khả dụng · Bị khoá',              use:'Disabled · Locked · Ghost' },
+      { hex:'#E05030', token:'--text-danger',     sample:'Cảnh báo! Lương hết · Mất máu',         use:'Warning · HP loss · Error' },
+      { hex:'#60B040', token:'--text-success',    sample:'Hồi máu · Chiến thắng · Bonus',          use:'Heal · Victory · Buff' },
+      { hex:'#5B9BD5', token:'--text-wei',        sample:'Tào Tháo · Nguỵ quân · Vùng đất Nguỵ', use:'Faction Wei 魏' },
+      { hex:'#C0392B', token:'--text-shu',        sample:'Lưu Bị · Thục Hán · Kinh Châu',        use:'Faction Shu 蜀' },
+      { hex:'#D4880A', token:'--text-wu',         sample:'Tôn Quyền · Đông Ngô · Giang Nam',      use:'Faction Wu 吳' },
+    ];
+
+    const usageRows = [
+      { element:'Game title screen',    font:"Philosopher",        fontFamily:"'Philosopher',serif",             size:'48', weight:'700', lh:'1.4',  colorToken:'--text-gold',      tokenColor:'#E8C040', example:'Tam Quốc Chiến Lược' },
+      { element:'Tên tướng (panel)',    font:"Noto Serif",         fontFamily:"'Noto Serif',serif",              size:'24', weight:'700', lh:'1.4',  colorToken:'--text-wei/shu/wu', tokenColor:'#5B9BD5', example:'Tào Tháo · Lưu Bị' },
+      { element:'Tài nguyên counter',   font:"DM Mono",            fontFamily:"'DM Mono',monospace",             size:'20', weight:'500', lh:'1.4',  colorToken:'--text-gold',      tokenColor:'#E8C040', example:'2,340' },
+      { element:'HP / Stats số liệu',   font:"DM Mono",            fontFamily:"'DM Mono',monospace",             size:'13', weight:'400', lh:'1.4',  colorToken:'--text-primary',   tokenColor:'#F0E8C0', example:'6,200 / 8,000 · ATK 3,500' },
+      { element:'Nút bấm (button)',      font:"Be Vietnam Pro",     fontFamily:"'Be Vietnam Pro',sans-serif",     size:'13', weight:'700', lh:'1.4',  colorToken:'--text-gold',      tokenColor:'#E8C040', example:'KẾT THÚC LƯỢT · TẤN CÔNG' },
+      { element:'Địa danh trên map',    font:"Be Vietnam Pro",     fontFamily:"'Be Vietnam Pro',sans-serif",     size:'11', weight:'500', lh:'1.4',  colorToken:'--text-primary',   tokenColor:'#F0E8C0', example:'Kinh Châu · Ích Châu · Từ Châu' },
+      { element:'Tooltip body',          font:"Be Vietnam Pro",     fontFamily:"'Be Vietnam Pro',sans-serif",     size:'11', weight:'400', lh:'1.75', colorToken:'--text-secondary', tokenColor:'#A09060', example:'Ẩn quân, chỉ ở 1 lượt, cháy là chết.' },
+      { element:'Phiếu chiến đấu',       font:"Be Vietnam Pro",     fontFamily:"'Be Vietnam Pro',sans-serif",     size:'12', weight:'400', lh:'1.75', colorToken:'--text-primary',   tokenColor:'#F0E8C0', example:'Quân Ngụy tấn công Kinh Châu, thủ 2.800.' },
+      { element:'Nhãn lượt / phase',     font:"Be Vietnam Pro",     fontFamily:"'Be Vietnam Pro',sans-serif",     size:'10', weight:'500', lh:'1.4',  colorToken:'--text-secondary', tokenColor:'#A09060', example:'HÀNH ĐỘNG · TRIỂN KHAI · KẾT THÚC' },
+      { element:'Cảnh báo hệ thống',     font:"Be Vietnam Pro",     fontFamily:"'Be Vietnam Pro',sans-serif",     size:'12', weight:'700', lh:'1.65', colorToken:'--text-danger',    tokenColor:'#E05030', example:'⚠ Lương sắp hết! Còn 2 lượt.' },
+    ];
+
+    const debug = mood === 'Debug';
+    const usageTop   = debug ? 1120 : 1120;
+    const notesTop   = debug ? 1540 : 1540;
+    const previewTop = debug ? 1960 : 1960;
+
+    return {
+      ...t,
+      sizes, colorTokens, usageRows,
+      usageTop, notesTop, previewTop,
+    };
+  }
+}
+</script>
+</body>
+</html>

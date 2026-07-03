@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="design_doc_mode" content="canvas">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=DM+Mono:wght@400;500&family=Philosopher:wght@700&display=swap" rel="stylesheet">
+  <style>body{margin:0;}</style>
+</helmet>
+
+<div style="position:absolute;left:0;top:0;width:2200px;min-height:1180px;background:{{ bg }};transition:background 0.4s;">
+
+<!-- ── HEADER ── -->
+<div style="padding:42px 64px 20px;">
+  <div style="font-family:'Philosopher',serif;font-size:36px;font-weight:700;color:{{ gold }};letter-spacing:3px;">Bộ Biểu Tượng — Icon Sheet</div>
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;color:{{ sub }};letter-spacing:2px;margin-top:4px;">DIRECTION B · HOÀNG KIM IMPERIAL · 5 Nhóm × SVG · 32×32px base · Tiếng Việt</div>
+  <div style="width:100%;height:1px;background:linear-gradient(90deg,{{ gold }},transparent);margin-top:11px;"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- GROUP 1: TERRAIN ICONS                            -->
+<!-- ══════════════════════════════════════════════════ -->
+<div style="position:absolute;left:64px;top:136px;width:2072px;">
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ gold }};letter-spacing:3px;margin-bottom:12px;">🗺 ĐỊA HÌNH — Terrain Icons</div>
+  <div style="background:{{ cardBg }};border:1px solid {{ border }};border-radius:4px;padding:20px 24px;display:flex;gap:{{ gap }}px;flex-wrap:wrap;align-items:flex-start;">
+
+    <!-- Ô Trắng -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <polygon points="16,3 28,10 16,17 4,10" fill="#c8a870" stroke="#d4a020" stroke-width="1.5"/>
+        <polygon points="4,10 16,17 16,27 4,20" fill="#8a6840" stroke="#d4a020" stroke-width="1"/>
+        <polygon points="28,10 16,17 16,27 28,20" fill="#a07850" stroke="#d4a020" stroke-width="1"/>
+        <line x1="10" y1="9" x2="10" y2="6" stroke="#d4b070" stroke-width="1" stroke-linecap="round"/>
+        <line x1="14" y1="7" x2="14" y2="4" stroke="#c8a060" stroke-width="1" stroke-linecap="round"/>
+        <line x1="20" y1="7" x2="20" y2="4" stroke="#d4b070" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:{{ sub }};margin-top:4px;line-height:1.3;">Ô Trắng</div></sc-if>
+    </div>
+
+    <!-- Châu Thành -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <polygon points="16,14 26,19 16,24 6,19" fill="#a09060" stroke="#d4a020" stroke-width="1.2"/>
+        <polygon points="6,19 16,14 16,24 6,19" fill="#6a4828" stroke="#d4a020" stroke-width="0.8"/>
+        <polygon points="26,19 16,14 16,24 26,19" fill="#8a6040" stroke="#d4a020" stroke-width="0.8"/>
+        <polygon points="10,19 16,16 22,19 16,22" fill="#8a6040" stroke="#d4a020" stroke-width="0.8"/>
+        <polygon points="10,13 16,10 22,13 16,16" fill="#6a2010" stroke="#d4a020" stroke-width="0.8"/>
+        <polygon points="12,11 16,8 20,11 16,14" fill="#8b1a1a" stroke="#d4a020" stroke-width="0.8"/>
+        <line x1="10" y1="13" x2="22" y2="13" stroke="#d4a020" stroke-width="0.8"/>
+        <circle cx="16" cy="8" r="1.5" fill="#d4a020"/>
+        <rect x="7" y="18" width="3" height="4" fill="#2a1a08" stroke="#d4a020" stroke-width="0.5"/>
+        <rect x="22" y="18" width="3" height="4" fill="#2a1a08" stroke="#d4a020" stroke-width="0.5"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:{{ sub }};margin-top:4px;line-height:1.3;">Châu Thành</div></sc-if>
+    </div>
+
+    <!-- Thành Trì -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <polygon points="16,15 26,20 16,25 6,20" fill="#706050" stroke="#d4a020" stroke-width="1.5"/>
+        <polygon points="6,10 16,5 16,25 6,20" fill="#3a2a18" stroke="#d4a020" stroke-width="1.2"/>
+        <polygon points="26,10 16,5 16,25 26,20" fill="#5a4030" stroke="#d4a020" stroke-width="1.2"/>
+        <polygon points="6,10 16,5 26,10 16,15" fill="#6a5030" stroke="#d4a020" stroke-width="1.2"/>
+        <rect x="4" y="8" width="4" height="5" fill="#1a1208" stroke="#d4a020" stroke-width="0.8"/>
+        <rect x="24" y="8" width="4" height="5" fill="#1a1208" stroke="#d4a020" stroke-width="0.8"/>
+        <polygon points="4,8 6,5 8,8" fill="#8b1a1a" stroke="#d4a020" stroke-width="0.6"/>
+        <polygon points="24,8 26,5 28,8" fill="#8b1a1a" stroke="#d4a020" stroke-width="0.6"/>
+        <circle cx="6" cy="5" r="1.5" fill="#d4a020"/>
+        <circle cx="26" cy="5" r="1.5" fill="#d4a020"/>
+        <rect x="13" y="19" width="6" height="6" fill="#0a0808" stroke="#d4a020" stroke-width="0.8"/>
+        <path d="M13,21 Q16,18 19,21" fill="#8b1a1a" stroke="#d4a020" stroke-width="0.8"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:{{ sub }};margin-top:4px;line-height:1.3;">Thành Trì</div></sc-if>
+    </div>
+
+    <!-- Rừng bình thường -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <polygon points="16,15 26,20 16,25 6,20" fill="#2e5a28" stroke="#1a4018" stroke-width="1.2"/>
+        <ellipse cx="10" cy="13" rx="5" ry="7" fill="#1a5c3a"/>
+        <ellipse cx="10" cy="9" rx="4" ry="5" fill="#246b44"/>
+        <ellipse cx="10" cy="6" rx="3" ry="3.5" fill="#2d7a50"/>
+        <ellipse cx="22" cy="13" rx="5" ry="7" fill="#1a5c3a"/>
+        <ellipse cx="22" cy="9" rx="4" ry="5" fill="#246b44"/>
+        <ellipse cx="22" cy="6" rx="3" ry="3.5" fill="#2d7a50"/>
+        <circle cx="10" cy="9" r="1.5" fill="#d4a020" opacity="0.8"/>
+        <circle cx="22" cy="7" r="1.5" fill="#d4a020" opacity="0.8"/>
+        <line x1="10" y1="18" x2="10" y2="24" stroke="#5a3010" stroke-width="1.5"/>
+        <line x1="22" y1="18" x2="22" y2="24" stroke="#5a3010" stroke-width="1.5"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:{{ sub }};margin-top:4px;line-height:1.3;">Rừng</div></sc-if>
+    </div>
+
+    <!-- Rừng cháy -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <polygon points="16,15 26,20 16,25 6,20" fill="#3a1a08" stroke="#c0392b" stroke-width="1.2"/>
+        <line x1="10" y1="24" x2="10" y2="12" stroke="#2a1008" stroke-width="2"/>
+        <line x1="22" y1="24" x2="22" y2="12" stroke="#2a1008" stroke-width="2"/>
+        <line x1="10" y1="18" x2="5" y2="14" stroke="#2a1008" stroke-width="1.2"/>
+        <line x1="10" y1="16" x2="15" y2="12" stroke="#2a1008" stroke-width="1.2"/>
+        <line x1="22" y1="18" x2="17" y2="14" stroke="#2a1008" stroke-width="1.2"/>
+        <line x1="22" y1="16" x2="27" y2="12" stroke="#2a1008" stroke-width="1.2"/>
+        <ellipse cx="10" cy="10" rx="4" ry="6" fill="#e05020" opacity="0.9"/>
+        <ellipse cx="10" cy="7" rx="2.5" ry="4" fill="#f0a020"/>
+        <ellipse cx="22" cy="10" rx="4" ry="6" fill="#e05020" opacity="0.85"/>
+        <ellipse cx="22" cy="7" rx="2.5" ry="4" fill="#f0a020"/>
+        <ellipse cx="16" cy="3" rx="5" ry="3" fill="#1a1a1a" opacity="0.6"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#e05030;margin-top:4px;line-height:1.3;">Rừng Cháy</div></sc-if>
+    </div>
+
+    <!-- Núi -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <polygon points="16,15 26,20 16,25 6,20" fill="#7a6848" stroke="#5a4028" stroke-width="1.2"/>
+        <polygon points="6,20 16,15 16,25 6,20" fill="#5a4828" stroke="#4a3818" stroke-width="1"/>
+        <polygon points="26,20 16,15 16,25 26,20" fill="#706040" stroke="#4a3818" stroke-width="1"/>
+        <polygon points="8,20 16,15 24,20 16,25" fill="#8a7848" stroke="#5a4028" stroke-width="1"/>
+        <polygon points="10,17 16,12 22,17 16,22" fill="#908060" stroke="#5a4028" stroke-width="0.8"/>
+        <polygon points="13,14 16,9 19,14 16,19" fill="#f0ead8" stroke="#d4c8a8" stroke-width="0.8"/>
+        <polygon points="14.5,11 16,8 17.5,11 16,14" fill="white" opacity="0.8"/>
+        <polygon points="16,15 26,20 16,25 6,20" fill="none" stroke="#d4a020" stroke-width="0.6" opacity="0.5"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:{{ sub }};margin-top:4px;line-height:1.3;">Núi</div></sc-if>
+    </div>
+
+    <!-- Sông -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <polygon points="16,15 26,20 16,25 6,20" fill="#1a4a6a" stroke="#1a6090" stroke-width="1.5"/>
+        <polygon points="6,20 16,15 16,25 6,20" fill="#0e2e48" stroke="#1a6090" stroke-width="1"/>
+        <polygon points="26,20 16,15 16,25 26,20" fill="#1e3a5a" stroke="#1a6090" stroke-width="1"/>
+        <path d="M8,18 Q13,15 18,18 Q22,21 26,18" fill="none" stroke="#4a8ab0" stroke-width="1" opacity="0.7"/>
+        <path d="M6,21 Q11,18 16,21 Q21,24 26,21" fill="none" stroke="#4a8ab0" stroke-width="0.8" opacity="0.5"/>
+        <!-- Mini boat -->
+        <path d="M11,20 Q16,16 21,20 L22,22 Q16,25 10,22 Z" fill="#7a4820" stroke="#5a3010" stroke-width="0.8"/>
+        <line x1="16" y1="13" x2="16" y2="20" stroke="#5a3010" stroke-width="1"/>
+        <polygon points="16,13 21,15 16,18" fill="#8b1a1a" opacity="0.9"/>
+        <polygon points="16,13 21,15 16,18" fill="#8b1a1a" opacity="0.9"/>
+        <polygon points="16,13 11,15 16,17" fill="#c0392b" opacity="0.6"/>
+        <circle cx="16" cy="13" r="1" fill="#d4a020"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:{{ sub }};margin-top:4px;line-height:1.3;">Sông</div></sc-if>
+    </div>
+
+    <!-- Sông Hỏa Phù -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <polygon points="16,15 26,20 16,25 6,20" fill="#2a1008" stroke="#c0392b" stroke-width="1.5"/>
+        <polygon points="6,20 16,15 16,25 6,20" fill="#1a0808" stroke="#c0392b" stroke-width="1"/>
+        <polygon points="26,20 16,15 16,25 26,20" fill="#220e08" stroke="#c0392b" stroke-width="1"/>
+        <ellipse cx="12" cy="16" rx="4" ry="6" fill="#e05020" opacity="0.9"/>
+        <ellipse cx="12" cy="13" rx="2.5" ry="4" fill="#f0a020"/>
+        <ellipse cx="20" cy="16" rx="4" ry="6" fill="#e05020" opacity="0.85"/>
+        <ellipse cx="20" cy="13" rx="2.5" ry="4" fill="#f0a020"/>
+        <ellipse cx="16" cy="7" rx="6" ry="3.5" fill="#1a1a1a" opacity="0.7"/>
+        <path d="M8,20 Q16,17 24,20" fill="none" stroke="#e05020" stroke-width="1" opacity="0.5"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#e05030;margin-top:4px;line-height:1.3;">Sông Cháy</div></sc-if>
+    </div>
+
+    <!-- Ô Trắng Vô chủ indicator -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <polygon points="16,3 28,10 16,17 4,10" fill="#c8a870" stroke="#9a9a9a" stroke-width="2.5"/>
+        <polygon points="4,10 16,17 16,27 4,20" fill="#8a6840" stroke="#7a7a7a" stroke-width="1"/>
+        <polygon points="28,10 16,17 16,27 28,20" fill="#a07850" stroke="#7a7a7a" stroke-width="1"/>
+        <text x="16" y="12" text-anchor="middle" font-size="7" fill="#aaaaaa" font-family="sans-serif">?</text>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#888;margin-top:4px;line-height:1.3;">Vô chủ</div></sc-if>
+    </div>
+
+    <!-- Ô Ngụy chiếm -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <polygon points="16,3 28,10 16,17 4,10" fill="#c8a870" stroke="#5b9bd5" stroke-width="2.5"/>
+        <polygon points="4,10 16,17 16,27 4,20" fill="#8a6840" stroke="#5b9bd5" stroke-width="1.2"/>
+        <polygon points="28,10 16,17 16,27 28,20" fill="#a07850" stroke="#5b9bd5" stroke-width="1.2"/>
+        <polygon points="4,10 4,6 8,8" fill="#5b9bd5" opacity="0.9"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#5b9bd5;margin-top:4px;line-height:1.3;">Ngụy 魏</div></sc-if>
+    </div>
+
+    <!-- Ô Thục chiếm -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <polygon points="16,3 28,10 16,17 4,10" fill="#c8a870" stroke="#c0392b" stroke-width="2.5"/>
+        <polygon points="4,10 16,17 16,27 4,20" fill="#8a6840" stroke="#c0392b" stroke-width="1.2"/>
+        <polygon points="28,10 16,17 16,27 28,20" fill="#a07850" stroke="#c0392b" stroke-width="1.2"/>
+        <polygon points="4,10 4,6 8,8" fill="#c0392b" opacity="0.9"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#c0392b;margin-top:4px;line-height:1.3;">Thục 蜀</div></sc-if>
+    </div>
+
+    <!-- Ô Ngô chiếm -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <polygon points="16,3 28,10 16,17 4,10" fill="#c8a870" stroke="#d4880a" stroke-width="2.5"/>
+        <polygon points="4,10 16,17 16,27 4,20" fill="#8a6840" stroke="#d4880a" stroke-width="1.2"/>
+        <polygon points="28,10 16,17 16,27 28,20" fill="#a07850" stroke="#d4880a" stroke-width="1.2"/>
+        <polygon points="4,10 4,6 8,8" fill="#d4880a" opacity="0.9"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#d4880a;margin-top:4px;line-height:1.3;">Ngô 吳</div></sc-if>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- GROUP 2: WEAPON ICONS                             -->
+<!-- ══════════════════════════════════════════════════ -->
+<div style="position:absolute;left:64px;top:{{ top2 }}px;width:2072px;">
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ gold }};letter-spacing:3px;margin-bottom:12px;">⚔ VŨ KHÍ — Weapon Icons</div>
+  <div style="background:{{ cardBg }};border:1px solid {{ border }};border-radius:4px;padding:20px 24px;display:flex;gap:{{ gap }}px;flex-wrap:wrap;align-items:flex-start;">
+
+    <!-- Kiếm thẳng -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <line x1="16" y1="3" x2="16" y2="26" stroke="#c0c8d0" stroke-width="2.5" stroke-linecap="round"/>
+        <polygon points="16,3 18,8 16,7 14,8" fill="#d0d8e0" stroke="#a0a8b0" stroke-width="0.8"/>
+        <rect x="11" y="22" width="10" height="3" rx="1" fill="#d4a020" stroke="#a07010" stroke-width="0.8"/>
+        <line x1="8" y1="23" x2="24" y2="23" stroke="#d4a020" stroke-width="2" stroke-linecap="round"/>
+        <rect x="14.5" y="25" width="3" height="4" rx="1" fill="#8a6010" stroke="#5a4010" stroke-width="0.8"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:{{ sub }};margin-top:4px;line-height:1.3;">Kiếm</div></sc-if>
+    </div>
+
+    <!-- Song kiếm -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <line x1="11" y1="3" x2="11" y2="26" stroke="#c0c8d0" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="11,3 13,7 11,6 9,7" fill="#d0d8e0" stroke="#a0a8b0" stroke-width="0.7"/>
+        <line x1="7" y1="22" x2="15" y2="22" stroke="#d4a020" stroke-width="1.8" stroke-linecap="round"/>
+        <rect x="9.5" y="25" width="3" height="4" rx="1" fill="#8a6010"/>
+        <line x1="21" y1="3" x2="21" y2="26" stroke="#c0c8d0" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="21,3 23,7 21,6 19,7" fill="#d0d8e0" stroke="#a0a8b0" stroke-width="0.7"/>
+        <line x1="17" y1="22" x2="25" y2="22" stroke="#d4a020" stroke-width="1.8" stroke-linecap="round"/>
+        <rect x="19.5" y="25" width="3" height="4" rx="1" fill="#8a6010"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:{{ sub }};margin-top:4px;line-height:1.3;">Song kiếm</div></sc-if>
+    </div>
+
+    <!-- Thương (spear) -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <line x1="16" y1="6" x2="16" y2="31" stroke="#8a5a20" stroke-width="2.5" stroke-linecap="round"/>
+        <polygon points="16,2 19,8 16,7 13,8" fill="#c0c8d0" stroke="#9098a0" stroke-width="1"/>
+        <line x1="13" y1="10" x2="19" y2="7" stroke="#d4a020" stroke-width="1.5" stroke-linecap="round"/>
+        <rect x="15" y="6" width="2" height="3" fill="#d4a020"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:{{ sub }};margin-top:4px;line-height:1.3;">Thương</div></sc-if>
+    </div>
+
+    <!-- Cung (bow) -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <path d="M10,4 Q20,16 10,28" fill="none" stroke="#8a5a20" stroke-width="2.5"/>
+        <line x1="10" y1="4" x2="10" y2="28" stroke="#c8a060" stroke-width="1" stroke-dasharray="2,1"/>
+        <!-- Arrow nocked -->
+        <line x1="10" y1="16" x2="28" y2="10" stroke="#c0c8d0" stroke-width="1.5" stroke-linecap="round"/>
+        <polygon points="28,10 24,9 25,12" fill="#c0c8d0" stroke="#909090" stroke-width="0.5"/>
+        <line x1="10" y1="16" x2="12" y2="19" stroke="#8a5a20" stroke-width="1.5"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:{{ sub }};margin-top:4px;line-height:1.3;">Cung</div></sc-if>
+    </div>
+
+    <!-- Kị thương -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <!-- Horse silhouette mini -->
+        <ellipse cx="18" cy="22" rx="10" ry="6" fill="#5a3a18" stroke="#3a2010" stroke-width="1"/>
+        <ellipse cx="8" cy="19" rx="5" ry="4" fill="#5a3a18" stroke="#3a2010" stroke-width="1" transform="rotate(-20,8,19)"/>
+        <line x1="12" y1="25" x2="12" y2="31" stroke="#4a2a10" stroke-width="1.5"/>
+        <line x1="17" y1="26" x2="17" y2="31" stroke="#4a2a10" stroke-width="1.5"/>
+        <line x1="22" y1="25" x2="22" y2="31" stroke="#4a2a10" stroke-width="1.5"/>
+        <line x1="26" y1="25" x2="26" y2="31" stroke="#4a2a10" stroke-width="1.5"/>
+        <!-- Rider spear -->
+        <line x1="15" y1="2" x2="15" y2="20" stroke="#8a5a20" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="15,2 17.5,7 15,6 12.5,7" fill="#c0c8d0" stroke="#909898" stroke-width="0.8"/>
+        <!-- Rider head -->
+        <circle cx="16" cy="13" r="4" fill="#f5d5a0" stroke="#8a6030" stroke-width="0.8"/>
+        <path d="M12,13 Q16,8 20,13" fill="#1a1410" stroke="#d4a020" stroke-width="0.8"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:{{ sub }};margin-top:4px;line-height:1.3;">Kị Thương</div></sc-if>
+    </div>
+
+    <!-- Thuyền chiến -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <path d="M4,20 Q16,14 28,20 L30,24 Q16,30 2,24 Z" fill="#7a4820" stroke="#5a3010" stroke-width="1.5"/>
+        <path d="M4,20 Q16,15 28,20" fill="#9a6030" stroke="#5a3010" stroke-width="1"/>
+        <line x1="16" y1="8" x2="16" y2="20" stroke="#5a3010" stroke-width="1.8"/>
+        <polygon points="16,8 24,12 16,17" fill="#8b1a1a" opacity="0.9"/>
+        <polygon points="16,8 8,12 16,17" fill="#c0392b" opacity="0.7"/>
+        <circle cx="16" cy="8" r="1.5" fill="#d4a020"/>
+        <!-- Oars -->
+        <line x1="6" y1="22" x2="2" y2="27" stroke="#8a5a20" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="26" y1="22" x2="30" y2="27" stroke="#8a5a20" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Waves -->
+        <path d="M2,26 Q8,23 14,26" fill="none" stroke="#1a4a6a" stroke-width="1" opacity="0.6"/>
+        <path d="M18,26 Q24,23 30,26" fill="none" stroke="#1a4a6a" stroke-width="1" opacity="0.6"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:{{ sub }};margin-top:4px;line-height:1.3;">Thuyền Chiến</div></sc-if>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- GROUP 3: STATUS EFFECTS                           -->
+<!-- ══════════════════════════════════════════════════ -->
+<div style="position:absolute;left:64px;top:{{ top3 }}px;width:2072px;">
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ gold }};letter-spacing:3px;margin-bottom:12px;">✨ TRẠNG THÁI — Status Effect Icons</div>
+  <div style="background:{{ cardBg }};border:1px solid {{ border }};border-radius:4px;padding:20px 24px;display:flex;gap:{{ gap }}px;flex-wrap:wrap;align-items:flex-start;">
+
+    <!-- Bị cắt lương -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#2a1008" stroke="#e05030" stroke-width="1.5"/>
+        <text x="16" y="20" text-anchor="middle" font-size="14" fill="#f0a020">🌾</text>
+        <line x1="6" y1="6" x2="26" y2="26" stroke="#e05030" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="6" y1="6" x2="26" y2="26" stroke="#ff5040" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#e05030;margin-top:4px;line-height:1.3;">Cắt lương</div></sc-if>
+    </div>
+
+    <!-- Ẩn (hidden in forest) -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#0e1a10" stroke="#2d7a50" stroke-width="1.5"/>
+        <ellipse cx="16" cy="17" rx="9" ry="7" fill="#1a5c3a" opacity="0.8"/>
+        <ellipse cx="16" cy="14" rx="7" ry="5" fill="#246b44" opacity="0.9"/>
+        <ellipse cx="16" cy="11" rx="5" ry="4" fill="#2d7a50"/>
+        <!-- Hidden unit suggestion -->
+        <circle cx="16" cy="19" r="3" fill="#f5d5a0" opacity="0.3"/>
+        <path d="M14,23 Q16,21 18,23" fill="none" stroke="#f5d5a0" stroke-width="0.8" opacity="0.3"/>
+        <text x="16" y="27" text-anchor="middle" font-size="6" fill="#2d7a50" opacity="0.8" font-family="sans-serif">ẨN</text>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#2d7a50;margin-top:4px;line-height:1.3;">Ẩn quân</div></sc-if>
+    </div>
+
+    <!-- Đang cháy -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#2a0a04" stroke="#e05020" stroke-width="1.5"/>
+        <ellipse cx="16" cy="18" rx="7" ry="10" fill="#e05020" opacity="0.9"/>
+        <ellipse cx="16" cy="14" rx="5" ry="7" fill="#f07020"/>
+        <ellipse cx="16" cy="10" rx="3" ry="5" fill="#f0a020"/>
+        <ellipse cx="16" cy="7" rx="2" ry="3" fill="#f0d060"/>
+        <ellipse cx="12" cy="16" rx="3" ry="5" fill="#e05020" opacity="0.8"/>
+        <ellipse cx="20" cy="16" rx="3" ry="5" fill="#e05020" opacity="0.8"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#e05030;margin-top:4px;line-height:1.3;">Đang cháy</div></sc-if>
+    </div>
+
+    <!-- Bị thương -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#200808" stroke="#c0392b" stroke-width="1.5"/>
+        <!-- Cross/bandage -->
+        <rect x="13" y="8" width="6" height="16" rx="2" fill="#c0392b" opacity="0.8"/>
+        <rect x="8" y="13" width="16" height="6" rx="2" fill="#c0392b" opacity="0.8"/>
+        <rect x="13" y="8" width="6" height="16" rx="2" fill="none" stroke="#e05040" stroke-width="0.5"/>
+        <rect x="8" y="13" width="16" height="6" rx="2" fill="none" stroke="#e05040" stroke-width="0.5"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#c0392b;margin-top:4px;line-height:1.3;">Bị thương</div></sc-if>
+    </div>
+
+    <!-- Tăng Thủ -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#0a1a10" stroke="#60b040" stroke-width="1.5"/>
+        <!-- Shield up arrow -->
+        <path d="M16,6 L22,12 L19,12 L19,20 L13,20 L13,12 L10,12 Z" fill="#60b040" opacity="0.9"/>
+        <path d="M10,22 Q16,28 22,22" fill="none" stroke="#60b040" stroke-width="1.5"/>
+        <text x="16" y="30" text-anchor="middle" font-size="5" fill="#60b040" font-family="sans-serif">THỦ+</text>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#60b040;margin-top:4px;line-height:1.3;">Tăng Thủ</div></sc-if>
+    </div>
+
+    <!-- Giảm Thủ (núi bonus) -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#0a1008" stroke="#d4a020" stroke-width="1.5"/>
+        <!-- Mountain + arrow up -->
+        <polygon points="16,8 22,18 10,18" fill="#8a7848" stroke="#d4a020" stroke-width="1"/>
+        <polygon points="16,8 19,13 13,13" fill="#f0ead8"/>
+        <line x1="16" y1="4" x2="16" y2="7" stroke="#d4a020" stroke-width="1.5" stroke-linecap="round"/>
+        <polygon points="16,4 14,7 18,7" fill="#d4a020"/>
+        <text x="16" y="26" text-anchor="middle" font-size="5" fill="#d4a020" font-family="sans-serif">+10% THỦ</text>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#d4a020;margin-top:4px;line-height:1.3;">Thủ Núi</div></sc-if>
+    </div>
+
+    <!-- Cung núi -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#1a1008" stroke="#d4a020" stroke-width="1.5"/>
+        <!-- Bow on mountain peak -->
+        <polygon points="16,10 20,18 12,18" fill="#8a7848" stroke="#d4a020" stroke-width="0.8"/>
+        <path d="M10,10 Q15,16 10,22" fill="none" stroke="#8a5a20" stroke-width="1.8"/>
+        <line x1="10" y1="10" x2="10" y2="22" stroke="#c8a060" stroke-width="0.8" stroke-dasharray="1.5,1"/>
+        <line x1="10" y1="16" x2="22" y2="11" stroke="#c0c8d0" stroke-width="1.2"/>
+        <polygon points="22,11 19,11 20,13" fill="#c0c8d0"/>
+        <text x="16" y="28" text-anchor="middle" font-size="5" fill="#d4a020" font-family="sans-serif">+50% CÔNG</text>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#d4a020;margin-top:4px;line-height:1.3;">Cung Núi</div></sc-if>
+    </div>
+
+    <!-- Trinh sát (scouted) -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#0e1820" stroke="#5b9bd5" stroke-width="1.5"/>
+        <!-- Eye -->
+        <path d="M5,16 Q16,8 27,16 Q16,24 5,16 Z" fill="#5b9bd5" opacity="0.3"/>
+        <path d="M5,16 Q16,8 27,16 Q16,24 5,16 Z" fill="none" stroke="#5b9bd5" stroke-width="1.2"/>
+        <circle cx="16" cy="16" r="5" fill="#1a4060"/>
+        <circle cx="16" cy="16" r="3.5" fill="#5b9bd5" opacity="0.8"/>
+        <circle cx="17" cy="15" r="1" fill="white" opacity="0.7"/>
+        <!-- Scan lines -->
+        <line x1="5" y1="14" x2="27" y2="14" stroke="#5b9bd5" stroke-width="0.5" opacity="0.3"/>
+        <line x1="5" y1="18" x2="27" y2="18" stroke="#5b9bd5" stroke-width="0.5" opacity="0.3"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#5b9bd5;margin-top:4px;line-height:1.3;">Trinh Sát</div></sc-if>
+    </div>
+
+    <!-- Bị cô lập (isolated - lương chia đôi) -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#1a1008" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <!-- Chains/links -->
+        <circle cx="16" cy="10" r="3" fill="none" stroke="#a08040" stroke-width="1.5"/>
+        <circle cx="16" cy="22" r="3" fill="none" stroke="#a08040" stroke-width="1.5"/>
+        <circle cx="10" cy="16" r="3" fill="none" stroke="#a08040" stroke-width="1.5"/>
+        <circle cx="22" cy="16" r="3" fill="none" stroke="#a08040" stroke-width="1.5"/>
+        <circle cx="16" cy="16" r="2" fill="#c0392b" opacity="0.8"/>
+        <text x="16" y="30" text-anchor="middle" font-size="5" fill="#c0392b" font-family="sans-serif">CÔ LẬP</text>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#c0392b;margin-top:4px;line-height:1.3;">Cô lập</div></sc-if>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- GROUP 4: ACTION ICONS                             -->
+<!-- ══════════════════════════════════════════════════ -->
+<div style="position:absolute;left:64px;top:{{ top4 }}px;width:2072px;">
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ gold }};letter-spacing:3px;margin-bottom:12px;">🎮 HÀNH ĐỘNG — Action Icons</div>
+  <div style="background:{{ cardBg }};border:1px solid {{ border }};border-radius:4px;padding:20px 24px;display:flex;gap:{{ gap }}px;flex-wrap:wrap;align-items:flex-start;">
+
+    <!-- Di chuyển -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#0e1a26" stroke="#5b9bd5" stroke-width="1.5"/>
+        <polygon points="16,6 20,14 16,12 12,14" fill="#5b9bd5"/>
+        <polygon points="16,26 12,18 16,20 20,18" fill="#5b9bd5"/>
+        <polygon points="6,16 14,12 12,16 14,20" fill="#5b9bd5"/>
+        <polygon points="26,16 18,20 20,16 18,12" fill="#5b9bd5"/>
+        <circle cx="16" cy="16" r="3" fill="#5b9bd5" opacity="0.4"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#5b9bd5;margin-top:4px;line-height:1.3;">Di chuyển</div></sc-if>
+    </div>
+
+    <!-- Tấn công -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#200808" stroke="#c0392b" stroke-width="1.5"/>
+        <line x1="8" y1="24" x2="24" y2="8" stroke="#c0c8d0" stroke-width="2.5" stroke-linecap="round"/>
+        <polygon points="24,8 20,9 23,12" fill="#c0c8d0"/>
+        <line x1="8" y1="24" x2="12" y2="26" stroke="#8a5a20" stroke-width="2" stroke-linecap="round"/>
+        <!-- Impact star -->
+        <circle cx="22" cy="10" r="4" fill="#e05020" opacity="0.3"/>
+        <line x1="19" y1="7" x2="22" y2="10" stroke="#f0a020" stroke-width="1" opacity="0.7"/>
+        <line x1="22" y1="7" x2="22" y2="10" stroke="#f0a020" stroke-width="1" opacity="0.7"/>
+        <line x1="25" y1="7" x2="22" y2="10" stroke="#f0a020" stroke-width="1" opacity="0.7"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#c0392b;margin-top:4px;line-height:1.3;">Tấn công</div></sc-if>
+    </div>
+
+    <!-- Đóng quân -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#d4a020" stroke-width="1.5"/>
+        <rect x="9" y="12" width="14" height="10" rx="2" fill="#3a2818" stroke="#d4a020" stroke-width="1.2"/>
+        <polygon points="9,12 16,7 23,12" fill="#8b1a1a" stroke="#d4a020" stroke-width="1"/>
+        <line x1="9" y1="12" x2="23" y2="12" stroke="#d4a020" stroke-width="1"/>
+        <rect x="13" y="17" width="6" height="5" rx="1" fill="#1a0808" stroke="#d4a020" stroke-width="0.8"/>
+        <line x1="16" y1="17" x2="16" y2="22" stroke="#d4a020" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#d4a020;margin-top:4px;line-height:1.3;">Đóng quân</div></sc-if>
+    </div>
+
+    <!-- Rút lui -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#a08040" stroke-width="1.5"/>
+        <polygon points="10,16 16,10 16,13 24,13 24,19 16,19 16,22" fill="#a08040" opacity="0.9"/>
+        <!-- Speed lines -->
+        <line x1="25" y1="12" x2="29" y2="10" stroke="#a08040" stroke-width="1" opacity="0.5"/>
+        <line x1="25" y1="16" x2="30" y2="16" stroke="#a08040" stroke-width="1" opacity="0.5"/>
+        <line x1="25" y1="20" x2="29" y2="22" stroke="#a08040" stroke-width="1" opacity="0.5"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#a08040;margin-top:4px;line-height:1.3;">Rút lui</div></sc-if>
+    </div>
+
+    <!-- Vận lương -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#d4a020" stroke-width="1.5"/>
+        <!-- Grain bag -->
+        <ellipse cx="16" cy="17" rx="7" ry="8" fill="#8a6828" stroke="#d4a020" stroke-width="1.2"/>
+        <ellipse cx="16" cy="13" rx="5" ry="3" fill="#a07838" stroke="#d4a020" stroke-width="0.8"/>
+        <!-- Tie at top -->
+        <rect x="14" y="10" width="4" height="3" rx="1" fill="#6a4818" stroke="#d4a020" stroke-width="0.8"/>
+        <!-- Grain symbol -->
+        <text x="16" y="20" text-anchor="middle" font-size="8" fill="#d4a020" opacity="0.8">🌾</text>
+        <!-- Arrow right (transport) -->
+        <line x1="24" y1="16" x2="29" y2="16" stroke="#d4a020" stroke-width="1.5" stroke-linecap="round"/>
+        <polygon points="29,16 26,14 26,18" fill="#d4a020"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#d4a020;margin-top:4px;line-height:1.3;">Vận lương</div></sc-if>
+    </div>
+
+    <!-- Trinh sát (action) -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#0e1820" stroke="#5b9bd5" stroke-width="1.5"/>
+        <!-- Binoculars -->
+        <rect x="8" y="13" width="7" height="8" rx="3" fill="#1a3050" stroke="#5b9bd5" stroke-width="1.2"/>
+        <rect x="17" y="13" width="7" height="8" rx="3" fill="#1a3050" stroke="#5b9bd5" stroke-width="1.2"/>
+        <rect x="14" y="15" width="4" height="3" fill="#1a3050" stroke="#5b9bd5" stroke-width="0.8"/>
+        <circle cx="11.5" cy="17" r="2" fill="#4a8ab0" opacity="0.7"/>
+        <circle cx="20.5" cy="17" r="2" fill="#4a8ab0" opacity="0.7"/>
+        <!-- Search arc -->
+        <path d="M6,10 Q16,4 26,10" fill="none" stroke="#5b9bd5" stroke-width="1" stroke-dasharray="2,1.5" opacity="0.6"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#5b9bd5;margin-top:4px;line-height:1.3;">Trinh sát</div></sc-if>
+    </div>
+
+    <!-- Hỏa công -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#2a0808" stroke="#e05020" stroke-width="1.5"/>
+        <!-- Fire arrow -->
+        <line x1="6" y1="24" x2="22" y2="10" stroke="#8a5a20" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="22,10 18,11 21,14" fill="#c0c8d0"/>
+        <!-- Flame on tip -->
+        <ellipse cx="22" cy="9" rx="3" ry="4" fill="#e05020" opacity="0.9"/>
+        <ellipse cx="22" cy="7" rx="2" ry="3" fill="#f07020"/>
+        <ellipse cx="22" cy="5.5" rx="1.2" ry="2" fill="#f0d060"/>
+        <!-- Impact sparks -->
+        <line x1="24" y1="8" x2="27" y2="6" stroke="#f0a020" stroke-width="1" opacity="0.7"/>
+        <line x1="25" y1="10" x2="28" y2="11" stroke="#f0a020" stroke-width="1" opacity="0.7"/>
+        <line x1="20" y1="7" x2="20" y2="4" stroke="#f0a020" stroke-width="1" opacity="0.7"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#e05030;margin-top:4px;line-height:1.3;">Hỏa công</div></sc-if>
+    </div>
+
+    <!-- Chiếm ô -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#d4a020" stroke-width="1.5"/>
+        <!-- Flag planting -->
+        <polygon points="16,12 26,20 16,28 6,20" fill="#c8a870" stroke="#d4a020" stroke-width="1"/>
+        <line x1="16" y1="4" x2="16" y2="18" stroke="#8a5a20" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="16,4 22,7 16,11" fill="#5b9bd5" stroke="#d4a020" stroke-width="0.8"/>
+        <text x="21" y="10" font-size="6" fill="#d4a020" font-family="serif" font-weight="bold">魏</text>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#d4a020;margin-top:4px;line-height:1.3;">Chiếm ô</div></sc-if>
+    </div>
+
+    <!-- Kết thúc lượt -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#1a0808" stroke="#d4a020" stroke-width="2"/>
+        <!-- Hourglass -->
+        <path d="M10,6 L22,6 L16,16 L22,26 L10,26 L16,16 Z" fill="#2a1808" stroke="#d4a020" stroke-width="1"/>
+        <polygon points="10,6 22,6 16,16" fill="#d4a020" opacity="0.4"/>
+        <!-- Sand bottom -->
+        <polygon points="10,26 22,26 16,18" fill="#d4a020" opacity="0.8"/>
+        <!-- Sand drop -->
+        <circle cx="16" cy="17" r="1" fill="#d4a020"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#d4a020;margin-top:4px;line-height:1.3;">Kết thúc</div></sc-if>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- GROUP 5: RESOURCE ICONS                           -->
+<!-- ══════════════════════════════════════════════════ -->
+<div style="position:absolute;left:64px;top:{{ top5 }}px;width:2072px;">
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ gold }};letter-spacing:3px;margin-bottom:12px;">💰 TÀI NGUYÊN — Resource &amp; UI Icons</div>
+  <div style="background:{{ cardBg }};border:1px solid {{ border }};border-radius:4px;padding:20px 24px;display:flex;gap:{{ gap }}px;flex-wrap:wrap;align-items:flex-start;">
+
+    <!-- Tài nguyên -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#d4a020" stroke-width="1.5"/>
+        <!-- Gear shape -->
+        <circle cx="16" cy="16" r="7" fill="none" stroke="#d4a020" stroke-width="3"/>
+        <circle cx="16" cy="16" r="3" fill="#d4a020"/>
+        <rect x="14.5" y="6" width="3" height="4" rx="1" fill="#d4a020"/>
+        <rect x="14.5" y="22" width="3" height="4" rx="1" fill="#d4a020"/>
+        <rect x="6" y="14.5" width="4" height="3" rx="1" fill="#d4a020"/>
+        <rect x="22" y="14.5" width="4" height="3" rx="1" fill="#d4a020"/>
+        <rect x="8.5" y="8.5" width="3" height="3" rx="0.5" fill="#d4a020" transform="rotate(45,10,10)"/>
+        <rect x="20.5" y="8.5" width="3" height="3" rx="0.5" fill="#d4a020" transform="rotate(45,22,10)"/>
+        <rect x="8.5" y="20.5" width="3" height="3" rx="0.5" fill="#d4a020" transform="rotate(45,10,22)"/>
+        <rect x="20.5" y="20.5" width="3" height="3" rx="0.5" fill="#d4a020" transform="rotate(45,22,22)"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#d4a020;margin-top:4px;line-height:1.3;">Tài nguyên</div></sc-if>
+    </div>
+
+    <!-- Lương thực -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#a07020" stroke-width="1.5"/>
+        <ellipse cx="16" cy="18" rx="8" ry="5" fill="#8a6828" stroke="#d4a020" stroke-width="1"/>
+        <ellipse cx="16" cy="16" rx="7" ry="4" fill="#a07838" stroke="#d4a020" stroke-width="0.8"/>
+        <!-- Wheat stalks -->
+        <line x1="16" y1="6" x2="16" y2="14" stroke="#c0a030" stroke-width="1.5"/>
+        <line x1="12" y1="8" x2="16" y2="10" stroke="#c0a030" stroke-width="1.2"/>
+        <line x1="20" y1="8" x2="16" y2="10" stroke="#c0a030" stroke-width="1.2"/>
+        <line x1="11" y1="10" x2="16" y2="12" stroke="#c0a030" stroke-width="1"/>
+        <line x1="21" y1="10" x2="16" y2="12" stroke="#c0a030" stroke-width="1"/>
+        <!-- Grain dots on top -->
+        <ellipse cx="16" cy="6" rx="2" ry="3" fill="#d4b040" stroke="#a07020" stroke-width="0.8"/>
+        <ellipse cx="11" cy="8" rx="1.5" ry="2.5" fill="#c8a030" stroke="#a07020" stroke-width="0.6"/>
+        <ellipse cx="21" cy="8" rx="1.5" ry="2.5" fill="#c8a030" stroke="#a07020" stroke-width="0.6"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#a07020;margin-top:4px;line-height:1.3;">Lương thực</div></sc-if>
+    </div>
+
+    <!-- Binh lính -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#8a7040" stroke-width="1.5"/>
+        <!-- Three soldiers silhouettes -->
+        <circle cx="10" cy="13" r="3" fill="#f5d5a0" stroke="#8a6030" stroke-width="0.8"/>
+        <rect x="7.5" y="15" width="5" height="7" rx="1.5" fill="#1a1410" stroke="#5b9bd5" stroke-width="0.8"/>
+        <circle cx="16" cy="11" r="3.5" fill="#f5d5a0" stroke="#8a6030" stroke-width="0.8"/>
+        <rect x="13" y="13.5" width="6" height="8" rx="1.5" fill="#1a1410" stroke="#c0392b" stroke-width="0.8"/>
+        <circle cx="22" cy="13" r="3" fill="#f5d5a0" stroke="#8a6030" stroke-width="0.8"/>
+        <rect x="19.5" y="15" width="5" height="7" rx="1.5" fill="#1a1410" stroke="#d4880a" stroke-width="0.8"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#8a7040;margin-top:4px;line-height:1.3;">Binh lính</div></sc-if>
+    </div>
+
+    <!-- Sức mạnh (ATK) -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#200808" stroke="#c0392b" stroke-width="1.5"/>
+        <!-- Fist / power -->
+        <rect x="9" y="12" width="14" height="10" rx="3" fill="#c0392b" opacity="0.8"/>
+        <rect x="10" y="9" width="4" height="5" rx="1.5" fill="#a02020" stroke="#c0392b" stroke-width="0.8"/>
+        <rect x="14" y="9" width="4" height="5" rx="1.5" fill="#a02020" stroke="#c0392b" stroke-width="0.8"/>
+        <rect x="18" y="9" width="4" height="5" rx="1.5" fill="#a02020" stroke="#c0392b" stroke-width="0.8"/>
+        <rect x="8" y="15" width="3" height="5" rx="1.5" fill="#a02020" stroke="#c0392b" stroke-width="0.8"/>
+        <text x="16" y="26" text-anchor="middle" font-size="5" fill="#e05030" font-family="sans-serif" font-weight="bold">CÔNG</text>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#c0392b;margin-top:4px;line-height:1.3;">Sức Công</div></sc-if>
+    </div>
+
+    <!-- Phòng thủ (DEF) -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#0a1820" stroke="#5b9bd5" stroke-width="1.5"/>
+        <!-- Shield -->
+        <path d="M16,6 L24,10 L24,18 Q24,24 16,27 Q8,24 8,18 L8,10 Z" fill="#1a3050" stroke="#5b9bd5" stroke-width="1.5"/>
+        <path d="M16,8 L22,11.5 L22,18 Q22,23 16,25 Q10,23 10,18 L10,11.5 Z" fill="#2a4870" stroke="#5b9bd5" stroke-width="0.8"/>
+        <!-- Shield emblem -->
+        <line x1="16" y1="11" x2="16" y2="23" stroke="#d4a020" stroke-width="1.5"/>
+        <line x1="10" y1="17" x2="22" y2="17" stroke="#d4a020" stroke-width="1.5"/>
+        <text x="16" y="29" text-anchor="middle" font-size="5" fill="#5b9bd5" font-family="sans-serif" font-weight="bold">THỦ</text>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#5b9bd5;margin-top:4px;line-height:1.3;">Sức Thủ</div></sc-if>
+    </div>
+
+    <!-- HP / Sinh lực -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#0a1808" stroke="#60b040" stroke-width="1.5"/>
+        <!-- Heart -->
+        <path d="M16,22 C16,22 7,16 7,11 C7,8 10,6 13,8 C14.5,9 16,11 16,11 C16,11 17.5,9 19,8 C22,6 25,8 25,11 C25,16 16,22 16,22 Z" fill="#c0392b" stroke="#a02020" stroke-width="0.8"/>
+        <path d="M14,10 C13,9 10,9 10,12" fill="none" stroke="#e05050" stroke-width="1" opacity="0.5"/>
+        <text x="16" y="29" text-anchor="middle" font-size="5" fill="#60b040" font-family="sans-serif" font-weight="bold">HP</text>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#60b040;margin-top:4px;line-height:1.3;">Sinh lực</div></sc-if>
+    </div>
+
+    <!-- Lượt / Turn -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#d4a020" stroke-width="1.5"/>
+        <!-- Clock face -->
+        <circle cx="16" cy="16" r="9" fill="#0e0c06" stroke="#d4a020" stroke-width="1.2"/>
+        <!-- Clock hands -->
+        <line x1="16" y1="16" x2="16" y2="9" stroke="#d4a020" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="16" y1="16" x2="20" y2="19" stroke="#e8c040" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="16" cy="16" r="1.5" fill="#d4a020"/>
+        <!-- Tick marks -->
+        <line x1="16" y1="8" x2="16" y2="9.5" stroke="#d4a020" stroke-width="0.8"/>
+        <line x1="16" y1="22.5" x2="16" y2="24" stroke="#d4a020" stroke-width="0.8"/>
+        <line x1="8" y1="16" x2="9.5" y2="16" stroke="#d4a020" stroke-width="0.8"/>
+        <line x1="22.5" y1="16" x2="24" y2="16" stroke="#d4a020" stroke-width="0.8"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#d4a020;margin-top:4px;line-height:1.3;">Lượt chơi</div></sc-if>
+    </div>
+
+    <!-- Chiến thắng -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#d4a020" stroke-width="2"/>
+        <!-- Trophy -->
+        <rect x="13" y="23" width="6" height="3" rx="1" fill="#d4a020"/>
+        <rect x="11" y="26" width="10" height="2" rx="1" fill="#d4a020"/>
+        <path d="M10,8 L22,8 L22,18 Q22,22 16,22 Q10,22 10,18 Z" fill="#d4a020" opacity="0.9"/>
+        <line x1="10" y1="12" x2="7" y2="12" stroke="#d4a020" stroke-width="1.5"/>
+        <path d="M7,12 Q5,12 5,15 Q5,18 10,18" fill="none" stroke="#d4a020" stroke-width="1.5"/>
+        <line x1="22" y1="12" x2="25" y2="12" stroke="#d4a020" stroke-width="1.5"/>
+        <path d="M25,12 Q27,12 27,15 Q27,18 22,18" fill="none" stroke="#d4a020" stroke-width="1.5"/>
+        <!-- Star -->
+        <polygon points="16,10 17,13 20,13 17.5,14.5 18.5,17.5 16,16 13.5,17.5 14.5,14.5 12,13 15,13" fill="#f0c840" opacity="0.9"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#d4a020;margin-top:4px;line-height:1.3;">Chiến thắng</div></sc-if>
+    </div>
+
+    <!-- Thất bại -->
+    <div style="text-align:center;width:{{ w }}px;">
+      <svg width="{{ sz }}" height="{{ sz }}" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="13" fill="#1a0808" stroke="#c0392b" stroke-width="2"/>
+        <!-- Skull -->
+        <ellipse cx="16" cy="14" rx="8" ry="7" fill="#2a1a18" stroke="#c0392b" stroke-width="1.2"/>
+        <rect x="11" y="19" width="10" height="6" rx="1" fill="#2a1a18" stroke="#c0392b" stroke-width="1.2"/>
+        <line x1="14" y1="19" x2="14" y2="25" stroke="#c0392b" stroke-width="0.8"/>
+        <line x1="18" y1="19" x2="18" y2="25" stroke="#c0392b" stroke-width="0.8"/>
+        <!-- Eye sockets -->
+        <ellipse cx="12.5" cy="13" rx="2.5" ry="2.5" fill="#0a0808"/>
+        <ellipse cx="19.5" cy="13" rx="2.5" ry="2.5" fill="#0a0808"/>
+        <!-- Nose -->
+        <ellipse cx="16" cy="16.5" rx="1.2" ry="1.2" fill="#0a0808"/>
+        <!-- X marks on eyes -->
+        <line x1="11.2" y1="11.7" x2="13.8" y2="14.3" stroke="#c0392b" stroke-width="0.8"/>
+        <line x1="13.8" y1="11.7" x2="11.2" y2="14.3" stroke="#c0392b" stroke-width="0.8"/>
+        <line x1="18.2" y1="11.7" x2="20.8" y2="14.3" stroke="#c0392b" stroke-width="0.8"/>
+        <line x1="20.8" y1="11.7" x2="18.2" y2="14.3" stroke="#c0392b" stroke-width="0.8"/>
+      </svg>
+      <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Be Vietnam Pro',sans-serif;font-size:{{ labelSz }}px;color:#c0392b;margin-top:4px;line-height:1.3;">Thất bại</div></sc-if>
+    </div>
+
+  </div>
+</div>
+
+<!-- SIZE REFERENCE STRIP -->
+<div style="position:absolute;left:64px;top:{{ topRef }}px;width:2072px;">
+  <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:{{ gold }};letter-spacing:3px;margin-bottom:10px;">📐 KÍCH THƯỚC THAM KHẢO</div>
+  <div style="background:{{ cardBg }};border:1px solid {{ border }};border-radius:4px;padding:16px 24px;display:flex;gap:40px;align-items:center;">
+    <div style="text-align:center;opacity:0.6;">
+      <svg width="16" height="16" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#d4a020" stroke-width="1.5"/><polygon points="16,8 20,16 16,14 12,16" fill="#d4a020"/></svg>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:{{ sub }};margin-top:3px;">16×16</div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:{{ sub }};">Minimap dot</div>
+    </div>
+    <div style="text-align:center;">
+      <svg width="24" height="24" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#d4a020" stroke-width="1.5"/><polygon points="16,8 20,16 16,14 12,16" fill="#d4a020"/></svg>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:{{ sub }};margin-top:3px;">24×24</div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:{{ sub }};">Status bar</div>
+    </div>
+    <div style="text-align:center;">
+      <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#d4a020" stroke-width="1.5"/><polygon points="16,8 20,16 16,14 12,16" fill="#d4a020"/></svg>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:{{ sub }};margin-top:3px;">32×32 ★</div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:#d4a020;font-weight:700;">Base size</div>
+    </div>
+    <div style="text-align:center;">
+      <svg width="48" height="48" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#d4a020" stroke-width="1.5"/><polygon points="16,8 20,16 16,14 12,16" fill="#d4a020"/></svg>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:{{ sub }};margin-top:3px;">48×48</div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:{{ sub }};">Panel button</div>
+    </div>
+    <div style="text-align:center;">
+      <svg width="64" height="64" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="#1a1208" stroke="#d4a020" stroke-width="1.5"/><polygon points="16,8 20,16 16,14 12,16" fill="#d4a020"/></svg>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:{{ sub }};margin-top:3px;">64×64</div>
+      <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:{{ sub }};">Tooltip header</div>
+    </div>
+    <div style="margin-left:auto;font-family:'Be Vietnam Pro',sans-serif;font-size:11px;color:{{ sub }};line-height:1.8;">
+      Format: <span style="font-family:'DM Mono',monospace;color:#a0c880;">SVG inline</span> (scale-free) hoặc <span style="font-family:'DM Mono',monospace;color:#a0c880;">PNG @2x</span><br>
+      Background: <span style="font-family:'DM Mono',monospace;color:#a0c880;">transparent</span> · Xuất tất cả ở 2× để retina<br>
+      Tổng: <span style="color:{{ gold }};font-weight:700;">37 icons</span> · 5 nhóm · Naming: <span style="font-family:'DM Mono',monospace;color:#a0c880;">icon-[nhóm]-[tên].svg</span>
+    </div>
+  </div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 2200, &quot;height&quot;: 1100},
+  &quot;iconSize&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;options&quot;: [&quot;Small (24px)&quot;, &quot;Medium (32px)&quot;, &quot;Large (48px)&quot;],
+    &quot;default&quot;: &quot;Medium (32px)&quot;,
+    &quot;section&quot;: &quot;Kích thước&quot;
+  },
+  &quot;showLabels&quot;: {
+    &quot;editor&quot;: &quot;boolean&quot;,
+    &quot;default&quot;: true,
+    &quot;section&quot;: &quot;Hiển thị&quot;
+  },
+  &quot;bgStyle&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;options&quot;: [&quot;Imperial&quot;, &quot;Transparent&quot;, &quot;Parchment&quot;],
+    &quot;default&quot;: &quot;Imperial&quot;,
+    &quot;section&quot;: &quot;Nền&quot;
+  }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const size  = this.props.iconSize    ?? 'Medium (32px)';
+    const labels= this.props.showLabels  ?? true;
+    const bgStyle= this.props.bgStyle   ?? 'Imperial';
+
+    const sizeMap = {
+      'Small (24px)':  { sz: 24, labelSz: 9,  w: 56,  gap: 14 },
+      'Medium (32px)': { sz: 32, labelSz: 10, w: 72,  gap: 18 },
+      'Large (48px)':  { sz: 48, labelSz: 11, w: 96,  gap: 22 },
+    };
+    const s = sizeMap[size] || sizeMap['Medium (32px)'];
+
+    const themes = {
+      Imperial:    { bg:'#12100c', cardBg:'#1e1608', border:'#5a3e10', gold:'#e8c040', sub:'#7a6030' },
+      Transparent: { bg:'#2a2a3a', cardBg:'rgba(0,0,0,0.3)', border:'rgba(255,255,255,0.15)', gold:'#e8e0c0', sub:'#909090' },
+      Parchment:   { bg:'#e8dec0', cardBg:'#f5edd4', border:'#c8a860', gold:'#3a2010', sub:'#6a4820' },
+    };
+    const t = themes[bgStyle] || themes.Imperial;
+
+    // vertical positions depend on icon size
+    const rowH = s.sz + (labels ? s.labelSz * 2 + 22 : 12) + 64;
+    const top2 = 136 + rowH + 16;
+    const top3 = top2 + rowH + 16;
+    const top4 = top3 + rowH + 16;
+    const top5 = top4 + rowH + 16;
+    const topRef = top5 + rowH + 16;
+
+    return {
+      ...s, ...t,
+      showLabels: labels,
+      top2, top3, top4, top5, topRef,
+    };
+  }
+}
+</script>
+</body>
+</html>

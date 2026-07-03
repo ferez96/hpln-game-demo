@@ -23,6 +23,9 @@ import {
   saveGame,
 } from "@/game/persistence";
 import { Formation, Units } from "@/game/types";
+import { FACTION_LABEL } from "@/game/theme";
+import { VisionMode } from "@/game/vision";
+import { IconTrophy } from "@/components/icons";
 import { useState } from "react";
 
 export default function Home() {
@@ -32,6 +35,7 @@ export default function Home() {
   const [selectedTile, setSelectedTile] = useState<string | null>("B8");
   const [activeArmyId, setActiveArmyId] = useState<string | null>("army-wei-1");
   const [savedExists, setSavedExists] = useState(() => hasSave());
+  const [visionMode, setVisionMode] = useState<VisionMode>("spectator");
 
   function moveActiveArmy() {
     if (!activeArmyId || !selectedTile) return;
@@ -82,19 +86,22 @@ export default function Home() {
   }
 
   const winner = gameState.victory.winner;
-  const KD_LABEL: Record<string, string> = { wei: "Ngụy", shu: "Thục", wu: "Ngô" };
 
   return (
-    <main className="w-screen h-screen">
+    <main className="w-screen h-screen bg-ink">
       {winner && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
-          <div className="rounded-xl border border-yellow-400 bg-slate-900 px-12 py-10 text-center shadow-2xl">
-            <div className="text-4xl font-bold text-yellow-400">
-              {KD_LABEL[winner]}
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
+          <div className="rounded-xl border-2 border-gold bg-panel px-12 py-10 text-center shadow-2xl shadow-black/60">
+            <IconTrophy size={48} className="mx-auto mb-2" />
+            <div
+              className="font-display text-6xl font-bold text-gold"
+              style={{ textShadow: "0 0 30px rgba(232,192,64,0.4)" }}
+            >
+              {FACTION_LABEL[winner]}
             </div>
-            <div className="mt-2 text-lg text-white">thống nhất thiên hạ!</div>
+            <div className="mt-2 text-lg text-primary">thống nhất thiên hạ!</div>
             <button
-              className="mt-6 rounded bg-yellow-400 px-6 py-2 font-semibold text-slate-900"
+              className="mt-6 rounded border border-gold/70 bg-chu-sa px-6 py-2 font-semibold text-gold hover:brightness-125"
               onClick={() => { setGameState(initialGameState); setSavedExists(false); }}
             >
               Chơi lại
@@ -107,6 +114,8 @@ export default function Home() {
         selectedTile={selectedTile}
         activeArmyId={activeArmyId}
         hasSave={savedExists}
+        visionMode={visionMode}
+        onSetVisionMode={setVisionMode}
         onSelectArmy={setActiveArmyId}
         onMove={moveActiveArmy}
         onBattle={resolveSelectedBattle}
@@ -126,7 +135,7 @@ export default function Home() {
         onSetFormation={handleSetFormation}
         onBuyUnits={handleBuyUnits}
       />
-      <Canvas shadows="percentage" camera={{ position: [6, 10, 30], fov: 45 }}>
+      <Canvas shadows="percentage" camera={{ position: [21, 19, 21], fov: 45 }}>
         <GameGrid />
         <ambientLight intensity={2} />
         <directionalLight castShadow position={[20, 30, 20]} />
@@ -134,11 +143,12 @@ export default function Home() {
           state={gameState}
           selectedTile={selectedTile}
           activeArmyId={activeArmyId}
+          visionMode={visionMode}
           onSelectTile={setSelectedTile}
           onSelectArmy={setActiveArmyId}
         />
         <OrbitControls
-          target={[6, 0, 6]}
+          target={[7, 0, 7]}
           enableRotate={true}
           minDistance={5}
           maxDistance={50}

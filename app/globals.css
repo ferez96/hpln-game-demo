@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
+/*
+ * Direction B — Hoàng Kim Imperial (docs/Tam Quoc Style Guide.dc.html,
+ * docs/Typography Spec.dc.html). Fixed dark imperial theme — no light mode.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #12100c;
+  --panel: #1e1608;
+  --panel-strong: #241a08;
+  --line: #5a3e10;
+
+  --gold: #e8c040;
+  --primary: #f0e8c0;
+  --secondary: #a09060;
+  --disabled: #5a4828;
+  --danger: #e05030;
+  --success: #60b040;
+  --chu-sa: #8b1a1a;
+
+  --wei: #5b9bd5;
+  --shu: #c0392b;
+  --wu: #d4880a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-ink: var(--ink);
+  --color-panel: var(--panel);
+  --color-panel-strong: var(--panel-strong);
+  --color-line: var(--line);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-gold: var(--gold);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-disabled: var(--disabled);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --color-chu-sa: var(--chu-sa);
+
+  --color-wei: var(--wei);
+  --color-shu: var(--shu);
+  --color-wu: var(--wu);
+
+  /* Thang cỡ chữ — Typography Spec size scale */
+  --text-xs: 10px;
+  --text-sm: 11px;
+  --text-base: 12px;
+  --text-md: 13px;
+  --text-lg: 14px;
+  --text-xl: 16px;
+  --text-2xl: 18px;
+  --text-3xl: 20px;
+  --text-4xl: 24px;
+  --text-5xl: 28px;
+  --text-6xl: 32px;
+  --text-7xl: 40px;
+  --text-8xl: 48px;
+
+  /* Font families — 4 vai trò */
+  --font-sans: var(--font-be-vietnam-pro); /* UI body / mọi text giao diện */
+  --font-serif: var(--font-noto-serif); /* tên tướng · địa danh */
+  --font-mono: var(--font-dm-mono); /* số liệu · stats */
+  --font-display: var(--font-philosopher); /* tiêu đề lớn */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: var(--color-primary);
+  font-family: var(--font-sans);
 }

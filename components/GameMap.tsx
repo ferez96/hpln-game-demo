@@ -6,20 +6,17 @@ import { Tile } from "./Tile";
 import { Capital } from "@/game/models/Capital";
 import { City } from "@/game/models/City";
 import { Html } from "@react-three/drei";
+import { FACTION_COLOR } from "@/game/theme";
+import { isArmyVisible, VisionMode } from "@/game/vision";
 
 interface Props {
   state: GameState;
   selectedTile: string | null;
   activeArmyId: string | null;
+  visionMode: VisionMode;
   onSelectTile: (tileId: string) => void;
   onSelectArmy: (armyId: string) => void;
 }
-
-const ARMY_COLORS: Record<Owner, string> = {
-  wei: "#1565C0",
-  shu: "#C62828",
-  wu: "#D4880A",
-};
 
 function ArmyMarker({
   owner,
@@ -43,26 +40,27 @@ function ArmyMarker({
       <mesh castShadow>
         <cylinderGeometry args={[0.16, 0.22, 0.28, 6]} />
         <meshStandardMaterial
-          color={ARMY_COLORS[owner]}
-          emissive={active ? "#ffffff" : "#000000"}
-          emissiveIntensity={active ? 0.25 : 0}
+          color={FACTION_COLOR[owner]}
+          emissive={active ? "#e8c040" : "#000000"}
+          emissiveIntensity={active ? 0.3 : 0}
         />
       </mesh>
       <mesh position={[0, 0.25, 0]} castShadow>
         <coneGeometry args={[0.18, 0.32, 6]} />
-        <meshStandardMaterial color={ARMY_COLORS[owner]} />
+        <meshStandardMaterial color={FACTION_COLOR[owner]} />
       </mesh>
       <Html position={[0, 0.55, 0]} center distanceFactor={14}>
         <div
           style={{
-            background: active ? "#111" : "rgba(255,255,255,0.92)",
-            color: active ? "#fff" : "#111",
-            border: `1px solid ${ARMY_COLORS[owner]}`,
+            background: active ? "var(--chu-sa, #8b1a1a)" : "var(--panel, #1e1608)",
+            color: active ? "var(--gold, #e8c040)" : "var(--primary, #f0e8c0)",
+            border: `1px solid ${active ? "var(--gold, #e8c040)" : FACTION_COLOR[owner]}`,
             borderRadius: 4,
-            fontSize: 10,
+            fontFamily: "var(--font-serif)",
+            fontSize: 11,
             fontWeight: 700,
             lineHeight: 1,
-            padding: "3px 5px",
+            padding: "3px 6px",
             pointerEvents: "none",
             whiteSpace: "nowrap",
           }}
@@ -78,6 +76,7 @@ export function GameMap({
   state,
   selectedTile,
   activeArmyId,
+  visionMode,
   onSelectTile,
   onSelectArmy,
 }: Props) {
@@ -89,6 +88,7 @@ export function GameMap({
             key={tile.id}
             tile={tile}
             selected={selectedTile}
+            visionMode={visionMode}
             onSelect={onSelectTile}
           />
         );
@@ -107,7 +107,7 @@ export function GameMap({
         })}
       {(() => {
         const active = Object.values(state.armies).filter(
-          (a) => a.status !== "DEFEATED",
+          (a) => a.status !== "DEFEATED" && isArmyVisible(state, a, visionMode),
         );
         // group by tile to compute centered offsets
         const byTile = new Map<string, typeof active>();
