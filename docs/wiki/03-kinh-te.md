@@ -1,47 +1,45 @@
 # Kinh Tế & Hậu Cần
 
-Cần biết [Khung Sườn & Tổng Quan](00-tong-quan.md) (Quan Văn sinh Tài Nguyên) và [Địa Lý & Bản Đồ](01-dia-ly.md) (Ô Trắng/Châu Thành/Thành Trì sinh Tài Nguyên hoặc trữ Lúa).
+*Đọc trước: [Tổng Quan](00-tong-quan.md), [Địa Lý](01-dia-ly.md).*
 
-Chuỗi tài nguyên: **Tài Nguyên → Dân → Lúa**. Lúa dùng để nuôi lính (xem [Quân Sự Cơ Bản](04-quan-su-co-ban.md)).
+**Chuỗi tài nguyên:** `Tài Nguyên → Dân → Lúa`. Lúa nuôi lính (xem [Quân Sự Cơ Bản](04-quan-su-co-ban.md)).
 
-## Mỏ
+## Ba khu nhà hậu cần
 
-*Cơ bản*
-- Sinh Tài Nguyên mỗi Turn theo cấp: Cấp 1 = 3 (mặc định), Cấp 2 = 5, Cấp 3 = 7.
-- Nâng cấp tuần tự: lên Cấp 2 tốn 4 Tài Nguyên, lên Cấp 3 tốn 5 Tài Nguyên (nâng đầu Go, xong ở Turn kế tiếp — xem quy tắc nâng cấp chung ở [Phụ Lục — Luật Bổ Sung](09-phu-luc.md)).
+Mua/khai thác/đổi ngay **đầu Go**. Nâng cấp tuần tự 1→2→3 (không nhảy cóc), nâng Turn N thì Turn N+1 xong — xem [quy tắc nâng cấp chung](09-phu-luc.md).
 
-## Nhà Dân
+| Khu nhà | Cấp 1 (mặc định) | Cấp 2 | Cấp 3 | Chi phí nâng |
+|---|---|---|---|---|
+| **Mỏ** → Tài Nguyên | 3 / Turn | 5 / Turn | 7 / Turn | 4 → 5 TN |
+| **Nhà Dân** (TN → Dân) | 1 TN = 2000 Dân | 1 TN = 3000 | 1 TN = 4000 | 4 → 5 TN |
+| **Ruộng** (Dân → Lúa) | 1000 Dân = 1000 Lúa | 1000 = 2000 | 1000 = 3000 | 4 → 5 TN |
 
-*Cơ bản*
-- Đổi Tài Nguyên lấy Dân theo tỉ giá tăng dần theo cấp: Cấp 1 = 1 Tài Nguyên đổi 2000 Dân (mặc định), Cấp 2 = 1 Tài Nguyên đổi 3000 Dân, Cấp 3 = 1 Tài Nguyên đổi 4000 Dân.
-- Nâng cấp: Cấp 2 tốn 4 Tài Nguyên, Cấp 3 tốn 5 Tài Nguyên.
+*Cột "Chi phí nâng" = tốn để lên Cấp 2, rồi lên Cấp 3.*
 
-## Ruộng
+> Đổi Dân lấy Lúa **tiêu hao** đúng số Dân đem đổi. Mùa Thu: lúa làm ra **x2**; Mùa Đông: ruộng đóng băng, **0 lúa** (xem [Môi Trường](08-moi-truong.md)).
 
-*Cơ bản*
-- Đổi Dân lấy Lúa theo tỉ giá tăng dần theo cấp: Cấp 1 = 1000 Dân đổi 1000 Lúa (mặc định, tỉ lệ 1:1), Cấp 2 = 1000 Dân đổi 2000 Lúa (1:2), Cấp 3 = 1000 Dân đổi 3000 Lúa (1:3).
-- Nâng cấp: Cấp 2 tốn 4 Tài Nguyên, Cấp 3 tốn 5 Tài Nguyên.
+## Nguồn Tài Nguyên khác
 
-<details>
-<summary>Cơ chế phụ</summary>
+| Nguồn | Tài Nguyên / Turn |
+|---|---|
+| Quan Văn | 1 (từ Turn 5: 2; nếu Bát Kỳ: **x5** — xem [Huyền Bí](07-huyen-bi.md)) |
+| Mỏ | 3 / 5 / 7 theo cấp |
+| Châu Thành | 3 |
+| Ô Trắng | 1 |
+| Thuyền Đánh Cá | 4 / 5 / 6 theo cấp (xem [Quân Sự Nâng Cao](06-quan-su-nang-cao.md)) |
 
-- Đổi Dân lấy Lúa sẽ tiêu hao (mất) đúng số Dân đã đem đổi.
+## Luật Lương Thực (nuôi quân)
 
-</details>
-
-## Luật Lương Thực (Nuôi Quân)
-
-*Cơ bản*
-- Chỉ lính tốn Lúa để ăn mỗi Turn — Dân không tốn Lúa.
-- Thứ tự ăn Lúa khi thiếu: lính có nối lương ăn theo khoảng cách gần trước xa sau, tính bằng số ô di chuyển nối thông lương tới vựa lúa gần nhất; hết lúa ở vựa gần thì mới tới lượt lính xa hơn; lính bằng khoảng cách được chọn ai ăn tùy ý. Lính đang được miễn nối lương (VD: trong Turn chờ gia nhập nước mới sau khi phản bội — xem [Quân Sự Nâng Cao](06-quan-su-nang-cao.md)) được ưu tiên ăn lúa nước mình trước, không xét khoảng cách.
-- Việc mua lính và mua/rút/gửi lúa diễn ra đầu Go; ngay sau đó GM tính lính hiện có để trừ lúa tương ứng ngay — tức đầu Go bắt buộc lính phải ăn lúa ngay, không đủ lúa thì lính chết đói ngay lập tức.
+- **Chỉ lính tốn Lúa** để ăn mỗi Turn — Dân không tốn. Mỗi Turn: 1 Lúa nuôi 1 lính khỏi chết đói.
+- Mua lính & mua/rút/gửi lúa diễn ra **đầu Go**; ngay sau đó GM tính lính hiện có để trừ lúa → **đầu Go lính phải ăn ngay, thiếu là chết đói ngay**.
+- **Thứ tự ăn khi thiếu lúa:** lính có nối lương ăn theo khoảng cách gần-trước-xa-sau (tính bằng số ô nối thông lương tới vựa gần nhất); hết vựa gần mới tới lính xa hơn; lính bằng khoảng cách thì chọn ai ăn tùy ý. Lính **miễn nối lương** (VD Turn chờ sau khi phản bội) ưu tiên ăn lúa nước mình trước, khỏi xét khoảng cách.
 
 <details>
 <summary>Cơ chế phụ</summary>
 
-- Tướng ra trận mà đầu Go bị chết đói hết quân (còn 0 lính) thì coi như thua trận, về thành ngay từ đầu Go đó.
-- Lính đã ăn đủ đầu Go nhưng bị cắt lương ở cuối Go/Atc cùng Turn đó (mất kết nối — xem [Quân Sự Cơ Bản](04-quan-su-co-ban.md)) thì tiếp tục xét theo luật chết đói do cắt lương.
-- `[GHI CHÚ]` Có 1 khác biệt đáng chú ý theo nguồn lương: nếu Ô A chỉ nối được với vựa lúa của 1 Châu Thành và vựa đó hết lúa, toàn bộ lính ở Ô A chết đói và Ô A biến thành Ô Trắng ngay. Nhưng nếu Ô A nối với kho lúa chung của quốc gia (qua Thành Trì) và kho đó hết lúa, lính vẫn chết đói hết — nhưng Ô A vẫn giữ màu thuộc quốc gia cũ (không tự động thành Ô Trắng). Đây là sự bất đối xứng có chủ đích trong luật gốc, không phải lỗi chuẩn hóa.
+- Tướng ra trận mà đầu Go còn 0 lính do chết đói → coi như thua, về thành ngay đầu Go.
+- Lính đã ăn đủ đầu Go nhưng bị **cắt lương** cuối Go/Atc (mất kết nối) → xét tiếp luật chết đói do cắt lương (xem [Nối Lương](04-quan-su-co-ban.md)).
+- **Bất đối xứng theo nguồn lương (có chủ đích):** Ô A chỉ nối vựa **Châu** mà vựa cạn lúa → toàn lính chết & Ô A **thành Ô Trắng** ngay. Nhưng Ô A nối kho chung quốc gia (qua **Trì**) mà kho cạn → lính vẫn chết đói, nhưng Ô A **vẫn giữ màu** nước cũ.
 
 </details>
 

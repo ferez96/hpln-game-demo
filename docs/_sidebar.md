@@ -16,5 +16,6 @@
 
 - **Tra cứu**
   - [Bảng Tra Cứu Khái Niệm](wiki/glossary.md)
+  - [Đồ Thị Luật Game (quan hệ thực thể)](wiki/so-do-luat.md)
   - [Rà Soát Thuật Ngữ](wiki/terminology-audit.md)
   - [Lộ Trình Học (thứ tự đề xuất)](wiki/lo-trinh-hoc.md)

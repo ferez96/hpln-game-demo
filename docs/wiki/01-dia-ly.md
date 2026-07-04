@@ -1,126 +1,121 @@
 # Địa Lý & Bản Đồ
 
-Chỉ cần biết [Khung Sườn & Tổng Quan](00-tong-quan.md). Domain này định nghĩa toàn bộ các loại ô trên bản đồ — mọi domain khác (Kinh Tế, Quân Sự, Chính Trị...) đều tham chiếu ngược lại đây.
+*Đọc trước: [Tổng Quan](00-tong-quan.md).*
+
+Bản đồ gồm sáu loại ô. Định nghĩa các loại ô ở đây là nền tảng cho luật di chuyển, chiếm đất, và hậu cần.
+
+## Bảng so sánh các loại ô
+
+| Loại ô | Chiếm? | Thuộc nước? | Sinh lợi / Turn | Phòng thủ nền | Ở được | Là vựa lúa? |
+|---|---|---|---|---|---|---|
+| **Thành Trì** | Không (phá sập) | Có | — (điểm +5/mùa) | 8000 Thủ đá | Có (không gian ảo) | Có (tạo lúa) |
+| **Châu Thành** | Kéo quân vào | Có | 3 Tài Nguyên (+3 đ/mùa) | 6000 Thủ | Không (không dưỡng) | Có (chỉ chứa) |
+| **Ô Trắng** | Kéo quân vào | Có | 1 Tài Nguyên (+1 đ/mùa) | lính trấn giữ | Có | Không |
+| **Rừng** | Không | Không | — | — | tối đa 1 Turn | Không |
+| **Núi** | Không | Không | buff Thủ/Cung | — | tối đa 1 Turn | Không |
+| **Sông** | Không | Không | (thuyền cá) | — | nhiều Turn (cần thuyền) | Không |
+
+> **Sa Trường = mọi ô KHÔNG phải Thành Trì.** Tức Châu Thành, Ô Trắng, Rừng, Núi, Sông đều là Sa Trường — đứng trên Châu Thành vẫn bị xem là "ngoài Sa Trường". Khái niệm này quyết định điều kiện Phản Bội, thời điểm dưỡng thương, và điều kiện mời Hoa Đà.
 
 ## Luật Chung Toàn Bản Đồ
 
-*Cơ bản*
-- Chỉ 3 loại ô có thể thuộc về 1 quốc gia (được "tô màu" sở hữu): Ô Trắng, Châu Thành, Thành Trì. Rừng, Núi, Sông không bao giờ thuộc về quốc gia nào.
-- Địa hình bản đồ bất biến trong suốt ván game: không hủy/di dời Châu/Trì, không lấp sông, không đào núi, không chặt/trồng rừng; rừng bị cháy cũng không biến mất vĩnh viễn.
-- GM công khai vị trí chính xác của mỗi Tướng lên bản đồ chung cho toàn game thấy (không công khai số lính/thuyền/cơ giới đi kèm), trừ khi Tướng đó đang ở trong Ô Rừng (ẩn khỏi bản đồ) hoặc đang dùng kỹ năng Ẩn Thân (xem [Quân Sự Nâng Cao](06-quan-su-nang-cao.md)).
-- Tướng chỉ được rút về "không gian ảo" (rời khỏi bản đồ) khi bị thương/bại trận; Tướng khỏe mạnh đứng trên thành vẫn luôn hiện trên bản đồ.
-
-<details>
-<summary>Cơ chế phụ</summary>
-
-- Di chuyển mà bị Hỏa/Thủy Phù chặn đường dễ khiến Tướng kẹt sang Turn sau và vi phạm luật "tối đa 1 Turn" ở Núi/Rừng — xem cảnh báo cụ thể ở mục Núi/Rừng bên dưới và [Huyền Bí & Đặc Dị](07-huyen-bi.md) (Phù Chú).
-
-</details>
-
-## Sa Trường
-
-**Định nghĩa:** Sa Trường = mọi ô **không phải** Ô Thành Trì. Tức Châu Thành, Ô Trắng, Rừng, Núi, Sông đều tính là Sa Trường — đứng trên Châu Thành (có tường, có quân đồn trú) vẫn bị xem là "ở ngoài Sa Trường".
-
-`[GHI CHÚ]` Khái niệm này được dùng bởi nhiều domain khác (điều kiện Phản Bội, thời điểm dưỡng thương của Tướng Quân/Chủ Công, điều kiện mời Hoa Đà) nên được định nghĩa ngay tại đây thay vì lặp lại. Bản thân tên gọi "Sa Trường" (nghĩa đen: bãi chiến trường) dễ khiến người đọc ngỡ chỉ tính đất trống giao tranh, không tính lúc đứng trên thành/châu — nhưng luật gốc quy định ngược lại, xem thêm [Rà Soát Thuật Ngữ](terminology-audit.md) mục 6.
+- Chỉ **3 loại ô** tô màu sở hữu được: Ô Trắng, Châu Thành, Thành Trì. Rừng/Núi/Sông không bao giờ thuộc nước nào.
+- **Địa hình bất biến:** không hủy/dời Châu/Trì, không lấp sông, đào núi, chặt/trồng rừng; rừng cháy cũng không mất vĩnh viễn.
+- GM công khai **vị trí Tướng** lên bản đồ chung (không lộ số lính/thuyền/cơ giới đi kèm) — trừ khi Tướng ở Rừng hoặc đang **Ẩn Thân** (xem [Quân Sự Nâng Cao](06-quan-su-nang-cao.md)).
+- Tướng chỉ về "không gian ảo" (rời bản đồ) khi bị thương/bại; Tướng khỏe đứng trên thành vẫn luôn hiện. Riêng **Chiến Tướng** có màu riêng để toàn game dễ phân biệt.
 
 ## Ô Trắng (đất trống)
 
-*Cơ bản*
-- Có thể chiếm: kéo quân vào là chiếm được ngay.
-- Mỗi Turn 1 Ô Trắng đưa lại 1 điểm Tài Nguyên cho quốc gia sở hữu.
-- Được phép gửi quân/cơ giới ở lại trấn giữ (không hiện lên bản đồ) từ Turn kế tiếp sau khi chiếm — chi tiết gửi/rút quân xem [Quân Sự Cơ Bản](04-quan-su-co-ban.md).
+- Kéo quân vào là **chiếm được ngay**; mỗi Turn cho 1 Tài Nguyên.
+- Được gửi quân/cơ giới ở lại trấn giữ (không hiện bản đồ) — nhưng chỉ **từ Turn sau khi chiếm** (Turn 1 chiếm, Turn 2 mới gửi/rút).
+- Là nơi xây **Doanh Trại / Thao Trường** và đặt **Bẫy** (xem [Quân Sự Nâng Cao](06-quan-su-nang-cao.md)).
 
 <details>
 <summary>Cơ chế phụ</summary>
 
-- Turn 1 chiếm được thì dù Turn 2 Tướng rời đi, ô vẫn tính là đã tô màu thuộc về nước mình.
-- Nếu bị nước khác tiến quân vào mà không có Tướng/lính nào của mình trấn giữ tại đó: ô coi như thuộc về bên xâm chiếm (nếu họ chiếm thành công).
+- Turn 1 chiếm thì dù Turn 2 Tướng rời đi, ô vẫn giữ màu nước mình.
+- Nếu bị nước khác tiến vào mà ô không có Tướng/lính mình trấn giữ: ô thuộc bên xâm chiếm (nếu họ chiếm thành công).
 
 </details>
 
 ## Châu Thành
 
-*Cơ bản*
-- Cách chiếm giống Ô Trắng (kéo quân vào), nhưng khi còn vô chủ luôn có 6000 lính địa phương trấn thủ — muốn chiếm phải có Công ≥ 6000 (đánh bại chứ không thu phục được lính địa phương). Khi đã có chủ, phòng thủ chuyển thành 6000 Thủ Đá (giá trị cố định) + lính đồn trú của nước chủ + bonus Núi nếu có (công thức phòng thủ đầy đủ xem [Quân Sự Cơ Bản](04-quan-su-co-ban.md)).
-- Mỗi Turn đưa lại 3 điểm Tài Nguyên cho quốc gia sở hữu (khác với Lúa — xem [Kinh Tế & Hậu Cần](03-kinh-te.md)).
-- Là 1 vựa lúa: có thể vận chuyển lúa từ Thành Trì tới dự trữ ở đây (tối thiểu 1000 lúa/lần, tối đa vô hạn), và các Châu Thành nối nhau trong cùng quốc gia chuyển lúa qua lại được. Châu Thành chỉ chứa lúa — không tự sinh ra lúa như Thành Trì.
-- Không thể chứa Tướng/Lính/Văn bại trận về dưỡng thương.
+- Chiếm giống Ô Trắng, nhưng khi **vô chủ** luôn có 6000 lính địa phương trấn — phải Công ≥ 6000 để chiếm (không thu phục lính địa phương). Khi có chủ: phòng thủ = 6000 Thủ đá + lính đồn trú + bonus Núi (xem công thức ở [Quân Sự Cơ Bản](04-quan-su-co-ban.md)).
+- Mỗi Turn cho **3 Tài Nguyên**.
+- Là **vựa lúa** (chỉ chứa, không tạo): vận lúa từ Trì tới trữ (tối thiểu 1000/lần, tối đa vô hạn); các Châu nối nhau chuyển lúa qua lại được.
+- **Không** chứa Tướng/Lính/Văn bại trận về dưỡng.
 
 <details>
 <summary>Cơ chế phụ</summary>
 
-- Châu sập thì vô chủ ngay lập tức; nếu Turn kế tiếp không ai chiếm, đến Turn sau nữa sẽ hồi lại 6000 lính trấn thủ mặc định.
-- Khi 1 quốc gia chiếm được Châu Thành: kho lúa có sẵn ở đó (nếu có) thuộc về quốc gia mới, chỉ quốc gia đó biết số lượng chính xác. Nếu Châu đang vô chủ, lúa dự trữ vẫn còn nguyên trong kho chờ ai chiếm.
+- Châu sập → vô chủ ngay; Turn kế không ai chiếm thì Turn sau nữa hồi lại 6000 lính trấn.
+- Nước chiếm được Châu: kho lúa có sẵn (nếu có) về nước đó (chỉ nước đó biết số). Châu vô chủ: lúa dự trữ vẫn còn nguyên chờ ai chiếm.
 
 </details>
 
 ## Thành Trì
 
-*Cơ bản*
-- Là lãnh thổ gốc của mỗi quốc gia ngay từ đầu game — không "chiếm" theo kiểu kéo quân vào như Ô Trắng, mà phải bị đánh sập trực tiếp hoặc bắn sập.
-- Mỗi quốc gia có 9 Ô Thành Trì. Mỗi ô có 8000 lính trấn thủ đá thành (cộng thêm lính đồn trú tại đó, công thức đầy đủ xem [Quân Sự Cơ Bản](04-quan-su-co-ban.md)).
-- Bị phá sập thì lập tức biến thành Ô Trắng (áp dụng toàn bộ luật Ô Trắng từ đó), và không thể xây lại.
-- Quốc gia bị phá sập hết cả 9 Thành Trì thì sụp đổ hoàn toàn (xem điều kiện thắng-thua ở [Khung Sườn & Tổng Quan](00-tong-quan.md)).
-- Mọi Ô Thành Trì đều được xem là vựa lúa và đều mua được lúa tại đó. Tướng/Văn/Lính/trang bị mới đều xuất phát ra bản đồ từ không gian ảo gắn với các Ô Thành Trì — có thể xuất phát từ bất kỳ Ô Trì nào, kể cả khi Trì đó đang bị cô lập khỏi phần còn lại của quốc gia.
+- **Lãnh thổ gốc** của mỗi nước từ đầu game — không "chiếm" bằng kéo quân, phải **đánh sập / bắn sập** trực tiếp.
+- Mỗi nước có **9 Ô Thành Trì**, mỗi ô 8000 Thủ đá (+ lính đồn trú).
+- Bị phá → lập tức thành **Ô Trắng** (áp luật Ô Trắng), không xây lại được.
+- Phá hết cả 9 Trì → nước **sụp đổ hoàn toàn**.
+- Mọi Trì đều là vựa lúa & mua lúa được. Tướng/Văn/Lính/đồ mới đều xuất phát ra bản đồ từ **bất kỳ Ô Trì nào** (kể cả Trì đang bị cô lập).
 
 <details>
 <summary>Cơ chế phụ</summary>
 
-- Nếu các Thành Trì của 1 quốc gia bị cô lập thành 2 cụm riêng biệt trong 1 Turn: kho lúa dự trữ quốc gia chia đôi cho 2 cụm, từ đó mỗi cụm mua lúa độc lập.
-- Các kiến trúc/nơi trú ngụ nội bộ quốc gia (không gian ảo, không hiện trên bản đồ) không thể bị xâm phạm trực tiếp, và tự động biến mất khi quốc gia đó sụp đổ.
-- Nếu 2 quốc gia cùng phá Thành Trì của quốc gia thứ 3: quốc gia nào phá được nhiều Trì hơn thì được xem là xâm chiếm thành công, nhận đất của quốc gia sụp đổ.
-- Quốc gia có nguy cơ sụp đổ đầu tiên (trong 3 quốc gia) không được đầu hàng — phải chơi tiếp cho đến khi sụp đổ hoàn toàn.
-- Toàn bộ đất mà quốc gia thua đang sở hữu ngay lúc sụp đổ sẽ sáp nhập vào quốc gia thắng (phá nhiều Trì hơn). Chỉ đất được sáp nhập — mọi thứ khác, kể cả người chơi của quốc gia cũ, biến mất khỏi game.
+- Trì bị cô lập thành 2 cụm trong 1 Turn: kho lúa quốc gia chia đôi cho 2 cụm, mỗi cụm mua lúa độc lập.
+- Kiến trúc/không gian ảo nội bộ (không hiện bản đồ) không bị xâm phạm; tự biến mất khi nước sụp đổ.
+- 2 nước cùng phá Trì nước thứ 3: nước phá nhiều Trì hơn xâm chiếm thành công, nhận đất.
+- Nước sắp sụp đổ **đầu tiên** không được đầu hàng — phải chơi tới khi sụp hẳn.
+- Đất nước thua lúc sụp đổ sáp nhập vào nước thắng (phá nhiều Trì hơn). Chỉ sáp nhập đất — mọi thứ khác (kể cả người chơi nước cũ) biến mất.
 
 </details>
 
-## Rừng
+## Rừng · Núi · Sông (ô không chiếm)
 
-*Cơ bản*
-- Không thể chiếm.
-- Quân trong rừng ẩn khỏi bản đồ, kể cả không bị Trinh Sát nhìn thấy (xem [Quân Sự Nâng Cao](06-quan-su-nang-cao.md)).
-- Chỉ được ở tối đa 1 Turn: vào rừng ở lượt Go 1 mà đến hết lượt Go 2 vẫn còn đó thì toàn bộ tướng + lính chết bệnh hết (vào ở lượt Atc 1 thì mốc chết là hết lượt Go 3). Tướng bỏ lại lính (dù chỉ 1 lính) ở rừng khi rời đi thì số lính bị bỏ lại đó cũng chết bệnh theo đúng mốc trên.
-- Có địch cùng ô thì bắt buộc phải giao chiến.
+### Rừng
+
+- Quân trong rừng **ẩn khỏi bản đồ**, miễn cả Trinh Sát.
+- **Tối đa 1 Turn:** vào Go1 mà hết Go2 còn ở đó → tướng + lính **chết bệnh** (vào Atc1 thì mốc là hết Go3). Tướng bỏ lại lính (dù 1 lính) thì lính đó cũng chết bệnh.
+- Có địch cùng ô thì **bắt buộc giao chiến**.
 
 <details>
 <summary>Cơ chế phụ</summary>
 
-- 2 ô rừng khác nhau được tính riêng biệt: di chuyển từ Rừng 1 sang Rừng 2 không bị coi là "ở yên 1 rừng 2 Turn", nên không bị chết bệnh.
-- Nếu rừng bị lửa thiêu: toàn bộ quân đang ẩn trong đó hiện lên bản đồ và chết hết (riêng quân đứng đúng tại Ô Rừng là tâm lửa thì cháy theo luật Hỏa Phù bình thường, không tự động chết như trên).
-- Không nối lương xuyên rừng trừ khi có Mộc Ngưu Lưu Mã thông lương (xem [Quân Sự Nâng Cao](06-quan-su-nang-cao.md), [Quân Sự Cơ Bản](04-quan-su-co-ban.md)).
+- 2 ô rừng khác nhau xét riêng: đi Rừng 1 → Rừng 2 không tính "ở 1 rừng 2 Turn", không chết bệnh.
+- Rừng cháy: quân ẩn hiện lên & chết hết (riêng quân ngay tại ô tâm lửa thì cháy theo luật Hỏa Phù, không tự chết như trên).
+- Không nối lương xuyên rừng, trừ khi có **Mộc Ngưu Lưu Mã** thông lương.
 
 </details>
 
-## Núi
+### Núi
 
-*Cơ bản*
-- Không thể chiếm.
-- Đứng cạnh núi (ở 1 trong 4 ô liền kề) được +10% Thủ (cạnh 2 mặt núi cùng lúc thì +20%).
-- Cung Thủ đứng trên núi bắn tên xuống được +50% Công.
-- Quân thường chỉ được ở trên núi tối đa 1 Turn giống Rừng. Ngoại lệ: nếu trong đội hình có Cung chủ động bắn ngay Turn đầu tiên, toàn bộ quân đi cùng vị Tướng chỉ huy Cung đó được ở lại thêm 1 Turn (kể cả tiếp tục bắn), nhưng chậm nhất đến hết lượt Go của Turn thứ 3 phải rời núi.
-- Có địch cùng ô thì bắt buộc phải giao chiến.
+- Đứng **cạnh** núi (1 trong 4 ô kề): **+10% Thủ** (cạnh 2 mặt núi: +20%).
+- **Cung** đứng **trên** núi: **+50% Công**. Máy Bắn Đá trên núi: +30% Công.
+- Tối đa 1 Turn như Rừng. Ngoại lệ: nếu có Cung chủ động bắn ngay Turn đầu, toàn quân do đúng Tướng chỉ huy Cung đó được ở thêm 1 Turn (kể cả bắn tiếp), chậm nhất hết Go Turn 3 phải rời.
+- Có địch cùng ô thì bắt buộc giao chiến.
 
 <details>
 <summary>Cơ chế phụ</summary>
 
-- "Được ở lại thêm" chỉ áp dụng cho lính do đúng vị Tướng chỉ huy Cung đó, không áp dụng cho lính của Tướng khác dù đứng chung núi.
-- Không nối lương xuyên núi trừ khi có Mộc Ngưu Lưu Mã thông lương (xem [Quân Sự Nâng Cao](06-quan-su-nang-cao.md), [Quân Sự Cơ Bản](04-quan-su-co-ban.md)).
+- "Ở lại thêm" chỉ cho lính do đúng Tướng chỉ huy Cung đó, không cho lính Tướng khác dù chung núi.
+- Không nối lương xuyên núi, trừ khi có Mộc Ngưu Lưu Mã.
 
 </details>
 
-## Sông
+### Sông
 
-*Cơ bản*
-- Không thể chiếm. Được ở trên sông nhiều Turn liên tục, không bị giới hạn 1 Turn như Núi/Rừng.
-- Cần có ít nhất 1 loại thuyền của mình mới đi vào sông được (hoặc ô sông đó đã có sẵn thuyền nước mình, hoặc được thuyền khác chở/tốc xuống hộ — xem chi tiết thuyền ở [Quân Sự Nâng Cao](06-quan-su-nang-cao.md)).
-- Có địch cùng ô thì bắt buộc phải giao chiến.
+- **Ở được nhiều Turn** (khác Núi/Rừng), nhưng cần ít nhất 1 loại **thuyền** của mình mới vào được (hoặc ô sông đã có thuyền mình, hoặc được thuyền/tốc chở xuống — xem [Quân Sự Nâng Cao](06-quan-su-nang-cao.md)).
+- Kỵ Mã **tắt Truy Cùng Giết Tận** trên sông.
+- Có địch cùng ô thì bắt buộc giao chiến.
 
 <details>
 <summary>Cơ chế phụ</summary>
 
-- Từ bờ có thể tốc phù xuống sông nếu có thuyền mình ở đó, hoặc được tốc ngược từ sông lên bờ; nhưng không bao giờ tốc xuyên qua sông được, kể cả Kỵ đã có Móng Ngựa.
-- Nếu sông bị Hỏa Phù: toàn bộ quân trên sông cháy đứng yên tại chỗ (áp dụng các hiệu ứng khác của Hỏa Phù bình thường) và bị giảm thêm 50% sức mạnh cuối cùng còn lại ngay trong Turn cháy đó.
-- Không nối lương xuyên sông trừ khi có thuyền/thông lương hợp lệ (xem [Quân Sự Cơ Bản](04-quan-su-co-ban.md), [Quân Sự Nâng Cao](06-quan-su-nang-cao.md)).
+- Từ bờ tốc phù xuống sông được nếu có thuyền mình ở đó (hoặc tốc ngược lên bờ), nhưng **không tốc xuyên sông** — kể cả Kỵ đã có Móng Ngựa.
+- Sông dính Hỏa Phù: quân trên sông cháy đứng yên (hiệu ứng Hỏa Phù bình thường) và bị **giảm thêm 50%** sức mạnh cuối còn lại trong Turn cháy đó.
+- Không nối lương xuyên sông, trừ khi có thuyền/thông lương hợp lệ.
 
 </details>
 

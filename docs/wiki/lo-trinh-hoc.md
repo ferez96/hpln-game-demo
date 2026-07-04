@@ -31,11 +31,9 @@ Sơ đồ dưới đây được dựng **trước khi** wiki này tồn tại, 
 | 1 | Nhịp Thời Gian (Turn/Go/Atc) | [Khung Sườn & Tổng Quan](00-tong-quan.md) |
 | 2 | Chức Vụ | [Khung Sườn & Tổng Quan](00-tong-quan.md) |
 | 2 | Địa Hình (6 loại ô + Sa Trường) | [Địa Lý & Bản Đồ](01-dia-ly.md) |
-| 2 | Gián Điệp Cài Cắm | [Chính Trị Nội Bộ](02-chinh-tri.md) |
 | 3 | Kinh Tế (Mỏ/Nhà Dân/Ruộng/Lương) | [Kinh Tế & Hậu Cần](03-kinh-te.md) |
 | 3 | Dân Tâm & Uy Danh — sinh ra | [Danh Vọng & Thăng Tiến](05-danh-vong.md) |
 | 3 | Trục Xuất & Trảm Đầu | [Chính Trị Nội Bộ](02-chinh-tri.md) |
-| 3 | Đảo Chính | [Chính Trị Nội Bộ](02-chinh-tri.md) |
 | 4 | Quân Đội Cơ Bản | [Quân Sự Cơ Bản](04-quan-su-co-ban.md) |
 | 4 | Uy Danh → thăng Đại Tướng Quân | [Danh Vọng & Thăng Tiến](05-danh-vong.md) |
 | 4 | Hoa Đà / Tả Từ / Thủy Kính (Bát Quái, Bát Kỳ) | [Huyền Bí & Đặc Dị](07-huyen-bi.md) |

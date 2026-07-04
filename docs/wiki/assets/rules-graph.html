@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đồ Thị Luật Game — Tam Quốc Tranh Hùng</title>
+<style>
+  :root {
+    --surface-1: #fcfcfb; --page: #f9f9f7;
+    --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #898781;
+    --gridline: #e1e0d9; --border: rgba(11,11,11,0.10);
+    --good: #0ca30c; --critical: #d03b3b; --accent: #2a78d6;
+    --edge-muted: #9a988f; --edge-prog: #8a7fce;
+    color-scheme: light dark;
+  }
+  :root[data-theme="dark"], html[data-theme="dark"] body {
+    --surface-1: #1a1a19; --page: #0d0d0d;
+    --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #8f8d86;
+    --gridline: #2c2c2a; --border: rgba(255,255,255,0.10);
+    --good: #0ca30c; --critical: #e66767; --accent: #3987e5;
+    --edge-muted: #6a6862; --edge-prog: #9085e9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --surface-1: #1a1a19; --page: #0d0d0d;
+      --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #8f8d86;
+      --gridline: #2c2c2a; --border: rgba(255,255,255,0.10);
+      --good: #0ca30c; --critical: #e66767; --accent: #3987e5;
+      --edge-muted: #6a6862; --edge-prog: #9085e9;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page); color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 22px 16px 56px; }
+  header h1 { font-size: 1.3rem; margin: 0 0 6px; letter-spacing: -0.01em; }
+  header p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.55; margin: 0 0 4px; max-width: 78ch; }
+  header p .k { color: var(--text-muted); }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin: 16px 0 8px; }
+  .search { flex: 1 1 220px; min-width: 180px; display: flex; align-items: center; gap: 8px;
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 9px; padding: 7px 11px; }
+  .search input { border: 0; outline: 0; background: transparent; color: var(--text-primary); font-size: 0.88rem; width: 100%; }
+  .search svg { flex: none; color: var(--text-muted); }
+  .btn { font: inherit; font-size: 0.8rem; color: var(--text-secondary); background: var(--surface-1);
+    border: 1px solid var(--border); border-radius: 8px; padding: 6px 11px; cursor: pointer; }
+  .btn:hover { color: var(--text-primary); border-color: var(--text-muted); }
+  .legend { display: flex; flex-wrap: wrap; gap: 7px 8px; margin: 6px 0; }
+  .legend .grp-label { width: 100%; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text-muted); margin: 8px 0 1px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--text-secondary);
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px 4px 8px;
+    cursor: pointer; user-select: none; transition: opacity .12s, border-color .12s; }
+  .chip:hover { border-color: var(--text-muted); }
+  .chip.off { opacity: 0.38; }
+  .chip .dot { width: 11px; height: 11px; border-radius: 50%; flex: none; }
+  .chip .line { width: 20px; height: 0; flex: none; }
+  .stage-wrap { position: relative; border: 1px solid var(--border); border-radius: 13px;
+    background: var(--surface-1); overflow: hidden; margin-top: 10px; }
+  svg.stage { display: block; width: 100%; height: 74vh; min-height: 540px; touch-action: none; cursor: grab; }
+  svg.stage.grabbing { cursor: grabbing; }
+  .edge { fill: none; stroke: var(--edge-muted); stroke-width: 1.3; opacity: 0.42; }
+  .edge.produces { stroke: var(--good); stroke-width: 1.7; opacity: 0.7; }
+  .edge.costs { stroke: var(--critical); stroke-width: 1.6; opacity: 0.62; }
+  .edge.upgrades { stroke: var(--edge-prog); stroke-width: 1.9; opacity: 0.72; }
+  .edge.requires, .edge.enables { stroke: var(--edge-prog); stroke-dasharray: 5 4; opacity: 0.6; }
+  .edge.counters { stroke-dasharray: 2 4; opacity: 0.55; }
+  .edge.timing, .edge.contains, .edge.affects { stroke-dasharray: 1 5; opacity: 0.34; }
+  .edge.dim { opacity: 0.05 !important; }
+  .edge.hot { opacity: 1 !important; stroke-width: 2.6; }
+  .node { cursor: pointer; }
+  .node circle { stroke: var(--surface-1); stroke-width: 1.5; }
+  .node text { fill: var(--text-primary); font-size: 10.5px; pointer-events: none;
+    paint-order: stroke; stroke: var(--surface-1); stroke-width: 3px; stroke-linejoin: round; }
+  .node.dim { opacity: 0.14; }
+  .node.hot circle { stroke: var(--text-primary); stroke-width: 2.2; }
+  .node.hot text { font-weight: 700; }
+  .tooltip { position: fixed; max-width: 270px; background: var(--text-primary); color: var(--surface-1);
+    font-size: 0.76rem; line-height: 1.45; padding: 9px 11px; border-radius: 8px; pointer-events: none;
+    opacity: 0; transform: translateY(3px); transition: opacity .1s; z-index: 20; }
+  .tooltip.show { opacity: 0.98; }
+  .tooltip b { display: block; font-size: 0.84rem; margin-bottom: 2px; }
+  .tooltip .cat { color: var(--text-muted); font-size: 0.72rem; }
+  .panel { margin-top: 14px; background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: 11px; padding: 14px 16px; font-size: 0.86rem; line-height: 1.5; }
+  .panel.empty { color: var(--text-muted); }
+  .panel h2 { font-size: 1.02rem; margin: 0 0 3px; display: flex; align-items: center; gap: 9px; }
+  .panel .badge { font-size: 0.68rem; font-weight: 600; padding: 2px 8px; border-radius: 999px;
+    color: #fff; letter-spacing: 0.02em; }
+  .panel .sub { color: var(--text-muted); font-size: 0.77rem; margin: 0 0 8px; }
+  .panel .desc { color: var(--text-secondary); margin: 0 0 12px; }
+  .rel-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 640px) { .rel-cols { grid-template-columns: 1fr; } }
+  .rel-cols h3 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text-muted); margin: 0 0 6px; }
+  .rel { list-style: none; padding: 0; margin: 0; }
+  .rel li { padding: 3px 0; border-bottom: 1px solid var(--gridline); font-size: 0.82rem; }
+  .rel li:last-child { border-bottom: 0; }
+  .rel .ty { display: inline-block; min-width: 96px; color: var(--text-muted); font-size: 0.74rem; }
+  .rel a { color: var(--accent); text-decoration: none; cursor: pointer; }
+  .rel a:hover { text-decoration: underline; }
+  .rel .note { color: var(--text-muted); font-size: 0.74rem; }
+  footer { margin-top: 20px; color: var(--text-muted); font-size: 0.76rem; line-height: 1.5; }
+  footer code { background: var(--gridline); padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Đồ Thị Luật Game — Tam Quốc Tranh Hùng</h1>
+    <p>Mỗi <b>ô</b> là 1 thực thể luật (chức vụ, tài nguyên, lính, cơ giới, phù, trận, địa hình, cơ chế…). Mỗi <b>đường</b> là 1 quan hệ có kiểu — <b style="color:var(--good)">sản xuất</b>, <b style="color:var(--critical)">tốn</b>, tiến hóa, cần trước, khắc chế, chở… Kéo để xoay, lăn chuột để phóng to, bấm 1 ô để xem chi tiết. <span class="k">Màu chỉ gợi ý nhóm (domain); danh tính thật đọc từ nhãn, bộ lọc và bảng chi tiết.</span></p>
+  </header>
+
+  <div class="toolbar">
+    <label class="search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="search" type="search" placeholder="Tìm thực thể… (vd: Uy Danh, Kỵ Mã, Hỏa Phù)" autocomplete="off">
+    </label>
+    <button class="btn" id="reset-view">Căn giữa</button>
+    <button class="btn" id="theme-toggle">◐ Sáng/Tối</button>
+  </div>
+
+  <div class="legend" id="legend-domains"></div>
+  <div class="legend" id="legend-edges"></div>
+
+  <div class="stage-wrap">
+    <svg class="stage" id="stage">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
+        </marker>
+      </defs>
+      <g id="viewport">
+        <g id="edges"></g>
+        <g id="nodes"></g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="panel empty" id="panel">Bấm vào một ô để xem mô tả luật và toàn bộ quan hệ vào/ra của nó.</div>
+
+  <footer>
+    <span id="counts"></span> · Nguồn: <code>reference/Tam Quoc Chi - full text.txt</code> · Mô hình dữ liệu: <code>data/rules-graph.json</code>. Trang này được sinh tự động từ <code>data/build_rules_graph.py</code>.
+  </footer>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+const GRAPH = {"meta":{"title":"Tam Quốc Tranh Hùng — Đồ Thị Luật Game","source":"reference/Tam Quoc Chi - full text.txt","note":"Node = thực thể luật; edge = quan hệ có kiểu. Màu = domain (gợi ý nhóm); danh tính do nhãn + bộ lọc + bảng chi tiết gánh.","domains":{"role":{"label":"Chức vụ","light":"#2a78d6","dark":"#3987e5"},"resource":{"label":"Tài nguyên & Điểm","light":"#1baf7a","dark":"#199e70"},"military":{"label":"Quân sự","light":"#eda100","dark":"#c98500"},"economy":{"label":"Hậu cần & Công trình","light":"#008300","dark":"#008300"},"terrain":{"label":"Địa hình","light":"#4a3aa7","dark":"#6f56c9"},"mystic":{"label":"Huyền bí","light":"#e34948","dark":"#e66767"},"tactics":{"label":"Chiến thuật","light":"#e87ba4","dark":"#d55181"},"system":{"label":"Cơ chế & Thời gian","light":"#eb6834","dark":"#d95926"}},"edgeTypes":{"produces":{"label":"sản xuất","hint":"A sinh ra B mỗi turn / khi chiếm","style":"produces","dir":"one"},"costs":{"label":"tốn / nguyên liệu","hint":"Tạo/mua/duy trì A phải tiêu B","style":"costs","dir":"one"},"upgrades":{"label":"tiến hóa thành","hint":"A nâng cấp / tiến hóa thành B","style":"upgrades","dir":"one"},"requires":{"label":"cần trước","hint":"Phải có B mới có/mới dùng được A","style":"requires","dir":"one"},"enables":{"label":"mở khóa / dạy thành","hint":"A mở khóa hoặc biến ai đó thành B","style":"enables","dir":"one"},"boosts":{"label":"tăng chỉ số","hint":"A buff/khuếch đại B","style":"boosts","dir":"one"},"carries":{"label":"chở / mang","hint":"Cơ giới/thuyền chở B","style":"carries","dir":"one"},"stores":{"label":"trữ tại","hint":"B là kho chứa của A (lúa…)","style":"stores","dir":"one"},"transforms":{"label":"biến thành","hint":"Khi bị phá/mất, A biến thành B","style":"transforms","dir":"one"},"heals":{"label":"trị / hồi","hint":"A hồi phục cho B","style":"heals","dir":"one"},"counters":{"label":"khắc chế / miễn nhiễm","hint":"A khắc chế hoặc miễn nhiễm B","style":"counters","dir":"both"},"affects":{"label":"tác động","hint":"Thời tiết/cơ chế tác động lên B","style":"affects","dir":"one"},"timing":{"label":"diễn ra ở","hint":"A chỉ dùng/xảy ra trong pha B","style":"timing","dir":"one"},"contains":{"label":"gồm","hint":"A bao gồm B","style":"contains","dir":"one"}},"counts":{"nodes":86,"edges":169}},"nodes":[{"id":"lord","label":"Chủ Công","domain":"role","category":"Chức vụ","desc":"Lãnh đạo 1 nước. Mỗi turn ra 1 Đế Khí. Xét duyệt/chiêu nạp/trảm/trục. Có skill Đại Tướng, không bị giáng cấp, không thể phản bội."},{"id":"strategist","label":"Quân Sư","domain":"role","category":"Chức vụ","desc":"Chốt lệnh hậu cần & chiến sự cho GM theo đa số Quan Văn. Không lên bản đồ. Có thể bị Chủ Công trảm bất cứ lúc nào."},{"id":"civil","label":"Quan Văn","domain":"role","category":"Chức vụ","desc":"Mỗi turn ra 1 Tài Nguyên + 1 Dân Tâm (từ năm 2: 2 TN). Lo hậu cần & phát triển. Ra Sa Trường như kỵ nhưng không cầm Phù/Cơ giới/cung công."},{"id":"general","label":"Tướng Quân","domain":"role","category":"Chức vụ","desc":"Mỗi turn ra 1 Uy Danh. Cầm quân đánh trận (mặc định 1000 bộ đầu game). Biên chế 10.000 lính khi di chuyển."},{"id":"grand-general","label":"Đại Tướng Quân","domain":"role","category":"Chức vụ","desc":"Nâng từ Tướng Quân. Skill Đại Tướng: +1 Công +1 Thủ mỗi lính (1 turn, delay 1 turn). Thua 1 lần bị giáng lại."},{"id":"war-general","label":"Chiến Tướng","domain":"role","category":"Chức vụ","desc":"Nhập hồn từ Tướng có tư chất. Biên chế 50.000 lính/cung. Trung thành tuyệt đối: không phản, không bị trảm/trục. Tối đa 5/nước."},{"id":"resource","label":"Tài Nguyên","domain":"resource","category":"Tài nguyên","desc":"Đơn vị kinh tế chính. Mua lính, đồ, phù, nâng cấp. Về không gian ảo dù không kết nối."},{"id":"population","label":"Dân","domain":"resource","category":"Tài nguyên","desc":"Mua từ Nhà Dân bằng Tài Nguyên. Nguyên liệu đổi ra Lúa (mất dân) và tuyển Bộ Binh."},{"id":"grain","label":"Lúa","domain":"resource","category":"Tài nguyên","desc":"Nuôi lính mỗi turn; thiếu là chết đói. Ăn theo khoảng cách vựa. Không nuôi dân."},{"id":"morale","label":"Dân Tâm","domain":"resource","category":"Điểm quốc gia","desc":"Quan Văn sinh ra. Chủ Công tiêu: mời Hoa Đà (5), Tả Từ (7), Thủy Kính (10)."},{"id":"prestige","label":"Uy Danh","domain":"resource","category":"Điểm quốc gia","desc":"Tướng sinh ra. Tiêu để thăng Đại Tướng (10), Nhập Hồn (10), lập Trận (X), nâng cấp Tinh Binh."},{"id":"imperial","label":"Đế Khí","domain":"resource","category":"Điểm quốc gia","desc":"Chủ Công ra 1/turn. Có thể đổi ra 1 Dân Tâm hoặc 1 Uy Danh."},{"id":"score","label":"Điểm Lãnh Thổ","domain":"resource","category":"Điểm thắng","desc":"Cuối Xuân/Thu: Trì +5, Châu +3, Ô Trắng +1. Cộng dồn 5 năm để xét thắng."},{"id":"infantry","label":"Bộ Binh","domain":"military","category":"Lính","desc":"1 Công / 1 Thủ. Nền tảng; là nguyên liệu cho Cung & Kỵ. Không cầm tên."},{"id":"archer","label":"Cung Thủ","domain":"military","category":"Lính","desc":"Bắn khác ô (1 trong 4 ô). Cầm tên = 2 Công, hỏa tiễn = 3 Công. Tấn công chủ yếu ban đêm (Atc)."},{"id":"cavalry","label":"Kỵ Mã","domain":"military","category":"Lính","desc":"Chỉ số như bộ. Nội tại Truy Cùng Giết Tận. Kết hợp Tốc Phù. Cần ≥1000 kỵ để kích truy sát."},{"id":"xiliang","label":"Kỵ Tây Lương","domain":"military","category":"Lính (Tinh Binh)","desc":"Nâng từ Kỵ Mã (mốc 24k kill). +1 Công/kỵ trên bờ; Tốc Phù chỉ còn delay 1 turn."},{"id":"mounted-archer","label":"Mã Cung Thủ","domain":"military","category":"Lính (Tinh Binh)","desc":"Nâng từ Cung Thủ (mốc 36k). Cung có ngựa, dùng được Tốc Phù. Không có truy sát, không +1 công Tây Lương."},{"id":"ram","label":"Xe Đục Thành","domain":"military","category":"Cơ giới","desc":"Chở bộ; mỗi bộ +2..4 Công khi đục Châu/Trì địch. 1 tướng 1 xe. Bỏ ở ô lạ thì cuối Go hủy."},{"id":"chariot","label":"Chiến Xa Mã","domain":"military","category":"Cơ giới (Tinh Binh)","desc":"Chở Kỵ Mã, được Tốc Phù. Kỵ trên xa 'ngự hỏa' không bị cháy. Mốc 48k kill."},{"id":"arrow-tower","label":"Tháp Bắn Tên","domain":"military","category":"Cơ giới (Tinh Binh)","desc":"Chở Cung; giúp bắn xa 2 ô, Trinh Sát 2x3. Mốc 48k kill."},{"id":"catapult","label":"Máy Bắn Đá","domain":"military","category":"Cơ giới (Tinh Binh)","desc":"Bắn Atc; mỗi 100 bộ +300 Công khi phá Châu/Trì/công trình. Trên núi +30%. 1 TN = 10.000 đá."},{"id":"wooden-ox","label":"Mộc Ngưu Lưu Mã","domain":"military","category":"Cơ giới (Tinh Binh)","desc":"Trâu gỗ. Văn cầm để khai thông lương trên Núi/Rừng. Mốc 12k kill."},{"id":"crossbow","label":"Nỏ Liên Châu","domain":"military","category":"Cơ giới (Tinh Binh)","desc":"Cung chủ động bắn 2 ô/turn. Giảm giá tên. Mốc 60k kill."},{"id":"fishing-boat","label":"Thuyền Đánh Cá","domain":"military","category":"Thuyền","desc":"Trên sông mỗi turn về 4..6 Tài Nguyên. 1 ô sông 1 thuyền khai thác."},{"id":"grain-boat","label":"Thuyền Kho Lương","domain":"military","category":"Thuyền","desc":"Vựa lúa di động, chứa 100.000 lúa; tiếp lương cho quân qua sông."},{"id":"training-boat","label":"Thuyền Huấn Luyện","domain":"military","category":"Thuyền","desc":"Giữ 75..130% sức mạnh khi lên bờ / trên sông (tránh say sóng)."},{"id":"arrows","label":"Tên Thường","domain":"military","category":"Đạn","desc":"1 TN = 2000..4000 tên. Mỗi cung cầm ≤100. Cung cầm tên = 2 Công."},{"id":"fire-arrows","label":"Hỏa Tiễn","domain":"military","category":"Đạn","desc":"1 TN = 1000..2000. Cung = 3 Công (ưu tiên). Xuyên/đáp ô Thủy, đốt khi bắn (≠ Hỏa Phù)."},{"id":"stones","label":"Đá","domain":"military","category":"Đạn","desc":"Đạn cho Máy Bắn Đá. 1 TN = 10.000 đá, mua tại chỗ đầu Atc, dư thì hủy."},{"id":"mine","label":"Mỏ","domain":"economy","category":"Khai thác","desc":"Ra 3/5/7 Tài Nguyên/turn theo cấp. Nâng cấp tốn 4..5 TN."},{"id":"pop-house","label":"Nhà Dân","domain":"economy","category":"Khai thác","desc":"1 Tài Nguyên đổi 2000..4000 Dân theo cấp."},{"id":"farm","label":"Ruộng","domain":"economy","category":"Khai thác","desc":"Đổi 1000 Dân = 1000..3000 Lúa. Mùa Đông đóng băng, 0 lúa."},{"id":"barracks","label":"Khu Quân Sự","domain":"economy","category":"Đào tạo","desc":"Trại lính: Tài Nguyên + Dân/Bộ → Bộ/Cung/Kỵ theo biên chế cấp."},{"id":"forge-weapon","label":"Lò Rèn Vũ Khí","domain":"economy","category":"Rèn","desc":"Đồng/Sắt/Thép: +1..3 Công cho toàn bộ quân trong nước."},{"id":"forge-armor","label":"Lò Rèn Khiên","domain":"economy","category":"Rèn","desc":"Khiên Đồng/Sắt/Thép: +1..3 Thủ cho toàn bộ quân trong nước."},{"id":"camp","label":"Doanh Trại","domain":"economy","category":"Công trình dã chiến","desc":"Văn xây/coi trên Ô Trắng. Vựa lúa + nơi dưỡng thương. Miễn nhiễm Hỏa như thành."},{"id":"drill","label":"Thao Trường","domain":"economy","category":"Công trình dã chiến","desc":"Văn xây/coi trên Ô Trắng. Mua dân/tên/thuyền/cơ giới & đào tạo lính tại chỗ (không mua lúa)."},{"id":"citadel","label":"Ô Thành Trì","domain":"terrain","category":"Ô chủ lực","desc":"9 ô/nước, 8000 Thủ đá. Vựa lúa, nơi xuất quân. Phá hết 9 → nước sụp đổ. Không xây lại."},{"id":"province","label":"Châu Thành","domain":"terrain","category":"Ô đặc biệt","desc":"6000 Thủ địa phương, +3 Tài Nguyên & +3 Điểm/turn. Vựa lúa (chỉ chứa, không tạo)."},{"id":"white-tile","label":"Ô Trắng","domain":"terrain","category":"Ô thường","desc":"Chiếm được: +1 Tài Nguyên/turn, +1 Điểm. Nơi xây Doanh/Thao & đặt Bẫy."},{"id":"forest","label":"Rừng","domain":"terrain","category":"Ô không chiếm","desc":"Ẩn map + miễn Trinh Sát. Ở >1 turn chết bệnh. Cháy thì hiện & chết. Cấm nối lương (trừ Trâu)."},{"id":"mountain","label":"Núi","domain":"terrain","category":"Ô không chiếm","desc":"Ở cạnh +10% Thủ; Cung trên núi +50% Công; Máy Bắn Đá +30%. Ở >1..2 turn chết bệnh."},{"id":"river","label":"Sông","domain":"terrain","category":"Ô không chiếm","desc":"Ở nhiều turn nếu có thuyền. Cần thuyền để vào. Kỵ tắt truy sát trên sông."},{"id":"fire-talisman","label":"Hỏa Phù","domain":"mystic","category":"Phù","desc":"Dùng Atc. Tạo vùng lửa 5 ô; -1 Thủ/lính, miễn nối lương 1 turn. Châu/Trì miễn nhiễm."},{"id":"water-talisman","label":"Thủy Phù","domain":"mystic","category":"Phù","desc":"Dùng Atc. Vùng mưa giữ chân quân, chặn gửi/rút. Không ô nào miễn nhiễm. Hỏa gặp Thủy → Thủy."},{"id":"speed-talisman","label":"Tốc Phù","domain":"mystic","category":"Phù","desc":"Dùng Go, chỉ Kỵ. Đi 2..4 ô liên tiếp. Miễn nối lương Go đó. Delay 2 turn (Tây Lương: 1)."},{"id":"wind-talisman","label":"Phong Phù","domain":"mystic","category":"Phù","desc":"Dùng Atc. Cung bắn xa +1 ô (Ô1→Ô3). Địch dính -1 Thủ (cộng dồn với Hỏa tối đa -2)."},{"id":"rally-talisman","label":"Cổ Vũ","domain":"mystic","category":"Phù","desc":"Dùng Go/Atc. +1 Công mỗi lính thuộc tướng chỉ huy (1 turn)."},{"id":"super-talisman","label":"Siêu Phù","domain":"mystic","category":"Phù","desc":"Bát Quái chế miễn phí: Siêu Tốc (+1 ô), Siêu Phong (+1 ô), Siêu Cổ Vũ (+2 Công)."},{"id":"huatuo","label":"Thần Y Hoa Đà","domain":"mystic","category":"Danh nhân","desc":"Đổi Dân Tâm/Uy Danh: trị thương, giảm turn dưỡng cho người nước mình. Cả 3 nước mời chung 1 turn."},{"id":"zuoci","label":"Pháp Sư Tả Từ","domain":"mystic","category":"Danh nhân","desc":"Đổi 7 Dân Tâm dạy 1 người thành Bát Quái. Không dạy Chủ Công."},{"id":"shuijing","label":"Thủy Kính Tiên Sinh","domain":"mystic","category":"Danh nhân","desc":"Đổi 10 Dân Tâm dạy 1 người thành Bát Kỳ. Không dạy Chủ Công."},{"id":"bagua","label":"Bát Quái","domain":"mystic","category":"Trạng thái","desc":"Do Tả Từ dạy. Võ: xài 2 phù khác loại/turn. Văn: chế 1 Siêu Phù/turn."},{"id":"baqi","label":"Bát Kỳ","domain":"mystic","category":"Trạng thái","desc":"Do Thủy Kính dạy. Văn: X5 Tài Nguyên đến hết game. Tướng: tư chất hóa Chiến Tướng."},{"id":"stealth","label":"Ẩn Thân","domain":"tactics","category":"Kỹ năng","desc":"Go, 2 TN. Ẩn map 2 turn (kể cả đồ mang theo). Bị hiện nếu bắn/dính hỏa/bị trinh sát. Delay 2 turn."},{"id":"trap","label":"Đặt Bẫy","domain":"tactics","category":"Kỹ năng","desc":"Atc, 2 TN, trên Ô Trắng của mình. Địch đạp: -1/3 lính tướng đặt bẫy. Kỵ tốc đạp thì lùi ô."},{"id":"scout","label":"Trinh Sát","domain":"tactics","category":"Kỹ năng","desc":"Atc, 2 TN. Soi vùng 2x2: số & loại quân/thuyền/cơ giới/trận/ẩn/bẫy. Không thấy Rừng."},{"id":"pursuit","label":"Truy Cùng Giết Tận","domain":"tactics","category":"Kỹ năng nội tại","desc":"Kỵ Mã (≥1000): thắng thì giết thêm tàn binh bằng số kỵ còn lại. Tắt khi trên sông."},{"id":"formation","label":"Trận Pháp","domain":"tactics","category":"Hệ thống","desc":"Nối nhóm tướng đúng vị trí để buff %. Tốn X Uy Danh (X người). Lập Go, giữ hết Atc."},{"id":"yulin","label":"Ngư Lân Trận","domain":"tactics","category":"Trận","desc":"2..4 tướng, bật Thủ. Mỗi tướng thêm +100% Thủ (riêng lính từng tướng)."},{"id":"changshe","label":"Trường Xà Trận","domain":"tactics","category":"Trận","desc":"3 tướng. Lính tướng 1 +100% Công, tướng 2 -10%. Kèm Thiên La Địa Võng."},{"id":"qixing","label":"Thất Tinh Trận","domain":"tactics","category":"Trận","desc":"5 tướng. Lính tướng 1 +235% Công. Kèm Thiên La + 'Trấn Áp' (khóa ẩn thân)."},{"id":"yanhang","label":"Nhạn Hành Trận","domain":"tactics","category":"Trận","desc":"3 tướng thẳng hàng. Cung tướng 1 bắn 2 bên +100%. Bộ/Kỵ +100% khi đánh trên/dưới."},{"id":"yanyue","label":"Yển Nguyệt Trận","domain":"tactics","category":"Trận","desc":"3 tướng thẳng hàng. Kỵ tướng 1 +135% Công; tướng 2 phải đứng yên 1 turn sau."},{"id":"fengsha","label":"Phong Sát Trận","domain":"tactics","category":"Trận","desc":"5 tướng. Cung tướng 1 +300% Công, được bắn chéo (Tháp/Phong). Chuyên cung."},{"id":"chuixing","label":"Trùy Hình Trận","domain":"tactics","category":"Trận","desc":"3 tướng hàng chéo. Dập Thủy/Hỏa trên vùng 3x3. Toàn quân trong 9 ô -10% Công & Thủ."},{"id":"tianluo","label":"Thiên La Địa Võng","domain":"tactics","category":"Hiệu ứng trận","desc":"Mai phục: địch tại ô không đạt gấp đôi 3 tướng trận thì bị giảm tiếp 50% sức mạnh."},{"id":"turn","label":"Turn (1 Ngày)","domain":"system","category":"Thời gian","desc":"1 ngày = hết Go + Atc. Game 20 turn (5 năm). GM có thể rút ngắn thời gian chờ."},{"id":"go","label":"Lượt Go (Ngày)","domain":"system","category":"Pha","desc":"9h–20h. Mua/nâng cấp/hành quân/di chuyển/Tốc Phù/Cổ Vũ, giao chiến cận."},{"id":"atc","label":"Lượt Atc (Đêm)","domain":"system","category":"Pha","desc":"20h–9h. Cung tấn công, Hỏa/Thủy/Phong Phù, Đặt Bẫy, Trinh Sát, Máy Bắn Đá, chốt phản/nạp."},{"id":"spring","label":"Mùa Xuân","domain":"system","category":"Thời tiết","desc":"Bình thường. Turn 1,5,9,13,17. Cuối Xuân tính Điểm Lãnh Thổ."},{"id":"summer","label":"Mùa Hạ","domain":"system","category":"Thời tiết","desc":"Lính dễ ốm: sau giao chiến, số lính chết X2 (trừ chết bẫy)."},{"id":"autumn","label":"Mùa Thu","domain":"system","category":"Thời tiết","desc":"Bội thu: Lúa làm ra X2. Cuối Thu tính Điểm Lãnh Thổ."},{"id":"winter","label":"Mùa Đông","domain":"system","category":"Thời tiết","desc":"Ruộng đóng băng (0 lúa). Cấm mọi quân sự: không công/di chuyển/phù/xây/chuyển đồ."},{"id":"supply-line","label":"Nối Lương","domain":"system","category":"Cơ chế","desc":"Đường lương các ô mình chiếm (không chéo góc) nối về Trì. Mất nối = chết đói + mất màu đất."},{"id":"starvation","label":"Chết Đói / Cắt Lương","domain":"system","category":"Cơ chế","desc":"Thiếu lúa hoặc bị cắt đường về Trì: lính bại chết đói cuối Go/Atc, đất thành Ô Trắng."},{"id":"betrayal","label":"Phản Bội","domain":"system","category":"Cơ chế","desc":"Chốt cuối Atc. Võ cần ≥2000 quân, ngoài Sa Trường; Văn không cần 2000. Mang quân+đất theo."},{"id":"expel","label":"Trục Xuất","domain":"system","category":"Cơ chế","desc":"Chủ Công đuổi (Atc), thu hết tài sản/quân. Turn sau không thờ ai thì bị loại."},{"id":"execute","label":"Trảm Đầu","domain":"system","category":"Cơ chế","desc":"Chủ Công chém (Go). Trảm kẻ phản: thu ½ lính, kẻ phản + ½ lính bị loại."},{"id":"recruit","label":"Chiêu Nạp Hiền Tài","domain":"system","category":"Cơ chế","desc":"Chủ Công xét duyệt & thu nhận nhân tài mới (cuối Atc). Đầu Go1 xin thì cuối Atc1 mới được duyệt."},{"id":"soul-infusion","label":"Nhập Hồn Chiến Tướng","domain":"system","category":"Cơ chế","desc":"20 Tài Nguyên + 10 Uy Danh + tư chất (Bát Kỳ) → Chiến Tướng. Tối đa 5/nước, gọi đầu Go."},{"id":"elite","label":"Tinh Binh (Mốc Kill)","domain":"system","category":"Cơ chế","desc":"Quốc gia đạt mốc giết địch (12k/24k/36k/48k/60k, chia đều 2 nước) để mở cơ giới/binh chủng."},{"id":"kill-streak","label":"Liên Trảm","domain":"system","category":"Cơ chế","desc":"Giết trực tiếp 3 tướng địch liên tiếp → Đại Tướng. Thua 1 lần về thành mất tích lũy."},{"id":"combat","label":"Binh Pháp (Công/Thủ)","domain":"system","category":"Cơ chế","desc":"So Công vs Thủ. Thua mất ½ quân; thắng chết = 50% quân địch mất. Kỵ truy sát sau cùng."},{"id":"victory","label":"Thắng Lợi","domain":"system","category":"Kết cục","desc":"Phá hết Trì 2 nước, hoặc điểm cao nhất sau 20 turn. Hòa xét Trì > Châu > Ô Trắng."}],"edges":[{"source":"civil","target":"resource","type":"produces","label":"1–2 / turn"},{"source":"civil","target":"morale","type":"produces","label":"1 / turn"},{"source":"general","target":"prestige","type":"produces","label":"1 / turn"},{"source":"grand-general","target":"prestige","type":"produces","label":"1 / turn"},{"source":"war-general","target":"prestige","type":"produces","label":"1 / turn"},{"source":"lord","target":"imperial","type":"produces","label":"1 / turn"},{"source":"mine","target":"resource","type":"produces","label":"3 / 5 / 7"},{"source":"pop-house","target":"population","type":"produces","label":"2000–4000 / TN"},{"source":"farm","target":"grain","type":"produces","label":"1000–3000 / 1000 dân"},{"source":"fishing-boat","target":"resource","type":"produces","label":"4–6 / turn"},{"source":"province","target":"resource","type":"produces","label":"3 / turn"},{"source":"white-tile","target":"resource","type":"produces","label":"1 / turn"},{"source":"citadel","target":"score","type":"produces","label":"+5 / mùa"},{"source":"province","target":"score","type":"produces","label":"+3 / mùa"},{"source":"white-tile","target":"score","type":"produces","label":"+1 / mùa"},{"source":"barracks","target":"infantry","type":"produces","label":"1000–3000"},{"source":"barracks","target":"archer","type":"produces","label":"1000–3000"},{"source":"barracks","target":"cavalry","type":"produces","label":"1000–3000"},{"source":"population","target":"resource","type":"costs","label":"mua dân"},{"source":"grain","target":"population","type":"costs","label":"đổi lúa mất dân"},{"source":"infantry","target":"resource","type":"costs","label":"1 TN"},{"source":"infantry","target":"population","type":"costs","label":"2000–4000 dân"},{"source":"archer","target":"resource","type":"costs","label":"1 TN"},{"source":"archer","target":"infantry","type":"costs","label":"2000 bộ"},{"source":"cavalry","target":"resource","type":"costs","label":"1 TN"},{"source":"cavalry","target":"infantry","type":"costs","label":"2000 bộ"},{"source":"infantry","target":"grain","type":"costs","label":"ăn / turn"},{"source":"archer","target":"grain","type":"costs","label":"ăn / turn"},{"source":"cavalry","target":"grain","type":"costs","label":"ăn / turn"},{"source":"huatuo","target":"morale","type":"costs","label":"5 Dân Tâm"},{"source":"huatuo","target":"prestige","type":"costs","label":"5–10 Uy Danh"},{"source":"zuoci","target":"morale","type":"costs","label":"7 Dân Tâm"},{"source":"shuijing","target":"morale","type":"costs","label":"10 Dân Tâm"},{"source":"grand-general","target":"prestige","type":"costs","label":"10 (thay 3 kill)"},{"source":"soul-infusion","target":"prestige","type":"costs","label":"10 Uy Danh"},{"source":"soul-infusion","target":"resource","type":"costs","label":"20 TN"},{"source":"formation","target":"prestige","type":"costs","label":"X = số người"},{"source":"fire-talisman","target":"resource","type":"costs","label":"3 TN"},{"source":"water-talisman","target":"resource","type":"costs","label":"3 TN"},{"source":"speed-talisman","target":"resource","type":"costs","label":"3 TN"},{"source":"wind-talisman","target":"resource","type":"costs","label":"3 TN"},{"source":"rally-talisman","target":"resource","type":"costs","label":"3 TN"},{"source":"stealth","target":"resource","type":"costs","label":"2 TN"},{"source":"trap","target":"resource","type":"costs","label":"2 TN"},{"source":"scout","target":"resource","type":"costs","label":"2 TN"},{"source":"ram","target":"resource","type":"costs","label":"1 TN"},{"source":"catapult","target":"resource","type":"costs","label":"2 TN"},{"source":"catapult","target":"stones","type":"costs","label":"1 TN = 10k"},{"source":"arrows","target":"resource","type":"costs","label":"1 TN = 2–4k"},{"source":"fire-arrows","target":"resource","type":"costs","label":"1 TN = 1–2k"},{"source":"camp","target":"resource","type":"costs","label":"1 TN"},{"source":"drill","target":"resource","type":"costs","label":"1 TN"},{"source":"cavalry","target":"xiliang","type":"upgrades","label":"Tinh Binh"},{"source":"archer","target":"mounted-archer","type":"upgrades","label":"Tinh Binh"},{"source":"general","target":"grand-general","type":"upgrades","label":"10 UD / 3 kill"},{"source":"general","target":"war-general","type":"upgrades","label":"nhập hồn"},{"source":"grand-general","target":"kill-streak","type":"requires","label":"giết 3 tướng"},{"source":"soul-infusion","target":"baqi","type":"requires","label":"tư chất"},{"source":"war-general","target":"soul-infusion","type":"requires","label":""},{"source":"speed-talisman","target":"cavalry","type":"requires","label":"chỉ kỵ dùng"},{"source":"super-talisman","target":"bagua","type":"requires","label":""},{"source":"xiliang","target":"elite","type":"requires","label":"mốc 24k"},{"source":"mounted-archer","target":"elite","type":"requires","label":"mốc 36k"},{"source":"chariot","target":"elite","type":"requires","label":"mốc 48k"},{"source":"arrow-tower","target":"elite","type":"requires","label":"mốc 48k"},{"source":"crossbow","target":"elite","type":"requires","label":"mốc 60k"},{"source":"wooden-ox","target":"elite","type":"requires","label":"mốc 12k"},{"source":"camp","target":"white-tile","type":"requires","label":"xây trên"},{"source":"drill","target":"white-tile","type":"requires","label":"xây trên"},{"source":"trap","target":"white-tile","type":"requires","label":"đặt trên"},{"source":"river","target":"training-boat","type":"requires","label":"cần thuyền"},{"source":"river","target":"fishing-boat","type":"requires","label":"cần thuyền"},{"source":"river","target":"grain-boat","type":"requires","label":"cần thuyền"},{"source":"zuoci","target":"bagua","type":"enables","label":"dạy"},{"source":"shuijing","target":"baqi","type":"enables","label":"dạy"},{"source":"bagua","target":"super-talisman","type":"enables","label":"chế miễn phí"},{"source":"baqi","target":"war-general","type":"enables","label":"tư chất"},{"source":"kill-streak","target":"grand-general","type":"enables","label":""},{"source":"lord","target":"recruit","type":"enables","label":"xét duyệt"},{"source":"lord","target":"expel","type":"enables","label":""},{"source":"lord","target":"execute","type":"enables","label":""},{"source":"wooden-ox","target":"supply-line","type":"enables","label":"thông lương núi/rừng"},{"source":"grain-boat","target":"supply-line","type":"enables","label":"tiếp lương qua sông"},{"source":"forge-weapon","target":"combat","type":"boosts","label":"+1..3 Công"},{"source":"forge-armor","target":"combat","type":"boosts","label":"+1..3 Thủ"},{"source":"rally-talisman","target":"combat","type":"boosts","label":"+1 Công/lính"},{"source":"super-talisman","target":"combat","type":"boosts","label":"Siêu Cổ Vũ +2"},{"source":"grand-general","target":"combat","type":"boosts","label":"+1 Công +1 Thủ"},{"source":"mountain","target":"combat","type":"boosts","label":"+10% Thủ / cung +50%"},{"source":"wind-talisman","target":"archer","type":"boosts","label":"bắn xa +1 ô"},{"source":"fire-arrows","target":"archer","type":"boosts","label":"3 Công"},{"source":"arrows","target":"archer","type":"boosts","label":"2 Công"},{"source":"training-boat","target":"combat","type":"boosts","label":"% thủy chiến"},{"source":"cavalry","target":"pursuit","type":"boosts","label":"nội tại"},{"source":"pursuit","target":"combat","type":"boosts","label":"giết thêm tàn binh"},{"source":"xiliang","target":"combat","type":"boosts","label":"+1 Công kỵ"},{"source":"arrow-tower","target":"archer","type":"boosts","label":"bắn xa 2 ô"},{"source":"catapult","target":"combat","type":"boosts","label":"+300/100 bộ phá thành"},{"source":"crossbow","target":"archer","type":"boosts","label":"bắn 2 ô / turn"},{"source":"yulin","target":"combat","type":"boosts","label":"+100% Thủ/tướng"},{"source":"changshe","target":"combat","type":"boosts","label":"+100% Công (T1)"},{"source":"qixing","target":"combat","type":"boosts","label":"+235% Công (T1)"},{"source":"yanhang","target":"combat","type":"boosts","label":"+100% Công hướng"},{"source":"yanyue","target":"combat","type":"boosts","label":"+135% Công kỵ"},{"source":"fengsha","target":"combat","type":"boosts","label":"+300% Công cung"},{"source":"chuixing","target":"combat","type":"boosts","label":"-10% cả vùng 9 ô"},{"source":"tianluo","target":"combat","type":"boosts","label":"mai phục -50% địch"},{"source":"baqi","target":"civil","type":"boosts","label":"X5 Tài Nguyên"},{"source":"bagua","target":"general","type":"boosts","label":"2 phù / turn"},{"source":"ram","target":"infantry","type":"carries","label":""},{"source":"chariot","target":"cavalry","type":"carries","label":""},{"source":"arrow-tower","target":"archer","type":"carries","label":""},{"source":"catapult","target":"infantry","type":"carries","label":""},{"source":"wooden-ox","target":"grain","type":"carries","label":"trên núi/rừng"},{"source":"training-boat","target":"cavalry","type":"carries","label":"qua sông"},{"source":"fishing-boat","target":"infantry","type":"carries","label":"qua sông"},{"source":"citadel","target":"grain","type":"stores","label":"vựa lúa"},{"source":"province","target":"grain","type":"stores","label":"vựa lúa"},{"source":"grain-boat","target":"grain","type":"stores","label":"100.000"},{"source":"camp","target":"grain","type":"stores","label":"vựa lúa"},{"source":"citadel","target":"white-tile","type":"transforms","label":"bị phá"},{"source":"province","target":"white-tile","type":"transforms","label":"sập"},{"source":"starvation","target":"white-tile","type":"transforms","label":"mất nối"},{"source":"huatuo","target":"general","type":"heals","label":"trị thương"},{"source":"huatuo","target":"civil","type":"heals","label":"trị thương"},{"source":"huatuo","target":"lord","type":"heals","label":"trị thương"},{"source":"fire-talisman","target":"water-talisman","type":"counters","label":"Hỏa gặp Thủy → Thủy"},{"source":"water-talisman","target":"speed-talisman","type":"counters","label":"kẹt ô nước"},{"source":"cavalry","target":"water-talisman","type":"counters","label":"móng ngựa miễn"},{"source":"citadel","target":"fire-talisman","type":"counters","label":"miễn nhiễm"},{"source":"province","target":"fire-talisman","type":"counters","label":"miễn nhiễm"},{"source":"camp","target":"fire-talisman","type":"counters","label":"miễn nhiễm"},{"source":"drill","target":"fire-talisman","type":"counters","label":"miễn nhiễm"},{"source":"chuixing","target":"fire-talisman","type":"counters","label":"dập"},{"source":"chuixing","target":"water-talisman","type":"counters","label":"dập"},{"source":"chariot","target":"fire-talisman","type":"counters","label":"ngự hỏa"},{"source":"trap","target":"cavalry","type":"counters","label":"kỵ tốc đạp → lùi"},{"source":"execute","target":"betrayal","type":"counters","label":"ưu tiên trảm phản"},{"source":"forest","target":"scout","type":"counters","label":"không soi được"},{"source":"summer","target":"combat","type":"affects","label":"lính chết X2"},{"source":"autumn","target":"grain","type":"affects","label":"lúa X2"},{"source":"winter","target":"farm","type":"affects","label":"0 lúa"},{"source":"winter","target":"combat","type":"affects","label":"cấm quân sự"},{"source":"supply-line","target":"starvation","type":"counters","label":"nối lương chống đói"},{"source":"starvation","target":"infantry","type":"affects","label":"chết đói"},{"source":"forest","target":"supply-line","type":"counters","label":"cấm nối (trừ Trâu)"},{"source":"mountain","target":"supply-line","type":"counters","label":"cấm nối (trừ Trâu)"},{"source":"river","target":"supply-line","type":"counters","label":"cấm nối (trừ thông)"},{"source":"combat","target":"kill-streak","type":"affects","label":"giết tướng"},{"source":"combat","target":"elite","type":"affects","label":"giết lính → mốc"},{"source":"score","target":"victory","type":"affects","label":"xét điểm"},{"source":"combat","target":"victory","type":"affects","label":"phá 9 Trì"},{"source":"general","target":"betrayal","type":"enables","label":"≥2000 quân"},{"source":"civil","target":"betrayal","type":"enables","label":"không cần 2000"},{"source":"turn","target":"go","type":"contains","label":""},{"source":"turn","target":"atc","type":"contains","label":""},{"source":"fire-talisman","target":"atc","type":"timing","label":""},{"source":"water-talisman","target":"atc","type":"timing","label":""},{"source":"wind-talisman","target":"atc","type":"timing","label":""},{"source":"speed-talisman","target":"go","type":"timing","label":""},{"source":"trap","target":"atc","type":"timing","label":""},{"source":"scout","target":"atc","type":"timing","label":""},{"source":"stealth","target":"go","type":"timing","label":""},{"source":"catapult","target":"atc","type":"timing","label":""},{"source":"recruit","target":"atc","type":"timing","label":"cuối Atc"},{"source":"betrayal","target":"atc","type":"timing","label":"cuối Atc"},{"source":"execute","target":"go","type":"timing","label":""},{"source":"archer","target":"atc","type":"timing","label":"tấn công đêm"},{"source":"soul-infusion","target":"go","type":"timing","label":"gọi đầu Go"}]};
+
+(function () {
+  const { nodes: RAW_NODES, edges: RAW_EDGES, meta } = GRAPH;
+  const DOMAINS = meta.domains, ETYPES = meta.edgeTypes;
+  const root = document.documentElement;
+
+  // ── theme ────────────────────────────────────────────────────────────────
+  function effectiveTheme() {
+    const set = root.getAttribute("data-theme");
+    if (set) return set;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  function domainColor(dom) {
+    const d = DOMAINS[dom]; if (!d) return "#888";
+    return effectiveTheme() === "dark" ? d.dark : d.light;
+  }
+
+  // ── model ────────────────────────────────────────────────────────────────
+  const byId = new Map();
+  const N = RAW_NODES.map(n => {
+    const o = { ...n, x: 0, y: 0, vx: 0, vy: 0, deg: 0, fixed: false };
+    byId.set(n.id, o); return o;
+  });
+  const L = RAW_EDGES.map(e => ({ ...e, s: byId.get(e.source), t: byId.get(e.target) }));
+  const nbr = new Map(N.map(n => [n.id, new Set()]));
+  L.forEach(e => { e.s.deg++; e.t.deg++; nbr.get(e.s.id).add(e.t.id); nbr.get(e.t.id).add(e.s.id); });
+  const radius = n => 6 + Math.min(13, Math.sqrt(n.deg) * 3.1);
+  // label-aware bounding box (halves) so collision keeps text from overlapping
+  N.forEach(n => { const r = radius(n); n.hw = Math.max(r + 4, n.label.length * 3.1 + 7); n.hh = r + 11; });
+
+  document.getElementById("counts").textContent =
+    `${N.length} thực thể · ${L.length} quan hệ`;
+
+  // ── layout: seed by domain sector, then force-relax ──────────────────────
+  const W = 1440, H = 920, CX = W / 2, CY = H / 2;
+  const domList = Object.keys(DOMAINS);
+  const domIndex = Object.fromEntries(domList.map((d, i) => [d, i]));
+  N.forEach((n, i) => {
+    const sector = (domIndex[n.domain] + 0.5) / domList.length * Math.PI * 2;
+    const jitter = (i % 11) / 11;
+    const rr = 200 + jitter * 300;
+    n.x = CX + Math.cos(sector) * rr + (Math.random() - 0.5) * 70;
+    n.y = CY + Math.sin(sector) * rr + (Math.random() - 0.5) * 70;
+  });
+  // domain centroids for gentle cohesion
+  const domCentroid = () => {
+    const c = {}; domList.forEach(d => c[d] = { x: 0, y: 0, n: 0 });
+    N.forEach(n => { const k = c[n.domain]; k.x += n.x; k.y += n.y; k.n++; });
+    domList.forEach(d => { if (c[d].n) { c[d].x /= c[d].n; c[d].y /= c[d].n; } });
+    return c;
+  };
+  const SPRING = 104, KSPRING = 0.03, CHARGE = 6600, GRAV = 0.02, COHERE = 0.010, DAMP = 0.86;
+  function tick(alpha) {
+    const c = domCentroid();
+    for (let i = 0; i < N.length; i++) {
+      const a = N[i]; let fx = 0, fy = 0;
+      for (let j = 0; j < N.length; j++) {
+        if (i === j) continue;
+        const b = N[j];
+        let dx = a.x - b.x, dy = a.y - b.y; let d2 = dx * dx + dy * dy;
+        if (d2 < 1) { d2 = 1; dx = Math.random() - 0.5; dy = Math.random() - 0.5; }
+        const d = Math.sqrt(d2); const f = CHARGE / d2;
+        fx += (dx / d) * f; fy += (dy / d) * f;
+      }
+      fx += (CX - a.x) * GRAV; fy += (CY - a.y) * GRAV;
+      const kc = c[a.domain]; fx += (kc.x - a.x) * COHERE; fy += (kc.y - a.y) * COHERE;
+      a.fx = fx; a.fy = fy;
+    }
+    for (const e of L) {
+      const dx = e.t.x - e.s.x, dy = e.t.y - e.s.y;
+      const d = Math.sqrt(dx * dx + dy * dy) || 1;
+      const f = (d - SPRING) * KSPRING;
+      const ux = dx / d, uy = dy / d;
+      e.s.fx += ux * f; e.s.fy += uy * f;
+      e.t.fx -= ux * f; e.t.fy -= uy * f;
+    }
+    for (const n of N) {
+      if (n.fixed) { n.vx = n.vy = 0; continue; }
+      n.vx = (n.vx + n.fx) * DAMP; n.vy = (n.vy + n.fy) * DAMP;
+      n.x += n.vx * alpha; n.y += n.vy * alpha;
+    }
+    // label-aware box collision: push apart on the axis of least overlap
+    for (let i = 0; i < N.length; i++) for (let j = i + 1; j < N.length; j++) {
+      const a = N[i], b = N[j];
+      const dx = b.x - a.x, dy = b.y - a.y;
+      const ox = (a.hw + b.hw) - Math.abs(dx), oy = (a.hh + b.hh) - Math.abs(dy);
+      if (ox > 0 && oy > 0) {
+        if (ox < oy) { const p = ox / 2 * (dx < 0 ? -1 : 1); if (!a.fixed) a.x -= p; if (!b.fixed) b.x += p; }
+        else { const p = oy / 2 * (dy < 0 ? -1 : 1); if (!a.fixed) a.y -= p; if (!b.fixed) b.y += p; }
+      }
+    }
+  }
+  let alpha = 1;
+  for (let s = 0; s < 440; s++) { tick(alpha); alpha *= 0.994; }
+
+  // ── render ───────────────────────────────────────────────────────────────
+  const svg = document.getElementById("stage");
+  const gEdges = document.getElementById("edges");
+  const gNodes = document.getElementById("nodes");
+  const NS = "http://www.w3.org/2000/svg";
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+
+  const edgeEls = L.map(e => {
+    const p = document.createElementNS(NS, "path");
+    p.setAttribute("class", "edge " + e.type);
+    p.setAttribute("marker-end", "url(#arrow)");
+    if (ETYPES[e.type] && ETYPES[e.type].dir === "both") p.setAttribute("marker-start", "url(#arrow)");
+    e.el = p; gEdges.appendChild(p); return p;
+  });
+  const nodeEls = N.map(n => {
+    const g = document.createElementNS(NS, "g");
+    g.setAttribute("class", "node");
+    const c = document.createElementNS(NS, "circle");
+    c.setAttribute("r", radius(n)); c.setAttribute("fill", domainColor(n.domain));
+    const t = document.createElementNS(NS, "text");
+    t.setAttribute("text-anchor", "middle");
+    t.setAttribute("dy", radius(n) + 12);
+    t.textContent = n.label;
+    g.appendChild(c); g.appendChild(t);
+    n.el = g; n.circle = c; gNodes.appendChild(g); return g;
+  });
+
+  function draw() {
+    for (const e of L) {
+      const r = radius(e.t);
+      let dx = e.t.x - e.s.x, dy = e.t.y - e.s.y; const d = Math.sqrt(dx * dx + dy * dy) || 1;
+      const tx = e.t.x - dx / d * r, ty = e.t.y - dy / d * r;
+      const sr = radius(e.s); const sx = e.s.x + dx / d * sr, sy = e.s.y + dy / d * sr;
+      // slight arc so opposing edges don't overlap
+      const mx = (sx + tx) / 2 - dy / d * 9, my = (sy + ty) / 2 + dx / d * 9;
+      e.el.setAttribute("d", `M${sx.toFixed(1)},${sy.toFixed(1)} Q${mx.toFixed(1)},${my.toFixed(1)} ${tx.toFixed(1)},${ty.toFixed(1)}`);
+    }
+    for (const n of N) n.el.setAttribute("transform", `translate(${n.x.toFixed(1)},${n.y.toFixed(1)})`);
+  }
+  draw();
+
+  // recolor nodes on theme change
+  function recolor() { for (const n of N) n.circle.setAttribute("fill", domainColor(n.domain)); }
+
+  // ── pan / zoom ───────────────────────────────────────────────────────────
+  const vp = document.getElementById("viewport");
+  let tx = 0, ty = 0, scale = 1;
+  function applyVP() { vp.setAttribute("transform", `translate(${tx},${ty}) scale(${scale})`); }
+  function fit() {
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (const n of N) { const r = radius(n) + 26;
+      minX = Math.min(minX, n.x - r); minY = Math.min(minY, n.y - r);
+      maxX = Math.max(maxX, n.x + r); maxY = Math.max(maxY, n.y + r); }
+    const bw = maxX - minX, bh = maxY - minY;
+    scale = Math.min(W / bw, H / bh, 1.4);
+    tx = (W - bw * scale) / 2 - minX * scale;
+    ty = (H - bh * scale) / 2 - minY * scale;
+    applyVP();
+  }
+  fit();
+  function clientToSvg(cx, cy) {
+    const r = svg.getBoundingClientRect();
+    return { x: (cx - r.left) / r.width * W, y: (cy - r.top) / r.height * H };
+  }
+  svg.addEventListener("wheel", ev => {
+    ev.preventDefault();
+    const p = clientToSvg(ev.clientX, ev.clientY);
+    const k = Math.exp(-ev.deltaY * 0.0012); const ns = Math.min(4, Math.max(0.3, scale * k));
+    tx = p.x - (p.x - tx) * (ns / scale); ty = p.y - (p.y - ty) * (ns / scale);
+    scale = ns; applyVP();
+  }, { passive: false });
+
+  // ── interaction: drag (node or pan), hover, click ────────────────────────
+  let dragNode = null, panning = false, moved = false, last = null;
+  svg.addEventListener("pointerdown", ev => {
+    const g = ev.target.closest(".node");
+    last = { x: ev.clientX, y: ev.clientY }; moved = false;
+    if (g) { dragNode = N[nodeEls.indexOf(g)]; dragNode.fixed = true; }
+    else { panning = true; svg.classList.add("grabbing"); }
+    svg.setPointerCapture(ev.pointerId);
+  });
+  svg.addEventListener("pointermove", ev => {
+    if (dragNode) {
+      const p = clientToSvg(ev.clientX, ev.clientY);
+      dragNode.x = (p.x - tx) / scale; dragNode.y = (p.y - ty) / scale; moved = true; draw();
+    } else if (panning) {
+      tx += ev.clientX - last.x; ty += ev.clientY - last.y; last = { x: ev.clientX, y: ev.clientY };
+      moved = true; applyVP();
+    }
+  });
+  svg.addEventListener("pointerup", ev => {
+    if (dragNode && !moved) select(dragNode);
+    if (dragNode) dragNode.fixed = false;
+    dragNode = null; panning = false; svg.classList.remove("grabbing");
+  });
+
+  const tip = document.getElementById("tooltip");
+  gNodes.addEventListener("pointerover", ev => {
+    const g = ev.target.closest(".node"); if (!g) return;
+    const n = N[nodeEls.indexOf(g)]; highlight(n);
+    tip.innerHTML = `<b>${n.label}</b><span class="cat">${DOMAINS[n.domain].label} · ${n.category}</span><div style="margin-top:5px">${n.desc}</div>`;
+    tip.classList.add("show");
+  });
+  gNodes.addEventListener("pointermove", ev => { tip.style.left = (ev.clientX + 14) + "px"; tip.style.top = (ev.clientY + 14) + "px"; });
+  gNodes.addEventListener("pointerout", () => { tip.classList.remove("show"); if (!pinned) clearHighlight(); });
+
+  let pinned = null;
+  function highlight(n) {
+    const keep = nbr.get(n.id);
+    N.forEach(m => m.el.classList.toggle("dim", m.id !== n.id && !keep.has(m.id)));
+    L.forEach(e => {
+      const on = e.s.id === n.id || e.t.id === n.id;
+      e.el.classList.toggle("hot", on); e.el.classList.toggle("dim", !on);
+    });
+    N.forEach(m => m.el.classList.toggle("hot", m.id === n.id));
+  }
+  function clearHighlight() {
+    if (pinned) return;
+    N.forEach(m => { m.el.classList.remove("dim", "hot"); });
+    L.forEach(e => { e.el.classList.remove("dim", "hot"); });
+    applyFilters();
+  }
+
+  // ── detail panel ─────────────────────────────────────────────────────────
+  const panel = document.getElementById("panel");
+  function relLine(ty, other, note, dirOut) {
+    const t = ETYPES[ty] ? ETYPES[ty].label : ty;
+    return `<li><span class="ty">${t}</span> <a data-goto="${other.id}">${other.label}</a>${note ? ` <span class="note">— ${note}</span>` : ""}</li>`;
+  }
+  function select(n) {
+    pinned = n; highlight(n);
+    const out = L.filter(e => e.s.id === n.id).map(e => relLine(e.type, e.t, e.label, true));
+    const inc = L.filter(e => e.t.id === n.id).map(e => relLine(e.type, e.s, e.label, false));
+    panel.classList.remove("empty");
+    panel.innerHTML =
+      `<h2>${n.label} <span class="badge" style="background:${domainColor(n.domain)}">${DOMAINS[n.domain].label}</span></h2>
+       <p class="sub">${n.category}</p>
+       <p class="desc">${n.desc}</p>
+       <div class="rel-cols">
+         <div><h3>Ra / cho → (${out.length})</h3><ul class="rel">${out.join("") || '<li class="note">—</li>'}</ul></div>
+         <div><h3>← Nhận / từ (${inc.length})</h3><ul class="rel">${inc.join("") || '<li class="note">—</li>'}</ul></div>
+       </div>`;
+  }
+  panel.addEventListener("click", ev => {
+    const a = ev.target.closest("[data-goto]"); if (!a) return;
+    const n = byId.get(a.getAttribute("data-goto")); if (n) select(n);
+  });
+  svg.addEventListener("pointerdown", ev => { if (!ev.target.closest(".node")) { /* bg */ } });
+
+  // ── legends / filters ────────────────────────────────────────────────────
+  const activeDomains = new Set(), hiddenTypes = new Set();
+  const legD = document.getElementById("legend-domains");
+  legD.innerHTML = `<span class="grp-label">Domain — bấm để soi nhóm</span>`;
+  domList.forEach(d => {
+    const c = document.createElement("span"); c.className = "chip"; c.dataset.dom = d;
+    c.innerHTML = `<span class="dot" style="background:${domainColor(d)}"></span>${DOMAINS[d].label}`;
+    c.onclick = () => { activeDomains.has(d) ? activeDomains.delete(d) : activeDomains.add(d);
+      c.classList.toggle("off", false); refreshDomainChips(); pinned = null; applyFilters(); };
+    legD.appendChild(c);
+  });
+  function refreshDomainChips() {
+    legD.querySelectorAll(".chip").forEach(c => {
+      const on = activeDomains.size === 0 || activeDomains.has(c.dataset.dom);
+      c.classList.toggle("off", !on);
+    });
+  }
+  const legE = document.getElementById("legend-edges");
+  legE.innerHTML = `<span class="grp-label">Kiểu quan hệ — bấm để ẩn/hiện</span>`;
+  const edgeColor = { produces: "var(--good)", costs: "var(--critical)", upgrades: "var(--edge-prog)",
+    requires: "var(--edge-prog)", enables: "var(--edge-prog)" };
+  Object.keys(ETYPES).forEach(ty => {
+    const c = document.createElement("span"); c.className = "chip"; c.dataset.ty = ty;
+    const col = edgeColor[ty] || "var(--edge-muted)";
+    const dash = (ty === "requires" || ty === "enables") ? "3,3" : (ty === "counters") ? "1,3"
+      : (ty === "timing" || ty === "contains" || ty === "affects") ? "0.5,3" : "0";
+    c.innerHTML = `<svg class="line" width="20" height="8"><line x1="0" y1="4" x2="20" y2="4" stroke="${col}" stroke-width="2.4" stroke-dasharray="${dash}"/></svg>${ETYPES[ty].label}`;
+    c.title = ETYPES[ty].hint;
+    c.onclick = () => { hiddenTypes.has(ty) ? hiddenTypes.delete(ty) : hiddenTypes.add(ty);
+      c.classList.toggle("off", hiddenTypes.has(ty)); applyFilters(); };
+    legE.appendChild(c);
+  });
+
+  const searchEl = document.getElementById("search");
+  searchEl.addEventListener("input", () => { pinned = null; applyFilters(); });
+
+  function applyFilters() {
+    const q = searchEl.value.trim().toLowerCase();
+    L.forEach(e => {
+      const hide = hiddenTypes.has(e.type);
+      e.el.style.display = hide ? "none" : "";
+      e.el.classList.remove("hot");
+      e.el.classList.toggle("dim", false);
+    });
+    N.forEach(n => {
+      const domOn = activeDomains.size === 0 || activeDomains.has(n.domain);
+      const qOn = !q || n.label.toLowerCase().includes(q) || n.category.toLowerCase().includes(q);
+      const on = domOn && qOn;
+      n.el.classList.toggle("dim", !on);
+      n.el.classList.remove("hot");
+    });
+    // dim edges whose endpoints are dimmed
+    L.forEach(e => {
+      if (hiddenTypes.has(e.type)) return;
+      const dim = e.s.el.classList.contains("dim") || e.t.el.classList.contains("dim");
+      e.el.classList.toggle("dim", dim);
+    });
+  }
+
+  document.getElementById("reset-view").onclick = () => { fit(); };
+  document.getElementById("theme-toggle").onclick = () => {
+    root.setAttribute("data-theme", effectiveTheme() === "dark" ? "light" : "dark");
+    recolor();
+    if (pinned) select(pinned);
+    legD.querySelectorAll(".dot").forEach((dot, i) => dot.style.background = domainColor(domList[i]));
+  };
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (!root.getAttribute("data-theme")) { recolor(); if (pinned) select(pinned); }
+  });
+
+  // gentle continuous settle on load for a livelier feel
+  let extra = 90; (function anim() { if (extra-- > 0) { tick(0.3); draw(); requestAnimationFrame(anim); } })();
+})();
+</script>
+</body>
+</html>

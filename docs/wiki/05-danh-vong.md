@@ -1,29 +1,40 @@
 # Danh Vọng & Thăng Tiến
 
-Cần biết [Khung Sườn & Tổng Quan](00-tong-quan.md) (Quan Văn/Tướng Quân sinh Dân Tâm/Uy Danh mỗi Turn) và [Quân Sự Cơ Bản](04-quan-su-co-ban.md) (để hiểu điều kiện thăng cấp bằng chiến công).
+*Đọc trước: [Tổng Quan](00-tong-quan.md), [Quân Sự Cơ Bản](04-quan-su-co-ban.md).*
 
-`[GHI CHÚ]` Domain này tách riêng phần "Dân Tâm/Uy Danh **sinh ra như thế nào**" — vì đây là hệ quả trực tiếp của Chức Vụ, cần biết sớm. Phần "**tiêu vào việc gì**" (mời Hoa Đà/Tả Từ/Thủy Kính) nằm ở [Huyền Bí & Đặc Dị](07-huyen-bi.md), vì các dịch vụ đó chỉ có ý nghĩa sau khi đã hiểu Quân Sự/Trận Pháp. Bản gốc từng gộp chung 2 phần này vào 1 mục — xem lý do tách ở [Lộ Trình Học](lo-trinh-hoc.md).
+Chương này trình bày cách sinh ba loại điểm quốc gia và bậc thăng tiến của Tướng. Việc tiêu điểm vào Hoa Đà, Tả Từ, Thủy Kính nằm ở [Huyền Bí](07-huyen-bi.md).
 
-## Hệ Thống Dân Tâm & Uy Danh
+## Ba loại điểm quốc gia
 
-*Cơ bản*
-- Chỉ Chủ Công được sử dụng hệ thống này. Mỗi quốc gia bắt đầu với 0 điểm; Dân Tâm tích lũy từ sản lượng của Quan Văn (1 điểm/Turn), Uy Danh tích lũy từ sản lượng của Tướng Quân (1 điểm/Turn) — xem [Khung Sườn & Tổng Quan](00-tong-quan.md).
-- Việc đổi Dân Tâm/Uy Danh lấy dịch vụ (Đại Tướng Quân bên dưới, hoặc Hoa Đà/Tả Từ/Thủy Kính ở [Huyền Bí & Đặc Dị](07-huyen-bi.md)), nếu không quy định rõ là dùng ở Atc, thì mặc định diễn ra ở đầu lượt Go.
+Chỉ **Chủ Công** được sử dụng. Mỗi nước bắt đầu 0 điểm. Nếu không ghi rõ dùng ở Atc thì mặc định đầu Go.
+
+| Điểm | Sinh từ (mỗi Turn) | Tiêu vào |
+|---|---|---|
+| **Dân Tâm** | Quan Văn: 1 | Hoa Đà (5) · Tả Từ (7) · Thủy Kính (10) — xem [Huyền Bí](07-huyen-bi.md) |
+| **Uy Danh** | Tướng Quân: 1 | Thăng Đại Tướng (10) · Nhập Hồn (10) · lập Trận (X) · nâng cấp Tinh Binh · Hoa Đà rút turn dưỡng (5/10) |
+| **Đế Khí** | Chủ Công: 1 | Đổi → 1 Dân Tâm **hoặc** 1 Uy Danh |
+
+## Bậc thăng tiến của Tướng
+
+| Bậc | Điều kiện lên | Biên chế | Đặc quyền |
+|---|---|---|---|
+| **Tướng Quân** | mặc định | 10.000 | Ra trận, sinh Uy Danh |
+| **Đại Tướng Quân** | giết 3 tướng địch liên tiếp **hoặc** 10 Uy Danh | 10.000 | + Skill Đại Tướng |
+| **Chiến Tướng** | Bát Kỳ + 20 TN + 10 Uy Danh (Nhập Hồn) | **50.000** | Trung thành tuyệt đối (xem [Huyền Bí](07-huyen-bi.md)) |
 
 ## Đại Tướng Quân
 
-*Cơ bản*
-- Có đầy đủ chức năng của Tướng Quân, cộng thêm Skill Đại Tướng có thể kích hoạt: ngay khi giao chiến, +1 Công và +1 Thủ cho mỗi lính đang thuộc quyền chỉ huy của Tướng đó, hiệu lực trong 1 Turn (cơ chế tương tự Phù Cổ Vũ — xem [Huyền Bí & Đặc Dị](07-huyen-bi.md) — và có thể cộng dồn với Phù Cổ Vũ, ví dụ tổng cộng thành +2 Công/+1 Thủ).
-- Có thể dùng 10 điểm Uy Danh để thăng thẳng lên Đại Tướng Quân, thay cho điều kiện giết 3 tướng liên tiếp (xem [Quân Sự Cơ Bản](04-quan-su-co-ban.md)). Nếu dùng Uy Danh để thăng cấp ở Turn N, chính thức lên cấp vào đầu Turn N+1.
-- Chỉ cần thua trận 1 lần là bị giáng xuống lại Tướng Quân.
-- Chủ Công mặc định có sẵn Skill Đại Tướng (vẫn bị delay như trên) và không bao giờ bị giáng cấp.
-- Không thể phản bội quốc gia mình (nhưng vẫn có thể tham gia đảo chính — xem [Chính Trị Nội Bộ](02-chinh-tri.md)).
+- Có đủ chức năng Tướng Quân + **Skill Đại Tướng**: ngay khi giao chiến, **+1 Công & +1 Thủ mỗi lính** đang chỉ huy, hiệu lực 1 Turn (như Phù Cổ Vũ, và **cộng dồn** được với Cổ Vũ → VD +2 Công / +1 Thủ).
+- Thăng bằng **10 Uy Danh** (thay điều kiện 3 kill): nâng Turn N → lên cấp đầu Turn N+1.
+- **Thua trận 1 lần → giáng** lại Tướng Quân.
+- **Chủ Công** mặc định có Skill Đại Tướng (vẫn bị delay) và **không bị giáng cấp**.
+- Không thể phản bội quốc gia mình.
 
 <details>
 <summary>Cơ chế phụ</summary>
 
-- Sau khi dùng Skill Đại Tướng, bị khóa (delay) 1 Turn mới được dùng lại (ví dụ dùng ở Turn 1 thì Turn 3 mới dùng tiếp, cùng lượt Go/Atc tương ứng).
-- Mọi trường hợp thăng/giáng cấp đều được GM thông báo cho toàn bộ người chơi (ví dụ: thăng cấp bằng Uy Danh ở Turn 1 thì được báo vào cuối lượt Atc của Turn 1).
+- Skill Đại Tướng **delay 1 Turn** sau khi dùng (dùng Turn 1 → Turn 3 dùng lại, cùng lượt Go/Atc tương ứng).
+- Mọi thăng/giáng cấp GM báo toàn game (thăng bằng Uy Danh ở Turn 1 → báo cuối Atc Turn 1).
 
 </details>
 

@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python (tooling: data/build_rules_graph.py, screenshots)
+.venv/
+__pycache__/

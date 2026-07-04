@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+Rulebook wiki: **https://ferez96.com/hpln-game-demo/**
+
 ![UI](dev/ui-2026-06-30.png)
 
 ## Getting Started
