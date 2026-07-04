@@ -1,8 +1,8 @@
 # Danh Vọng & Thăng Tiến
 
-*Đọc trước: [Tổng Quan](00-tong-quan.md), [Quân Sự Cơ Bản](04-quan-su-co-ban.md).*
+*Đọc trước: [Tổng Quan](wiki/00-tong-quan.md), [Quân Sự Cơ Bản](wiki/04-quan-su-co-ban.md).*
 
-Chương này trình bày cách sinh ba loại điểm quốc gia và bậc thăng tiến của Tướng. Việc tiêu điểm vào Hoa Đà, Tả Từ, Thủy Kính nằm ở [Huyền Bí](07-huyen-bi.md).
+Chương này trình bày cách sinh ba loại điểm quốc gia và bậc thăng tiến của Tướng. Việc tiêu điểm vào Hoa Đà, Tả Từ, Thủy Kính nằm ở [Huyền Bí](wiki/07-huyen-bi.md).
 
 ## Ba loại điểm quốc gia
 
@@ -10,7 +10,7 @@ Chỉ **Chủ Công** được sử dụng. Mỗi nước bắt đầu 0 điểm
 
 | Điểm | Sinh từ (mỗi Turn) | Tiêu vào |
 |---|---|---|
-| **Dân Tâm** | Quan Văn: 1 | Hoa Đà (5) · Tả Từ (7) · Thủy Kính (10) — xem [Huyền Bí](07-huyen-bi.md) |
+| **Dân Tâm** | Quan Văn: 1 | Hoa Đà (5) · Tả Từ (7) · Thủy Kính (10) — xem [Huyền Bí](wiki/07-huyen-bi.md) |
 | **Uy Danh** | Tướng Quân: 1 | Thăng Đại Tướng (10) · Nhập Hồn (10) · lập Trận (X) · nâng cấp Tinh Binh · Hoa Đà rút turn dưỡng (5/10) |
 | **Đế Khí** | Chủ Công: 1 | Đổi → 1 Dân Tâm **hoặc** 1 Uy Danh |
 
@@ -20,7 +20,7 @@ Chỉ **Chủ Công** được sử dụng. Mỗi nước bắt đầu 0 điểm
 |---|---|---|---|
 | **Tướng Quân** | mặc định | 10.000 | Ra trận, sinh Uy Danh |
 | **Đại Tướng Quân** | giết 3 tướng địch liên tiếp **hoặc** 10 Uy Danh | 10.000 | + Skill Đại Tướng |
-| **Chiến Tướng** | Bát Kỳ + 20 TN + 10 Uy Danh (Nhập Hồn) | **50.000** | Trung thành tuyệt đối (xem [Huyền Bí](07-huyen-bi.md)) |
+| **Chiến Tướng** | Bát Kỳ + 20 TN + 10 Uy Danh (Nhập Hồn) | **50.000** | Trung thành tuyệt đối (xem [Huyền Bí](wiki/07-huyen-bi.md)) |
 
 ## Đại Tướng Quân
 
@@ -40,4 +40,4 @@ Chỉ **Chủ Công** được sử dụng. Mỗi nước bắt đầu 0 điểm
 
 ---
 
-*Tiếp theo: [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) →*
+*Tiếp theo: [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) →*

@@ -79,42 +79,42 @@ Ngưỡng: Cung thua nhưng ≥**80%** → địch vẫn mất ⅕ · Phong Phù
 
 | Tài nguyên | Sinh ra ở | Tiêu ở |
 |---|---|---|
-| Tài Nguyên | [Kinh Tế](03-kinh-te.md) (Văn, Mỏ, Châu, Trắng, Thuyền Cá) | mua lính/đồ/phù, nâng cấp — mọi chương quân sự |
-| Dân | [Kinh Tế](03-kinh-te.md) (Nhà Dân) | đổi Lúa, tuyển Bộ Binh |
-| Lúa | [Kinh Tế](03-kinh-te.md) (Ruộng) | nuôi lính mỗi Turn |
-| Dân Tâm | [Danh Vọng](05-danh-vong.md) (Quan Văn) | [Huyền Bí](07-huyen-bi.md) (Hoa Đà/Tả Từ/Thủy Kính) |
-| Uy Danh | [Danh Vọng](05-danh-vong.md) (Tướng Quân) | Đại Tướng, Nhập Hồn, Trận, Tinh Binh, Hoa Đà |
-| Đế Khí | [Tổng Quan](00-tong-quan.md) (Chủ Công) | đổi → 1 Dân Tâm / 1 Uy Danh |
+| Tài Nguyên | [Kinh Tế](wiki/03-kinh-te.md) (Văn, Mỏ, Châu, Trắng, Thuyền Cá) | mua lính/đồ/phù, nâng cấp — mọi chương quân sự |
+| Dân | [Kinh Tế](wiki/03-kinh-te.md) (Nhà Dân) | đổi Lúa, tuyển Bộ Binh |
+| Lúa | [Kinh Tế](wiki/03-kinh-te.md) (Ruộng) | nuôi lính mỗi Turn |
+| Dân Tâm | [Danh Vọng](wiki/05-danh-vong.md) (Quan Văn) | [Huyền Bí](wiki/07-huyen-bi.md) (Hoa Đà/Tả Từ/Thủy Kính) |
+| Uy Danh | [Danh Vọng](wiki/05-danh-vong.md) (Tướng Quân) | Đại Tướng, Nhập Hồn, Trận, Tinh Binh, Hoa Đà |
+| Đế Khí | [Tổng Quan](wiki/00-tong-quan.md) (Chủ Công) | đổi → 1 Dân Tâm / 1 Uy Danh |
 
-**Thực thể dùng chung nhiều chương:** *Sa Trường* (định nghĩa [Địa Lý](01-dia-ly.md), dùng ở Phản Bội/dưỡng thương/Hoa Đà) · *Thành/Châu* (định nghĩa [Địa Lý](01-dia-ly.md), dùng ở vựa lúa/phòng thủ/điểm) · *Phù* (định nghĩa [Huyền Bí](07-huyen-bi.md), dùng ở địa hình/Kỵ/Trận/Thuyền) · *Nối Lương* (định nghĩa [Quân Sự Cơ Bản](04-quan-su-co-ban.md), dùng ở chết đói/địa hình chặn/miễn khi phản bội) · *Turn/Go/Atc* ([Tổng Quan](00-tong-quan.md), đồng hồ chung mọi chương).
+**Thực thể dùng chung nhiều chương:** *Sa Trường* (định nghĩa [Địa Lý](wiki/01-dia-ly.md), dùng ở Phản Bội/dưỡng thương/Hoa Đà) · *Thành/Châu* (định nghĩa [Địa Lý](wiki/01-dia-ly.md), dùng ở vựa lúa/phòng thủ/điểm) · *Phù* (định nghĩa [Huyền Bí](wiki/07-huyen-bi.md), dùng ở địa hình/Kỵ/Trận/Thuyền) · *Nối Lương* (định nghĩa [Quân Sự Cơ Bản](wiki/04-quan-su-co-ban.md), dùng ở chết đói/địa hình chặn/miễn khi phản bội) · *Turn/Go/Atc* ([Tổng Quan](wiki/00-tong-quan.md), đồng hồ chung mọi chương).
 
 ## Chỉ mục thuật ngữ A→Z
 
 | Thuật ngữ | Nghĩa | Trang |
 |---|---|---|
-| Bát Kỳ | Trạng thái do Thủy Kính dạy: Văn ×5 TN, Tướng có tư chất Chiến Tướng | [Huyền Bí](07-huyen-bi.md) |
-| Bát Quái | Trạng thái do Tả Từ dạy: Tướng 2 phù/Turn, Văn chế Siêu Phù | [Huyền Bí](07-huyen-bi.md) |
-| Biên Chế | Giới hạn lính 1 Tướng chỉ huy khi di chuyển (10.000; Chiến Tướng 50.000) | [Quân Sự Cơ Bản](04-quan-su-co-ban.md) |
-| Chiến Tướng | Tướng Nhập Hồn: biên chế 50.000, trung thành tuyệt đối | [Huyền Bí](07-huyen-bi.md) |
-| Chiến báo | GM báo cáo 2 lần/Turn (cuối Go, cuối Atc) | [Tổng Quan](00-tong-quan.md) |
-| Chết đói / chết bệnh | Hết lúa / phạm luật Rừng-Núi → quân bại chết | [Kinh Tế](03-kinh-te.md) |
-| Cơ Giới | Xe Đục · Chiến Xa · Tháp · Máy Bắn Đá · Trâu Gỗ (thuyền không tính) | [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) |
-| Đại Tướng Quân | Bậc trên Tướng Quân, có Skill +Công/+Thủ | [Danh Vọng](05-danh-vong.md) |
-| Đế Khí | Điểm riêng Chủ Công, đổi Dân Tâm/Uy Danh | [Tổng Quan](00-tong-quan.md) |
-| Liên Trảm | Chuỗi giết tướng địch của 1 cá nhân, reset khi thua | [Tổng Quan](00-tong-quan.md) |
-| Mộc Ngưu Lưu Mã | Trâu Gỗ: thông lương qua Núi/Rừng (Văn cầm) | [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) |
-| Nối Lương | Đường nối ô-về-Trì cấp lương; mất nối → chết đói | [Quân Sự Cơ Bản](04-quan-su-co-ban.md) |
-| Phản Bội | Văn/Tướng rời nước mang theo quân/tài sản | [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) |
-| Sa Trường | Mọi ô KHÔNG phải Thành Trì | [Địa Lý](01-dia-ly.md) |
-| Siêu Phù | Bản mạnh của Tốc/Phong/Cổ Vũ (do Bát Quái) | [Huyền Bí](07-huyen-bi.md) |
-| Tham Ô | Văn giữ lại tài nguyên tự làm thay vì nộp quốc khố | [Tổng Quan](00-tong-quan.md) |
-| Thiên La Địa Võng | Hiệu ứng mai phục −50% (Trường Xà/Thất Tinh) | [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) |
-| Thuyền Trống Tướng | Thuyền bỏ lại trên sông; cần Công ≥3× Thủ để cướp | [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) |
-| Tinh Binh | Bộ đếm kill cấp quốc gia mở khóa cơ giới/binh chủng | [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) |
-| Trấn Áp | Hiệu ứng khóa Ẩn Thân của Thất Tinh Trận | [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) |
-| Trảm Đầu / Trục Xuất | Chủ Công xử tử / đuổi 1 người | [Chính Trị](02-chinh-tri.md) |
-| Truy Cùng Giết Tận | Nội tại Kỵ Mã: giết thêm tàn binh khi thắng | [Quân Sự Cơ Bản](04-quan-su-co-ban.md) |
+| Bát Kỳ | Trạng thái do Thủy Kính dạy: Văn ×5 TN, Tướng có tư chất Chiến Tướng | [Huyền Bí](wiki/07-huyen-bi.md) |
+| Bát Quái | Trạng thái do Tả Từ dạy: Tướng 2 phù/Turn, Văn chế Siêu Phù | [Huyền Bí](wiki/07-huyen-bi.md) |
+| Biên Chế | Giới hạn lính 1 Tướng chỉ huy khi di chuyển (10.000; Chiến Tướng 50.000) | [Quân Sự Cơ Bản](wiki/04-quan-su-co-ban.md) |
+| Chiến Tướng | Tướng Nhập Hồn: biên chế 50.000, trung thành tuyệt đối | [Huyền Bí](wiki/07-huyen-bi.md) |
+| Chiến báo | GM báo cáo 2 lần/Turn (cuối Go, cuối Atc) | [Tổng Quan](wiki/00-tong-quan.md) |
+| Chết đói / chết bệnh | Hết lúa / phạm luật Rừng-Núi → quân bại chết | [Kinh Tế](wiki/03-kinh-te.md) |
+| Cơ Giới | Xe Đục · Chiến Xa · Tháp · Máy Bắn Đá · Trâu Gỗ (thuyền không tính) | [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) |
+| Đại Tướng Quân | Bậc trên Tướng Quân, có Skill +Công/+Thủ | [Danh Vọng](wiki/05-danh-vong.md) |
+| Đế Khí | Điểm riêng Chủ Công, đổi Dân Tâm/Uy Danh | [Tổng Quan](wiki/00-tong-quan.md) |
+| Liên Trảm | Chuỗi giết tướng địch của 1 cá nhân, reset khi thua | [Tổng Quan](wiki/00-tong-quan.md) |
+| Mộc Ngưu Lưu Mã | Trâu Gỗ: thông lương qua Núi/Rừng (Văn cầm) | [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) |
+| Nối Lương | Đường nối ô-về-Trì cấp lương; mất nối → chết đói | [Quân Sự Cơ Bản](wiki/04-quan-su-co-ban.md) |
+| Phản Bội | Văn/Tướng rời nước mang theo quân/tài sản | [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) |
+| Sa Trường | Mọi ô KHÔNG phải Thành Trì | [Địa Lý](wiki/01-dia-ly.md) |
+| Siêu Phù | Bản mạnh của Tốc/Phong/Cổ Vũ (do Bát Quái) | [Huyền Bí](wiki/07-huyen-bi.md) |
+| Tham Ô | Văn giữ lại tài nguyên tự làm thay vì nộp quốc khố | [Tổng Quan](wiki/00-tong-quan.md) |
+| Thiên La Địa Võng | Hiệu ứng mai phục −50% (Trường Xà/Thất Tinh) | [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) |
+| Thuyền Trống Tướng | Thuyền bỏ lại trên sông; cần Công ≥3× Thủ để cướp | [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) |
+| Tinh Binh | Bộ đếm kill cấp quốc gia mở khóa cơ giới/binh chủng | [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) |
+| Trấn Áp | Hiệu ứng khóa Ẩn Thân của Thất Tinh Trận | [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) |
+| Trảm Đầu / Trục Xuất | Chủ Công xử tử / đuổi 1 người | [Chính Trị](wiki/02-chinh-tri.md) |
+| Truy Cùng Giết Tận | Nội tại Kỵ Mã: giết thêm tàn binh khi thắng | [Quân Sự Cơ Bản](wiki/04-quan-su-co-ban.md) |
 
-> **Chi tiết provenance** (thuật ngữ nào là tên gốc trong tài liệu, thuật ngữ nào wiki tự đặt) xem [Rà Soát Thuật Ngữ](terminology-audit.md).
+> **Chi tiết provenance** (thuật ngữ nào là tên gốc trong tài liệu, thuật ngữ nào wiki tự đặt) xem [Rà Soát Thuật Ngữ](wiki/terminology-audit.md).
 
-*Xem thêm: [Đồ Thị Luật Game](so-do-luat.md) (trực quan hóa mọi quan hệ) · [Lộ Trình Học](lo-trinh-hoc.md).*
+*Xem thêm: [Đồ Thị Luật Game](wiki/so-do-luat.md) (trực quan hóa mọi quan hệ) · [Lộ Trình Học](wiki/lo-trinh-hoc.md).*

@@ -1,6 +1,6 @@
 # Huyền Bí & Đặc Dị
 
-*Đọc trước: [Danh Vọng](05-danh-vong.md), [Quân Sự Cơ Bản](04-quan-su-co-ban.md).*
+*Đọc trước: [Danh Vọng](wiki/05-danh-vong.md), [Quân Sự Cơ Bản](wiki/04-quan-su-co-ban.md).*
 
 ## Phù Chú
 
@@ -51,7 +51,7 @@
 
 </details>
 
-> **Cần thống nhất — "Siêu Tốc".** Nâng cấp **Sức Chạy** của ngựa ([Quân Sự Nâng Cao](06-quan-su-nang-cao.md)) cũng cho phép đứng trên Núi đi 2/3/4 ô và có nhắc "Siêu Tốc" — chưa rõ đây có cùng hiệu ứng với Siêu Tốc Phù (Bát Quái) hay là hai nguồn tăng tầm riêng, cộng dồn được.
+> **Cần thống nhất — "Siêu Tốc".** Nâng cấp **Sức Chạy** của ngựa ([Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md)) cũng cho phép đứng trên Núi đi 2/3/4 ô và có nhắc "Siêu Tốc" — chưa rõ đây có cùng hiệu ứng với Siêu Tốc Phù (Bát Quái) hay là hai nguồn tăng tầm riêng, cộng dồn được.
 
 ### Phong Phù
 
@@ -134,4 +134,4 @@ Dạy Turn N → Turn N+1 xong & dùng ngay. Danh tính người học **giữ b
 
 ---
 
-*Tiếp theo: [Môi Trường — Thời Tiết](08-moi-truong.md) →*
+*Tiếp theo: [Môi Trường — Thời Tiết](wiki/08-moi-truong.md) →*

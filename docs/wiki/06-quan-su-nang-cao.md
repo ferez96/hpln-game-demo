@@ -1,12 +1,12 @@
 # Quân Sự Nâng Cao
 
-*Đọc trước: [Quân Sự Cơ Bản](04-quan-su-co-ban.md), [Địa Lý](01-dia-ly.md).*
+*Đọc trước: [Quân Sự Cơ Bản](wiki/04-quan-su-co-ban.md), [Địa Lý](wiki/01-dia-ly.md).*
 
 **Mục lục:** [Phản Bội](#phản-bội) · [Kỹ Năng Tác Chiến](#kỹ-năng-tác-chiến) · [Trận Pháp](#trận-pháp) · [Thuyền & Thủy Chiến](#thuyền-amp-thủy-chiến) · [Lò Rèn & Cơ Giới](#lò-rèn-amp-cơ-giới) · [Tinh Binh](#tinh-binh-mốc-mở-khóa)
 
 ## Phản Bội
 
-*(Tiếp nối [Chính Trị](02-chinh-tri.md) — đặt ở đây vì cần Sa Trường + Quân Đội + Di Chuyển.)*
+*(Tiếp nối [Chính Trị](wiki/02-chinh-tri.md) — đặt ở đây vì cần Sa Trường + Quân Đội + Di Chuyển.)*
 
 - **Ai phản được:** chỉ **Quan Văn** và **Tướng Quân**. Chủ Công / Quân Sư / Đại Tướng Quân / Chiến Tướng **không bao giờ** phản được.
 - **Khi nào:** chốt cuối **Atc**.
@@ -234,4 +234,4 @@ Nâng 10 UD. Trong 1 Atc, Cung bắn **2 lần vào 2 ô khác nhau** (kể cả
 
 ---
 
-*Tiếp theo: [Huyền Bí & Đặc Dị](07-huyen-bi.md) →*
+*Tiếp theo: [Huyền Bí & Đặc Dị](wiki/07-huyen-bi.md) →*

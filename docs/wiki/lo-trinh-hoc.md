@@ -16,39 +16,39 @@ Sơ đồ dưới đây được dựng **trước khi** wiki này tồn tại, 
 
 | Cạnh lệch | Xử lý trong wiki domain |
 |---|---|
-| Địa Hình → Sa Trường | **Đã sửa.** Sa Trường dời hẳn về [Địa Lý & Bản Đồ](01-dia-ly.md), định nghĩa ngay cùng chỗ với các loại ô khác. |
-| Dân Tâm/Uy Danh (sinh ra) → thăng Đại Tướng Quân | **Đã sửa.** Cả 2 nay cùng nằm trong [Danh Vọng & Thăng Tiến](05-danh-vong.md), đúng thứ tự sinh ra trước khi tiêu. |
-| Quân Đội → Phản Bội | **Đã sửa.** Phản Bội dời sang [Quân Sự Nâng Cao](06-quan-su-nang-cao.md), đọc sau khi đã biết Quân Đội + Di Chuyển. |
+| Địa Hình → Sa Trường | **Đã sửa.** Sa Trường dời hẳn về [Địa Lý & Bản Đồ](wiki/01-dia-ly.md), định nghĩa ngay cùng chỗ với các loại ô khác. |
+| Dân Tâm/Uy Danh (sinh ra) → thăng Đại Tướng Quân | **Đã sửa.** Cả 2 nay cùng nằm trong [Danh Vọng & Thăng Tiến](wiki/05-danh-vong.md), đúng thứ tự sinh ra trước khi tiêu. |
+| Quân Đội → Phản Bội | **Đã sửa.** Phản Bội dời sang [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md), đọc sau khi đã biết Quân Đội + Di Chuyển. |
 | Di Chuyển → Phản Bội | **Đã sửa** (lý do như trên). |
-| Bát Kỳ (mystics) → Chiến Tướng | **Đã sửa.** Cả 2 nay cùng nằm trong [Huyền Bí & Đặc Dị](07-huyen-bi.md), xếp lại theo đúng thứ tự Thủy Kính (dạy Bát Kỳ) trước Chiến Tướng. |
-| Bát Kỳ (mystics) → Trận Pháp | **Chưa sửa theo vị trí trang** — đây là 1 trong số ít trường hợp domain-hoá và topo-hoá xung đột nhau: Bát Kỳ thuộc chủ đề Huyền Bí (đọc sau), nhưng Trận Pháp (chủ đề Quân Sự) lại cần nó. Xử lý bằng cách khác: [Trận Pháp](06-quan-su-nang-cao.md) có ghi chú tham chiếu tới thẳng phần Bát Kỳ, và thứ tự đúng được nêu rõ ở bảng bên dưới. |
+| Bát Kỳ (mystics) → Chiến Tướng | **Đã sửa.** Cả 2 nay cùng nằm trong [Huyền Bí & Đặc Dị](wiki/07-huyen-bi.md), xếp lại theo đúng thứ tự Thủy Kính (dạy Bát Kỳ) trước Chiến Tướng. |
+| Bát Kỳ (mystics) → Trận Pháp | **Chưa sửa theo vị trí trang** — đây là 1 trong số ít trường hợp domain-hoá và topo-hoá xung đột nhau: Bát Kỳ thuộc chủ đề Huyền Bí (đọc sau), nhưng Trận Pháp (chủ đề Quân Sự) lại cần nó. Xử lý bằng cách khác: [Trận Pháp](wiki/06-quan-su-nang-cao.md) có ghi chú tham chiếu tới thẳng phần Bát Kỳ, và thứ tự đúng được nêu rõ ở bảng bên dưới. |
 
 ## Thứ Tự Đọc Đề Xuất
 
 | # | Khái niệm | Nằm ở trang |
 |---|---|---|
-| 1 | Mục Tiêu & Phe | [Khung Sườn & Tổng Quan](00-tong-quan.md) |
-| 1 | Nhịp Thời Gian (Turn/Go/Atc) | [Khung Sườn & Tổng Quan](00-tong-quan.md) |
-| 2 | Chức Vụ | [Khung Sườn & Tổng Quan](00-tong-quan.md) |
-| 2 | Địa Hình (6 loại ô + Sa Trường) | [Địa Lý & Bản Đồ](01-dia-ly.md) |
-| 3 | Kinh Tế (Mỏ/Nhà Dân/Ruộng/Lương) | [Kinh Tế & Hậu Cần](03-kinh-te.md) |
-| 3 | Dân Tâm & Uy Danh — sinh ra | [Danh Vọng & Thăng Tiến](05-danh-vong.md) |
-| 3 | Trục Xuất & Trảm Đầu | [Chính Trị Nội Bộ](02-chinh-tri.md) |
-| 4 | Quân Đội Cơ Bản | [Quân Sự Cơ Bản](04-quan-su-co-ban.md) |
-| 4 | Uy Danh → thăng Đại Tướng Quân | [Danh Vọng & Thăng Tiến](05-danh-vong.md) |
-| 4 | Hoa Đà / Tả Từ / Thủy Kính (Bát Quái, Bát Kỳ) | [Huyền Bí & Đặc Dị](07-huyen-bi.md) |
-| 5 | Di Chuyển & Nối Lương | [Quân Sự Cơ Bản](04-quan-su-co-ban.md) |
-| 5 | Kỹ Năng Tác Chiến | [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) |
-| 5 | Lò Rèn & Cơ Giới | [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) |
-| 6 | Binh Pháp — Công Thức Chiến Đấu | [Quân Sự Cơ Bản](04-quan-su-co-ban.md) |
-| 6 | Phản Bội | [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) |
-| 6 | Thuyền & Thủy Chiến | [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) |
-| 7 | Thời Tiết — hiệu ứng mùa | [Môi Trường — Thời Tiết](08-moi-truong.md) |
-| 7 | Phù Chú | [Huyền Bí & Đặc Dị](07-huyen-bi.md) |
-| 7 | Tinh Binh (mốc giết địch) | [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) |
-| 8 | Trận Pháp `[cần đọc Bát Kỳ ở bậc 4 trước]` | [Quân Sự Nâng Cao](06-quan-su-nang-cao.md) |
-| 8 | Chiến Tướng | [Huyền Bí & Đặc Dị](07-huyen-bi.md) |
-| 9 | Luật Bổ Sung / Ví dụ | [Phụ Lục](09-phu-luc.md) |
+| 1 | Mục Tiêu & Phe | [Khung Sườn & Tổng Quan](wiki/00-tong-quan.md) |
+| 1 | Nhịp Thời Gian (Turn/Go/Atc) | [Khung Sườn & Tổng Quan](wiki/00-tong-quan.md) |
+| 2 | Chức Vụ | [Khung Sườn & Tổng Quan](wiki/00-tong-quan.md) |
+| 2 | Địa Hình (6 loại ô + Sa Trường) | [Địa Lý & Bản Đồ](wiki/01-dia-ly.md) |
+| 3 | Kinh Tế (Mỏ/Nhà Dân/Ruộng/Lương) | [Kinh Tế & Hậu Cần](wiki/03-kinh-te.md) |
+| 3 | Dân Tâm & Uy Danh — sinh ra | [Danh Vọng & Thăng Tiến](wiki/05-danh-vong.md) |
+| 3 | Trục Xuất & Trảm Đầu | [Chính Trị Nội Bộ](wiki/02-chinh-tri.md) |
+| 4 | Quân Đội Cơ Bản | [Quân Sự Cơ Bản](wiki/04-quan-su-co-ban.md) |
+| 4 | Uy Danh → thăng Đại Tướng Quân | [Danh Vọng & Thăng Tiến](wiki/05-danh-vong.md) |
+| 4 | Hoa Đà / Tả Từ / Thủy Kính (Bát Quái, Bát Kỳ) | [Huyền Bí & Đặc Dị](wiki/07-huyen-bi.md) |
+| 5 | Di Chuyển & Nối Lương | [Quân Sự Cơ Bản](wiki/04-quan-su-co-ban.md) |
+| 5 | Kỹ Năng Tác Chiến | [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) |
+| 5 | Lò Rèn & Cơ Giới | [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) |
+| 6 | Binh Pháp — Công Thức Chiến Đấu | [Quân Sự Cơ Bản](wiki/04-quan-su-co-ban.md) |
+| 6 | Phản Bội | [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) |
+| 6 | Thuyền & Thủy Chiến | [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) |
+| 7 | Thời Tiết — hiệu ứng mùa | [Môi Trường — Thời Tiết](wiki/08-moi-truong.md) |
+| 7 | Phù Chú | [Huyền Bí & Đặc Dị](wiki/07-huyen-bi.md) |
+| 7 | Tinh Binh (mốc giết địch) | [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) |
+| 8 | Trận Pháp `[cần đọc Bát Kỳ ở bậc 4 trước]` | [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md) |
+| 8 | Chiến Tướng | [Huyền Bí & Đặc Dị](wiki/07-huyen-bi.md) |
+| 9 | Luật Bổ Sung / Ví dụ | [Phụ Lục](wiki/09-phu-luc.md) |
 
 ## Vì sao domain-hoá và topo-hoá không phải lúc nào cũng khớp nhau
 

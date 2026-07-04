@@ -15,11 +15,11 @@ Các quy tắc rời áp dụng chung cho nhiều chương, kèm một ví dụ 
 ## Không Nhận Lại Người Đã Rời
 
 - Không nhận lại kẻ đã **Trục Xuất / Phản Bội / Xử Trảm** — dù ở nước cũ hay nước khác.
-- Trục Xuất = đuổi khỏi nước (không chủ đích giết); khác Trảm Đầu = xử tử (xem [Chính Trị](02-chinh-tri.md)).
+- Trục Xuất = đuổi khỏi nước (không chủ đích giết); khác Trảm Đầu = xử tử (xem [Chính Trị](wiki/02-chinh-tri.md)).
 
 ## Xuất Quân Từ Không Gian Ảo
 
-- Văn/lính/đồ mới mua hoặc ở không gian ảo được xuất ra bản đồ từ **bất kỳ Ô Trì** (hoặc **Doanh Trại**, nếu có — xem [Quân Sự Nâng Cao](06-quan-su-nang-cao.md)) đang nối với không gian ảo đó.
+- Văn/lính/đồ mới mua hoặc ở không gian ảo được xuất ra bản đồ từ **bất kỳ Ô Trì** (hoặc **Doanh Trại**, nếu có — xem [Quân Sự Nâng Cao](wiki/06-quan-su-nang-cao.md)) đang nối với không gian ảo đó.
 
 <details>
 <summary>Cơ chế phụ</summary>
@@ -31,7 +31,7 @@ Các quy tắc rời áp dụng chung cho nhiều chương, kèm một ví dụ 
 
 ## Ví Dụ: Nối Lương & Cắt Lương
 
-*(Minh họa cho [Nối Lương](04-quan-su-co-ban.md), không phải luật riêng.)*
+*(Minh họa cho [Nối Lương](wiki/04-quan-su-co-ban.md), không phải luật riêng.)*
 
 Nước Thục chiếm từ Ô **B4 → B9**. Nước Ngụy dẫn quân chiếm **C7 và B7** → Thục mất B7, khiến **B8, B9** bị cắt đường tiếp lương về Trì.
 
@@ -41,4 +41,4 @@ Trước khi bị giết/chết đói ở cuối Go/Atc, quân **vẫn thực hi
 
 ---
 
-*Xem thêm: [Bảng Tra Cứu](glossary.md) · [Đồ Thị Luật Game](so-do-luat.md) · [Rà Soát Thuật Ngữ](terminology-audit.md) · [Lộ Trình Học](lo-trinh-hoc.md)*
+*Xem thêm: [Bảng Tra Cứu](wiki/glossary.md) · [Đồ Thị Luật Game](wiki/so-do-luat.md) · [Rà Soát Thuật Ngữ](wiki/terminology-audit.md) · [Lộ Trình Học](wiki/lo-trinh-hoc.md)*

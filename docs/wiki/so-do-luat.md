@@ -1,6 +1,6 @@
 # Đồ Thị Luật Game
 
-Trang này mô hình hoá **toàn bộ luật** thành một đồ thị: mỗi **ô** (node) là một thực thể luật, mỗi **đường** (edge) là một quan hệ *có kiểu* giữa hai thực thể. Khác với [Lộ Trình Học](lo-trinh-hoc.md) (chỉ trả lời "học khái niệm nào trước"), đồ thị này trả lời **"thứ này liên quan tới những thứ nào, theo cách nào"** — chuỗi sản xuất, nơi tiêu tài nguyên, điều kiện tiền đề, khắc chế, ai chở/buff ai.
+Trang này mô hình hoá **toàn bộ luật** thành một đồ thị: mỗi **ô** (node) là một thực thể luật, mỗi **đường** (edge) là một quan hệ *có kiểu* giữa hai thực thể. Khác với [Lộ Trình Học](wiki/lo-trinh-hoc.md) (chỉ trả lời "học khái niệm nào trước"), đồ thị này trả lời **"thứ này liên quan tới những thứ nào, theo cách nào"** — chuỗi sản xuất, nơi tiêu tài nguyên, điều kiện tiền đề, khắc chế, ai chở/buff ai.
 
 Nguồn: `reference/Tam Quoc Chi - full text.txt` (luật đầy đủ). Mô hình dữ liệu: `data/rules-graph.json`.
 
