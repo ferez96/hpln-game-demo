@@ -9,7 +9,7 @@
 | Phù | Lượt | Đối tượng | Hiệu ứng chính | Delay |
 |---|---|---|---|---|
 | **Hỏa Phù** | Atc | vùng 3×3 | Mỗi lính cháy −1 Thủ, dồn về tâm, miễn nối lương 1 Turn | — |
-| **Thủy Phù** | Atc | vùng | Giữ chân quân, chặn gửi/rút; **không ô nào miễn nhiễm** | — |
+| **Thủy Phù** | Atc | vùng 2×2 | Giữ chân quân, chặn gửi/rút; **không ô nào miễn nhiễm** | — |
 | **Tốc Phù** | Go | Kỵ Mã | Đi 2 ô liên tiếp (trên Núi 2–3) | 2 Turn¹ |
 | **Phong Phù** | Atc | Cung | Bắn xa +1 ô; địch −1 Thủ nếu Công ≥50% | — |
 | **Cổ Vũ** | Go/Atc | quân của Tướng | +1 Công/lính (1 Turn) | — |
@@ -69,7 +69,9 @@
 
 **Cổ Vũ** — dùng Go hoặc Atc. **+1 Công/lính** đang chỉ huy (1 Turn). Dùng Go1 → còn tới hết Atc1 rồi mất (không sang Go2). Cộng dồn với Skill Đại Tướng (VD +2 Công / +1 Thủ).
 
-**Thủy Phù** — Atc. Ném 1 ô kề, tạo vùng nước. Tướng/lính/cơ giới/thuyền đã & đang ở trong vùng **không di chuyển** được; chủ động đi vào cũng bị kẹt. Vận/nối Lúa không ảnh hưởng. **Không ô nào miễn nhiễm** (kể cả Châu/Trì). Hiệu lực từ cuối Atc → hết Atc kế tiếp.
+**Thủy Phù** — Atc. Ném 1 ô kề, tạo vùng nước **2×2**. Tướng/lính/cơ giới/thuyền đã & đang ở trong vùng **không di chuyển** được; chủ động đi vào cũng bị kẹt. Vận/nối Lúa không ảnh hưởng. **Không ô nào miễn nhiễm** (kể cả Châu/Trì). Hiệu lực từ cuối Atc → hết Atc kế tiếp.
+
+<img src="wiki/assets/phu-vung-anh-huong.svg" alt="Sơ đồ vùng ảnh hưởng Hỏa Phù (3x3 quanh Ô Trung Tâm) và Thủy Phù (2x2)" style="max-width:780px;width:100%;">
 
 <details>
 <summary>Cơ chế phụ</summary>

@@ -35,6 +35,8 @@ Các quy tắc rời áp dụng chung cho nhiều chương, kèm một ví dụ 
 
 Nước Thục chiếm từ Ô **B4 → B9**. Nước Ngụy dẫn quân chiếm **C7 và B7** → Thục mất B7, khiến **B8, B9** bị cắt đường tiếp lương về Trì.
 
+<img src="wiki/assets/vi-du-noi-luong.svg" alt="Sơ đồ ví dụ Nối Lương: Thục chiếm B4-B9, Ngụy cắt tại B7 khiến B8/B9 mất kết nối" style="max-width:560px;width:100%;">
+
 **Kết quả:** Tướng, Văn, và gần như toàn bộ lính + đồ của Thục tại B8, B9 **chết đói sạch** — cuối Go (nếu bị Kỵ/Bộ xử) hoặc cuối Atc (nếu bị Cung xử, hoặc lính miễn nối lương hết hạn, hoặc Tướng ẩn hiện lại) trong đúng Turn đó. B8, B9 thành **Ô Trắng** vì mất đường thông về Trì.
 
 Trước khi bị giết/chết đói ở cuối Go/Atc, quân **vẫn thực hiện đầy đủ** giao chiến, lệnh chỉ thị, và lệnh Phù trong lượt tương ứng. Dù B8/B9 có lính hay không, thắng hay thua — hễ **mất kết nối với Trì** thì mặc định lính chết đói hết và đất bị xóa màu.

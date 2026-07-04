@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 560" width="100%" style="max-width:940px" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<title>7 Trận Pháp — hình thế</title>
+<rect x="0" y="0" width="940" height="560" rx="10" fill="#ffffff" stroke="#d8d8d8"/>
+<text x="30" y="34" font-size="18" fill="#8b1a1a" font-weight="700" text-anchor="start" >Trận Pháp — hình thế (theo đúng sơ đồ luật gốc)</text>
+<rect x="30" y="55" width="215" height="206" rx="0" fill="#ffffff" stroke="#e8e0cc" stroke-width="1"/>
+<text x="137.5" y="71" font-size="14" fill="#8b1a1a" font-weight="700" text-anchor="middle" >Ngư Lân</text>
+<g transform="translate(42.5,26)"><rect x="30" y="55" width="130" height="130" rx="0" fill="#f7f2e2" stroke="#999999" stroke-width="1"/>
+<line x1="95.0" y1="55" x2="95.0" y2="185" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="30" y1="120.0" x2="160" y2="120.0" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="62.5" y1="87.5" x2="127.5" y2="152.5" stroke="#c8941a" stroke-width="2"/>
+<line x1="62.5" y1="152.5" x2="127.5" y2="87.5" stroke="#c8941a" stroke-width="2"/>
+<circle cx="62.5" cy="87.5" r="13" fill="#c8941a" stroke="#00000030" stroke-width="1.5"/>
+<text x="62.5" y="91.5" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T1</text>
+<circle cx="127.5" cy="152.5" r="13" fill="#c8941a" stroke="#00000030" stroke-width="1.5"/>
+<text x="127.5" y="156.5" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T2</text>
+<circle cx="62.5" cy="152.5" r="13" fill="#c8941a" stroke="#00000030" stroke-width="1.5"/>
+<text x="62.5" y="156.5" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T3</text>
+<circle cx="127.5" cy="87.5" r="13" fill="#c8941a" stroke="#00000030" stroke-width="1.5"/>
+<text x="127.5" y="91.5" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T4</text>
+</g>
+<text x="137.5" y="225" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >2–4 Tướng · lưới 2×2,</text>
+<text x="137.5" y="238" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >tối thiểu 1 hàng chéo</text>
+<rect x="255" y="55" width="215" height="206" rx="0" fill="#ffffff" stroke="#e8e0cc" stroke-width="1"/>
+<text x="362.5" y="71" font-size="14" fill="#8b1a1a" font-weight="700" text-anchor="middle" >Trường Xà</text>
+<g transform="translate(42.5,26)"><rect x="255" y="55" width="130" height="130" rx="0" fill="#f7f2e2" stroke="#999999" stroke-width="1"/>
+<line x1="298.3333333333333" y1="55" x2="298.3333333333333" y2="185" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="341.6666666666667" y1="55" x2="341.6666666666667" y2="185" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="255" y1="120.0" x2="385" y2="120.0" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="276.6666666666667" y1="152.5" x2="320.0" y2="87.5" stroke="#1e2a4a" stroke-width="2"/>
+<line x1="320.0" y1="87.5" x2="363.3333333333333" y2="152.5" stroke="#1e2a4a" stroke-width="2"/>
+<rect x="301.3333333333333" y="123.0" width="37.333333333333336" height="59.0" rx="0" fill="none" stroke="#1a5c3a" stroke-width="1.5" stroke-dasharray="3,3"/>
+<text x="320.0" y="156.5" font-size="10" fill="#1a5c3a" font-weight="700" text-anchor="middle" >Ô X</text>
+<circle cx="320.0" cy="87.5" r="13" fill="#8b1a1a" stroke="#00000030" stroke-width="1.5"/>
+<text x="320.0" y="91.5" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T1</text>
+<circle cx="276.6666666666667" cy="152.5" r="13" fill="#1e2a4a" stroke="#00000030" stroke-width="1.5"/>
+<text x="276.6666666666667" y="156.5" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T2</text>
+<circle cx="363.3333333333333" cy="152.5" r="13" fill="#1e2a4a" stroke="#00000030" stroke-width="1.5"/>
+<text x="363.3333333333333" y="156.5" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T3</text>
+</g>
+<text x="362.5" y="225" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >3 Tướng · hình chữ T</text>
+<text x="362.5" y="238" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >(1 trước + 2 sau)</text>
+<rect x="480" y="55" width="215" height="206" rx="0" fill="#ffffff" stroke="#e8e0cc" stroke-width="1"/>
+<text x="587.5" y="71" font-size="14" fill="#8b1a1a" font-weight="700" text-anchor="middle" >Thất Tinh</text>
+<g transform="translate(42.5,26)"><rect x="480" y="55" width="130" height="130" rx="0" fill="#f7f2e2" stroke="#999999" stroke-width="1"/>
+<line x1="523.3333333333334" y1="55" x2="523.3333333333334" y2="185" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="566.6666666666666" y1="55" x2="566.6666666666666" y2="185" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="480" y1="87.5" x2="610" y2="87.5" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="480" y1="120.0" x2="610" y2="120.0" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="480" y1="152.5" x2="610" y2="152.5" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="545.0" y1="103.75" x2="501.6666666666667" y2="136.25" stroke="#1e2a4a" stroke-width="2"/>
+<line x1="545.0" y1="103.75" x2="588.3333333333334" y2="136.25" stroke="#1e2a4a" stroke-width="2"/>
+<line x1="501.6666666666667" y1="136.25" x2="501.6666666666667" y2="168.75" stroke="#a8622e" stroke-width="2"/>
+<line x1="588.3333333333334" y1="136.25" x2="588.3333333333334" y2="168.75" stroke="#a8622e" stroke-width="2"/>
+<rect x="526.3333333333334" y="123.0" width="37.333333333333336" height="26.5" rx="0" fill="none" stroke="#1a5c3a" stroke-width="1.5" stroke-dasharray="3,3"/>
+<text x="545.0" y="140.25" font-size="10" fill="#1a5c3a" font-weight="700" text-anchor="middle" >Ô X</text>
+<circle cx="545.0" cy="103.75" r="13" fill="#8b1a1a" stroke="#00000030" stroke-width="1.5"/>
+<text x="545.0" y="107.75" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T1</text>
+<circle cx="501.6666666666667" cy="136.25" r="13" fill="#1e2a4a" stroke="#00000030" stroke-width="1.5"/>
+<text x="501.6666666666667" y="140.25" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T2</text>
+<circle cx="588.3333333333334" cy="136.25" r="13" fill="#1e2a4a" stroke="#00000030" stroke-width="1.5"/>
+<text x="588.3333333333334" y="140.25" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T3</text>
+<circle cx="501.6666666666667" cy="168.75" r="13" fill="#a8622e" stroke="#00000030" stroke-width="1.5"/>
+<text x="501.6666666666667" y="172.75" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T4</text>
+<circle cx="588.3333333333334" cy="168.75" r="13" fill="#a8622e" stroke="#00000030" stroke-width="1.5"/>
+<text x="588.3333333333334" y="172.75" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T5</text>
+</g>
+<text x="587.5" y="225" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >5 Tướng · hình nêm</text>
+<text x="587.5" y="238" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >(1 + 2 + 2)</text>
+<rect x="705" y="55" width="215" height="206" rx="0" fill="#ffffff" stroke="#e8e0cc" stroke-width="1"/>
+<text x="812.5" y="71" font-size="14" fill="#8b1a1a" font-weight="700" text-anchor="middle" >Nhạn Hành</text>
+<g transform="translate(42.5,26)"><rect x="705" y="55" width="130" height="130" rx="0" fill="#f7f2e2" stroke="#999999" stroke-width="1"/>
+<line x1="748.3333333333334" y1="55" x2="748.3333333333334" y2="185" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="791.6666666666666" y1="55" x2="791.6666666666666" y2="185" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="705" y1="98.33333333333334" x2="835" y2="98.33333333333334" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="705" y1="141.66666666666669" x2="835" y2="141.66666666666669" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="726.6666666666666" y1="120.0" x2="813.3333333333334" y2="120.0" stroke="#1e2a4a" stroke-width="2"/>
+<circle cx="726.6666666666666" cy="120.0" r="13" fill="#8b1a1a" stroke="#00000030" stroke-width="1.5"/>
+<text x="726.6666666666666" y="124.0" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T1</text>
+<circle cx="770.0" cy="120.0" r="13" fill="#1e2a4a" stroke="#00000030" stroke-width="1.5"/>
+<text x="770.0" y="124.0" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T2</text>
+<circle cx="813.3333333333334" cy="120.0" r="13" fill="#8b1a1a" stroke="#00000030" stroke-width="1.5"/>
+<text x="813.3333333333334" y="124.0" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T3</text>
+</g>
+<text x="812.5" y="225" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >3 Tướng · thẳng hàng</text>
+<text x="812.5" y="238" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >(ngang/dọc) — 2 cánh cùng vai trò</text>
+<rect x="30" y="275" width="215" height="206" rx="0" fill="#ffffff" stroke="#e8e0cc" stroke-width="1"/>
+<text x="137.5" y="291" font-size="14" fill="#8b1a1a" font-weight="700" text-anchor="middle" >Yển Nguyệt</text>
+<g transform="translate(42.5,26)"><rect x="30" y="275" width="130" height="130" rx="0" fill="#f7f2e2" stroke="#999999" stroke-width="1"/>
+<line x1="73.33333333333334" y1="275" x2="73.33333333333334" y2="405" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="116.66666666666667" y1="275" x2="116.66666666666667" y2="405" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="30" y1="318.3333333333333" x2="160" y2="318.3333333333333" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="30" y1="361.6666666666667" x2="160" y2="361.6666666666667" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="95.0" y1="296.6666666666667" x2="95.0" y2="383.3333333333333" stroke="#1a5c3a" stroke-width="2"/>
+<circle cx="95.0" cy="296.6666666666667" r="13" fill="#8b1a1a" stroke="#00000030" stroke-width="1.5"/>
+<text x="95.0" y="300.6666666666667" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T1</text>
+<circle cx="95.0" cy="340.0" r="13" fill="#1e2a4a" stroke="#00000030" stroke-width="1.5"/>
+<text x="95.0" y="344.0" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T2</text>
+<circle cx="95.0" cy="383.3333333333333" r="13" fill="#a8622e" stroke="#00000030" stroke-width="1.5"/>
+<text x="95.0" y="387.3333333333333" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T3</text>
+</g>
+<text x="137.5" y="445" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >3 Tướng · thẳng hàng</text>
+<text x="137.5" y="458" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >(ngang/dọc)</text>
+<rect x="255" y="275" width="215" height="206" rx="0" fill="#ffffff" stroke="#e8e0cc" stroke-width="1"/>
+<text x="362.5" y="291" font-size="14" fill="#8b1a1a" font-weight="700" text-anchor="middle" >Phong Sát</text>
+<g transform="translate(42.5,26)"><rect x="255" y="275" width="130" height="130" rx="0" fill="#f7f2e2" stroke="#999999" stroke-width="1"/>
+<line x1="298.3333333333333" y1="275" x2="298.3333333333333" y2="405" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="341.6666666666667" y1="275" x2="341.6666666666667" y2="405" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="255" y1="318.3333333333333" x2="385" y2="318.3333333333333" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="255" y1="361.6666666666667" x2="385" y2="361.6666666666667" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="320.0" y1="340.0" x2="320.0" y2="296.6666666666667" stroke="#1e2a4a" stroke-width="2"/>
+<line x1="320.0" y1="340.0" x2="276.6666666666667" y2="340.0" stroke="#1e2a4a" stroke-width="2"/>
+<line x1="320.0" y1="340.0" x2="363.3333333333333" y2="340.0" stroke="#1e2a4a" stroke-width="2"/>
+<line x1="320.0" y1="340.0" x2="320.0" y2="383.3333333333333" stroke="#1e2a4a" stroke-width="2"/>
+<circle cx="320.0" cy="340.0" r="13" fill="#8b1a1a" stroke="#00000030" stroke-width="1.5"/>
+<text x="320.0" y="344.0" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T1</text>
+<circle cx="320.0" cy="296.6666666666667" r="13" fill="#1e2a4a" stroke="#00000030" stroke-width="1.5"/>
+<text x="320.0" y="300.6666666666667" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T2</text>
+<circle cx="276.6666666666667" cy="340.0" r="13" fill="#1e2a4a" stroke="#00000030" stroke-width="1.5"/>
+<text x="276.6666666666667" y="344.0" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T3</text>
+<circle cx="363.3333333333333" cy="340.0" r="13" fill="#1e2a4a" stroke="#00000030" stroke-width="1.5"/>
+<text x="363.3333333333333" y="344.0" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T4</text>
+<circle cx="320.0" cy="383.3333333333333" r="13" fill="#1e2a4a" stroke="#00000030" stroke-width="1.5"/>
+<text x="320.0" y="387.3333333333333" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T5</text>
+</g>
+<text x="362.5" y="445" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >5 Tướng · hình chữ thập</text>
+<text x="362.5" y="458" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >(1 giữa + 4 quanh)</text>
+<rect x="480" y="275" width="215" height="206" rx="0" fill="#ffffff" stroke="#e8e0cc" stroke-width="1"/>
+<text x="587.5" y="291" font-size="14" fill="#8b1a1a" font-weight="700" text-anchor="middle" >Trùy Hình</text>
+<g transform="translate(42.5,26)"><rect x="480" y="275" width="130" height="130" rx="0" fill="#f3e6d8" stroke="#999999" stroke-width="1"/>
+<line x1="523.3333333333334" y1="275" x2="523.3333333333334" y2="405" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="566.6666666666666" y1="275" x2="566.6666666666666" y2="405" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="480" y1="318.3333333333333" x2="610" y2="318.3333333333333" stroke="#e0d8c0" stroke-width="1"/>
+<line x1="480" y1="361.6666666666667" x2="610" y2="361.6666666666667" stroke="#e0d8c0" stroke-width="1"/>
+<rect x="480" y="275" width="130" height="130" rx="0" fill="none" stroke="#a8622e" stroke-width="2" stroke-dasharray="4,3"/>
+<line x1="501.6666666666667" y1="296.6666666666667" x2="588.3333333333334" y2="383.3333333333333" stroke="#a8622e" stroke-width="2"/>
+<circle cx="501.6666666666667" cy="296.6666666666667" r="13" fill="#a8622e" stroke="#00000030" stroke-width="1.5"/>
+<text x="501.6666666666667" y="300.6666666666667" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T1</text>
+<circle cx="545.0" cy="340.0" r="13" fill="#a8622e" stroke="#00000030" stroke-width="1.5"/>
+<text x="545.0" y="344.0" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T2</text>
+<circle cx="588.3333333333334" cy="383.3333333333333" r="13" fill="#a8622e" stroke="#00000030" stroke-width="1.5"/>
+<text x="588.3333333333334" y="387.3333333333333" font-size="11" fill="#ffffff" font-weight="700" text-anchor="middle" >T3</text>
+</g>
+<text x="587.5" y="445" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >3 Tướng · 1 hàng chéo,</text>
+<text x="587.5" y="458" font-size="10.5" fill="#666666" font-weight="normal" text-anchor="middle" >vùng 3×3 dập Thủy/Hỏa</text>
+<text x="30" y="512" font-size="12" fill="#666666" font-weight="normal" text-anchor="start" >Cùng màu chấm = cùng công thức hiệu ứng (VD 2 tướng cùng −10% Công). Ô viền chấm “Ô X” = ô bị mai phục (Thiên La Địa Võng), không phải vị trí Tướng.</text>
+<text x="30" y="530" font-size="12" fill="#666666" font-weight="normal" text-anchor="start" >Hình dựng lại theo đúng sơ đồ lưới của tài liệu gốc — bản rút gọn dạng văn bản đã làm mất các hình vẽ này.</text>
+</svg>

@@ -88,13 +88,17 @@ Nối 1 nhóm Tướng đúng vị trí để buff %. Trận X người tốn **
 
 | Trận | Số tướng | Hình | Hiệu ứng chính |
 |---|---|---|---|
-| **Ngư Lân** | 2–4 | ≥1 hàng chéo | Thủ riêng lính mỗi tướng Thủ: **+100%/tướng** |
-| **Trường Xà** | 3 | — | Công lính T1 **+100%**, T2 −10%; kèm **Thiên La** |
-| **Thất Tinh** | 5 | — | Công lính T1 **+235%**, T2 −10%, T3 −25%; kèm **Thiên La + Trấn Áp** |
+| **Ngư Lân** | 2–4 | lưới 2×2, ≥1 hàng chéo | Thủ riêng lính mỗi tướng Thủ: **+100%/tướng** |
+| **Trường Xà** | 3 | chữ T (1 trước + 2 sau) | Công lính T1 **+100%**, T2 −10%; kèm **Thiên La** |
+| **Thất Tinh** | 5 | hình nêm (1 + 2 + 2) | Công lính T1 **+235%**, T2 −10%, T3 −25%; kèm **Thiên La + Trấn Áp** |
 | **Nhạn Hành** | 3 | thẳng hàng | Cung T1 +100%; Bộ/Kỵ +100% đánh **trên/dưới**, −25% **trái/phải** |
 | **Yển Nguyệt** | 3 | thẳng hàng | Kỵ T1 **+135%**; T2 đứng yên 1 Turn; T3 −20% |
-| **Phong Sát** | 5 | — | Cung T1 **+300%** (bắn chéo được); Cung T2 −25% |
+| **Phong Sát** | 5 | chữ thập (1 giữa + 4 quanh) | Cung T1 **+300%** (bắn chéo được); Cung T2 −25% |
 | **Trùy Hình** | 3 | hàng chéo | Dập Thủy/Hỏa cả vùng 3×3; toàn quân ta trong 9 ô **−10% Công & Thủ** |
+
+<img src="wiki/assets/tran-phap.svg" alt="Sơ đồ hình thế 7 Trận Pháp trên lưới ô" style="max-width:940px;width:100%;">
+
+*Ở Trường Xà/Thất Tinh/Phong Sát, các vị trí cùng công thức hiệu ứng (VD 2 tướng cùng −10% Công) được vẽ cùng màu trong sơ đồ trên. Ô đánh dấu "Ô X" là ô bị mai phục theo hiệu ứng Thiên La Địa Võng, không phải vị trí đứng của Tướng.*
 
 **Thiên La Địa Võng** (kèm Trường Xà/Thất Tinh): địch tại ô bị mai phục (gộp 2 nước địch làm 1) mà tổng chỉ số **không đạt gấp đôi** tổng 3 Tướng trận ta → địch **−50%** sức mạnh cuối còn lại (xét lại 1 lần nữa ở Atc). **Trấn Áp** (Thất Tinh): địch không Ẩn Thân được trong vùng trung tâm trận; ai đã ẩn lọt vào bị hiện ngay.
 

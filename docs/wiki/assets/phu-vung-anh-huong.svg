@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 500" width="100%" style="max-width:780px" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<title>Vùng ảnh hưởng Hỏa Phù &amp; Thủy Phù</title>
+<rect x="0" y="0" width="780" height="500" rx="10" fill="#ffffff" stroke="#d8d8d8"/>
+<text x="30" y="34" font-size="18" fill="#a83c3c" font-weight="700" text-anchor="start" >Vùng ảnh hưởng: Hỏa Phù &amp; Thủy Phù</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker></defs>
+<text x="40" y="62" font-size="14" fill="#666666" font-weight="700" text-anchor="start" >Hỏa Phù — Atc</text>
+<rect x="40" y="80" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="96" y="80" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="152" y="80" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="208" y="80" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="264" y="80" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="40" y="136" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="96" y="136" width="56" height="56" rx="0" fill="#fdece0" stroke="#d98a4a" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="152" y="136" width="56" height="56" rx="0" fill="#fdece0" stroke="#d98a4a" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="208" y="136" width="56" height="56" rx="0" fill="#fdece0" stroke="#d98a4a" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="264" y="136" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="40" y="192" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="96" y="192" width="56" height="56" rx="0" fill="#fdece0" stroke="#d98a4a" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="152" y="192" width="56" height="56" rx="0" fill="#fdece0" stroke="#d98a4a" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="208" y="192" width="56" height="56" rx="0" fill="#fdece0" stroke="#d98a4a" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="264" y="192" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="40" y="248" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="96" y="248" width="56" height="56" rx="0" fill="#fdece0" stroke="#d98a4a" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="152" y="248" width="56" height="56" rx="0" fill="#fdece0" stroke="#d98a4a" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="208" y="248" width="56" height="56" rx="0" fill="#fdece0" stroke="#d98a4a" stroke-width="1" stroke-dasharray="4,3"/>
+<rect x="264" y="248" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="40" y="304" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="96" y="304" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="152" y="304" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="208" y="304" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="264" y="304" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<circle cx="180.0" cy="332.0" r="14" fill="#2a78d6" stroke="#1a4d80" stroke-width="1.5"/>
+<text x="180.0" y="336.0" font-size="12" fill="#ffffff" font-weight="700" text-anchor="middle" >T</text>
+<line x1="180.0" y1="332.0" x2="180.0" y2="388.0" stroke="#bbbbbb" stroke-width="1.5" stroke-dasharray="3,3"/>
+<line x1="180.0" y1="332.0" x2="124.0" y2="332.0" stroke="#bbbbbb" stroke-width="1.5" stroke-dasharray="3,3"/>
+<line x1="180.0" y1="332.0" x2="236.0" y2="332.0" stroke="#bbbbbb" stroke-width="1.5" stroke-dasharray="3,3"/>
+<line x1="180.0" y1="332.0" x2="180.0" y2="276.0" stroke="#c0392b" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="203.52" y="276.0" font-size="12" fill="#c0392b" font-weight="700" text-anchor="middle" >Ô1</text>
+<line x1="180.0" y1="276.0" x2="180.0" y2="220.0" stroke="#c0392b" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="209.12" y="220.0" font-size="11.5" fill="#c0392b" font-weight="700" text-anchor="start" >Ô Trung Tâm</text>
+<text x="40" y="382" font-size="12" fill="#666666" font-weight="normal" text-anchor="start" >Chọn 1 trong 4 hướng.</text>
+<text x="40" y="399" font-size="12" fill="#666666" font-weight="normal" text-anchor="start" >Vùng cháy = Ô Trung Tâm + 8 ô quanh (3×3).</text>
+<text x="40" y="416" font-size="12" fill="#666666" font-weight="normal" text-anchor="start" >Châu/Trì làm tâm: miễn nhiễm (ô quanh vẫn cháy).</text>
+<text x="40" y="433" font-size="12" fill="#666666" font-weight="normal" text-anchor="start" >Hiệu lực: cuối Atc ném → hết Atc kế tiếp.</text>
+<text x="430" y="62" font-size="14" fill="#666666" font-weight="700" text-anchor="start" >Thủy Phù — Atc</text>
+<rect x="430" y="80" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="486" y="80" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="542" y="80" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="598" y="80" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="654" y="80" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="430" y="136" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="486" y="136" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="542" y="136" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="598" y="136" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="654" y="136" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="430" y="192" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="486" y="192" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="542" y="192" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="598" y="192" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="654" y="192" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="430" y="248" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="486" y="248" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="542" y="248" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="598" y="248" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="654" y="248" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="430" y="304" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="486" y="304" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="542" y="304" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="598" y="304" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="654" y="304" width="56" height="56" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<circle cx="570.0" cy="332.0" r="14" fill="#2a78d6" stroke="#1a4d80" stroke-width="1.5"/>
+<text x="570.0" y="336.0" font-size="12" fill="#ffffff" font-weight="700" text-anchor="middle" >T</text>
+<line x1="570.0" y1="332.0" x2="570.0" y2="388.0" stroke="#bbbbbb" stroke-width="1.5" stroke-dasharray="3,3"/>
+<line x1="570.0" y1="332.0" x2="514.0" y2="332.0" stroke="#bbbbbb" stroke-width="1.5" stroke-dasharray="3,3"/>
+<line x1="570.0" y1="332.0" x2="626.0" y2="332.0" stroke="#bbbbbb" stroke-width="1.5" stroke-dasharray="3,3"/>
+<line x1="570.0" y1="332.0" x2="570.0" y2="276.0" stroke="#2a6fb3" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="593.52" y="276.0" font-size="12" fill="#2a6fb3" font-weight="700" text-anchor="middle" >Ô1</text>
+<rect x="542" y="192" width="112" height="112" rx="0" fill="#dceafc" stroke="#2a6fb3" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="598.0" y="252.0" font-size="11.5" fill="#2a6fb3" font-weight="700" text-anchor="middle" >vùng nước (2×2)</text>
+<text x="430" y="382" font-size="12" fill="#666666" font-weight="normal" text-anchor="start" >Ném vào 1 trong 4 ô kề → tạo vùng nước 2×2.</text>
+<text x="430" y="399" font-size="12" fill="#666666" font-weight="normal" text-anchor="start" >Giữ chân quân — chủ động đi vào cũng bị kẹt.</text>
+<text x="430" y="416" font-size="12" fill="#666666" font-weight="normal" text-anchor="start" >Không ô nào miễn nhiễm (kể cả Châu/Trì).</text>
+<text x="430" y="433" font-size="12" fill="#666666" font-weight="normal" text-anchor="start" >Hiệu lực: cuối Atc ném → hết Atc kế tiếp.</text>
+</svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" width="100%" style="max-width:760px" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<title>Kề Núi &amp; Quy tắc kết nối cạnh vuông</title>
+<rect x="0" y="0" width="760" height="420" rx="10" fill="#ffffff" stroke="#d8d8d8"/>
+<text x="30" y="34" font-size="18" fill="#a83c3c" font-weight="700" text-anchor="start" >Bonus kề Núi, và “cạnh vuông” vs “đường chéo”</text>
+<text x="40" y="74" font-size="13" fill="#666666" font-weight="600" text-anchor="start" >Đứng cạnh Núi được cộng Thủ</text>
+<rect x="40" y="90" width="78" height="78" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="118" y="90" width="78" height="78" rx="0" fill="#ecf7ee" stroke="#999999" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="157.0" y="122.0" font-size="12" fill="#2a7a3c" font-weight="600" text-anchor="middle" >+10%</text>
+<text x="157.0" y="136.0" font-size="12" fill="#2a7a3c" font-weight="600" text-anchor="middle" >Thủ</text>
+<rect x="196" y="90" width="78" height="78" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="40" y="168" width="78" height="78" rx="0" fill="#ecf7ee" stroke="#999999" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="79.0" y="200.0" font-size="12" fill="#2a7a3c" font-weight="600" text-anchor="middle" >+10%</text>
+<text x="79.0" y="214.0" font-size="12" fill="#2a7a3c" font-weight="600" text-anchor="middle" >Thủ</text>
+<rect x="118" y="168" width="78" height="78" rx="0" fill="#c98a4a" stroke="#999999" stroke-width="1"/>
+<text x="157.0" y="193.0" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle" >NÚI</text>
+<text x="157.0" y="207.0" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle" >+50% Công</text>
+<text x="157.0" y="221.0" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle" >(Cung đứng trên)</text>
+<rect x="196" y="168" width="78" height="78" rx="0" fill="#ecf7ee" stroke="#999999" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="235.0" y="200.0" font-size="12" fill="#2a7a3c" font-weight="600" text-anchor="middle" >+10%</text>
+<text x="235.0" y="214.0" font-size="12" fill="#2a7a3c" font-weight="600" text-anchor="middle" >Thủ</text>
+<rect x="40" y="246" width="78" height="78" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="118" y="246" width="78" height="78" rx="0" fill="#ecf7ee" stroke="#999999" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="157.0" y="278.0" font-size="12" fill="#2a7a3c" font-weight="600" text-anchor="middle" >+10%</text>
+<text x="157.0" y="292.0" font-size="12" fill="#2a7a3c" font-weight="600" text-anchor="middle" >Thủ</text>
+<rect x="196" y="246" width="78" height="78" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<text x="40" y="344" font-size="12" fill="#666666" font-weight="normal" text-anchor="start" >Kề 2 mặt núi cùng lúc: +20% Thủ (cộng dồn).</text>
+<text x="430" y="56" font-size="13" fill="#666666" font-weight="600" text-anchor="start" >Nối Lương / Di chuyển / Cung bắn:</text>
+<text x="430" y="74" font-size="13" fill="#666666" font-weight="600" text-anchor="start" >chỉ tính cạnh vuông</text>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker></defs>
+<rect x="430" y="90" width="78" height="78" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="508" y="90" width="78" height="78" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="586" y="90" width="78" height="78" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="430" y="168" width="78" height="78" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="508" y="168" width="78" height="78" rx="0" fill="#dfe9f5" stroke="#999999" stroke-width="1"/>
+<text x="547.0" y="211.0" font-size="12" fill="#222222" font-weight="600" text-anchor="middle" >Ô gốc</text>
+<rect x="586" y="168" width="78" height="78" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="430" y="246" width="78" height="78" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="508" y="246" width="78" height="78" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<rect x="586" y="246" width="78" height="78" rx="0" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+<line x1="547.0" y1="207.0" x2="547.0" y2="129.0" stroke="#2a8f4a" stroke-width="2.5"/>
+<text x="547.0" y="133.0" font-size="16" fill="#2a8f4a" font-weight="700" text-anchor="middle" >✓</text>
+<line x1="547.0" y1="207.0" x2="469.0" y2="207.0" stroke="#2a8f4a" stroke-width="2.5"/>
+<text x="469.0" y="211.0" font-size="16" fill="#2a8f4a" font-weight="700" text-anchor="middle" >✓</text>
+<line x1="547.0" y1="207.0" x2="625.0" y2="207.0" stroke="#2a8f4a" stroke-width="2.5"/>
+<text x="625.0" y="211.0" font-size="16" fill="#2a8f4a" font-weight="700" text-anchor="middle" >✓</text>
+<line x1="547.0" y1="207.0" x2="547.0" y2="285.0" stroke="#2a8f4a" stroke-width="2.5"/>
+<text x="547.0" y="289.0" font-size="16" fill="#2a8f4a" font-weight="700" text-anchor="middle" >✓</text>
+<line x1="547.0" y1="207.0" x2="469.0" y2="129.0" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="469.0" y="133.0" font-size="16" fill="#c0392b" font-weight="700" text-anchor="middle" >✗</text>
+<line x1="547.0" y1="207.0" x2="625.0" y2="129.0" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="625.0" y="133.0" font-size="16" fill="#c0392b" font-weight="700" text-anchor="middle" >✗</text>
+<line x1="547.0" y1="207.0" x2="469.0" y2="285.0" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="469.0" y="289.0" font-size="16" fill="#c0392b" font-weight="700" text-anchor="middle" >✗</text>
+<line x1="547.0" y1="207.0" x2="625.0" y2="285.0" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="625.0" y="289.0" font-size="16" fill="#c0392b" font-weight="700" text-anchor="middle" >✗</text>
+<text x="430" y="344" font-size="12" fill="#666666" font-weight="normal" text-anchor="start" >Xanh = cạnh vuông (nối được).</text>
+<text x="430" y="362" font-size="12" fill="#666666" font-weight="normal" text-anchor="start" >Đỏ = đường chéo (KHÔNG tính kết nối).</text>
+</svg>
