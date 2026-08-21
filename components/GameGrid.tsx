@@ -1,59 +1,62 @@
-import { MAP_COLS, MAP_ROWS } from "@/game/state";
+import { rowLetters } from "@/game/coordinates";
+import { MapSize } from "@/game/types";
 import { Billboard, Grid, Text } from "@react-three/drei";
 
 const LABEL_GOLD = "#e8c040";
 const LABEL_OUTLINE = "#12100c";
 
-function GridLabels({ rows, cols }: { rows: number; cols: number }) {
+function AxisLabel({
+  position,
+  children,
+}: {
+  position: [number, number, number];
+  children: string;
+}) {
+  return (
+    <Billboard position={position}>
+      <Text
+        fontSize={0.32}
+        color={LABEL_GOLD}
+        outlineWidth={0.02}
+        outlineColor={LABEL_OUTLINE}
+        anchorX="center"
+        anchorY="middle"
+      >
+        {children}
+      </Text>
+    </Billboard>
+  );
+}
+
+/** Nhãn theo đúng bản đồ in: cột là số 1–N, hàng là chữ A–Z. */
+function GridLabels({ size }: { size: MapSize }) {
+  const letters = rowLetters(size.rows);
   return (
     <group>
-      {/* Column letters */}
-      {Array.from({ length: cols })
-        .map((_, x) => String.fromCharCode(65 + x))
-        .map((label, x) => (
-          <Billboard key={`col-${x}`} position={[x + 0.5, 0.4, -0.5]}>
-            <Text
-              fontSize={0.32}
-              color={LABEL_GOLD}
-              outlineWidth={0.02}
-              outlineColor={LABEL_OUTLINE}
-              anchorX="center"
-              anchorY="middle"
-            >
-              {label}
-            </Text>
-          </Billboard>
-        ))}
-
-      {/* Row numbers */}
-      {Array.from({ length: rows }).map((_, y) => (
-        <Billboard key={`row-${y}`} position={[-0.5, 0.4, y + 0.5]}>
-          <Text
-            fontSize={0.32}
-            color={LABEL_GOLD}
-            outlineWidth={0.02}
-            outlineColor={LABEL_OUTLINE}
-            anchorX="center"
-            anchorY="middle"
-          >
-            {y + 1}
-          </Text>
-        </Billboard>
+      {Array.from({ length: size.cols }).map((_, x) => (
+        <AxisLabel key={`col-${x}`} position={[x + 0.5, 0.4, -0.5]}>
+          {String(x + 1)}
+        </AxisLabel>
+      ))}
+      {Array.from({ length: size.rows }).map((_, y) => (
+        <AxisLabel key={`row-${y}`} position={[-0.5, 0.4, y + 0.5]}>
+          {letters[y]}
+        </AxisLabel>
       ))}
     </group>
   );
 }
 
-export default function GameGrid() {
+export default function GameGrid({ size }: { size: MapSize }) {
   return (
     <>
       <Grid
-        args={[MAP_COLS, MAP_ROWS]}
+        args={[size.cols, size.rows]}
         cellSize={1}
         sectionSize={1}
-        position={[7, 0, 7]}
+        position={[size.cols / 2, 0, size.rows / 2]}
       />
-      <GridLabels rows={MAP_ROWS} cols={MAP_COLS} />
+      <GridLabels size={size} />
     </>
   );
 }

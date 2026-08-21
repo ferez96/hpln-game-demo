@@ -49,6 +49,7 @@ export const GENERAL_RANKS = {
     label: "Tướng Quân",
     maxTroopsMoving: 10_000, // biên chế khi di chuyển
     maxTroopsStanding: Infinity, // đứng yên chỉ huy vô hạn lính tại ô
+    killStreakToPromote: 3, // giết liên tiếp bấy nhiêu tướng địch thì thăng
     promotionCondition:
       "Giết 3 tướng địch liên tiếp, hoặc tốn 10 điểm Uy Danh.",
   },
@@ -675,70 +676,97 @@ export const SHIPS = {
 
 // ─── Công trình — thu nhập ─────────────────────────────────────────────────
 
+// Mọi bảng dưới đây tra theo cấp (index 0 = cấp 1). Luật cho giá trị riêng
+// từng cấp chứ không tuyến tính theo cấp, nên phải là bảng chứ không phải
+// một hệ số nhân.
+
 export const BUILDINGS = {
   mine: {
     label: "Mỏ",
-    goldPerLevel: 3, // cấp X → +3X vàng/lượt
+    /** Tài Nguyên sinh ra mỗi Turn theo cấp (§3). */
+    taiNguyenByLevel: [3, 5, 7],
     maxLevel: 3,
-    upgradeCost: 2, // mất 2 Tài Nguyên mỗi lần nâng cấp
-    upgradeDelay: 1, // nâng Turn 1 → Turn 2 mới dùng được
-  },
-  farm: {
-    label: "Ruộng",
-    grainPerLevel: 3_000, // cấp X → +3000X lúa/lượt (x2 mùa Thu, 0 mùa Đông)
-    maxLevel: 3,
-    upgradeCost: 2,
-    upgradeDelay: 1,
+    /** Chi phí nâng lên cấp 2 / cấp 3. */
+    upgradeCost: [4, 5],
+    upgradeDelay: 1, // nâng Turn N → Turn N+1 mới dùng được (§18)
   },
   populationHouse: {
     label: "Nhà Dân",
-    popPerLevel: 2_000, // cấp X → +2000X dân/lượt
+    /** Số Dân đổi được từ 1 Tài Nguyên, theo cấp (§3). */
+    danPerTaiNguyenByLevel: [2_000, 3_000, 4_000],
     maxLevel: 3,
-    upgradeCost: 2,
+    upgradeCost: [4, 5],
+    upgradeDelay: 1,
+  },
+  farm: {
+    label: "Ruộng",
+    /** Số Lúa đổi được từ 1000 Dân, theo cấp (§3). Đổi là mất Dân. */
+    luaPer1000DanByLevel: [1_000, 2_000, 3_000],
+    danPerBatch: 1_000,
+    maxLevel: 3,
+    upgradeCost: [4, 5],
     upgradeDelay: 1,
   },
   barracks: {
     label: "Bộ Binh",
     unitType: "infantry" as const,
-    levels: 3,
+    /** 1 Tài Nguyên + `danCost` Dân = `troops` Bộ Binh, theo cấp (§6). */
+    troopsByLevel: [1_000, 2_000, 3_000],
+    danCostByLevel: [2_000, 3_000, 4_000],
+    maxLevel: 3,
+    upgradeCost: [4, 5],
+    upgradeDelay: 1,
   },
   archery: {
     label: "Cung Thủ",
     unitType: "archers" as const,
-    levels: 3,
+    // §6 — Cung quy đổi TỪ Bộ Binh, cùng cấu trúc giá, đổi Bộ thay vì Dân.
+    troopsByLevel: [1_000, 2_000, 3_000],
+    infantryCostByLevel: [2_000, 3_000, 4_000],
+    maxLevel: 3,
+    upgradeCost: [4, 5],
+    upgradeDelay: 1,
   },
   stable: {
     label: "Kỵ Mã",
     unitType: "cavalry" as const,
-    levels: 3,
-  },
-  forgeWeapon: {
-    label: "Rèn Vũ Khí",
-    effect: "Nâng công cho đơn vị tương ứng",
-    levels: 3,
-  },
-  forgeArmor: {
-    label: "Rèn Khiên",
-    effect: "Nâng thủ cho đơn vị tương ứng",
-    levels: 3,
-  },
-  shipyard: {
-    label: "Xưởng Thuyền",
-    levels: 3,
-  },
-  siegeWorkshop: {
-    label: "Xưởng Cơ Giới",
-    levels: 3,
+    troopsByLevel: [1_000, 2_000, 3_000],
+    infantryCostByLevel: [2_000, 3_000, 4_000],
+    maxLevel: 3,
+    upgradeCost: [4, 5],
+    upgradeDelay: 1,
   },
 } as const;
 
 // ─── Chi phí mua quân ──────────────────────────────────────────────────────
 
 export const RECRUITMENT = {
-  batchSize: 1_000,
-  goldCostPerBatch: 1, // 1 Tài Nguyên vàng / 1000 lính
-  populationCostPer1: 2, // 1 lính tiêu tốn 2 dân
+  /** Mọi lần tuyển/quy đổi đều tốn đúng 1 Tài Nguyên cho 1 "mẻ" (§6). */
+  taiNguyenPerBatch: 1,
 } as const;
+
+// ─── Thu nhập ──────────────────────────────────────────────────────────────
+
+/** Tài Nguyên mỗi Turn theo loại ô sở hữu (§4). Thành Trì không sinh Tài Nguyên. */
+export const TERRITORY_INCOME = {
+  plains: 1, // Ô Trắng
+  city: 3, // Châu Thành
+  capital: 0,
+} as const;
+
+/** Sản lượng mỗi Turn theo chức vụ (§2). */
+export const ROLE_INCOME = {
+  LORD: { deKhi: 1 },
+  STRATEGIST: {},
+  CIVIL: { taiNguyen: 1, danTam: 1 },
+  GENERAL: { uyDanh: 1 },
+} as const;
+
+/** Từ Turn này trở đi Quan Văn làm ra 2 Tài Nguyên thay vì 1 (§2). */
+export const CIVIL_OUTPUT_BOOST = { fromTurn: 5, taiNguyen: 2 } as const;
+
+/** §5 — mỗi lính ăn 1 Lúa mỗi Turn, trừ vào đầu Go. */
+export const GRAIN_UPKEEP_PER_SOLDIER = 1;
 
 // ─── Nhân vật đặc biệt ─────────────────────────────────────────────────────
 

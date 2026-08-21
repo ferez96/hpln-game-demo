@@ -1,22 +1,20 @@
-import { ArmyState, GameState, Owner, TileData } from "./types";
+import { CommanderState, GameState, Owner, TileData } from "./types";
 
 /**
- * The perspective the board is currently rendered from. "spectator" is an
- * omniscient observer (sees everything, e.g. when handing the screen off
- * between players); a kingdom id renders the board as that kingdom would
- * see it — its own units always visible, other kingdoms' stealthed units
- * hidden per TERRAIN_RULES.forest.hidesUnits (docs/rulebook.ts).
+ * Góc nhìn đang dựng bản đồ. `spectator` là người quan sát toàn tri (GM);
+ * chọn một quốc gia thì bản đồ hiện đúng những gì nước đó thấy — quân mình
+ * luôn hiện, quân địch đứng trong Rừng thì ẩn (§4, TERRAIN_RULES.forest).
  */
 export type VisionMode = Owner | "spectator";
 
-export function isArmyVisible(
+export function isCommanderVisible(
   state: GameState,
-  army: ArmyState,
+  commander: CommanderState,
   mode: VisionMode,
 ): boolean {
   if (mode === "spectator") return true;
-  if (army.kingdom === mode) return true;
-  const tile = state.tiles.find((t) => t.id === army.tileId);
+  if (commander.kingdom === mode) return true;
+  const tile = state.tiles.find((t) => t.id === commander.tileId);
   return tile?.terrain !== "forest";
 }
 

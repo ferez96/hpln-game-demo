@@ -1,12 +1,17 @@
+/**
+ * Tam Quốc Tranh Hùng — kiểu dữ liệu lõi.
+ *
+ * Phạm vi MVP: §1–9 của Luật Tối Giản (bản đồ, kinh tế, quân đội, di chuyển,
+ * nối lương, binh pháp, thời tiết, tính điểm). Phù chú, trận pháp, thuyền,
+ * cơ giới, Tinh Binh và Chiến Tướng chưa nằm trong mô hình này.
+ */
+
 /* ---------- Primitive IDs ---------- */
 
 export type PlayerId = string;
-export type KingdomId = Owner;
-export type GeneralId = string;
-export type ArmyId = string;
+export type CommanderId = PlayerId;
 export type TileId = string;
 export type CityId = string;
-export type CastleId = string;
 export type BattleId = string;
 export type EventId = string;
 
@@ -15,50 +20,63 @@ export type EventId = string;
 export type GameStatus = "WAITING" | "RUNNING" | "FINISHED";
 export type GamePhase = "GO" | "ATC";
 export type Season = "SPRING" | "SUMMER" | "AUTUMN" | "WINTER";
-export type VictoryReason = "CONQUEST" | "SCORE" | "ABDICATION";
+export type VictoryReason = "CONQUEST" | "SCORE";
 
 /* ---------- Kingdom ---------- */
 
 export type Owner = "wei" | "shu" | "wu";
 export type Kingdom = Owner;
 
+export const KINGDOMS: Owner[] = ["wei", "shu", "wu"];
+
+/**
+ * Tên tài nguyên theo đúng luật (§3, §5, §17) — GM đọc thẳng các con số này
+ * cho người chơi nên không dùng tên khác.
+ */
 export interface Resources {
-  gold: number;
-  grain: number;
-  population: number;
-  morale: number;
-  prestige: number;
-  imperialToken: number;
+  /** Tài Nguyên — đơn vị chi tiêu chính. */
+  taiNguyen: number;
+  /** Lúa — nuôi lính, 1 Lúa/lính/Turn. */
+  lua: number;
+  /** Dân — nguyên liệu tuyển lính và làm lúa. */
+  dan: number;
+  /** Dân Tâm — do Quan Văn sinh ra. Chưa có nơi tiêu trong MVP. */
+  danTam: number;
+  /** Uy Danh — do Tướng Quân sinh ra. Chưa có nơi tiêu trong MVP. */
+  uyDanh: number;
+  /** Đế Khí — do Chủ Công sinh ra, quy đổi 1:1 sang Dân Tâm hoặc Uy Danh. */
+  deKhi: number;
 }
 
-export interface BuildingLevels {
-  mine: number;
-  farm: number;
-  populationHouse: number;
-  barracks: number;
-  archery: number;
-  stable: number;
-  forgeWeapon: number;
-  forgeArmor: number;
-  shipyard: number;
-  siegeWorkshop: number;
+/** Công trình có cấp trong phạm vi §3/§6. */
+export type BuildingKind =
+  | "mine"
+  | "farm"
+  | "populationHouse"
+  | "barracks"
+  | "archery"
+  | "stable";
+
+export type BuildingLevels = Record<BuildingKind, number>;
+
+export interface PendingUpgrade {
+  building: BuildingKind;
+  /** Nâng ở Turn N thì đầu Turn N+1 mới có hiệu lực (§18). */
+  completesOnTurn: number;
 }
 
 export interface KingdomState {
   id: Owner;
   name: string;
-  leader: PlayerId;
-  strategist: PlayerId;
   resources: Resources;
   buildings: BuildingLevels;
-  territory: TileId[];
-  cities: CityId[];
-  castles: CastleId[];
+  pendingUpgrades: PendingUpgrade[];
+  /** Điểm lãnh thổ cộng dồn qua các Turn Xuân/Thu (§1). */
   score: number;
   eliminated: boolean;
 }
 
-/* ---------- Player & role rules ---------- */
+/* ---------- Player ---------- */
 
 export type Role = "LORD" | "STRATEGIST" | "CIVIL" | "GENERAL";
 export type GeneralRank = "GENERAL" | "GREAT_GENERAL" | "WAR_GOD";
@@ -69,30 +87,34 @@ export interface PlayerState {
   kingdom: Owner;
   role: Role;
   alive: boolean;
-  connected: boolean;
-  banished: boolean;
 }
 
 /* ---------- Map ---------- */
 
 export type Terrain =
-  "plains" | "forest" | "mountain" | "river" | "city" | "capital";
+  | "plains"
+  | "forest"
+  | "mountain"
+  | "river"
+  | "city"
+  | "capital";
 
-export type TileType =
-  "PLAIN" | "CASTLE" | "CITY" | "FOREST" | "MOUNTAIN" | "RIVER";
-
-export type TileEffect = "fire" | "flood" | "fog" | "trap";
+export type TileEffect = "fire" | "flood" | "trap";
 
 export interface Position {
   x: number;
   y: number;
 }
 
+export interface MapSize {
+  rows: number;
+  cols: number;
+}
+
 export interface MapData {
-  size: {
-    rows: number;
-    cols: number;
-  };
+  size: MapSize;
+  /** Tên bàn cờ đang dùng — bàn cờ do GM khai báo khi dựng ván. */
+  name: string;
 }
 
 export interface TileData {
@@ -103,8 +125,8 @@ export interface TileData {
   owner?: Owner;
   label?: string;
   cityId?: CityId;
-  castleId?: CastleId;
   effects: TileEffect[];
+  /** Quốc gia đang nối được lương tới ô này (tính lại mỗi lượt). */
   supplyOwner?: Owner;
 }
 
@@ -113,35 +135,15 @@ export interface CityState {
   label: string;
   owner: Owner | null;
   isCapital: boolean;
+  /** Ô gốc của vùng thành. Ô Trì bị phá sẽ đổi terrain thành `plains` (§4). */
   tiles: TileId[];
+  /** Vựa lúa cục bộ (§4) — Châu/Trì chứa lúa, không tự sinh lúa. */
   grainReserve: number;
-  localMilitia: Units;
-  defense: number;
-  damaged: boolean;
 }
 
-export interface CastleState {
-  id: CastleId;
-  label: string;
-  owner: Owner;
-  tiles: TileId[];
-  grainReserve: number;
-  defense: number;
-  damaged: boolean;
-}
-
-/* ---------- Units & armies ---------- */
+/* ---------- Units & commanders ---------- */
 
 export type UnitType = "infantry" | "archers" | "cavalry";
-export type ShipType = "fishing" | "supply" | "training";
-export type SiegeType = "ram";
-export type Buff =
-  "GREAT_GENERAL" | "MORALE" | "WEAPON" | "ARMOR" | "FORMATION";
-export type Debuff = "STARVING" | "BURNING" | "FLOODED";
-export type ArmyStatus =
-  "IDLE" | "MOVING" | "BATTLE" | "RECOVERING" | "DEFEATED";
-export type Formation =
-  "NORMAL" | "OFFENSIVE" | "DEFENSIVE" | "ARROW" | "CRANE";
 
 export interface Units {
   infantry: number;
@@ -149,83 +151,80 @@ export interface Units {
   cavalry: number;
 }
 
-export interface Cooldowns {
-  greatGeneral: number;
-  heal: number;
-}
+/** §8 — mỗi Tướng bật Công hoặc Thủ; cả ô theo trạng thái đó. */
+export type Stance = "CONG" | "THU";
 
-export interface Inventory {
-  arrows: number;
-  fireArrows: number;
-  ships: ShipType[];
-  siege?: SiegeType;
-}
+export type CommanderStatus = "FIELD" | "RECOVERING" | "DEFEATED";
 
-export interface GeneralState {
-  id: GeneralId;
-  name?: string;
-  player: PlayerId;
+export type Debuff = "STARVING";
+
+/**
+ * Một Tướng trên bàn cờ cùng đạo quân mình chỉ huy. Tướng và quân là một thực
+ * thể: mọi luật §6/§7 ("cần ≥1000 lính mới di chuyển", biên chế 10.000) đều
+ * đọc cả hai nửa, nên tách ra chỉ tạo cơ hội lệch trạng thái.
+ */
+export interface CommanderState {
+  /** Trùng với PlayerId — lệnh gửi tới người chơi nào là tới tướng đó. */
+  id: CommanderId;
+  name: string;
   kingdom: Owner;
+  role: Extract<Role, "LORD" | "GENERAL">;
   rank: GeneralRank;
-  location: TileId;
-  kills: number;
-  woundedTurns: number;
-  cooldowns: Cooldowns;
-  inventory: Inventory;
-  loyal: boolean;
-}
-
-export interface ArmyState {
-  id: ArmyId;
-  kingdom: Owner;
-  generalId: GeneralId;
   tileId: TileId;
   units: Units;
-  morale: number;
-  formation: Formation;
-  status: ArmyStatus;
-  buffs: Buff[];
-  debuffs: Debuff[];
+  stance: Stance;
+  kills: number;
+  status: CommanderStatus;
+  /** Bại trận thì dưỡng ở Trì, đầu Turn này mới ra trận lại được. */
+  readyOnTurn: number;
+  /** Turn đặt chân lên ô hiện tại — dùng cho luật ở Rừng/Núi tối đa 1 Turn (§4). */
+  enteredTileOnTurn: number;
   supplied: boolean;
+  debuffs: Debuff[];
 }
 
-/* ---------- Commands, battle, events ---------- */
+/* ---------- Commands ---------- */
 
 export type CommandType =
   | "MOVE"
   | "ATTACK"
-  | "SHOOT"
-  | "BUY_UNIT"
-  | "BUY_FOOD"
-  | "BUILD"
-  | "UPGRADE"
-  | "TRANSFER"
-  | "PROMOTE"
-  | "REBEL"
-  | "EXECUTE"
+  | "STANCE"
   | "RECRUIT"
-  | "HEAL"
-  | "END_PHASE";
+  | "TRANSFER"
+  | "CONVERT_DAN"
+  | "CONVERT_LUA"
+  | "BUY_LUA"
+  | "UPGRADE";
 
 export interface GameCommand {
-  id: string;
   type: CommandType;
+  /** Người chơi ra lệnh. */
+  actor: PlayerId;
   kingdom: Owner;
-  actorId?: PlayerId | GeneralId;
-  targetId?: string;
-  from?: TileId;
   to?: TileId;
-  units?: Partial<Units>;
-  payload?: Record<string, string | number | boolean | null>;
+  target?: PlayerId;
+  unitType?: UnitType;
+  amount?: number;
+  stance?: Stance;
+  building?: BuildingKind;
+  /** Dòng lệnh gốc GM dán vào, giữ lại để đối chiếu. */
+  raw: string;
 }
 
-export type BattleResult = "ATTACKER_WIN" | "DEFENDER_WIN" | "DRAW";
+/* ---------- Battle, events ---------- */
+
+export type BattleResult = "ATTACKER_WIN" | "DEFENDER_WIN" | "STALEMATE";
 
 export interface BattleReport {
   id: BattleId;
+  turn: number;
+  phase: GamePhase;
   tileId: TileId;
-  attacker: ArmyId;
-  defender: ArmyId;
+  attackers: CommanderId[];
+  defenders: CommanderId[];
+  attackerPower: number;
+  defenderPower: number;
+  defenderStance: Stance;
   result: BattleResult;
   attackerLosses: Units;
   defenderLosses: Units;
@@ -235,13 +234,11 @@ export interface BattleReport {
 export type EventType =
   | "MOVE"
   | "BATTLE"
-  | "BUILD"
-  | "UPGRADE"
-  | "PROMOTION"
-  | "DEATH"
-  | "RESOURCE"
-  | "TURN_END"
+  | "ECONOMY"
   | "SUPPLY"
+  | "STARVATION"
+  | "SIEGE"
+  | "TURN"
   | "VICTORY";
 
 export interface GameEvent {
@@ -259,7 +256,6 @@ export interface GameClock {
   season: Season;
   turn: number;
   phase: GamePhase;
-  seed: number;
 }
 
 export interface VictoryState {
@@ -267,18 +263,17 @@ export interface VictoryState {
   reason: VictoryReason | null;
 }
 
+export const SAVE_VERSION = 3;
+
 export interface GameState {
   version: number;
   game: GameClock;
   map: MapData;
   tiles: TileData[];
   cities: Record<CityId, CityState>;
-  castles: Record<CastleId, CastleState>;
   kingdoms: Record<Owner, KingdomState>;
   players: Record<PlayerId, PlayerState>;
-  generals: Record<GeneralId, GeneralState>;
-  armies: Record<ArmyId, ArmyState>;
-  commands: GameCommand[];
+  commanders: Record<CommanderId, CommanderState>;
   battles: BattleReport[];
   events: GameEvent[];
   victory: VictoryState;
