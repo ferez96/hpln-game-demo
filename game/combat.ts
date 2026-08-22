@@ -60,10 +60,9 @@ function sideUnits(side: BattleSide): Units {
   );
 }
 
-/** Đói thì còn nửa sức; lửa/lụt trên ô cũng bào chỉ số (§10 — giữ sẵn hook). */
-function conditionModifier(commander: CommanderState, tile: TileData): number {
+/** Lửa/lụt trên ô bào chỉ số (§10 — giữ sẵn hook). */
+function conditionModifier(tile: TileData): number {
   let mod = 1;
-  if (commander.debuffs.includes("STARVING")) mod -= 0.5;
   if (tile.effects.includes("fire")) mod -= 0.4;
   if (tile.effects.includes("flood")) mod -= 0.3;
   return Math.max(0.1, mod);
@@ -101,7 +100,7 @@ export function attackPower(
     if (tile.terrain === "mountain") {
       base += archers * TERRAIN_RULES.mountain.archerAttackBonusFromTop;
     }
-    total += base * conditionModifier(commander, tile);
+    total += base * conditionModifier(tile);
   }
   return total;
 }
@@ -122,7 +121,7 @@ export function defensePower(
     troops +=
       totalUnits(commander.units) *
       UNIT_STATS.infantry.defense *
-      conditionModifier(commander, tile);
+      conditionModifier(tile);
   }
   const stone = includeStone ? stoneDefense(tile) : 0;
   const bonus = 1 + mountainFaces(state, tile.id) * TERRAIN_RULES.mountain.adjacentDefenseBonus;

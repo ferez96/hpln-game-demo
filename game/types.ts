@@ -156,8 +156,6 @@ export type Stance = "CONG" | "THU";
 
 export type CommanderStatus = "FIELD" | "RECOVERING" | "DEFEATED";
 
-export type Debuff = "STARVING";
-
 /**
  * Một Tướng trên bàn cờ cùng đạo quân mình chỉ huy. Tướng và quân là một thực
  * thể: mọi luật §6/§7 ("cần ≥1000 lính mới di chuyển", biên chế 10.000) đều
@@ -180,7 +178,6 @@ export interface CommanderState {
   /** Turn đặt chân lên ô hiện tại — dùng cho luật ở Rừng/Núi tối đa 1 Turn (§4). */
   enteredTileOnTurn: number;
   supplied: boolean;
-  debuffs: Debuff[];
 }
 
 /* ---------- Commands ---------- */
@@ -263,7 +260,7 @@ export interface VictoryState {
   reason: VictoryReason | null;
 }
 
-export const SAVE_VERSION = 3;
+export const SAVE_VERSION = 4;
 
 export interface GameState {
   version: number;

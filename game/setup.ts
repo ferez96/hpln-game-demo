@@ -165,7 +165,6 @@ function makeCommanders(
       readyOnTurn: 1,
       enteredTileOnTurn: 1,
       supplied: true,
-      debuffs: [],
     };
   }
   return commanders;

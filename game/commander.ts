@@ -52,7 +52,6 @@ export function retreatToCapital(
   commander.tileId = home;
   commander.enteredTileOnTurn = state.game.turn;
   commander.stance = "THU";
-  commander.debuffs = [];
 }
 
 /** Đầu Turn: ai đã dưỡng đủ thì ra trận lại. */

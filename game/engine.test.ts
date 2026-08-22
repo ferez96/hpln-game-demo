@@ -558,6 +558,41 @@ describe("binh pháp", () => {
     return { state, atk, def };
   }
 
+  /** J3 (Trì Thục) → J4 → I4 → H4 → G4 → F4 → E4 → E5 → E6. */
+  const SHU_TO_E6 = ["J4", "I4", "H4", "G4", "F4", "E4", "E5", "E6"];
+
+  /**
+   * Dựng một Tướng Thục (`def`) đứng cuối hành lang nối lương về Trì, rồi cho
+   * một Tướng Ngụy — đóng ở Châu Ung (G5), tự túc lương Châu nên không cần
+   * hành lang riêng — chiếm đúng ô G4 giữa hành lang đó, qua một lượt Go thật
+   * (`resolvePhase`, không set tay field `supplied`).
+   *
+   * Lúa đầu Go đã phát cho `def` trước khi hành lang bị cắt (trừ lúa chạy
+   * trước hành quân trong cùng lượt — §5), nên `def` sống nguyên quân; chỉ có
+   * `updateSupply` cuối lượt mới đánh dấu `supplied = false`. Đúng kịch bản
+   * PQ-06 "sống hết lượt, chết ở đầu Go kế" — nên bài test không cần chờ tới
+   * lúc chết đói mới đánh giá sức đánh.
+   */
+  function cutSupplyLine() {
+    const state = game();
+    corridor(state, "shu", SHU_TO_E6);
+    const def = commanderOf(state, "shu", 4);
+    place(state, def, "E6", { infantry: 4_000 });
+
+    tileById(state, "G5")!.owner = "wei";
+    state.cities["YONGZHOU"].owner = "wei";
+    const raider = commanderOf(state, "wei", 4);
+    place(state, raider, "G5", { infantry: 1_000 });
+
+    const go = run(state, `${raider.id}: di G4`);
+    const order = go.report.orders[0];
+    if (!order.ok) {
+      throw new Error(`Cắt hành lang test hỏng: ${order.error}`);
+    }
+
+    return { state: go.state, defId: def.id };
+  }
+
   it("đối công: bên thua mất ½, bên thắng chết 50% số đó", () => {
     const { state, atk, def } = duel((s, a, d) => {
       place(s, a, "E5", { infantry: 10_000 });
@@ -658,6 +693,47 @@ describe("binh pháp", () => {
     );
 
     expect(def.units.infantry).toBe(0); // ½ x2 = toàn bộ
+  });
+
+  it("mất nối lương (cắt hành lang qua resolvePhase thật) không trừ sức tấn công: quân số bằng nhau thì trận vẫn cân", () => {
+    const { state, defId } = cutSupplyLine();
+    const def = state.commanders[defId];
+    expect(def.supplied).toBe(false);
+    expect(totalUnits(def.units)).toBe(4_000); // còn nguyên quân — chưa tới lượt chết đói (PQ-06)
+
+    const atk = commanderOf(state, "wei", 3);
+    place(state, atk, "E6", { infantry: 4_000 });
+    atk.stance = "CONG";
+    def.stance = "CONG";
+
+    const { report } = resolveTileBattle(
+      state,
+      "E6",
+      { kingdom: "wei", commanders: [atk], moved: false },
+      { kingdom: "shu", commanders: [def], moved: false },
+    );
+
+    expect(report.attackerPower).toBe(report.defenderPower);
+    expect(report.result).toBe("STALEMATE");
+  });
+
+  it("mất nối lương (cắt hành lang qua resolvePhase thật) không trừ sức thủ ở thế Thủ", () => {
+    const { state, defId } = cutSupplyLine();
+    const def = state.commanders[defId];
+    expect(def.supplied).toBe(false);
+    def.stance = "THU";
+
+    const side = { kingdom: "shu" as Owner, commanders: [def], moved: false };
+    // E6 là Ô Trắng: không Thủ Đá, không mặt Núi kề — đúng công thức gốc
+    // 1 lính = 1 Thủ, không bị trừ vì mất nối lương.
+    expect(defensePower(state, side, tileById(state, "E6")!)).toBe(4_000);
+  });
+
+  it("tile.effects luôn rỗng khi mới dựng ván — lửa/lụt trong conditionModifier là hook §10 chưa cài trong §1-9", () => {
+    const state = game();
+    for (const tile of state.tiles) {
+      expect(tile.effects).toHaveLength(0);
+    }
   });
 
   it("Châu Thành vô chủ có 6000 Thủ Đá, Thành Trì có 8000", () => {

@@ -581,11 +581,6 @@ export function resolvePhase(
   results.sort((a, b) => a.line - b.line);
 
   updateSupply(next);
-  for (const commander of fieldCommanders(next)) {
-    commander.debuffs = commander.supplied
-      ? commander.debuffs.filter((d) => d !== "STARVING")
-      : [...new Set([...commander.debuffs, "STARVING" as const])];
-  }
 
   const phaseResolved = next.game.phase;
 
