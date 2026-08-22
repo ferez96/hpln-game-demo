@@ -16,7 +16,34 @@ Ký hiệu độ lớn: `S` dưới nửa buổi · `M` một buổi · `L` nhi�
 
 ## P0 - làm trước khi chạy playtest
 
-### PT-01 · Chạy 6 Turn đầu và ghi nhật ký ma sát `M` `sẵn sàng`
+### ENG-03 · Bỏ debuff STARVING `S` `chưa làm`
+
+**Story:** Là tác giả luật, tôi cần engine chỉ chạy luật của tôi. Quân bị cắt lương chết theo `PQ-06`,
+không yếu đi trước khi chết.
+
+**Phán quyết:** `PQ-07` - bỏ hẳn, không có trong luật.
+
+**Tại sao trước `PT-01`:** rẻ, và để playtest không đo một trò chơi có luật engine tự chế. Theo
+`PQ-06` quân bị cắt lương vẫn đánh trọn lượt Atc trước khi chết, nên -0.5 rơi đúng vào những trận
+quyết định của một đòn vây cắt.
+
+**Acceptance criteria:**
+- Tướng không nối được vựa đánh với đủ sức; kết quả trận chỉ còn phụ thuộc quân số, địa hình và thế
+  trận theo §8.
+- `updateSupply` vẫn cập nhật cờ `supplied` như cũ - đó là đầu vào của luật chết đói (`PQ-06`), chỉ
+  bỏ phần biến nó thành hình phạt chiến đấu.
+- Test nào đang dựa vào -0.5 thì sửa; thêm một test: hai tướng quân số bằng nhau, một bên mất nối
+  lương, kết quả trận vẫn cân.
+- Kiểm luôn hai hệ số còn lại trong `conditionModifier` (lửa -0.4, lụt -0.3): chúng là hook cho §10
+  chưa cài, nên phải chứng minh `tile.effects` luôn rỗng trong scope §1-9. Nếu không rỗng thì đó là
+  luật thứ hai engine tự chạy.
+
+**Để dev quyết:** `Debuff` là union chỉ có mỗi `"STARVING"`. Bỏ giá trị duy nhất thì giữ khung
+`debuffs` cho luật sau hay xóa luôn - việc kỹ thuật, PO không chốt.
+
+---
+
+### PT-01 · Chạy 6 Turn đầu và ghi nhật ký ma sát `M` `chờ ENG-03`
 
 **Story:** Là GM, tôi muốn chạy thử sáu Turn bằng đúng công cụ hiện có, để biết cái gì thật sự cản
 đường thay vì đoán.
@@ -57,11 +84,9 @@ thật duy nhất", nên hằng số không có consumer là dấu hiệu một 
 `SUPPLY.cityGrainBuffer` (source dòng 233: vựa Châu cạn thì "Châu + toàn bộ vùng xung quanh bại đói
 thành vô chủ" - engine chỉ xóa màu ô của chính tướng bị đói) và `SUPPLY.woodenOxUnlocks`.
 
-**b. Luật engine tự chế, không có trong source.** Đã thấy một cái chắc chắn: `game/combat.ts:66`
-giảm **50% hệ số đánh** của tướng mang debuff `STARVING`. Không có dòng nào trong
-`reference/Tam Quoc Chi - full text.txt` đặt ra hình phạt này, và nó không nằm trong `rulebook.ts`.
-Theo `PQ-06`, quân bị cắt lương còn sống và còn đánh suốt lượt Atc trước khi chết ở đầu Go, nên con
-số này ảnh hưởng thật tới kết quả trận.
+**b. Luật engine tự chế, không có trong source.** Đã tìm được một cái và Minh đã bác nó
+(`ENG-03`, bỏ debuff `STARVING`). Câu hỏi của item này là còn bao nhiêu cái nữa - một cái đã lọt tới
+tận công thức chiến đấu thì khó tin nó là cái duy nhất.
 
 **Acceptance criteria:**
 - Danh sách hằng số trong `rulebook.ts` không có consumer trong `game/`, mỗi mục phân loại: cố ý
@@ -70,9 +95,6 @@ số này ảnh hưởng thật tới kết quả trận.
 - Minh phán quyết từng mục ở nhóm (b): giữ (thì đưa vào `rulebook.ts` và wiki như luật chính thức)
   hay bỏ.
 - Kết quả ghi vào `product/rule-decisions.md`, không chỉ báo miệng.
-
-**Nâng lên P0 nếu:** `PT-01` ghi nhận nhiều trận có quân bị cắt lương tham chiến - lúc đó -0.5 ảnh
-hưởng đủ để làm lệch số liệu cân bằng.
 
 ---
 

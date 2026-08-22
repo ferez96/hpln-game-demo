@@ -96,7 +96,7 @@ vai và **ghi rõ trong log rằng số liệu cân bằng không còn chuyển 
 
 | Rủi ro | Ảnh hưởng | Xử lý |
 |---|---|---|
-| Engine lệch source theo cả hai chiều: hằng số luật không dòng nào đọc, và con số engine tự chế không có trong source (`combat.ts:66` giảm 50% sức đánh khi đói) | Không ai biết engine thật sự chơi luật nào | `ENG-02` |
+| Engine lệch source theo cả hai chiều: hằng số luật không dòng nào đọc, và con số engine tự chế không có trong source. Cái đầu tiên tìm được đã lọt tới tận công thức chiến đấu | Không ai biết engine thật sự chơi luật nào | `ENG-03` (cái đã biết), `ENG-02` (quét phần còn lại) |
 | Wiki công khai dạy sai luật chiến đấu (hai dòng bảng bị đảo so với source; engine đúng, wiki sai) | Người chơi ván thật học sai mô hình, ra lệnh theo kỳ vọng sai | `DOC-01` |
 | Chưa ai biết ván có vui không | Có thể phải đổi luật chứ không phải đổi code | Đo bằng chỉ số "Turn có quyết định thật" |
 | Kinh tế §5 có thể bế tắc giữa ván | Ván chết trước Turn 20 | Phát hiện qua playtest, chưa xử lý trước |

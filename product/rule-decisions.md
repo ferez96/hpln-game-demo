@@ -84,13 +84,20 @@ hành quân, nên tướng mất nối lương không kịp đi khỏi - đúng 
 thời điểm *chết*. Đọc thẳng mấy dòng đó ra một cơ chế chết-cuối-lượt riêng là sai - PO đã đọc sai
 đúng như vậy ở vòng 2 và phải rút lại `ENG-01`.
 
+### PQ-07 · Quân bị cắt lương có yếu đi trước khi chết không
+
+**Phán quyết:** không. Bỏ debuff `STARVING` - không có trong luật.
+
+**Engine: lệch, phải sửa.** `game/combat.ts:66` đang giảm 50% hệ số đánh của tướng mang debuff này,
+và `game/resolve.ts:583-588` gắn debuff cho mọi tướng không nối được vựa. Không dòng nào trong
+source đặt ra hình phạt đó, và nó cũng không có trong `rulebook.ts`. Xem `ENG-03`.
+
+Theo `PQ-06`, quân bị cắt lương sống hết lượt Atc rồi mới chết ở đầu Go, nên nó vẫn đánh trận trong
+lượt đó - và đánh với đủ sức, không bị trừ gì.
+
 ---
 
 ## Còn treo, chưa hỏi
 
-- **Quân bị cắt lương có yếu đi trước khi chết không?** `game/combat.ts:66` giảm 50% hệ số đánh của
-  tướng mang debuff `STARVING`. Không tìm thấy luật này ở đâu trong source. Theo `PQ-06`, quân bị
-  cắt ở cuối Go còn sống và còn đánh suốt lượt Atc, nên con số này ảnh hưởng thật tới kết quả trận.
-  Cần Minh duyệt hoặc bỏ. Xem `ENG-02`.
 - **Vùng quanh Châu Thành khi vựa Châu cạn** - source nói "Châu + toàn bộ vùng xung quanh bại đói
   thành vô chủ" (dòng 233), engine hiện chỉ xóa màu ô của chính tướng bị đói. Chưa hỏi.
