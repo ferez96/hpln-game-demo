@@ -96,8 +96,7 @@ vai và **ghi rõ trong log rằng số liệu cân bằng không còn chuyển 
 
 | Rủi ro | Ảnh hưởng | Xử lý |
 |---|---|---|
-| Engine thiếu cơ chế chết đói do cắt lương ở cuối lượt - cắt lương chỉ làm địch yếu đi thay vì giết | Một nhánh chiến thuật trung tâm biến mất khỏi ván; playtest sẽ đo một trò chơi khác với trò chơi thật | `ENG-01`, chặn `PT-01` |
-| `rulebook.ts` có hằng số luật không dòng code nào đọc - mỗi cái là một luật tưởng đã cài mà chưa | Không ai biết engine thật sự phủ tới đâu | `ENG-02` |
+| Engine lệch source theo cả hai chiều: hằng số luật không dòng nào đọc, và con số engine tự chế không có trong source (`combat.ts:66` giảm 50% sức đánh khi đói) | Không ai biết engine thật sự chơi luật nào | `ENG-02` |
 | Wiki công khai dạy sai luật chiến đấu (hai dòng bảng bị đảo so với source; engine đúng, wiki sai) | Người chơi ván thật học sai mô hình, ra lệnh theo kỳ vọng sai | `DOC-01` |
 | Chưa ai biết ván có vui không | Có thể phải đổi luật chứ không phải đổi code | Đo bằng chỉ số "Turn có quyết định thật" |
 | Kinh tế §5 có thể bế tắc giữa ván | Ván chết trước Turn 20 | Phát hiện qua playtest, chưa xử lý trước |
@@ -119,7 +118,11 @@ engine đúng cả năm. Xem `rule-decisions.md`.
 
 - **`rulebook.ts` không phải bằng chứng luật đã cài.** File tự mô tả là "mọi con số của luật, nguồn
   sự thật duy nhất", nhưng nó chỉ là nơi *chép* luật vào code - có hằng số nằm đó mà không dòng code
-  nào đọc. `ENG-01` được phát hiện đúng theo dấu hiệu này. Muốn biết một luật đã chạy chưa thì tra
-  consumer của hằng số, đừng tin việc nó có mặt.
+  nào đọc. Muốn biết một luật đã chạy chưa thì tra consumer của hằng số, đừng tin việc nó có mặt.
 - **Wiki không phải nguồn luật.** Nguồn có thẩm quyền là `reference/Tam Quoc Chi - full text.txt`;
   wiki là bản chép lại và đã sai ít nhất một chỗ.
+- **Source cũng không tự đọc được.** Văn phong của nó gộp nguyên nhân với hệ quả trong cùng một câu:
+  "bại chết đói sạch hết ngay cuối Go" (dòng 173) nói về thời điểm quân *bị cắt lương*, không phải
+  thời điểm quân *chết* - hai thứ cách nhau một lượt. PO đọc thẳng ra thành một cơ chế riêng và để
+  nó đảo ưu tiên cả backlog một vòng (`ENG-01`, rút 2026-08-22). Đối chiếu cách đọc với tác giả
+  **trước** khi cho nó đổi thứ tự việc, không phải sau.

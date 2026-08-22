@@ -64,12 +64,33 @@ một công thức, không phải luật riêng.
 
 **Engine: khớp.** `game/economy.ts:415`. Không phải sửa.
 
+### PQ-06 · Quân bị cắt lương chết vào lúc nào
+
+**Phán quyết:** luôn là **đầu Go của Turn kế tiếp**, bất kể việc cắt xảy ra ở lượt nào.
+
+`game/rulebook.ts:292 starvationTiming` ("Cuối GO (bộ, kỵ xử)" / "Cuối ATC (cung xử...)") **chỉ mô
+tả hiện tượng**, không phải hai thời điểm kiểm khác nhau:
+
+- Bộ/Kỵ tấn công ở lượt Go → cuối Go lương bị cắt → đầu Go N+1 chắc chắn chết.
+- Cung tấn công ở lượt Atc → cuối Atc lương bị cắt → đầu Go N+1 chắc chắn chết.
+
+Cả hai đều chết ở cùng một mốc, vì lượt Atc không di chuyển được nên quân bị cắt không có đường gỡ.
+
+**Engine: khớp.** `applyGrainUpkeep` chạy đầu Go (`resolve.ts:563`) và chạy *trước* khi xử lệnh
+hành quân, nên tướng mất nối lương không kịp đi khỏi - đúng nghĩa "chắc chắn chết". Không phải sửa.
+
+**Ghi chú cho lần sau:** cách diễn đạt của source ("bại chết đói sạch hết ngay cuối Go", dòng 173;
+"(Lúc cuối Go/Atc) có đường nối lương thì sống", dòng 195) nói về thời điểm *bị cắt*, không phải
+thời điểm *chết*. Đọc thẳng mấy dòng đó ra một cơ chế chết-cuối-lượt riêng là sai - PO đã đọc sai
+đúng như vậy ở vòng 2 và phải rút lại `ENG-01`.
+
 ---
 
 ## Còn treo, chưa hỏi
 
-- **Bộ/Kỵ xử cuối Go, Cung xử cuối Atc** - `game/rulebook.ts:292 starvationTiming` chép từ source
-  rằng thời điểm chết đói phụ thuộc loại quân gây ra việc cắt. Chưa rõ đây là hai thời điểm kiểm
-  khác nhau hay chỉ mô tả ai thường gây ra việc cắt ở lượt nào. Cần hỏi khi làm `ENG-01`.
+- **Quân bị cắt lương có yếu đi trước khi chết không?** `game/combat.ts:66` giảm 50% hệ số đánh của
+  tướng mang debuff `STARVING`. Không tìm thấy luật này ở đâu trong source. Theo `PQ-06`, quân bị
+  cắt ở cuối Go còn sống và còn đánh suốt lượt Atc, nên con số này ảnh hưởng thật tới kết quả trận.
+  Cần Minh duyệt hoặc bỏ. Xem `ENG-02`.
 - **Vùng quanh Châu Thành khi vựa Châu cạn** - source nói "Châu + toàn bộ vùng xung quanh bại đói
   thành vô chủ" (dòng 233), engine hiện chỉ xóa màu ô của chính tướng bị đói. Chưa hỏi.
