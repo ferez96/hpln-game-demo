@@ -88,9 +88,10 @@ thời điểm *chết*. Đọc thẳng mấy dòng đó ra một cơ chế ch�
 
 **Phán quyết:** không. Bỏ debuff `STARVING` - không có trong luật.
 
-**Engine: lệch, phải sửa.** `game/combat.ts:66` đang giảm 50% hệ số đánh của tướng mang debuff này,
-và `game/resolve.ts:583-588` gắn debuff cho mọi tướng không nối được vựa. Không dòng nào trong
-source đặt ra hình phạt đó, và nó cũng không có trong `rulebook.ts`. Xem `ENG-03`.
+**Engine: đã sửa xong (`ENG-03`, 2026-08-22).** Trước đó `game/combat.ts:66` giảm 50% hệ số đánh của
+tướng mang debuff này và `game/resolve.ts:583-588` gắn debuff cho mọi tướng không nối được vựa. Cả
+hai đã bỏ, cùng với type `Debuff` và field `debuffs`. Test mới đi qua `resolvePhase` thật và fail
+trên bản engine cũ, nên hành vi được ghim chứ không chỉ được khai.
 
 Theo `PQ-06`, quân bị cắt lương sống hết lượt Atc rồi mới chết ở đầu Go, nên nó vẫn đánh trận trong
 lượt đó - và đánh với đủ sức, không bị trừ gì.
@@ -99,5 +100,13 @@ lượt đó - và đánh với đủ sức, không bị trừ gì.
 
 ## Còn treo, chưa hỏi
 
+Ba câu dưới đây đi cùng nhau - tất cả đều về Châu Thành, và `ENG-04` chặn ở đó cho tới khi có phán
+quyết.
+
+- **Chiếm Châu tính thế nào?** Châu 2x2 = 4 ô. Chiếm bao nhiêu ô thì cả Châu đổi chủ?
+- **Châu vô chủ hồi Thủ Đá** - "Châu sập vô chủ Turn 1, Turn 2 không ai chiếm thì Turn 3 hồi 6000
+  Thủ" (dòng 23). Engine có luật này chưa, và nó có thuộc scope §1-9 không?
+- **Kho lúa khi Châu đổi chủ** - "Nước X chiếm, kho Lúa về Nước X" (dòng 23): về nguyên vẹn hay mất
+  một phần?
 - **Vùng quanh Châu Thành khi vựa Châu cạn** - source nói "Châu + toàn bộ vùng xung quanh bại đói
-  thành vô chủ" (dòng 233), engine hiện chỉ xóa màu ô của chính tướng bị đói. Chưa hỏi.
+  thành vô chủ" (dòng 233), engine hiện chỉ xóa màu ô của chính tướng bị đói.

@@ -16,34 +16,7 @@ Ký hiệu độ lớn: `S` dưới nửa buổi · `M` một buổi · `L` nhi�
 
 ## P0 - làm trước khi chạy playtest
 
-### ENG-03 · Bỏ debuff STARVING `S` `chưa làm`
-
-**Story:** Là tác giả luật, tôi cần engine chỉ chạy luật của tôi. Quân bị cắt lương chết theo `PQ-06`,
-không yếu đi trước khi chết.
-
-**Phán quyết:** `PQ-07` - bỏ hẳn, không có trong luật.
-
-**Tại sao trước `PT-01`:** rẻ, và để playtest không đo một trò chơi có luật engine tự chế. Theo
-`PQ-06` quân bị cắt lương vẫn đánh trọn lượt Atc trước khi chết, nên -0.5 rơi đúng vào những trận
-quyết định của một đòn vây cắt.
-
-**Acceptance criteria:**
-- Tướng không nối được vựa đánh với đủ sức; kết quả trận chỉ còn phụ thuộc quân số, địa hình và thế
-  trận theo §8.
-- `updateSupply` vẫn cập nhật cờ `supplied` như cũ - đó là đầu vào của luật chết đói (`PQ-06`), chỉ
-  bỏ phần biến nó thành hình phạt chiến đấu.
-- Test nào đang dựa vào -0.5 thì sửa; thêm một test: hai tướng quân số bằng nhau, một bên mất nối
-  lương, kết quả trận vẫn cân.
-- Kiểm luôn hai hệ số còn lại trong `conditionModifier` (lửa -0.4, lụt -0.3): chúng là hook cho §10
-  chưa cài, nên phải chứng minh `tile.effects` luôn rỗng trong scope §1-9. Nếu không rỗng thì đó là
-  luật thứ hai engine tự chạy.
-
-**Để dev quyết:** `Debuff` là union chỉ có mỗi `"STARVING"`. Bỏ giá trị duy nhất thì giữ khung
-`debuffs` cho luật sau hay xóa luôn - việc kỹ thuật, PO không chốt.
-
----
-
-### PT-01 · Chạy 6 Turn đầu và ghi nhật ký ma sát `M` `chờ ENG-03`
+### PT-01 · Chạy 6 Turn đầu và ghi nhật ký ma sát `M` `sẵn sàng`
 
 **Story:** Là GM, tôi muốn chạy thử sáu Turn bằng đúng công cụ hiện có, để biết cái gì thật sự cản
 đường thay vì đoán.
@@ -52,8 +25,15 @@ quyết định của một đòn vây cắt.
 không dựa trên một lượt thật nào. Sáu Turn thật sẽ xếp lại thứ tự chính xác hơn bất kỳ phân tích nào.
 Không build thêm gì trước khi có log này.
 
-**Không còn gì chặn.** Cả sáu phán quyết luật đã đóng và engine khớp cả sáu, nên số liệu thu được từ
-playtest đo đúng trò chơi thật.
+**Không còn gì chặn.** Bảy phán quyết luật đã đóng, `ENG-03` đã ship, engine khớp cả bảy.
+
+**Ván này là ván dùng một lần - chấp nhận vứt.** `ENG-03` vừa bump `SAVE_VERSION` 3 → 4, và
+`GM-01`/`GM-02` sắp tới cũng đổi shape file lưu (giữ state trước lượt, giữ lệnh thô). Mỗi lần bump
+là save cũ không nạp được nữa, tức ván đang chạy chết. `PT-01` chỉ đo ma sát vận hành nên mất ván
+không sao; `PT-02` - ván trọn vẹn có người thắng - thì phải đợi shape ổn định.
+
+**Đã biết trước, đừng ghi làm lỗi mới:** nếu trong 6 Turn có nước chiếm được Châu Thành, vựa lúa của
+Châu sẽ không hoạt động (`ENG-04`). Ghi vào log là "đã biết", không dừng playtest vì nó.
 
 **Acceptance criteria:**
 - Chạy Turn 1-6 (12 lượt Go/Atc) với `DEFAULT_SETUP` 24 vai, không sửa `data/game-save.json` tay.
@@ -65,6 +45,57 @@ playtest đo đúng trò chơi thật.
 
 **Ghi chú:** Gặp lỗi engine chặn lượt thì **dừng**, ghi lại, không vá tạm để chạy tiếp - lượt sau lỗi
 sẽ mang dữ liệu bẩn.
+
+---
+
+### ENG-04 · Châu Thành phải dùng được làm vựa lúa tiền phương `L` `chưa làm`
+
+**Story:** Là người chơi tiến quân sâu vào đất địch, tôi muốn chiếm một Châu Thành rồi trữ lúa ở đó
+làm bàn đạp, thay vì phải giữ một hành lang nối lương liên tục về Trì.
+
+**Vấn đề:** cơ chế này chết ở hai tầng, và tầng nào cũng đủ để giết nó một mình.
+
+**a. Chiếm Châu không chuyển quyền sở hữu Châu.** `CityState.owner` khởi tạo `null` cho cả 6 Châu
+(`game/board.ts:95-100`) và **không dòng code nào trong `game/` từng gán lại nó** - toàn bộ 5 chỗ gán
+`.owner` trong engine đều là `tile.owner` (`combat.ts:379,389`, `resolve.ts:239,449`,
+`economy.ts:427`). Nên `ownedChau()` (`game/supply.ts:60-73`) luôn trả rỗng, `buildSupplyNetwork` chỉ
+còn nhánh kho quốc gia, và 5.000 Lúa dự trữ mỗi Châu (`setup.ts:79,185`) không bao giờ rút được -
+`drawFromChau` (`economy.ts:457`) không bao giờ được gọi trong một ván thật. Từng ô của Châu vẫn đổi
+màu bình thường qua giao chiến; chỉ quyền sở hữu cấp Châu là không.
+
+**b. Không có lệnh vận lúa.** Source dòng 23: *"Có 'kết nối' vận chuyển (Đầu Go) lúa từ Trì nước mình
+đem đến dự trữ lúa ở đây (Rút/gởi tối thiểu 1000, tối đa vô hạn) để đề phòng quân bị cắt lương."* DSL
+hiện không có verb nào cho việc này (`game/orders/parse.ts:111-174`: `di`, `danh`, `thu`/`cong`,
+`chieu`, `gui` (chỉ chuyển quân), `doi`, `nang`). Nên kể cả khi sửa (a), vựa Châu chỉ có đúng 5.000
+Lúa khởi tạo, dùng hết là hết.
+
+**Hệ quả với ván:** mọi cuộc tiến công đều bị buộc phải kéo một hành lang liền mạch về Trì. Chiếm
+Châu chỉ còn giá trị điểm và tài nguyên, không còn giá trị hậu cần. Đây đúng là loại lệch mà
+`RULE-02` định đo, nên nó **chặn `PT-02`**, không chặn `PT-01` (6 Turn đầu khó ai đủ quân chiếm Châu
+- Châu có 6.000 Thủ Đá).
+
+**Acceptance criteria:**
+- Chiếm đủ số ô của một Châu thì Châu đó thuộc về nước chiếm, và kho lúa của Châu về theo (source
+  dòng 23: "Nước X chiếm, kho Lúa về Nước X").
+- Quân nối được tới Châu của nước mình rút được lúa từ vựa Châu khi kho quốc gia không với tới -
+  tức nhánh `chau` của `buildSupplyNetwork` thật sự có phần tử trong một ván chơi qua `resolvePhase`.
+- Có lệnh gửi và rút lúa giữa Trì và Châu, tối thiểu 1.000 mỗi lần, chỉ chạy ở đầu Go và chỉ khi có
+  kết nối.
+- Luật §5 "ô chỉ nối vựa Châu mà vựa cạn thì thành ô trắng" kích hoạt được trong ván thật - hiện
+  nhánh `chauOnly` (`economy.ts:314,398`) chạy vì lý do khác hẳn (mất kết nối hoàn toàn), nên nhãn
+  đang nói dối về nguyên nhân.
+- Test đi qua `resolvePhase` thật, không set tay `state.cities[...].owner` - chính việc phải set tay
+  nó trong test của `ENG-03` là cách phát hiện ra lỗi này.
+
+**Câu hỏi cần Minh chốt trước khi làm:**
+1. **Chiếm Châu tính thế nào?** Châu 2x2 = 4 ô. Chiếm bao nhiêu ô thì Châu đổi chủ - đủ cả 4, hay
+   quá bán, hay chiếm ô nào thì ô đó tính?
+2. **"Châu sập vô chủ Turn 1, Turn 2 không ai chiếm thì Turn 3 hồi 6000 Thủ"** (source dòng 23) -
+   engine có luật hồi Thủ Đá này chưa, và nó có thuộc scope §1-9 không?
+3. **Kho lúa khi Châu đổi chủ:** về tay nước chiếm nguyên vẹn, hay mất một phần?
+
+**Nguồn phát hiện:** vòng ship `ENG-03` (`.ship-runs/20260822-143829/32-friday-fix.md`, mục "Cần
+biết"). PO đã tự kiểm lại bằng grep độc lập trước khi đưa vào backlog.
 
 ---
 
@@ -189,10 +220,15 @@ tin). Item này chỉ phục vụ chế độ solo, nên nó không được ph�
 
 ---
 
-### PT-02 · Chạy nốt 14 Turn còn lại `L` `chờ PT-01`
+### PT-02 · Ván trọn vẹn có người thắng `L` `chờ PT-01, ENG-04, GM-01, GM-02`
 
 **Story:** Là chủ sản phẩm, tôi muốn một ván trọn vẹn có người thắng, để biết luật §1-9 có tự đứng
 được không.
+
+**Vì sao chờ nhiều thứ thế:** đây là ván **không được phép vứt giữa chừng**, khác `PT-01`. Nên mọi
+thay đổi shape file lưu (`GM-01` giữ state trước lượt, `GM-02` giữ lệnh thô) phải xong trước - bump
+`SAVE_VERSION` giữa ván là mất ván. Và `ENG-04` phải xong, không thì ván đo một trò chơi mà Châu
+Thành không có giá trị hậu cần.
 
 **Acceptance criteria:** đủ bốn điều kiện thành công trong `product-brief.md`.
 
@@ -220,6 +256,25 @@ có kết luận - nếu nền §1-9 lệch thì luật nâng cao xây lên ch�
 
 Minh phán quyết cả ba, cộng ba điểm làm rõ phát sinh. Kết quả: **engine đúng ở cả sáu chỗ**. Chi
 tiết và bằng chứng đối chiếu ở `rule-decisions.md` (`PQ-01` tới `PQ-06`).
+
+### ENG-03 · Bỏ debuff STARVING `xong 2026-08-22`
+
+Đã ship, PO nghiệm thu đạt cả 5 AC. Bằng chứng đáng giữ lại:
+
+- Test mới đi qua `resolvePhase` thật (dựng hành lang nối lương rồi cho địch chiếm ô giữa), và
+  **phân biệt được pre/post-fix**: copy nguyên hai test đó sang bản `d7adca5` thì fail
+  `expected 4000 to be 2000` - đúng chữ ký -0.5 của debuff đã xóa. Bản test đầu tiên set tay
+  `.supplied = false` rồi gọi thẳng `resolveTileBattle`, pass y hệt trên cả hai bản engine, tức không
+  chứng minh gì; sunday bắt được và vòng fix đã thay.
+- `SAVE_VERSION` bump 3 → 4 (shape `CommanderState` đổi). Không có save nào tồn tại nên chi phí bằng 0.
+- `tile.effects` rỗng giờ được ghim bằng test, không còn chỉ là kết quả grep trong một báo cáo.
+- PO tự chạy lại: `npm test` 58/58, `tsc --noEmit` exit 0.
+
+**Lỗi trong AC của chính PO, đã sửa:** AC bullet 2 viết `supplied` là "đầu vào của luật chết đói
+(`PQ-06`)". Sai - `applyGrainUpkeep` (`economy.ts:343`) tự dựng lại supply network và chưa bao giờ
+đọc cờ này. Sau `ENG-03`, `commander.supplied` chỉ còn hai consumer, cả hai là hiển thị
+(`report.ts:205` bảng nước, `components/BoardPanel.tsx:242`). Yêu cầu giữ cờ vẫn đúng, nhưng vì lý do
+khác: nó là **cảnh báo sớm duy nhất** GM nhìn thấy để biết ai sắp chết đói ở đầu Go kế.
 
 ### ENG-01 · Quân mất nối lương phải chết ở cuối lượt `rút 2026-08-22`
 

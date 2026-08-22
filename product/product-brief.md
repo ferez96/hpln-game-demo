@@ -96,7 +96,9 @@ vai và **ghi rõ trong log rằng số liệu cân bằng không còn chuyển 
 
 | Rủi ro | Ảnh hưởng | Xử lý |
 |---|---|---|
-| Engine lệch source theo cả hai chiều: hằng số luật không dòng nào đọc, và con số engine tự chế không có trong source. Cái đầu tiên tìm được đã lọt tới tận công thức chiến đấu | Không ai biết engine thật sự chơi luật nào | `ENG-03` (cái đã biết), `ENG-02` (quét phần còn lại) |
+| Châu Thành không dùng được làm vựa lúa tiền phương: `CityState.owner` không dòng code nào gán, và DSL không có lệnh vận lúa | Tiến công nào cũng phải kéo hành lang liền mạch về Trì; chiếm Châu mất hết giá trị hậu cần | `ENG-04`, chặn `PT-02` |
+| Engine lệch source theo cả hai chiều: hằng số luật không dòng nào đọc, và con số engine tự chế không có trong source. Hai cái tìm được cho tới giờ đều là lỗ thật (`ENG-03` đã sửa, `ENG-04` chưa) | Không ai biết engine thật sự chơi luật nào | `ENG-02` (quét phần còn lại) |
+| Mỗi thay đổi shape file lưu bump `SAVE_VERSION`, làm ván đang chạy không nạp được nữa | Ván playtest chết giữa chừng | `PT-01` là ván dùng một lần; `PT-02` chỉ chạy sau khi `GM-01`/`GM-02` xong |
 | Wiki công khai dạy sai luật chiến đấu (hai dòng bảng bị đảo so với source; engine đúng, wiki sai) | Người chơi ván thật học sai mô hình, ra lệnh theo kỳ vọng sai | `DOC-01` |
 | Chưa ai biết ván có vui không | Có thể phải đổi luật chứ không phải đổi code | Đo bằng chỉ số "Turn có quyết định thật" |
 | Kinh tế §5 có thể bế tắc giữa ván | Ván chết trước Turn 20 | Phát hiện qua playtest, chưa xử lý trước |
