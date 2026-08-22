@@ -1,47 +1,87 @@
 # Backlog - đường tới ván playtest đầu tiên
 
-Cập nhật: 2026-08-22 · Mục tiêu chi phối: xem `product-brief.md`
+Cập nhật: 2026-08-22 (vòng 2) · Mục tiêu chi phối: xem `product-brief.md` · Phán quyết luật: xem
+`rule-decisions.md`
 
 Thứ tự trong file **là** thứ tự ưu tiên. Item trên xong mới xuống item dưới, trừ khi có lý do ghi
 rõ. Mỗi item mô tả **hành vi mong muốn**, không mô tả cách cài - cách cài là việc của vòng ship.
 
 Ký hiệu độ lớn: `S` dưới nửa buổi · `M` một buổi · `L` nhiều buổi. PO ước lượng thô, dev chỉnh lại.
 
+> **Đổi ưu tiên ở vòng này:** `RULE-01` đã đóng (Minh phán quyết 2026-08-22, cả năm điểm engine đều
+> đúng trừ một). Nhưng khi đối chiếu phán quyết với source, phát hiện engine **thiếu hẳn** cơ chế
+> chết đói do cắt lương ở cuối lượt. Cắt lương là chiến thuật trung tâm của luật gốc, nên `ENG-01`
+> chen lên trước `PT-01`: chạy playtest với cơ chế này còn thiếu sẽ cho số liệu cân bằng sai.
+
 ---
 
 ## P0 - làm trước khi chạy playtest
 
-### RULE-01 · Chốt ba phán quyết luật engine đang tự quyết `S` `chưa làm`
+### ENG-01 · Quân mất nối lương phải chết ở cuối lượt `M` `chưa làm`
 
-**Story:** Là tác giả luật, tôi cần xác nhận engine đang chơi đúng ván tôi muốn, trước khi bỏ vài
-tiếng chạy playtest lấy số liệu.
+**Story:** Là người chơi vây cắt đường lương của địch, tôi cần việc cắt lương thật sự giết được quân
+địch trong lượt đó, chứ không chỉ làm chúng yếu đi.
 
-**Tại sao trước tiên:** Ba chỗ dưới đây source không nói rõ, engine tự chọn một cách đọc và mọi
-kết quả playtest sẽ mang dấu vết của lựa chọn đó. Nếu Minh chốt ngược lại sau khi chạy xong, số
-liệu cân bằng phải bỏ đi chạy lại.
+**Vấn đề:** Luật gốc có **hai** cơ chế đói riêng biệt. Engine mới cài một.
 
-Ba điểm cần phán quyết:
+| Cơ chế | Source | Engine |
+|---|---|---|
+| Đầu Go: lính phải ăn, không đủ lúa thì lính không được ăn chết ngay | dòng 36: "đầu Go buộc lính phải ăn lúa, không ăn sẽ lập tức chết ngay" | Có - `applyGrainUpkeep`, `resolve.ts:563` |
+| Cuối Go **và** cuối Atc: kiểm nối lương, mất kết nối là chết sạch và mất đất | dòng 195: "(Lúc cuối Go/Atc) có đường nối lương thì sống, nếu không nối sẽ chết đói bại trận"; dòng 190: "miễn cứ mất kết nối với Thành Trì Nước mình mặc định lính bại chết đói hết và đất cũng sẽ bị xóa màu"; dòng 36: "dù ăn đầu Go1, cuối Go/Atc 1 bị cắt lương thì xét tiếp luật chết đói vì bị cắt lương" | **Không có** |
 
-1. **Quân đứng trên Rừng/Núi có nối lương không?** §7 chỉ cấm nối *xuyên qua* Rừng/Núi/Sông. Engine
-   (`game/supply.ts:reachDistance`) chọn cách đọc: không route xuyên qua, nhưng quân **đứng trên**
-   vẫn rút lương từ ô kề đã nối. Cách đọc ngược lại khiến quân lên núi là chết đói không đường gỡ,
-   làm vô nghĩa cả "ở tối đa 1 Turn" của §4 lẫn vai trò ẩn nấp của Rừng.
-2. **Chết bệnh ở Rừng/Núi tính ở Turn nào?** Engine cho hạn tới đầu Turn N+2 thay vì N+1
-   (`game/resolve.ts:applyIllness`), vì `beginTurn` chạy *trước* khi GM nhập lệnh Go - chốt N+1
-   nghĩa là bước lên núi là án tử không kịp ra lệnh rút.
-3. **Có mua lúa bằng Tài Nguyên không?** §4 gọi Trì là "nơi mua lúa" nhưng không chỗ nào cho tỉ giá.
-   Engine cố ý **không có** verb `mua lua`; đường duy nhất ra lúa là Ruộng (Dân → Lúa).
+Thay vào đó engine gắn debuff `STARVING` -0.5 hệ số đánh (`resolve.ts:583-588`, `combat.ts:66`) cho
+tướng không nối được vựa. Đây là cơ chế engine tự đặt ra, không có trong source, và `PQ-04` vừa
+phủ nhận chính khái niệm "đang đói mà còn sống".
+
+Hệ quả hiện tại: quân bị cắt lương ở cuối Go vẫn sống hết lượt Atc, vẫn đánh nhau (chỉ yếu đi), và
+chỉ chết vào đầu Go hôm sau. Vây cắt chậm một tới hai lượt và mất tính chí mạng.
+
+**Bằng chứng bổ sung:** `game/rulebook.ts:292 starvationTiming` đã chép đúng luật này vào code
+("Cuối GO (bộ, kỵ xử)" / "Cuối ATC (cung xử...)") nhưng **không dòng code nào đọc hằng số đó**.
 
 **Acceptance criteria:**
-- Mỗi điểm có một phán quyết dứt khoát, ghi vào wiki luật ở đúng trang domain của nó.
-- `game/rulebook.ts` và test khớp phán quyết; điểm nào engine đang làm khác thì có test đổi theo.
-- Điểm 3 nếu chốt "có mua lúa" thì phải kèm tỉ giá cụ thể, không để engine tự đoán.
+- Cuối mỗi lượt (cả Go lẫn Atc), tướng không nối được vựa nào mất toàn bộ quân ngay lượt đó, không
+  đợi sang đầu Go kế.
+- Ô đất bị mất kết nối bị xóa màu theo luật đã có ở `PQ-01`/§5 (ô nối kho quốc gia mà kho cạn thì
+  giữ màu; ô chỉ nối vựa Châu mà vựa cạn thì thành ô trắng).
+- Tướng mất sạch quân do đói xử như bại trận về Trì; tàn binh không về theo (source dòng 20: "Tàn
+  Binh Bại do Chết Đói/Bệnh thì coi như chết luôn không về").
+- Debuff `STARVING` được xử lý dứt điểm: hoặc bỏ, hoặc chứng minh được nó còn đối tượng áp dụng sau
+  thay đổi này. Không để lại một cơ chế không ai kích hoạt.
+- Chiến báo nói rõ ai chết vì cắt lương ở lượt nào - đây là thông tin người chơi cần để biết đòn của
+  mình có ăn không.
+- Có test cho: cắt lương ở cuối Go, cắt lương ở cuối Atc, và ô mất màu.
 
-**Bằng chứng:** memory `reference_rules_discrepancies.md` mục 2, 3, 4.
+**Câu hỏi phải hỏi Minh trước khi làm:** `starvationTiming` phân biệt "Bộ/Kỵ xử cuối Go" với "Cung
+xử cuối Atc". Đây là hai thời điểm kiểm khác nhau tùy loại quân gây ra việc cắt, hay chỉ là mô tả
+ai thường gây ra việc cắt ở lượt nào? Nếu là cái đầu thì AC ở trên phải viết lại.
 
 ---
 
-### PT-01 · Chạy 6 Turn đầu và ghi nhật ký ma sát `M` `chưa làm`
+### ENG-02 · Kiểm kê luật đã chép vào code nhưng chưa ai dùng `S` `chưa làm`
+
+**Story:** Là chủ sản phẩm, tôi cần biết engine thật sự phủ tới đâu, chứ không phải phủ tới đâu trên
+giấy.
+
+**Tại sao:** `ENG-01` được phát hiện nhờ đúng một dấu hiệu: một hằng số luật trong `rulebook.ts` mà
+không dòng code nào đọc. `rulebook.ts` tự mô tả là "mọi con số của luật, nguồn sự thật duy nhất", nên
+mỗi hằng số không có consumer là một luật **tưởng đã cài mà chưa**. Kiểm kê một lượt rẻ hơn nhiều so
+với phát hiện từng cái giữa playtest.
+
+Đã thấy ít nhất hai chỗ ngoài `ENG-01`: `SUPPLY.cityGrainBuffer` (vựa Châu cạn thì "Châu + toàn bộ
+vùng xung quanh bại đói thành vô chủ" - engine chỉ xóa màu ô của chính tướng bị đói) và
+`SUPPLY.woodenOxUnlocks`.
+
+**Acceptance criteria:**
+- Một danh sách mọi hằng số trong `rulebook.ts` không có consumer trong `game/`.
+- Mỗi mục phân loại: (a) cố ý ngoài scope §1-9, (b) luật trong scope nhưng chưa cài, (c) chết hẳn,
+  xóa đi.
+- Nhóm (b) thành item backlog mới, PO xếp lại ưu tiên trước khi chạy `PT-01`.
+- Kết quả ghi vào `product/`, không chỉ báo miệng.
+
+---
+
+### PT-01 · Chạy 6 Turn đầu và ghi nhật ký ma sát `M` `chờ ENG-01, ENG-02`
 
 **Story:** Là GM, tôi muốn chạy thử sáu Turn bằng đúng công cụ hiện có, để biết cái gì thật sự cản
 đường thay vì đoán.
@@ -49,6 +89,11 @@ Ba điểm cần phán quyết:
 **Tại sao trước mọi feature:** Toàn bộ P1 và P2 dưới đây là **giả thuyết của PO** dựa trên đọc code,
 không dựa trên một lượt thật nào. Sáu Turn thật sẽ xếp lại thứ tự chính xác hơn bất kỳ phân tích nào.
 Không build thêm gì trước khi có log này.
+
+**Vì sao lại phải chờ:** ban đầu item này đứng đầu backlog. `ENG-01` chen lên trước vì cắt lương
+không giết được thì cả một nhánh chiến thuật biến mất khỏi ván, và số liệu "ván có đáng chơi không"
+sẽ đo một trò chơi khác với trò chơi thật. `ENG-02` rẻ và có thể lộ thêm lỗ tương tự, làm một lượt
+luôn thay vì phát hiện giữa chừng.
 
 **Acceptance criteria:**
 - Chạy Turn 1-6 (12 lượt Go/Atc) với `DEFAULT_SETUP` 24 vai, không sửa `data/game-save.json` tay.
@@ -103,26 +148,28 @@ thể chuyển thành test case.
 
 ---
 
-### DOC-01 · Sửa bảng chiến đấu bị đảo trong wiki công khai `S` `chưa làm`
+### DOC-01 · Đồng bộ wiki với luật engine thật sự chạy `S` `chưa làm`
 
-**Story:** Là người chơi đọc wiki, tôi cần bảng kết quả chiến đấu khớp với cách engine thật sự xử.
+**Story:** Là người chơi đọc wiki, tôi cần trang luật khớp với cách engine thật sự xử.
 
-**Tại sao:** Wiki đang live tại ferez96.com và **dạy sai**. Source (`reference/Tam Quoc Chi - full
-text.txt` dòng 96) nói "Địch cao hơn" nghĩa là chỉ số **bên thủ** cao hơn, tức bên công thua.
-`docs/wiki/04-quan-su-co-ban.md` chép thành "Công ta > Thủ địch", đảo ngược cả hai kết cục, và lỗi
-này lan sang cả `Luật Tối Giản §8`. `game/combat.ts` làm đúng theo source.
+Hai việc, cùng một lần mở file:
 
-Với ván solo thì tác hại nhỏ, nhưng đây là defect sản phẩm đã xác định, sửa rẻ, và chỉ tác giả
-mới quyết được.
+**a. Sửa bảng chiến đấu bị chép ngược.** Source (dòng 96) nói "Địch cao hơn" nghĩa là chỉ số **bên
+thủ** cao hơn, tức bên công thua. `docs/wiki/04-quan-su-co-ban.md` chép thành "Công ta > Thủ địch",
+đảo ngược cả hai kết cục, và lỗi lan sang `Luật Tối Giản §8`. `game/combat.ts` làm đúng theo source.
+Wiki đang live tại ferez96.com và đang dạy sai.
+
+**b. Ghi năm phán quyết ngày 2026-08-22** (`PQ-01` tới `PQ-05` trong `rule-decisions.md`) vào đúng
+trang domain của chúng, để lần sau không ai phải hỏi lại.
 
 **Acceptance criteria:**
-- Minh xác nhận source thắng wiki ở điểm này (nếu ngược lại thì phải sửa `game/combat.ts` và test,
-  không phải sửa wiki).
+- Minh xác nhận source thắng wiki ở điểm (a). Nếu ngược lại thì phải sửa `game/combat.ts` và test,
+  không phải sửa wiki.
 - `docs/wiki/04-quan-su-co-ban.md` và `Tam Quoc Tranh Hung - Luat Toi Gian.md` §8 khớp source và
   khớp `game/combat.ts`.
 - Rà xem lỗi đảo này còn lan sang trang nào khác không (glossary, sơ đồ luật).
-
-**Bằng chứng:** memory `reference_rules_discrepancies.md` mục 1.
+- Năm phán quyết xuất hiện trong wiki, không chỉ trong `product/`.
+- Comment ở `game/supply.ts:97-111` không còn ghi `PQ-01` là chỗ luật gốc để ngỏ.
 
 ---
 
@@ -173,10 +220,23 @@ thêm bất kỳ luật nâng cao nào.
 **Câu hỏi cần trả lời bằng số liệu ván thật:**
 - Kinh tế có bế tắc không - có Turn nào cả ba nước đều không còn nước đi kinh tế đáng làm?
 - Chiến đấu có quyết định không - hay hai bên cứ va vào nhau rồi cùng hao mà không đổi được đất?
+- Cắt lương có phải là đòn đáng dùng không, sau khi `ENG-01` xong?
 - Điểm lãnh thổ Xuân/Thu có làm nửa sau của ván trở nên vô vọng cho nước đang thua không?
 
 **Đây là cửa vào cho mọi luật nâng cao.** Phù, Trận Pháp, Chiến Tướng chỉ nên bàn sau khi item này
 có kết luận - nếu nền §1-9 lệch thì luật nâng cao xây lên chỉ khuếch đại chỗ lệch.
+
+---
+
+## Đã đóng
+
+### RULE-01 · Chốt ba phán quyết luật engine đang tự quyết `xong 2026-08-22`
+
+Minh phán quyết cả ba, cộng hai điểm làm rõ phát sinh. Kết quả: engine đúng ở cả năm chỗ. Chi tiết
+và bằng chứng đối chiếu ở `rule-decisions.md` (`PQ-01` tới `PQ-05`).
+
+Giá trị ngoài dự kiến: chính việc đối chiếu phán quyết với source đã lộ ra `ENG-01` - một cơ chế
+trung tâm của luật mà engine chưa cài.
 
 ---
 

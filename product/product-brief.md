@@ -96,10 +96,14 @@ vai và **ghi rõ trong log rằng số liệu cân bằng không còn chuyển 
 
 | Rủi ro | Ảnh hưởng | Xử lý |
 |---|---|---|
+| Engine thiếu cơ chế chết đói do cắt lương ở cuối lượt - cắt lương chỉ làm địch yếu đi thay vì giết | Một nhánh chiến thuật trung tâm biến mất khỏi ván; playtest sẽ đo một trò chơi khác với trò chơi thật | `ENG-01`, chặn `PT-01` |
+| `rulebook.ts` có hằng số luật không dòng code nào đọc - mỗi cái là một luật tưởng đã cài mà chưa | Không ai biết engine thật sự phủ tới đâu | `ENG-02` |
 | Wiki công khai dạy sai luật chiến đấu (hai dòng bảng bị đảo so với source; engine đúng, wiki sai) | Người chơi ván thật học sai mô hình, ra lệnh theo kỳ vọng sai | `DOC-01` |
-| Ba điểm luật engine tự quyết chưa được tác giả xác nhận | Nếu chốt ngược lại, số liệu playtest mất giá trị | `RULE-01`, làm **trước** khi chạy |
 | Chưa ai biết ván có vui không | Có thể phải đổi luật chứ không phải đổi code | Đo bằng chỉ số "Turn có quyết định thật" |
 | Kinh tế §5 có thể bế tắc giữa ván | Ván chết trước Turn 20 | Phát hiện qua playtest, chưa xử lý trước |
+
+Đã đóng: ba điểm luật engine tự quyết, cộng hai điểm làm rõ phát sinh - Minh phán quyết 2026-08-22,
+engine đúng cả năm. Xem `rule-decisions.md`.
 
 ## Điều đã biết chắc, đừng kiểm lại
 
@@ -110,3 +114,12 @@ vai và **ghi rõ trong log rằng số liệu cân bằng không còn chuyển 
   ý, không phải thiếu sót.
 - Bàn cờ 13x13 chép từ `reference/3kd-map.jpg` bằng cách lấy mẫu màu ô, không phải vẽ tay. Id ô là
   chữ hàng + số cột.
+
+## Điều tưởng chắc mà không chắc
+
+- **`rulebook.ts` không phải bằng chứng luật đã cài.** File tự mô tả là "mọi con số của luật, nguồn
+  sự thật duy nhất", nhưng nó chỉ là nơi *chép* luật vào code - có hằng số nằm đó mà không dòng code
+  nào đọc. `ENG-01` được phát hiện đúng theo dấu hiệu này. Muốn biết một luật đã chạy chưa thì tra
+  consumer của hằng số, đừng tin việc nó có mặt.
+- **Wiki không phải nguồn luật.** Nguồn có thẩm quyền là `reference/Tam Quoc Chi - full text.txt`;
+  wiki là bản chép lại và đã sai ít nhất một chỗ.
